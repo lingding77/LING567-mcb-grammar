@@ -1,0 +1,223 @@
+Language: Matsigenka
+Language code: mcb
+Lines: orth orth-seg gloss translat
+Author: Ling Tu, Hanshu Ding
+Date: Jan 15, 2021
+
+### FILE SYNTAX REFERENCE
+##Ex number and optional comment
+#Source: {a:page, b:page, author, elicited, attested} # elicited=native, attested=non-linguistics text
+#Vetted: {t, f, s} ## t=native, f=unvetted, s=linguistics text
+#Judgment: {g, u} ## g=grammatical, u=ungrammatical
+#Phenomena: {word order, case, agreement, ...}
+#<Example in standard orthography> (one of this and transliteration is required; including both is okay)
+#<Example in transliteration> (one of this and standard orthography is required; including both is okay)
+#<Example with morpheme boundaries noted and morpheme forms regularized>
+#<Morpheme-by-morpheme glosses>
+#<Free translation>
+
+
+# Ex 1 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {agreement}
+iogari matsigenka ikantiri :
+i-oga=ri matsigenka i-kant-i=ri :
+3mS-DEM.MED=CNTR person 3mS-say-realis=3mO :
+The man said to him :
+
+# Ex 1 Ungrammatical (male subject + female person-marking subject prefix on "kant")
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {agreement}
+iogari matsigenka okantiri :
+i-oga=ri matsigenka o-kant-i=ri :
+3mS-DEM.MED=CNTR person 3fS-say-realis=3mO :
+The man said to him :
+
+# Ex 2 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {agreement}
+iogari matsigenka ineiri :
+i-oga=ri matsigenka i-ne-i=ri :
+3mS-DEM.MED=CNTR person 3mS-see-realis=3mO :
+The man saw him :
+
+# Ex 2 Ungrammatical (male subject + female person-marking subject prefix on "ne")
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {agreement}
+iogari matsigenka oneiri :
+i-oga=ri matsigenka o-ne-i=ri :
+3mS-DEM.MED=CNTR person 3fS-see-realis=3mO :
+The man saw him :
+
+# Ex 3 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {agreement}
+i*jina onintanakiri
+i-*jina o-nint-an-ak-i=ri
+3mP-wife 3fS-fall.in.love.with-ABL-PERF-realis=3mO
+his wife fell in love with him.
+
+# Ex 3 Ungrammatical (male subject + female person-marking object suffix on "nint")
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {agreement}
+i*jina onintanakiro
+i-*jina o-nint-an-ak-i=ro
+3mP-wife 3fS-fall.in.love.with-ABL-PERF-realis=3fO
+his wife fell in love with him.
+
+# Ex 4 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {agreement}
+oogari tsinane okantiri :
+o-oga=ri tsinane o-kant-i=ri :
+3fS-DEM.MED=CNTR person 3fS-say-realis=3mO :
+The woman said(f) to him :
+
+# Ex 4 Ungrammatical (male subject + female person-marking object suffix on "kant")
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {agreement}
+oogari tsinane ikantiri :
+o-oga=ri tsinane i-kant-i=ri :
+3fS-DEM.MED=CNTR person 3mS-say-realis=3mO :
+The woman said to him :
+
+# Ex 5 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {agreement}
+iogari ananekipage oagavakiri
+i-oga=ri ananeki=page o-ag-av-ak-i=ri
+3mS-DEM.MED=CNTR child=PL 3fS-grab-TRNS-PERF-realis=3mO
+She grabbed the children.
+
+# Ex 5 Ungrammatical (female subject + male person-marking subject prefix on "ag")
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {agreement}
+iogari ananekipage iagavakiri
+i-oga=ri ananeki=page i-ag-av-ak-i=ri
+3mS-DEM.MED=CNTR child=PL 3mS-grab-TRNS-PERF-realis=3mO
+She grabbed the children.
+
+# Ex 6 Grammatical (SVO)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+tsinane otonkoanairo otishi
+tsinane o-tonko-an-a-i=ro otishi
+female 3fS-go.up-ABL-REG-realis=3fO hill 
+A female climbed a hill.
+
+# Ex 6 Ungrammatical (VOS)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {word order}
+otonkoanairo otishi tsinane
+o-tonko-an-a-i=ro otishi tsinane
+3fS-go.up-ABL-REG-realis=3fO hill female 
+A female climbed a hill.
+
+# Ex 6 Ungrammatical (VSO)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {word order}
+otonkoanairo tsinane otishi 
+o-tonko-an-a-i=ro tsinane otishi
+3fS-go.up-ABL-REG-realis=3fO female hill 
+A female climbed a hill.
+
+# Ex 6 Ungrammatical (OSV)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {word order}
+otishi tsinane otonkoanairo 
+otishi tsinane o-tonko-an-a-i=ro
+hill female 3fS-go.up-ABL-REG-realis=3fO 
+A female climbed a hill.
+
+# Ex 6 Ungrammatical (SOV)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {word order}
+tsinane otishi otonkoanairo 
+tsinane otishi o-tonko-an-a-i=ro
+female hill 3fS-go.up-ABL-REG-realis=3fO 
+A female climbed a hill.
+
+# Ex 6 Ungrammatical (OVS)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {word order}
+otishi otonkoanairo tsinane
+otishi o-tonko-an-a-i=ro tsinane
+hill 3fS-go.up-ABL-REG-realis=3fO female
+A female climbed a hill.
+
+# Ex 6 Ungrammatical (SOV + gender agreement)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {word order}
+surari otishi otonkoanairo 
+surari otishi o-tonko-an-a-i=ro
+male hill 3fS-go.up-ABL-REG-realis=3fO 
+A male climbed a hill.
+
+# Ex 6 Ungrammatical (OVS + gender agreement)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {word order}
+surari otonkoanairo tsinane
+surari o-tonko-an-a-i=ro tsinane
+hill 3fS-go.up-ABL-REG-realis=3fO male
+A male climbed a hill.
+
+# Ex 7 Grammatical (intransitive SV)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+katsari iaraiganaki
+katsari i-ar-a-ig-an-ak-i
+oropendola 3mS-fly-EPV-PL-ABL-PERF-realis 
+An oropendola flew.
+
+# Ex 7 Unrammatical (intransitive VS)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {word order}
+iaraiganaki katsari
+i-ar-a-ig-an-ak-i katsari 
+3mS-fly-EPV-PL-ABL-PERF-realis oropendola 
+An oropendola flew.
+
+
+
+
+
