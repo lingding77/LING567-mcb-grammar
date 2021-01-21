@@ -1,0 +1,101 @@
+EMB> Your tarball should have unpacked to one directory, called mcb-lab2 (with the grammar, writeup, tsdb directory and testsuite.txt inside). Instead I got several different pieces. Please check this for lab 3.
+
+		3. There seems to be an ambiguity when the nouns are combined
+
+EMB> This is vague. What are the different ways that the nouns are combining?
+
+			i-kaem-ako-t-apanu-t-i=ri=ra :
+			3mS-call.out-APPL:INDR-EPC-DEP-EPC-realis=3mO=SUB :
+			'He called out as he departed:'
+		Originally, there are 15 parses there, by removing the verb-pc duplicates, parse (3) is the winner. This is NOT reasonable semantics, the verb indicates information about departure or movement, but the MRS shows simply a _call.out_v_rel with an arg0 being the event and arg1 and arg2 being two non-focus elements. 
+
+EMB> Looking at that IGT, it looks like the main verb is one meaning call.out. I'm not sure where the 'departed' meaning is coming in, so perhaps through one of the affixes. So, the semantics is definitely incomplete, but I don't think it's wrong that the primary predication is _call.out_v_rel.
+
+ 			o-ogonke-t-a-a=ra *panko-tsi=ku o-teig-apa-ak-i=ro anpei .
+			3fS arrive EPC REG realis.refl =SUB house ALIEN =LOC 3fS remove.seed.from.boll ALL PERF realis =3fO cotton . 
+			'When she arrived back (at the house) she removed the seeds from the bolls.'
+
+
+EMB> The IGT is easier to read if you put the hyphens back into the gloss line:
+
+ 			o-ogonke-t-a-a=ra *panko-tsi=ku o-teig-apa-ak-i=ro anpei .
+			3fS-arrive-EPC-REG-realis.refl=SUB house-ALIEN=LOC 3fS-remove.seed.from.boll-ALL-PERF-realis=3fO cotton . 
+			'When she arrived back (at the house) she removed the seeds from the bolls.'
+
+EMB> If this is parsing as coordination, that might be right, but the translation suggests subordination (with 'when') instead.
+
+		9. # 2070:
+			i-kaem-ako-t-apanu-t-i=ri=ra :
+			3mS call.out APPL:INDR EPC DEP EPC realis =3mO =SUB :
+			He called out as he departed:@@
+		Basically identical parses (pc duplicates only), chose parse 3.
+		Not reasonable semantics, the verb indicates information about departure or movement, but the MRS shows simply a _call.out_v_rel with an arg0 being the event and arg1 and arg2 being two non-focus elements. 
+
+EMB> Isn't this the same as your #1?
+
+5. To test the refined gender type, we change the setting of gender in the customization system, as what we discribed in question 4. Besides the gender type update, we made some change for the lexicons.  
+
+
+EMB> This use of 'test' is odd to me. I'm expecting to see a description of your analysis here, which you then test with the testsuite examples (by trying to parse them).
+
+			Gender:
+			
+				Created new `noun_animal` type as supertype of `noun_per`
+					person=3rd, gender=anim
+				Created new `noun_per` type as supertype of `noun_maleper` and `noun_femaleper`
+					Supertype=noun_animal
+					Stems
+					“poã±arona” = _quechua.speaker_n_rel (orig noun66)
+					“matsigenka” = _matsigenka-or-person_n_rel (orig noun6)
+				Created new `noun_femaleper` type
+					Supertype=noun_per, gender=f
+					Stems
+
+EMB> All of this whitespace to the left made you lines wrap and made the write up hard too read.
+
+EMB> Also, where is the documentation of the values you created for the gender hierarchy, i.e. this part?
+
+section=gender
+  gender1_name=anim
+  gender2_name=inanim
+  gender3_name=m
+  gender4_name=f
+  gender5_name=ma
+    gender5_supertype1_name=anim
+    gender5_supertype2_name=m
+  gender6_name=fa
+    gender6_supertype1_name=anim
+    gender6_supertype2_name=f
+  gender7_name=fi
+    gender7_supertype1_name=inanim
+    gender7_supertype2_name=f
+
+
+As for the word order setting, we pick SVO order instead of the free order. Also, we created several sets of sentences with different word order, which includes both transitive verbs and intransitive verbs. 
+
+
+EMB> What exactly does your resource say about this?
+
+	- Overall: after adding gender to our system, the number of parses went down significantly, but the amount of ambiguity in the sentences that parsed also went down.
+
+EMB> I'd be curious to look at one or two examples that parsed previously and now don't parse with this addition, to see what is going on there. Is it simply a question of needing to put nouns in the right class? Something else?
+
+	There are also some gloss like 'MED=CNTR' is the concept that we never encounter before. 
+
+EMB> If you show me these in context (i.e. the full IGT) I might be able to make an informed guess. But: we won't expect to fully understand the glossing even by the end of the quarter...
+
+EMB> OH! And I found a list of the glosses which at least says what they are abbreviating here:
+http://linguistics.berkeley.edu/~levmichael/pubs/mcb_text_collection_30jun2013_v1.pdf
+
+# Ex 4 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {agreement}
+oogari tsinane okantiri :
+o-oga=ri tsinane o-kant-i=ri :
+3fS-DEM.MED=CNTR person 3fS-say-realis=3mO :
+The woman said(f) to him :
+
+EMB> What is "said(f)"? The translation line should be normal-looking English.
+

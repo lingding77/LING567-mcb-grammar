@@ -1,0 +1,426 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Loading mcb/latest_choices into the LinGO Grammar Matrix:
+
+- no errors (red asterisks) in lingo matrix customization
+
+- errors loading grammar in lexicon wrt % symbols:
+
+"Reading in lexical entry file lexicon
+Syntax error at line 172, character 11: := expected but not found in AKATSITINI
+Proceeding assuming :=
+Syntax error at line 172, character 11: Expected an identifier but found %
+Ignoring (part of) entry"
+--------------------------------------------------
+lexicon.tdl:
+akatsitini%20kashiri := noun6-noun-lex &
+  [ STEM < "akatsitini",
+           "kashiri" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_week_n_rel" ].
+monte%20carmelo := noun6-noun-lex &
+  [ STEM < "monte",
+           "carmelo" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_tpnym_n_rel" ].
+i-oga-egi%3Dri := det1-determiner-lex &
+  [ STEM < "i-oga-egi=ri" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_exist_q_rel" ].
+i-oga%3Dri := det2-determiner-lex &
+  [ STEM < "i-oga=ri" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_exist_q_rel" ].
+o-oga%3Dri := det3-determiner-lex &
+  [ STEM < "o-oga=ri" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_exist
+oga%3Dri := det6-determiner-lex &
+  [ STEM < "oga=ri" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_exist_q_rel" ].
+--------------------------------------------------
+Fixes: replace %20 and %3D symbols with ZZDESCRIPTORZZ
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Initial test suite instance analysis:
+- How many items parsed = 
+- Average number of parses per parsed item = 
+- Number of parses for most ambiguous item = 
+- Sources of ambiguity = 
+- For 10 items, do any of the parses have reasonable semantics?
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Adjustments to the choices file:
+- Remove asyndetic coordination: cs1, cs6
+	This did not work at all, new readings = 0
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Debugging sources of ambiguity for sentence:
+450@@@@-1@@i-kaem-ako-t-i=ri :@@@@1@2@3mS call.out APPL:INDR EPC realis =3mO : // He called out:@@
+
+irules.tdl: ~~~~~
+
+verb-pc86_lrt2-suffix :=
+%suffix (* =ri)
+verb-pc86_lrt2-lex-rule.
+	
+verb-pc15_lrt2-suffix :=
+%suffix (* =ri)
+verb-pc15_lrt2-lex-rule.
+
+verb-pc69_lrt1-suffix1 :=
+%suffix (* =ri)
+verb-pc69_lrt1-lex-rule.
+
+verb-pc10_lrt1-suffix2 :=
+%suffix (* -ako)
+verb-pc10_lrt1-lex-rule.
+
+verb-pc31_lrt2-suffix4 :=
+%suffix (* -ako)
+verb-pc31_lrt2-lex-rule.
+
+verb-pc32_lrt1-suffix :=
+%suffix (* -t)
+verb-pc32_lrt1-lex-rule.
+
+verb-pc5_lrt1-suffix :=
+%suffix (* -t)
+verb-pc5_lrt1-lex-rule.
+
+verb-pc80_lrt1-suffix :=
+%suffix (* -t)
+verb-pc80_lrt1-lex-rule.
+
+
+
+verb-pc31-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc1-rule-dtr & verb-pc15-rule-dtr & verb-pc2-rule-dtr & verb-pc23-rule-dtr & verb-pc27-rule-dtr & verb-pc3-rule-dtr & verb-pc32-rule-dtr & verb-pc40-rule-dtr & verb-pc49-rule-dtr & verb-pc50-rule-dtr & verb-pc69-rule-dtr & verb-pc7-rule-dtr & verb-pc72-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc8-rule-dtr & verb-pc80-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc99-rule-dtr &
+  [ INFLECTED #infl,
+    DTR verb-pc31-rule-dtr &
+        [ INFLECTED #infl ] ].
+
+verb-pc10-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc1-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc11-rule-dtr & verb-pc14-rule-dtr & verb-pc15-rule-dtr & verb-pc17-rule-dtr & verb-pc2-rule-dtr & verb-pc23-rule-dtr & verb-pc27-rule-dtr & verb-pc3-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc49-rule-dtr & verb-pc5-rule-dtr & verb-pc50-rule-dtr & verb-pc69-rule-dtr & verb-pc7-rule-dtr & verb-pc72-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc8-rule-dtr & verb-pc80-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc89-rule-dtr & verb-pc99-rule-dtr &
+  [ INFLECTED #infl,
+    DTR verb-pc10-rule-dtr &
+        [ INFLECTED #infl ] ].
+
+
+
+510
+o-ogonke-t-a-a=ra *panko-tsi=ku o-teig-apa-ak-i=ro anpei .
+3fS arrive EPC REG realis.refl =SUB house ALIEN =LOC 3fS remove.seed.from.boll ALL PERF realis =3fO cotton .
+When she arrived back (at the house) she removed the seeds from the bolls.@@
+
+
+head-subj-phrase := decl-head-subj-phrase & head-initial-head-nexus.
+
+head-initial-head-nexus := head-initial &
+  [ SYNSEM.ATTACH lmod,
+    HEAD-DTR.SYNSEM.ATTACH notmod-or-lmod ].
+decl-head-subj-phrase := basic-head-subj-phrase & declarative-clause.
+
+decl-head-opt-subj-phrase := basic-head-opt-subj-phrase & declarative-clause &
+  [ SYNSEM.LOCAL.CAT.MC #mc,
+    HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
+
+
+150
+inpo ag-an-ak-a o-antaro-t-ak-i=ra i-*shinto .
+then arrive(.day) ABL PERF realis.refl 3fS be.adult.female EPC PERF realis =SUB 3mP daughter .
+Then came the day that his daughter's first menstruation arrived.
+
+
+
+450
+i-kaem-ako-t-i=ri :
+3mS call.out APPL:INDR EPC realis =3mO :
+He called out:
+
+not parsable:
+340 - missing ovashi in lexicon
+ovashi i-kant-i=ri moritoni :
+then 3mS say realis =3mO NAME :
+Then he said to Moritoni:
+
+i-pomirintsi-t-ak-a=ro i-tog-ak-i=ro=ra i-omava-t-ako-t-an-ak-a kutagiteri , te o-n-tu-e .
+spend.time.doing.something.difficult EPC PERF realis.refl =3fO 3mS fell.tree PERF realis =3fO =SUB 3mS be.three EPC APPL:INDR EPC ABL PERF realis.refl day , NEG.REAL 3fS irrealis fall.over irrealis . 
+He labored for three days in felling the tree without it falling.
+
+i-pomirintsi-t-ak-a=ro
+^ how can we tell if pomirintsi is removing something in the stem? are all the i-rules indicated with -affix
+
+i-a-t-ak-i , i-tog-a-vage-t-apa-ak-i , te tatoita i-sure-t-enpa .
+3mS go EPC PERF realis , 3mS fell.tree EPV DUR EPC ALL PERF realis , NEG.REAL nothing 3mS think EPC irreal.refl .
+He went and was felling (the tree), and he was not thinking about anything.@@
+
+i-tog-a-vage-t-apa-ak-i <- no parse
+i-tog-ak-i
+i-tog-a-apa-ak-i
+i-tog-a-t-apa-ak-i
+i-tog-vage-i
+
+
+20
+iriro-egi i-shine-vent-a-ig-an-ak-a=ro ovashi omirinka i-ogonke-ig-a i-mag-a-ig-i=ra kara .
+3m.PRO PL 3mS like APPL:MOTV EPV PL ABL PERF realis.refl =3fO so every.one 3mS arrive PL realis.refl 3mS sleep EPV PL realis =SUB AUG . //  They liked it, and so always arrived there and slept.@@
+
+30@@@@-1@@i-ogonke-t-ak-a=ra i-mag-apa-i oaku , o-chapini-t-an-ak-i=ra , o-niganki-gite-t-an-ak-i=ra i-kem-asano-t-ak-i=ri i-matik-ak-i=ra .@@@@1@10@3mS arrive EPC PERF realis.refl =SUB 3mS sleep ALL realis beach , 3fS be.night EPC ABL PERF realis =SUB , 3fS be.middle CL:sky EPC ABL PERF realis =SUB 3mS hear VERIF EPC PERF realis =3mO 3mS sing PERF realis =SUB . // When he arrived he slept by the rover, and when night fell, at midnight, he heard the singing.@@
+
+330
+i-nti=tari seripigari pairo=rira i-avis-a-enka-t-ak-i , i-og-ashi-t-an-ak-a=ro i-kamaranpi-re i-a-t-ak-i=ra i-n-kamoso-t-e=ro=ra .
+3mS COP =DSC.CNGNT tobacco.shaman very.much =REL 3mS surpass EPV CL:immaterial EPC PERF realis , 3mS eat MOD:INTENT EPC ABL PERF realis.refl =3fO 3mP ayahuasca ALIEN.POSS 3mS go EPC PERF realis =SUB 3mS irrealis check.on EPC irrealis =3fO =SUB .
+Since he was a very powerful shaman, he took his ayahuasca and went to visit her (Shomporekitagantsi).@@
+
+310
+i-iva-t-an-ak-i=tyo matsigenka i-am-a-ig-an-ak-i=ro=ra i-*itsiro-egi i-avina-ge-ig-an-ak-i=ro=ra *avo-tsi=ku .
+3mS go.ahead EPC ABL PERF realis =AFFECT person 3mS bring EPV PL ABL PERF realis =3fO =SUB 3mP sister.ME PL 3mS hug DSTR PL ABL PERF realis =3fO =SUB path ALIEN =LOC .
+The man went first, bringing his (Moritoni's) sister, embracing them from time to time along the path.@@
+
+i-iva-t-an-ak-i=tyo
+
+600
+o-chapini-t-an-ak-i=ra o-kaem-akagant-a-ig-ak-i=ro maganiro tsinane-egi , o-ogotag-a-ig-an-ak-i=ro=ra o-n-pirant-a-ig-i=ra .
+3fS be.night EPC ABL PERF realis =SUB 3fS call.out CAUS.MED EPV PL PERF realis =3fO all.ANIM female PL , 3fS teach EPV PL ABL PERF realis =3fO =SUB 3fS irrealis sing.(women) EPV PL realis =SUB .
+When night came, she (the eagle's wife) called all the women to teach them how to sing.@@
+
+3fS call.out CAUS.MED EPV PL PERF realis =3fO all.ANIM female PL , 3fS
+o-kaem-akagant-a-ig-ak-i=ro tsinane-egi 			<- parse
+o-kaem-akagant-a-ig-ak-i=ro maganiro tsinane-egi 	<- no parse
+
+noun73-noun-lex := noun-lex & noun-pc10-rule-dtr & noun-pc12-rule-dtr & noun-pc19-rule-dtr & noun-pc20-or-noun-pc5-rule-dtr & noun-pc23-rule-dtr & noun-pc25-rule-dtr & noun-pc26-rule-dtr & noun-pc27-rule-dtr & noun-pc3-rule-dtr & noun-pc6-rule-dtr & noun-pc8-rule-dtr &
+  [ SYNSEM.LOCAL [ CAT.HEAD [ PRON +,
+                              CASE all ],
+                   CONT.HOOK.INDEX.PNG.GEND anim ],
+    INFLECTED [ NOUN-PC25-FLAG -,
+                NOUN-PC3-FLAG - ] ].
+
+
+1110@@@@-1@@i-kemisant-asano-t-i o-nti o-poni-a-enka-t-ak-a oaku .@@@@1@5@3mS listen VERIF EPC realis 3fS COP 3fS come.from EPV CL:immaterial EPC PERF realis.refl river . // He clearly heard that it came from the river.@@
+
+590
+no-kog-ak-i niganki=ku-nirira .
+1S want PERF realis middle =LOC DEL.NOMZ .
+"I want the one in the middle." @@
+
+890
+i-avis-ak-i=ro=ra aityara i-sonkava-t-a-i=ra .
+3mS pass.by PERF realis =3fO =SUB opposite.side 3mS puquear EPC REG realis =SUB .
+When he got to the other side, he would begin to whistle.
+
+960
+iriro=ri i-kant-i :
+3m.PRO =CNTR 3mS say realis :
+He (Moritoni) said:
+
+2070
+i-kaem-ako-t-apanu-t-i=ri=ra :
+3mS call.out APPL:INDR EPC DEP EPC realis =3mO =SUB :
+He called out as he departed:@@
+
+2730
+i-oga=ri moritoni i-kant-i :
+3mS DEM.MED =CNTR NAME 3mS say realis :
+Moritoni said:@@
+
+2560
+i-oga=ri katsari i-peg-a-ig-i osheto tsinaro=page .
+3mS DEM.MED =CNTR crested.oropendola 3mS treat.as EPV PL realis spider.monkey grasshopper =PL .
+The oropendolas treated grasshoppers as spider monkeys.
+
+
+1860
+i-aga-t-ak-i=ra i-seka-ig-ak-a=ra , i-apato-ji-t-ashi-vent-ak-a=ri maganiro katsari i-ne-a-ig-ak-e=ri=ra .
+3mS finish EPC PERF realis =SUB 3mS eat PL PERF realis.refl =SUB , 3mS gather CL:social.beings EPC MOD:INTENT APPL:MOTV PERF realis.refl =3mO all.ANIM crested.oropendola 3mS see EPV PL PERF irrealis =3mO =SUB .
+When they finished eating, all the oropendolas gathered in order to see him.
+
+i-aga-t-ak-i=ra i-seka-ig-ak-a=ra , i-apato-ji-t-ashi-vent-ak-a=ri maganiro katsari i-ne-a-ig-ak-e=ri=ra .
+3mS finish EPC PERF realis =SUB 3mS eat PL PERF realis.refl =SUB , 3mS gather CL:social.beings EPC MOD:INTENT APPL:MOTV PERF realis.refl =3mO all.ANIM crested.oropendola 3mS see EPV PL PERF irrealis =3mO =SUB .
+When they finished eating, all the oropendolas gathered in order to see him.
+
+2140
+o-niganki-gite-t-an-ak-i=ra i-kire-an-ak-i paniro matsigenka , i-kem-i i-matik-a-ig-ak-i tovai matsigenka .
+3fS be.middle CL:sky EPC ABL PERF realis =SUB 3mS open.eyes ABL PERF realis one.ANIM person , 3mS hear realis 3mS sing EPV PL PERF realis many person .
+At midnight, one person woke up, and heard many people singing.
+
+i-kire-an-ak-i paniro matsigenka .
+3mS open.eyes ABL PERF realis one.ANIM person .
+one person woke up .
+
+i-kire-an-ak-i matsigenka .
+
+
+
+antari := verb158-verb-lex &
+  [ STEM < "antari" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_be.adult.male_v_rel" ].
+
+antaro := verb8-verb-lex &
+  [ STEM < "antaro" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_be.adult.female_v_rel" ].
+
+surari_2 := verb158-verb-lex &
+  [ STEM < "surari" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_be.male_v_rel" ].
+
+2510@@@@-1@@i-antari-t-an-ak-i=ra , o-ne-an-ak-i=ri i-*jina ovashi o-nint-an-ak-i=ri .@@@@1@7@3mS be.adult.male EPC ABL PERF realis =SUB , 3fS see ABL PERF realis =3mO 3mP wife so 3fS fall.in.love.with ABL PERF realis =3mO . // When he (the younger brother) grew up, his wife noticed him and fell in love.@@
+
+i-antari-t-an-ak-i=ra
+o-antari-t-an-ak-i=ra
+
+
+1710
+o-patima-ig-a-ma-t-an-ak-i=ro o-sa-ja-ig-av-ak-i=ro=ra , paniro o-ag-av-ak-i panpatu=ku , o-oga=ri apite-ni o-shig-asano-vage-t-an-a-a .
+3fS pursue PL EPV REACT EPC ABL PERF realis =3fO 3fS scald CL:fluid PL TRNS PERF realis =3fO =SUB , one.ANIM 3fS catch TRNS PERF realis patio =LOC , 3fS DEM.MED =CNTR other ANIM 3fS run VERIF DUR EPC ABL REG realis.refl .
+She chased them to scald them, and she got one in the patio of the house, while the other one ran away like crazy, long and far.
+
+2300
+i-oga-egi=ri matsigenka-egi i-sure-ig-a-ma-t-an-ak-a=tyo i-n-o[+v]-kam-ag-a-ig-ak-e=ri=ra .
+3mS DEM.MED PL =CNTR person PL 3mS think PL EPV REACT EPC ABL PERF realis.refl =AFFECT 3mS irrealis CAUS3.ag die CAUS.INFL EPV PL PERF irrealis =3mO =SUB .
+The people, in response, thought of killing him.
+
+760
+i-oga=ri matsigenka i-ovetsik-i o-mara=page=ni i-tsamai-ri , ario i-panki-t-i i-shinki-re , i-parianti-re o-ntiri i-*seka
+3mS DEM.MED =CNTR person 3mS make realis 3fS big =PL =AUG 3mP cultivate NOMZ.INALIEN , SAME.STANCE 3mS plant EPC realis 3mP corn ALIEN.POSS , 3mP plantain ALIEN.POSS 3fS COORD 3mP manioc .
+The man made large gardens, in which he planted his corn, his plantains, and his manioc@@
+
+760 (cut) XXX
+i-oga=ri matsigenka i-ovetsik-i o-mara=page=ni i-tsamai-ri
+3mS DEM.MED =CNTR person 3mS make realis 3fS big =PL =AUG 3mP cultivate NOMZ.INALIEN , SAME.STANCE 3mS plant EPC realis 3mP corn ALIEN.POSS , 3mP plantain ALIEN.POSS 3fS COORD 3mP manioc .
+The man made gardens
+
+1580
+o-oga=ri tsinane o-kaem-ava-vage-t-ak-i=tyo kara o-kenki-ak-i=ro=ra o-*shinto .
+3fS DEM.MED =CNTR female 3fS call.out AUM DUR EPC PERF realis =AFFECT AUG 3fS miss PERF realis =3fO =SUB 3fS daughter .
+The woman cried out for a long time, missing her daughter.@@
+
+1580 (cut)
+o-oga=ri tsinane o-kaem-ava-vage-t-ak-i=tyo .
+3fS DEM.MED =CNTR female 3fS call.out AUM DUR EPC PERF realis =AFFECT AUG 3fS miss PERF realis =3fO =SUB 3fS daughter .
+The woman cried out for a long time, missing her daughter.@@
+
+3070 *LINGDING SENTENCES*****************************************
+i-oga=ri matsigenka i-kant-i=ri : (male subj, male det, male verb)
+3mS DEM.MED =CNTR person 3mS say realis =3mO :
+The man said to him:
+
+** i-oga=ri matsigenka o-kant-i=ri : (male subj, male det, female verb)
+3mS DEM.MED =CNTR person 3mS say realis =3mO :
+The man said(f) to him:
+
+** i-oga=ri maimero i-kant-i=ro : (female subj, male det, male verb)
+3mS DEM.MED =CNTR female.cannibal 3mS say realis =3mO :
+The female cannibal said to him:
+
+o-oga=ri maimero o-kant-i=ro : (female subj, female det, female verb)
+
+maimero o-kant-i=ro : (female subj, female verb)
+
+** maimero i-kant-i=ro : (female subj, male verb)
+
+
+maganiro maimero i-kant-i=ro :
+
+maganiro maimero o-kant-i=ro :
+
+
+
+
+** o-oga=ri apite-ni maimero i-kant-i=ro :
+3mS DEM.MED =CNTR female.cannibal 3mS say realis =3mO : ???
+The female cannibal said to him:
+
+1710
+o-patima-ig-a-ma-t-an-ak-i=ro o-sa-ja-ig-av-ak-i=ro=ra , paniro o-ag-av-ak-i panpatu=ku , o-oga=ri apite-ni o-shig-asano-vage-t-an-a-a .
+3fS pursue PL EPV REACT EPC ABL PERF realis =3fO 3fS scald CL:fluid PL TRNS PERF realis =3fO =SUB , one.ANIM 3fS catch TRNS PERF realis patio =LOC , 3fS DEM.MED =CNTR other ANIM 3fS run VERIF DUR EPC ABL REG realis.refl .
+She chased them to scald them, and she got one in the patio of the house, while the other one ran away like crazy, long and far.
+
+1800
+arionpa i-a-t-an-ak-i=ri ovashi i-ne-i=ri i-ken-apa-ak-i paniro chonpari i-shig-a-te-t-apa-ak-a=ri=ra i-tonkivo-av-ak-a=ri=ra
+continue 3mS go EPC ABL PERF realis =CONT so 3mS see realis =3mO 3mS follow.route ALL PERF realis one.ANIM snowy.egret 3mS run EPV APPL:GOAL EPC ALL PERF realis.refl =3mO =SUB 3mS encounter.on.path TRNS PERF realis.refl =3mO =SUB .
+He kept going, and then he saw a snowy egret running towards him to meet up with him.@@
+
+ *LINGDING END SENTENCES*****************************************
+
+3060
+i-a-ve-t-ak-a oaku i-ne-apa-ak-i paniro tsinane pirini-t-ak-i ovashi i-ni-apa-ak-i=ro .
+3mS go FRUS EPC PERF realis.refl river 3mS find ALL PERF realis one.ANIM female sit EPC PERF realis so 3mS speak ALL PERF realis =3fO .
+He went to the river and saw a woman sitting (there) and he spoke to her.
+
+3060 (cut)
+i-ne-apa-ak-i paniro tsinane pirini-t-ak-i ovashi i-ni-apa-ak-i=ro .
+3mS find ALL PERF realis one.ANIM female sit EPC PERF realis so 3mS speak ALL PERF realis =3fO .
+He went to the river and saw a woman sitting (there) and he spoke to her.
+
+3240
+o-tsiti-t-an-ak-a i-shinki-ro-egi i-apato-ji-a-ig-an-ak-a maganiro i-am-a-ge-ig-apa-ak-i=ra posante=page .
+3fS begin EPC ABL PERF realis.refl 3mP be.drunk NOMZ.INALIEN PL 3mS gather CL:social.beings EPV PL ABL PERF realis.refl all.ANIM 3mS bring EPV DSTR PL ALL PERF realis =SUB various.things =PL .
+The party began, and everyone gathered, bringing all sorts of things.
+
+3240 (cut)
+i-apato-ji-a-ig-an-ak-a maganiro i-am-a-ge-ig-apa-ak-i=ra posante=page .
+3mS gather CL:social.beings EPV PL ABL PERF realis.refl all.ANIM 3mS bring EPV DSTR PL ALL PERF realis =SUB various.things =PL .
+The party began, and everyone gathered, bringing all sorts of things.
+
+
+
+notes:
+--------------------------------------------------
+Get grammar:
+1) upload choices file to lingo matrix
+2) check for red asterisks to resolve (non for mcb)
+3) create grammar .tar
+--------------------------------------------------
+(one time) Create a test suite skeleton:
+1) mkdir tsdb/skeletons/corpus
+2) edit tsdb/skeletons/Index.lisp to add corpus:
+	(
+	((:path . "matrix") (:content . "matrix: A test suite created automatically from the test sentences given in the Grammar Matrix questionnaire."))
+	((:path . "corpus") (:content . "IGT provided by the linguist"))
+	)
+3) download `item` file and move to tsdb/skeletons/corpus/item
+   break up into smaller files of <=1000 lines (only 349 lines for mcb)
+4) cp tsdb/skeletons/Relations tsdb/skeletons/corpus/relations
+5) move tsdb out of sharefolder to /home/ubuntu/delphin/mcb_grammar/tsdb
+
+The final directory structure should look like this:
+grammar/tsdb/skeletons/Index.lisp            	(lists the testsuites)
+grammar/tsdb/skeletons/Relations             	(master copy of the database schema)
+grammar/tsdb/skeletons/corpus/item             	(file provided)
+grammar/tsdb/skeletons/corpus/relations        	(copy of ../Relations)
+grammar/tsdb/home                            	(directory to store test profiles)
+
+6) create ~/.tsdbrc
+	(tsdb:tsdb  :home  "/home/ubuntu/delphin/mcb_grammar/tsdb/home")
+	(tsdb:tsdb  :skeleton  "/home/ubuntu/delphin/mcb_grammar/tsdb/skeletons")
+	- this is one time setup replicating the following in podium:
+		Options > Database Root > /home/ubuntu/delphin/mcb_grammar/tsdb/home
+		Options > Skeleton Root > /home/ubuntu/delphin/mcb_grammar/tsdb/skeletons
+--------------------------------------------------
+(one time) Create new test suite skeletons:
+1) mkdir tsdb/lab2
+2) edit tsdb/skeletons/Index.lisp to add lab2:
+	(
+	((:path . "matrix") (:content . "matrix: A test suite created automatically from the test sentences given in the Grammar Matrix questionnaire."))
+	((:path . "corpus") (:content . "IGT provided by the linguist"))
+	((:path . "lab2") (:content . "Test suite collected for Lab 2."))
+	)
+3) download make_item python script
+4) create FOLDER???/testsuite.txt
+5) ./make_item testsuite.txt item 2>errs
+--------------------------------------------------
+Run initial test suite instance
+1) Start lkb
+2) in lkb, `C-c g` to load starter grammar
+3) in lkb, `(tsdb:tsdb :podium)` to run tsdb
+4) in podium, File > Create > IGT provided by the linguist [349 items]
+	creates folder ~/delphin/mcb_grammar/tsdb/home/mcb with test
+5) in podium (with grammar loaded in lkb), click test suite, Process > All Items
+6) in podium, analyze:
+	- Browse > Results
+	- Analyze > Coverage
+	- Analyze > Overgeneration.
+
+TODO:
+SET UP GIT
+EXPLORE THE RESULTS
+IMPROVE THE CHOICES FILE FOR TWO PHENOM
+MAKE SURE YOU CAN PARSE INDIVIDUAL SENTENCES
+
+
+./make_item --map orth-seg i-input testsuite.txt item
+
