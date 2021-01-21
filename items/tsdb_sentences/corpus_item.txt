@@ -363,7 +363,10 @@ iriro=ri i-kamagu-t-av-ak-i=ro sorerere , i-kant-av-ak-i=ro=ra :
 3m.PRO=CNTR 3mS-look-EPC-TRNS-PERF-realis=3fO ONOM:surprise , 3mS-say-TRNS-PERF-realis=3fO=SUB : 
 He looked at her sorereree (intensely and in surprise), and he said to her: 
 
-DIFFERENT COUNT: ['730@@@@-1@@â€˜ o-oga=ri no-kant-i=npi=ra , â€˜ ga pi-pok-i ,â€™ te pi-n-kem-e , panityo no-n-pok-an-a-e .â€™@@@@1@14@NO_GLOSS 3fS DEM.MED =CNTR 1S say realis =2O =SUB , NO_GLOSS NEG.IRREAL 2S come realis NO_GLOSS NEG.REAL 2S irrealis hear irrealis , NO_GLOSS 1S irrealis come ABL REG irrealis NO_GLOSS // â€˜SÃ\xad bien te dije que no vengas, no has escuchado, ya voy a venirme.â€™ // Need to check if the penultimate form is panityo as given.@@\n', '730', 'â€˜ o-oga=ri no-kant-i=npi=ra , â€˜ ga pi-pok-i ,â€™ te pi-n-kem-e , panityo no-n-pok-an-a-e .â€™', 'NO_GLOSS 3fS DEM.MED =CNTR 1S say realis =2O =SUB , NO_GLOSS NEG.IRREAL 2S come realis NO_GLOSS NEG.REAL 2S irrealis hear irrealis , NO_GLOSS 1S irrealis come ABL REG irrealis NO_GLOSS // â€˜SÃ\xad bien te dije que no vengas, no has escuchado, ya voy a venirme.â€™', 'Need to check if the penultimate form is panityo as given.']
+730
+â€˜ o-oga=ri no-kant-i=npi=ra , â€˜ ga pi-pok-i ,â€™ te pi-n-kem-e , panityo no-n-pok-an-a-e .â€™
+NO_GLOSS 3fS-DEM.MED=CNTR 1S-say-realis=2O=SUB , NO_GLOSS NEG.IRREAL 2S-come-realis NO_GLOSS NEG.REAL 2S-irrealis-hear-irrealis , NO_GLOSS 1S-irrealis-come-ABL-REG-irrealis NO_GLOSS
+â€˜SÃ\xad bien te dije que no vengas, no has escuchado, ya voy a venirme.â€™ // Need to check if the penultimate form is panityo as given.
 
 740 
 i-o[+v]-kire-a-ig-ak-i=ri maganiro ovashi i-kemisant-asano-ig-ak-i=ri i-ni-ak-i=ra o-nti i-n-ak-i inkenishi=ku . 
@@ -705,7 +708,7 @@ o-shiriaga-t-apa-ak-a=ra i-poro-ak-i i-tsamai-ri o-marane .
 3fS-go.down(.water.level)-EPC-ALL-PERF-realis.refl=SUB 3mS-clear.garden-PERF-realis 3mP-cultivate-NOMZ.INALIEN 3fS-big . 
 When the dry season arrived, he cleared (the underbrush) a large garden. 
 
-DIFFERENT COUNT: ["1420@@@@-1@@â€˜ no-t-ak-i=npi=tari no-kant-i mire-t-a-i=rorokari , atsi no-n-p-a-ja-t-e=ri=ta .â€™@@@@1@8@NO_GLOSS 1S love PERF realis =2O =REAS 1S say realis be.thirsty EPC REG realis =EPIST.MOD , DRCT 1S irrealis give EPV CL:fluid EPC irrealis =3mO =INTNC NO_GLOSS // â€˜Es que te quiero mucho y por eso me dije, tendrÃ¡s sed, irÃ© a llevarle.â€™ // Since I love you, I said, maybe he's thirsty, I'll give him his drink.@@\n", '1420', 'â€˜ no-t-ak-i=npi=tari no-kant-i mire-t-a-i=rorokari , atsi no-n-p-a-ja-t-e=ri=ta .â€™', 'NO_GLOSS 1S love PERF realis =2O =REAS 1S say realis be.thirsty EPC REG realis =EPIST.MOD , DRCT 1S irrealis give EPV CL:fluid EPC irrealis =3mO =INTNC NO_GLOSS // â€˜Es que te quiero mucho y por eso me dije, tendrÃ¡s sed, irÃ© a llevarle.â€™', "Since I love you, I said, maybe he's thirsty, I'll give him his drink."]
+1420@@@@-1@@â€˜ no-t-ak-i=npi=tari no-kant-i mire-t-a-i=rorokari , atsi no-n-p-a-ja-t-e=ri=ta .â€™@@@@1@8@NO_GLOSS 1S love PERF realis =2O =REAS 1S say realis be.thirsty EPC REG realis =EPIST.MOD , DRCT 1S irrealis give EPV CL:fluid EPC irrealis =3mO =INTNC NO_GLOSS // â€˜Es que te quiero mucho y por eso me dije, tendrÃ¡s sed, irÃ© a llevarle.â€™ // Since I love you, I said, maybe he's thirsty, I'll give him his drink.@@\n", '1420', 'â€˜ no-t-ak-i=npi=tari no-kant-i mire-t-a-i=rorokari , atsi no-n-p-a-ja-t-e=ri=ta .â€™', 'NO_GLOSS 1S love PERF realis =2O =REAS 1S say realis be.thirsty EPC REG realis =EPIST.MOD , DRCT 1S irrealis give EPV CL:fluid EPC irrealis =3mO =INTNC NO_GLOSS // â€˜Es que te quiero mucho y por eso me dije, tendrÃ¡s sed, irÃ© a llevarle.â€™', "Since I love you, I said, maybe he's thirsty, I'll give him his drink."]
 
 1430 
 pi-tsave-t-i=ri=kari matsontsori .â€™ 
@@ -1047,7 +1050,10 @@ ga o-agave-i o-og-a=ra tivi , inpogo , parianti o-ntiri magatiro agave-ats-e=rir
 NEG.IRREAL 3fS-be.able-realis 3fS-eat-realis.refl=SUB salt , sugarcane , plantain 3fS-COORD all.INAN be.able-SUBJ.FOC2-irrealis=REL 3fS-irrealis-cutipar-EPC-ABL-PERF-irreal.refl=3fO=SUB . 
 She cannot eat salt, sugarcane, plantain or anything that can harm her [`cutipar' = harm by virtue of sympathetic magic]. 
 
-DIFFERENT COUNT: ['2110@@@@-1@@i-pirini-t-ak-i pite-ni akatsitini kashiri i-poro-ak-i=ra , inpo i-aga-t-ak-i=ro=ra i-tog-an-ak-i .@@@@1@10@3mS COP:LOC EPC PERF realis two ANIM week 3mS clear.garden PERF realis =SUB , then 3mS finish EPC PERF realis =3fO =SUB 3mS fell.tree ABL PERF realis . // He spent two weeks clearing (the underbrush of the garden), then when he finished it (the task), he felled (the trees).@@\n', '2110', 'i-pirini-t-ak-i pite-ni akatsitini kashiri i-poro-ak-i=ra , inpo i-aga-t-ak-i=ro=ra i-tog-an-ak-i .', '3mS COP:LOC EPC PERF realis two ANIM week 3mS clear.garden PERF realis =SUB , then 3mS finish EPC PERF realis =3fO =SUB 3mS fell.tree ABL PERF realis .', 'He spent two weeks clearing (the underbrush of the garden), then when he finished it (the task), he felled (the trees).']
+2110
+i-pirini-t-ak-i pite-ni akatsitini kashiri i-poro-ak-i=ra , inpo i-aga-t-ak-i=ro=ra i-tog-an-ak-i .
+3mS-COP:LOC-EPC-PERF-realis two-ANIM week 3mS-clear.garden-PERF-realis=SUB , then 3mS-finish-EPC-PERF-realis=3fO=SUB 3mS-fell.tree-ABL-PERF-realis .
+He spent two weeks clearing (the underbrush of the garden), then when he finished it (the task), he felled (the trees).
 
 2120 
 i-katinka-apa-ak-i=ra i-shigopi-t-an-ak-i i-a-t-ak-i i-tsimank-ak-i=ra i-pi-t-ak-i=ra . 
@@ -1134,7 +1140,10 @@ o-nevent-ako-t-ak-a=ri i-menko-se-t-ak-a=ra pakitsa , paniro i-tyomia-ni anta-sa
 3fS-see.in.the.distance-APPL:INDR-EPC-PERF-realis.refl=3mO 3mS-hacer.plataforma-CL:mass-EPC-PERF-realis.refl=SUB eagle , one.ANIM 3mS-small-ANIM be.adult-CL:short.and.chubby-EPC-PERF-realis=AFFECT AUG . 
 In the ditstance she saw an eagle's nest, a juvenile bird. 
 
-DIFFERENT COUNT: ['2290@@@@-1@@o-pera-ma-t-an-ak-a=ro o-*iniro , o-shig-an-ak-a o-pasa*nanpi-t-ak-i=ri=ra pakitsa , o-kant-ak-i=ri=ra :@@@@1@9@3fS tire.of REACT EPC ABL PERF realis.refl =3fO 3fP mother , 3fS run ABL PERF realis.refl 3fS hit.with.stick NI:side EPC PERF realis =3mO =SUB eagle , 3fS say PERF realis =3mO =SUB : // Her mother got fed up and ran up to the eagle and hit it in the side with a stick, saying to him:@@\n', '2290', 'o-pera-ma-t-an-ak-a=ro o-*iniro , o-shig-an-ak-a o-pasa*nanpi-t-ak-i=ri=ra pakitsa , o-kant-ak-i=ri=ra :', '3fS tire.of REACT EPC ABL PERF realis.refl =3fO 3fP mother , 3fS run ABL PERF realis.refl 3fS hit.with.stick NI:side EPC PERF realis =3mO =SUB eagle , 3fS say PERF realis =3mO =SUB :', 'Her mother got fed up and ran up to the eagle and hit it in the side with a stick, saying to him:']
+2290
+o-pera-ma-t-an-ak-a=ro o-*iniro , o-shig-an-ak-a o-pasa*nanpi-t-ak-i=ri=ra pakitsa , o-kant-ak-i=ri=ra :
+3fS tire.of REACT EPC ABL PERF realis.refl =3fO 3fP mother , 3fS run ABL PERF realis.refl 3fS hit.with.stick NI:side EPC PERF realis =3mO =SUB eagle , 3fS say PERF realis =3mO =SUB :
+Her mother got fed up and ran up to the eagle and hit it in the side with a stick, saying to him:
 
 2300 
 i-oga-egi=ri matsigenka-egi i-sure-ig-a-ma-t-an-ak-a=tyo i-n-o[+v]-kam-ag-a-ig-ak-e=ri=ra . 
@@ -1211,7 +1220,10 @@ anta=ri o-ne-an-inkani=ra shivokagiri , i-oga=ri surari i-seronk-ak-i=ni=ro pasa
 there=CNTR 3fS-know-ABL-PAS.REAL2=SUB sprouted.corn , 3mS-DEM.MED=CNTR male 3mS-carve-PERF-realis=APPL:RECP=3fO batan 3mP-wife PURP2 3fS-grind-PERF-realis=3fO=SUB . 
 When corn sprouts came to be known, the man would make his wife a trough in order for her to grind it [i.e., the corn]. 
 
-DIFFERENT COUNT: ['2450@@@@-1@@ovashi i-a-t-a-i=ra i-*panko=ku , i-ogonke-t-apa-ak-a=ra i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-shinki-re .@@@@1@10@so 3mS go EPC REG realis =SUB 3mP house =LOC , 3mS arrive EPC ALL PERF realis.refl =SUB 3mS see ALL PERF realis =3fO 3mP wife grind EPV DUR EPC PERF realis 3fP corn ALIEN.POSS . // Entonces se fue a su casa y al llegar encontrÃ³ a su esposa moliendo su maÃ\xadz. // Then he went back to his house and when he arrived, he saw his wife grinding her corn.@@\n', '2450', 'ovashi i-a-t-a-i=ra i-*panko=ku , i-ogonke-t-apa-ak-a=ra i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-shinki-re .', 'so 3mS go EPC REG realis =SUB 3mP house =LOC , 3mS arrive EPC ALL PERF realis.refl =SUB 3mS see ALL PERF realis =3fO 3mP wife grind EPV DUR EPC PERF realis 3fP corn ALIEN.POSS . // Entonces se fue a su casa y al llegar encontrÃ³ a su esposa moliendo su maÃ\xadz.', 'Then he went back to his house and when he arrived, he saw his wife grinding her corn.']
+2450
+ovashi i-a-t-a-i=ra i-*panko=ku , i-ogonke-t-apa-ak-a=ra i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-shinki-re .
+so 3mS-go-EPC-REG-realis=SUB 3mP-house=LOC , 3mS-arrive-EPC-ALL-PERF-realis.refl=SUB 3mS-see-ALL-PERF-realis=3fO 3mP-wife-grind-EPV-DUR-EPC-PERF-realis 3fP-corn-ALIEN.POSS .
+Entonces se fue a su casa y al llegar encontrÃ³ a su esposa moliendo su maÃ\xadz. // Then he went back to his house and when he arrived, he saw his wife grinding her corn.@@\n'
 
 2460 
 â€˜ tya=ra o-kant-ak-enpa no-a-t-aki-t-i=ra , kantaka=tyo no-n-a-i=ra aka .â€™ 
@@ -1228,7 +1240,10 @@ atya=tyo i-ogia-t-apanu-t-i=ri chonpari i-kivia-t-an-ak-i=ra aikiro iriro=ri o-*
 heedlessly=AFFECT 3mS-follow-EPC-DEP-EPC-realis=3mO snowy.egret 3mS-dive-EPC-ABL-PERF-realis=SUB also 3m.PRO=CNTR o.DUMMY-deep.spot.in.river=LOC . 
  The snowy egret followed him and also dove into the deep part of the river. {CHECK:sense of atyatyo} 
 
-DIFFERENT COUNT: ['2490@@@@-1@@i-tim-agantsi-t-an-ak-i=ra Chonparini=ku i-ogag-ak-i=ro o-*vairo i-pai-t-ak-i=ro=ra Monte Carmelo .@@@@1@8@3mS live do.well EPC ABL PERF realis =SUB TPNYM =LOC 3mS change PERF realis =3fO 3fP name 3mS name EPC PERF realis =3fO =SUB TPNYM . // When settled down in Chomparini, he changed its name, calling it Monte Carmelo.@@\n', '2490', 'i-tim-agantsi-t-an-ak-i=ra Chonparini=ku i-ogag-ak-i=ro o-*vairo i-pai-t-ak-i=ro=ra Monte Carmelo .', '3mS live do.well EPC ABL PERF realis =SUB TPNYM =LOC 3mS change PERF realis =3fO 3fP name 3mS name EPC PERF realis =3fO =SUB TPNYM .', 'When settled down in Chomparini, he changed its name, calling it Monte Carmelo.']
+2490
+i-tim-agantsi-t-an-ak-i=ra Chonparini=ku i-ogag-ak-i=ro o-*vairo i-pai-t-ak-i=ro=ra Monte Carmelo .
+3mS-live-do.well-EPC-ABL-PERF-realis=SUB TPNYM=LOC 3mS-change-PERF-realis=3fO 3fP-name 3mS-name-EPC-PERF-realis=3fO=SUB TPNYM .
+When settled down in Chomparini, he changed its name, calling it Monte Carmelo.
 
 2500 
 ario i-kaÃ±o-t-ak-i=ro maika , ovashi o-tim-an-ak-i=ra i-shinki-re , inpo o-a-ve-t-a iroro=ri atake o-sanpa-t-an-ak-i shinki . 
@@ -1265,10 +1280,7 @@ i-oga=ri katsari i-peg-a-ig-i osheto tsinaro=page .
 3mS-DEM.MED=CNTR crested.oropendola 3mS-treat.as-EPV-PL-realis spider.monkey grasshopper=PL . 
 The oropendolas treated grasshoppers as spider monkeys. 
 
-2570 
-i-avent-a-ig-an-ak-a=ro oaku , iriro=tya atsik-a-ig-av-ak-i=ri shivaigi . 
-3mS-take.refuge.with-EPV-PL-ABL-PERF-realis.refl=3fO river , 3m.PRO=TEMP.SUCC bite-EPV-PL-TRNS-PERF-realis=3mO minnow . 
-They took refuge in the water, and then the minnows bit them. 
+      
 
 2580 
 o-aga-t-an-ak-i=ra , o-choko-i-t-an-ak-a , o-pi-t-ak-i=ra o-nig-a-tega-t-ak-i=ro=ra magatiro anpei . 
@@ -1465,7 +1477,10 @@ ovashi o-okotag-ant-ak-i=ri aikiro iriro=ri , i-tsarog-a-ve-t-ak-a o-tya=ra , ka
 so 3fS-show-ANTIP-PERF-realis=3mO also 3m.PRO=CNTR , 3mS-startle-EPV-FRUS-EPC-PERF-realis.refl 3fS-when.EMBED=SUB , but continue 3mS-be.accustomed-PL-ABL-PERF-realis.refl=3mO 3mP-brother-in-law-PL also 3fP-father 3fS-COORD 3fP-mother . 
 So she presented him (to her parents), and at first he was frightended, but gradually he became comfortable with his brothers-in-law, as well as her father and mother. 
 
-DIFFERENT COUNT: ['2970@@@@-1@@inpo o-ne-i=ri i-ar-an-ak-i *panko-tsi*pana=ku i-kishia-vage-t-ak-a .@@@@1@6@then 3fS see realis =3mO 3mS fly ABL PERF realis house ALIEN CMPND:broad.leaf =LOC 3mS groom.feathers DUR EPC PERF realis.refl . // Then she saw him fly up to the roof and groom his feathers.@@\n', '2970', 'inpo o-ne-i=ri i-ar-an-ak-i *panko-tsi*pana=ku i-kishia-vage-t-ak-a .', 'then 3fS see realis =3mO 3mS fly ABL PERF realis house ALIEN CMPND:broad.leaf =LOC 3mS groom.feathers DUR EPC PERF realis.refl .', 'Then she saw him fly up to the roof and groom his feathers.']
+2970
+inpo o-ne-i=ri i-ar-an-ak-i *panko-tsi*pana=ku i-kishia-vage-t-ak-a .
+then 3fS-see-realis=3mO 3mS-fly-ABL-PERF-realis house-ALIEN-CMPND:broad.leaf=LOC 3mS-groom.feathers-DUR-EPC-PERF-realis.refl .
+Then she saw him fly up to the roof and groom his feathers.
 
 2980 
 viro-ve-t-ak-a=ni=roro kashig-akag-a-vintsa-t-ats-enpa=ne . 
@@ -1557,7 +1572,10 @@ aikiro ga o-agave-i o-n-kaj-ak-e=ra o-ntiri o-ne-ak-e=ra surari , o-ne-ak-i=ri=r
 also NEG.IRREAL 3fS-be.able-realis 3fS-irrealis-laugh-PERF-irrealis=SUB 3fS-COORD 3fS-see-PERF-irrealis=SUB male , 3fS-see-PERF-realis=3mO=INDEF.TEMP NEG.IRREAL=AFFECT 3fS-be.able-realis 3fS-irrealis-have.child-irreal.refl=SUB . 
 Neither can she laugh or look at a man; if she see one, she will not be able to have children. 
 
-DIFFERENT COUNT: ['3160@@@@-1@@iroro=ri o-kant-i=ri :@@@@1@3@3f.PRO =CNTR 3fS say realis =3mO : // Ella le dijo: // She said to him:@@\n', '3160', 'iroro=ri o-kant-i=ri :', '3f.PRO =CNTR 3fS say realis =3mO : // Ella le dijo:', 'She said to him:']
+3160
+iroro=ri o-kant-i=ri :
+3f.PRO=CNTR 3fS-say-realis=3mO :
+Ella le dijo: // She said to him:
 
 3170 
 i-aga-t-ak-i=ra i-seka-t-ak-a=ra , i-ne-i=ro o-o[+v]-pera-a-na-t-an-ak-i=ri=ra o-tsaga-t-ut-ank-i=ri=ra i-*shivu . 
@@ -1629,7 +1647,10 @@ iriro=ri i-ne-av-ak-i=ro=ra i-tsarogakag-an-ak-a=ro i-kant-i=ro :
 3m.PRO=CNTR 3mS-see-TRNS-PERF-realis=3fO=SUB 3mS-have.pity.on-ABL-PERF-realis.refl=3fO 3mS-say-realis=3fO : 
 Seeing it (the food), he felt pity for her, and said to her: 
 
-DIFFERENT COUNT: ['3310@@@@-1@@ovashi i-okotag-ak-i=ro i-pi--ak-i=ro o-og-ak-a=ro=ra .@@@@1@5@so 3mS show PERF realis =3fO 3mS 2S PERF realis =3fO 3fS eat PERF realis.refl =3fO =SUB . // He showed it to her, he gave it to her, and she ate it.@@\n', '3310', 'ovashi i-okotag-ak-i=ro i-pi--ak-i=ro o-og-ak-a=ro=ra .', 'so 3mS show PERF realis =3fO 3mS 2S PERF realis =3fO 3fS eat PERF realis.refl =3fO =SUB .', 'He showed it to her, he gave it to her, and she ate it.']
+3310
+ovashi i-okotag-ak-i=ro i-pi--ak-i=ro o-og-ak-a=ro=ra .
+so 3mS-show-PERF-realis=3fO 3mS-2S--PERF-realis=3fO 3fS-eat-PERF-realis.refl=3fO=SUB .
+He showed it to her, he gave it to her, and she ate it.
 
 3320 
 o-ne-ak-i=ro=ra o-*iniro i-kis-a-ve-t-ak-a=ro=ra , ovashi o-kant-i=ro o-noshik-an-ak-i=ra patiro-poa-tiro sekatsi : 
@@ -1699,7 +1720,7 @@ They stayed for a long time, and as they had gathered some porenki on the path, 
 3450 
 pirento , atsi kama , taita=npa=tyo=ra atsi tsame . 
 sister.VOC , DRCT look! , what.INTERR=ADVR=AFFECT=SUB DRCT let's.go . 
-\\\\\\\\"Sister, look, what's going on? Let's go." 
+"Sister, look, what's going on? Let's go." 
 
 3460 
 o-ketyo i-a-ig-i tsamai-ri-tsi=ku i-n-ag-a-ig-e=ra sekatsi . 
