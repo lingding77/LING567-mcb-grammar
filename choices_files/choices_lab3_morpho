@@ -1218,28 +1218,27 @@ section=lexicon
     det9_feat2_name=gender
     det9_feat2_value=m
 
+
 section=morphology
   noun-pc3_name=noun-pc3
   noun-pc3_obligatory=on
   noun-pc3_order=suffix
-  noun-pc3_inputs=noun6, noun72, noun73, noun-pc5, noun-pc12, noun-pc23, noun-pc25, noun-pc27
+  noun-pc3_inputs=noun, noun-pc5, noun-pc6
     noun-pc3_lrt1_name=noun-pc3_lrt1
       noun-pc3_lrt1_feat1_name=case
       noun-pc3_lrt1_feat1_value=loc
       noun-pc3_lrt1_feat1_head=itself
       noun-pc3_lrt1_lri1_inflecting=yes
       noun-pc3_lrt1_lri1_orth==ku
+      noun-pc3_lrt1_lri2_orth==mashi
+      noun-pc3_lrt1_lri1_orth==mashi=ku
     noun-pc3_lrt2_name=noun-pc3_lrt2
       noun-pc3_lrt2_feat1_name=case
       noun-pc3_lrt2_feat1_value=purp
       noun-pc3_lrt2_feat1_head=itself
       noun-pc3_lrt2_lri1_inflecting=no
-  noun-pc4_name=noun-pc4
-  noun-pc4_order=suffix
-  noun-pc4_inputs=noun5
-    noun-pc4_lrt1_name=noun-pc4_lrt1
-      noun-pc4_lrt1_lri1_inflecting=yes
-      noun-pc4_lrt1_lri1_orth=-se
+  
+      
   noun-pc5_name=noun-pc5
   noun-pc5_order=prefix
   noun-pc5_inputs=noun6, noun72, noun73
@@ -1248,130 +1247,65 @@ section=morphology
       noun-pc5_lrt1_lri1_orth=i-
       noun-pc5_lrt1_lri2_inflecting=yes
       noun-pc5_lrt1_lri2_orth=o-
+      noun-pc5_lrt1_lri1_inflecting=yes
+      noun-pc5_lrt1_lri1_orth=no-
+      noun-pc5_lrt1_lri2_inflecting=yes
+      noun-pc5_lrt1_lri2_orth=pi-
+
+      
+
   noun-pc6_name=noun-pc6
   noun-pc6_order=suffix
-  noun-pc6_inputs=noun68, noun-pc5, noun-pc20, noun-pc23, noun72, noun73
+  noun-pc6_inputs=noun68, noun-pc5, noun-pc20, noun72, noun73, noun6, noun5， noun63, noun67, noun30, noun37, noun42, noun44, noun74, noun-pc3, noun71
     noun-pc6_lrt1_name=noun-pc6_lrt1
       noun-pc6_lrt1_lri1_inflecting=yes
       noun-pc6_lrt1_lri1_orth=-re
-  noun-pc8_name=noun-pc8
-  noun-pc8_order=suffix
-  noun-pc8_inputs=noun-pc5, noun6, noun-pc11, noun-pc16, noun72, noun73
-    noun-pc8_lrt1_name=noun-pc8_lrt1
-      noun-pc8_lrt1_lri1_inflecting=yes
-      noun-pc8_lrt1_lri1_orth=-ri
-  noun-pc10_name=noun-pc10
-  noun-pc10_order=suffix
-  noun-pc10_inputs=noun-pc5, noun63, noun72, noun73
-    noun-pc10_lrt1_name=noun-pc10_lrt1
-      noun-pc10_lrt1_lri1_inflecting=yes
-      noun-pc10_lrt1_lri1_orth=-ro
-      noun-pc10_lrt1_lri2_inflecting=yes
-      noun-pc10_lrt1_lri2_orth=-t
-  noun-pc11_name=noun-pc11
-  noun-pc11_order=suffix
-  noun-pc11_inputs=noun30
-    noun-pc11_lrt1_name=noun-pc11_lrt1
-      noun-pc11_lrt1_lri1_inflecting=yes
-      noun-pc11_lrt1_lri1_orth=-a
-  noun-pc12_name=noun-pc12
-  noun-pc12_order=suffix
-  noun-pc12_inputs=noun-pc5, noun-pc6, noun6, noun-pc10, noun-pc20, noun-pc23, noun72, noun73
-    noun-pc12_lrt1_name=noun-pc12_lrt1
-      noun-pc12_lrt1_lri1_inflecting=yes
-      noun-pc12_lrt1_lri1_orth==ri
-      noun-pc12_lrt1_lri2_inflecting=yes
-      noun-pc12_lrt1_lri2_orth==nika
-      noun-pc12_lrt1_lri3_inflecting=yes
-      noun-pc12_lrt1_lri3_orth==tya
-      noun-pc12_lrt1_lri4_inflecting=yes
-      noun-pc12_lrt1_lri4_orth==tari
-    noun-pc12_lrt2_name=noun-pc12_lrt2
-      noun-pc12_lrt2_feat1_name=number
-      noun-pc12_lrt2_feat1_value=pl
-      noun-pc12_lrt2_feat1_head=itself
-      noun-pc12_lrt2_lri1_inflecting=yes
-      noun-pc12_lrt2_lri1_orth=-egi
-      noun-pc12_lrt2_lri2_inflecting=yes
-      noun-pc12_lrt2_lri2_orth==page
-  noun-pc16_name=noun-pc16
-  noun-pc16_order=suffix
-  noun-pc16_inputs=noun37
-    noun-pc16_lrt1_name=noun-pc16_lrt1
-      noun-pc16_lrt1_lri1_inflecting=yes
-      noun-pc16_lrt1_lri1_orth=-ja
-  noun-pc17_name=noun-pc17
-  noun-pc17_order=suffix
-  noun-pc17_inputs=noun42
-    noun-pc17_lrt1_name=noun-pc17_lrt1
-      noun-pc17_lrt1_feat1_name=number
-      noun-pc17_lrt1_feat1_value=pl
-      noun-pc17_lrt1_feat1_head=itself
-      noun-pc17_lrt1_lri1_inflecting=yes
-      noun-pc17_lrt1_lri1_orth=-ite
-  noun-pc18_name=noun-pc18
-  noun-pc18_order=suffix
-  noun-pc18_inputs=noun44, noun74
-    noun-pc18_lrt1_name=noun-pc18_lrt1
-      noun-pc18_lrt1_lri1_inflecting=yes
-      noun-pc18_lrt1_lri1_orth=-aga
-  noun-pc19_name=noun-pc19
-  noun-pc19_order=suffix
-  noun-pc19_inputs=noun-pc3
-    noun-pc19_lrt1_name=noun-pc19_lrt1
-      noun-pc19_lrt1_lri1_inflecting=yes
-      noun-pc19_lrt1_lri1_orth=-nirira
-  noun-pc20_name=noun-pc20
-  noun-pc20_order=prefix
-  noun-pc20_inputs=noun6, noun72, noun73
-    noun-pc20_lrt1_name=noun-pc20_lrt1
-      noun-pc20_lrt1_lri1_inflecting=yes
-      noun-pc20_lrt1_lri1_orth=no-
-      noun-pc20_lrt1_lri2_inflecting=yes
-      noun-pc20_lrt1_lri2_orth=pi-
-  noun-pc23_name=noun-pc23
-  noun-pc23_order=suffix
-  noun-pc23_inputs=noun67, noun-pc5, noun-pc8, noun-pc10, noun-pc18, noun72, noun73
-    noun-pc23_lrt1_name=noun-pc23_lrt1
-      noun-pc23_lrt1_lri1_inflecting=yes
-      noun-pc23_lrt1_lri1_orth=-i
-      noun-pc23_lrt1_lri2_inflecting=yes
-      noun-pc23_lrt1_lri2_orth=-tsi
-      noun-pc23_lrt1_lri3_inflecting=yes
-      noun-pc23_lrt1_lri3_orth=-ki
-  noun-pc25_name=noun-pc25
-  noun-pc25_obligatory=on
-  noun-pc25_order=suffix
-  noun-pc25_inputs=noun
-    noun-pc25_lrt1_name=noun-pc25_lrt1
-      noun-pc25_lrt1_feat1_name=case
-      noun-pc25_lrt1_feat1_value=loc
-      noun-pc25_lrt1_feat1_head=itself
-      noun-pc25_lrt1_lri1_inflecting=yes
-      noun-pc25_lrt1_lri1_orth=-mashi
-    noun-pc25_lrt2_name=noun-pc25_lrt2
-      noun-pc25_lrt2_feat1_name=case
-      noun-pc25_lrt2_feat1_value=purp
-      noun-pc25_lrt2_feat1_head=itself
-      noun-pc25_lrt2_lri1_inflecting=no
-  noun-pc26_name=noun-pc26
-  noun-pc26_order=suffix
-  noun-pc26_inputs=noun-pc12
-    noun-pc26_lrt1_name=noun-pc26_lrt1
-      noun-pc26_lrt1_lri1_inflecting=yes
-      noun-pc26_lrt1_lri1_orth==ne
-  noun-pc27_name=noun-pc27
-  noun-pc27_order=suffix
-  noun-pc27_inputs=noun-pc6
-    noun-pc27_lrt1_name=noun-pc27_lrt1
-      noun-pc27_lrt1_lri1_inflecting=yes
-      noun-pc27_lrt1_lri1_orth=-tsi
-  noun-pc28_name=noun-pc28
-  noun-pc28_order=suffix
-  noun-pc28_inputs=noun71
-    noun-pc28_lrt1_name=noun-pc28_lrt1
-      noun-pc28_lrt1_lri1_inflecting=yes
-      noun-pc28_lrt1_lri1_orth=-nti
+      noun-pc6_lrt1_lri2_inflecting=yes
+      noun-pc6_lrt1_lri2_orth=-ri
+      noun-pc6_lrt1_lri3_inflecting=yes
+      noun-pc6_lrt1_lri3_orth=-se
+      noun-pc6_lrt1_lri4_inflecting=yes
+      noun-pc6_lrt1_lri4_orth=-ro
+      noun-pc6_lrt1_lri5_inflecting=yes
+      noun-pc6_lrt1_lri5_orth=-t
+      noun-pc6_lrt1_lri6_inflecting=yes
+      noun-pc6_lrt1_lri6_orth=-i
+      noun-pc6_lrt1_lri7_inflecting=yes
+      noun-pc6_lrt1_lri7_orth=-tsi
+      noun-pc6_lrt1_lri8_inflecting=yes
+      noun-pc6_lrt1_lri8_orth=-ki
+      noun-pc6_lrt1_lri9_inflecting=yes
+      noun-pc6_lrt1_lri9_orth=-a
+      noun-pc6_lrt1_lri10_inflecting=yes
+      noun-pc6_lrt1_lri10_orth==ri
+      noun-pc6_lrt1_lri11_inflecting=yes
+      noun-pc6_lrt1_lri11_orth==nika
+      noun-pc6_lrt1_lri12_inflecting=yes
+      noun-pc6_lrt1_lri12_orth==tya
+      noun-pc6_lrt1_lri13_inflecting=yes
+      noun-pc6_lrt1_lri13_orth==tari
+      noun-pc6_lrt1_lri14_inflecting=yes
+      noun-pc6_lrt1_lri14_orth==ne
+      noun-pc6_lrt1_lri15_inflecting=yes
+      noun-pc6_lrt1_lri15_orth=-ja
+      noun-pc6_lrt1_lri16_inflecting=yes
+      noun-pc6_lrt1_lri16_orth=-aga
+      noun-pc6_lrt1_lri17_inflecting=yes
+      noun-pc6_lrt1_lri17_orth=-nirira
+      noun-pc6_lrt1_lri18_inflecting=yes
+      noun-pc6_lrt1_lri18_orth=-nti
+    noun-pc6_lrt2_name=noun-pc6_lrt2
+      noun-pc6_lrt2_feat1_name=number
+      noun-pc6_lrt2_feat1_value=pl
+      noun-pc6_lrt2_feat1_head=itself
+      noun-pc6_lrt2_lri1_inflecting=yes
+      noun-pc6_lrt2_lri1_orth=-egi
+      noun-pc6_lrt2_lri2_inflecting=yes
+      noun-pc6_lrt2_lri2_orth==page
+      noun-pc6_lrt2_lri3_inflecting=yes
+      noun-pc6_lrt2_lri3_orth=-ite
+      
+
   verb-pc1_name=verb-pc1
   verb-pc1_order=suffix
   verb-pc1_inputs=verb8, verb-pc10, verb-pc11, verb-pc14, verb-pc26, verb-pc31, verb-pc33, verb-pc34, verb-pc37, verb-pc40, verb297, verb-pc85, verb-pc109
