@@ -1,0 +1,140 @@
+Language: Matsigenka
+Language code: mcb
+Lines: orth orth-seg gloss translat
+Author: Ling Tu, Hanshu Ding
+Date: Jan 21, 2021
+
+### FILE SYNTAX REFERENCE
+##Ex number and optional comment
+#Source: {a:page, b:page, author, elicited, attested} # elicited=native, attested=non-linguistics text
+#Vetted: {t, f, s} ## t=native, f=unvetted, s=linguistics text
+#Judgment: {g, u} ## g=grammatical, u=ungrammatical
+#Phenomena: {aspect,  argument optionality, determiner...}
+#<Example in standard orthography> (one of this and transliteration is required; including both is okay)
+#<Example in transliteration> (one of this and standard orthography is required; including both is okay)
+#<Example with morpheme boundaries noted and morpheme forms regularized>
+#<Morpheme-by-morpheme glosses>
+#<Free translation>
+
+
+# Ex 1 Grammatical  (correct order for '-PERF' and 'realis')
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {aspect}
+Nonehakiri
+no=neh-ak-i=ri
+1S=see-PERF-realis=3mO
+I saw him.
+
+
+# Ex 2 Ungrammatical (incorrect order for '-PERF' and 'realis')
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {aspect}
+Nonehiakri
+no=neh-i-ak=ri
+1S=see-realis-PERF=3mO
+'I saw him.'
+
+
+
+# Ex 3 Grammatical (Returnative)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {aspect}
+itsikouiro
+i-tsiko-u-i=ro
+3mS-pull.with.hook-RET-realis=3fO
+He pull it down.
+
+
+# Ex 4 Ungrammatical (Returnative + perf)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {aspect}
+itsikouiakro
+i-tsiko-u-i-ak=ro
+3mS-pull.with.hook-RET-PERF-realis=3fO
+He pulled it down.
+
+
+
+
+# Ex 5 Grammatical (regressive)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {aspect}
+paita inpigae
+paita i-n-pig-a-e . 
+later 3mS-irrealis-return-REG-irrealis . 
+he will return later.
+
+
+
+# Ex 6 Ungrammatical (regressive + irrealis + perf)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {aspect}
+paita inpigaake
+paita i-n-pig-a-ak-e . 
+later 3mS-irrealis-return-REG-PERF-irrealis . 
+he will return later.
+
+
+
+# Ex 7 Grammatical (correct deletion for part of the affix '-irreal')
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {aspect}
+Nonshige
+no=n-shig-e
+1S=irrealis-run-irrealis
+I will run.
+
+
+
+# Ex 8 Ungrammatical (lack of the first part of the affix '-irrealis')
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {aspect}
+Noshige.
+no=shig-e
+1S=run-irrealis
+I will run.
+
+
+
+# Ex 9 Grammatical (Returnative)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {aspect}
+Ishiguti.
+i=shig-u-i 
+3mS=run-RET-realis
+He ran there and back.
+
+
+
+# Ex 10 Ungrammatical (add an irrealis prefix to the realis sentence.)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {aspect}
+Ishiguti.
+i=n-shig-u-i 
+3mS=irrealis-run-RET-realis
+He ran there and back.
+
+
+
+
+
