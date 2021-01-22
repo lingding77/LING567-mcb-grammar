@@ -1231,7 +1231,7 @@ section=morphology
       noun-pc3_lrt1_lri1_inflecting=yes
       noun-pc3_lrt1_lri1_orth==ku
       noun-pc3_lrt1_lri2_orth==mashi
-      noun-pc3_lrt1_lri1_orth==mashi=ku
+      noun-pc3_lrt1_lri3_orth==mashi=ku
     noun-pc3_lrt2_name=noun-pc3_lrt2
       noun-pc3_lrt2_feat1_name=case
       noun-pc3_lrt2_feat1_value=purp
@@ -1247,10 +1247,10 @@ section=morphology
       noun-pc5_lrt1_lri1_orth=i-
       noun-pc5_lrt1_lri2_inflecting=yes
       noun-pc5_lrt1_lri2_orth=o-
-      noun-pc5_lrt1_lri1_inflecting=yes
-      noun-pc5_lrt1_lri1_orth=no-
-      noun-pc5_lrt1_lri2_inflecting=yes
-      noun-pc5_lrt1_lri2_orth=pi-
+      noun-pc5_lrt1_lri3_inflecting=yes
+      noun-pc5_lrt1_lri3_orth=no-
+      noun-pc5_lrt1_lri4_inflecting=yes
+      noun-pc5_lrt1_lri4_orth=pi-
 
       
 
