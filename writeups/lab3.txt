@@ -1,0 +1,300 @@
+
+Your answers to the questions about the initial and final [incr tsdb()] runs, for both test corpus and test suite, repeated here:
+
+- How many items parsed? (much better coverage than last week!)
+  + original = 20
+  + new = 48
+- What is the average number of parses per parsed item?
+  + original = 91.50
+  + new = 90.73
+- How many parses did the most ambiguous item receive?
+  + original = 480 (went down to 120 with our changes)
+  + new = 752 (formerly a sentence that wasn't parsing)
+- What sources of ambiguity can you identify?
+  + Even though we cleaned up a bunch of pcs, nouns, and verbs, there are still many left to clean. Additionally, our definitions for determiners need to be cleaned (currently the lexical entries cover all different combinations of their atomic parts and those could be stripped out into specific rules instead).
+  + Since we stripped out our SVO ordering, our free word order issues have come back. We have yet to implement smarter analyses about gender agreement that tend to inform a native speaker's understanding of subject and object assignments. Also, we want to email our linguist to ask him more specifics on what the expected behavior is.
+  + In our sentence with the most parses (#2400) there seems to be a ton of coordination ambiguity, since mcb doesn't use overt words to indicate coordination.
+
+- For 10 items (if you have at least that many parsing), do any of the parses look reasonable in the semantics?
+
+  #590
+  no-kog-ak-i niganki=ku-nirira . 
+  1S-want-PERF-realis middle=LOC-DEL.NOMZ . 
+  "I want the one in the middle."  
+
+  Yes, reasonable. Arguments for the "want" relation have first person subject with the object corresponding to a "middle" relation.
+
+  #960
+  iriro=ri i-kant-i : 
+  3m.PRO=CNTR 3mS-say-realis : 
+  He (Moritoni) said:   
+  Yes, reasonable, the verb said has the ocresponding 3m subject and the exist semantics for it.
+
+  #1680
+  i-samatsa-vintsa-t-ant-ak-i=tari i-kaem-an-ak-i : 
+  3mS-mock-INCL-EPC-CHAR.ANTIPAS-PERF-realis=REAS 3mS-call.out-ABL-PERF-realis : 
+  Since he (the man) liked to joke around, he called out:
+
+  It's not clear to me if "coordination" is the right type of relation for the causal "since," but at least the subject man is the same as the subject for calling out. I think it is probably reasonable with the coordination exception. 
+
+  1850 
+  i-kamagu-t-ak-i=ro=tyo . 
+  3mS-look-EPC-PERF-realis=3fO=AFFECT . 
+  He looked at it. 
+
+  Yes, reasonable. The subject of the look relation is 3rd masculine, and he is looking at a non-focused subject that is 3rd feminine.
+
+  2060 
+  i-kaj-a-ma-t-an-ak-i=tyo i-oko-t-an-ak-i=ro=ra : 
+  3mS-laugh-EPV-REACT-EPC-ABL-PERF-realis=AFFECT 3mS-point-EPC-ABL-PERF-realis=3fO=SUB : 
+  He began to laugh, pointing at her: 
+
+  Again, I *think* "coordination" might be okay for this type of relation, and assuming that, then the semantics are reasonable. 3rd masculine subject is both laughing and pointing.
+
+  2070 
+  i-kaem-ako-t-apanu-t-i=ri=ra : 
+  3mS-call.out-APPL:INDR-EPC-DEP-EPC-realis=3mO=SUB : 
+  He called out as he departed: 
+
+  Interesting semantics that I think have the "departed" information encoded in the verb features. Given this, the semantics are reasonable.
+
+  2560 
+  i-oga=ri katsari i-peg-a-ig-i osheto tsinaro=page . 
+  3mS-DEM.MED=CNTR crested.oropendola 3mS-treat.as-EPV-PL-realis spider.monkey grasshopper=PL . 
+  The oropendolas treated grasshoppers as spider monkeys. 
+
+  No, I believe we covered this in our semantic analysis last week, but coordination seems incorrect here as part of the semantics.
+
+  2930 
+  i-a-ve-ig-a anpovatsa=ku , iriro=tya tsog-a-ig-av-ak-i=ri tseikintsi . 
+  3mS-go-FRUS-PL-realis.refl mud=LOC , 3m.PRO=TEMP.SUCC poke.with.pointed.snout-EPV-PL-TRNS-PERF-realis=3mO worm . 
+  They went to the mud, and then the worms poked them. 
+
+  A bit confusing, but I *think* it looks correct, even with the coordination. Going, mud, and poking relations are all in tact.
+
+
+##################################################
+##################################################
+
+Documentation of the phenomena you have added to your testsuite, illustrated with examples from the testsuite.
+
+************************************************************
+TENSE/ASPECT:
+
+The first phenomena that we pick to improve is aspect. According to our descriptive resources, Matsagenka use reality status marking plus the perfective marking to show the simple tense. 
+For example, perf + realis  =  past tense
+       imperf + realis = present tense
+       imperf + irrealis = future tense.
+Besides, there are 3 other aspects. 
+1. regressive: "indicates motion from some point back to a salient point of origin,"
+    eg: went back; return; repair.
+2. returnative: "indicates motion
+from some initial point to a distal point, and subsequently back to the initial point,"
+    eg: some verb with a 'back and forth' intention.
+3. Perfective and imperfective translocatives: "indicating that the action expressed
+by the verb is realized at a point distal to the deictic center."
+    eg: it is usually used when there is a spacial phrase like 'over there' appear in the sentence. 
+I personally had some concerns about the sample sentence that is given to Perfective and imperfective translocatives part. Thus, I made my test sentences only for the other aspects/tenses.
+I noticed that when -PERF is combined with -reality markers, the order of the markers is always '-PERF/-IMPERF + realis/irealis,' so I made a negative sentence that have opposive orders between these two markers. Also, the irrealis affix is a circumfix, which is a combiantion of a prefix and a suffix. One of my negative sentences is to test if an incomplete irrealis marker wroks. 
+One pair of test sentence is given below:
+  # Ex 1 Grammatical  (correct order for '-PERF' and 'realis')
+  Source: author
+  Vetted: f
+  Judgment: g
+  Phenomena: {aspect}
+  Nonehakiri
+  no=neh-ak-i=ri
+  1S=see-PERF-realis=3mO
+  I saw him.
+  # Ex 2 Ungrammatical (incorrect order for '-PERF' and 'realis')
+  Source: author
+  Vetted: f
+  Judgment: u
+  Phenomena: {aspect}
+  Nonehiakri
+  no=neh-i-ak=ri
+  1S=see-realis-PERF=3mO
+  'I saw him.'
+
+************************************************************
+ARGUMENT OPTIONALITY:
+# (OHagan 2018  "The Syntax of Matsigenka Object-Marking")
+
+Background:
+
+• Nominal/pronominal object
+  ◦ Overview
+    ‣ can be encoded by:
+      • enclitic on right edge of verb only
+      • enclitis and noun/pronoun
+      • noun/pronoun only
+    ‣ sensitive to semantic properties of object
+      • discourse (speech-act participant status)
+      • referential (definite or indefinite)
+  ◦ Single object construction (transitive)
+    ‣ object marker + (optional) nominal/pronomial object (covarying in number and gender)
+      • no object marker for indefinite nominal object 
+        ◦ *Note: speech act participants are “definite” and require object marker
+  ◦ Simplex double object construction 1 (canonical ditransitive, ex. “give”)
+    ‣ object marker (3rd-per theme) + object marker (1st/2nd-per recipient) + (optional) nom/pronom theme/recipient
+    ‣ object marker (3rd-per recipient only) + (optional) nom/pronom theme/recipient
+      • *Note: can lead to situations where definite third-person theme can only be understood from discourse
+      • no object marker for indefinite 3rd-per theme
+      • no object marker if recipient is also the agent (subject), aka reciprocal (-vakag)
+
+Test suite examples:
+
+The test suite includes all sorts of combinations of transitive vs ditransitive verbs with their combinations of dropping subject and object (both recipient and theme) nouns, pronouns, and markers. This includes cases for when the recipient is a speech participant versus not, and cases for when the theme is definite versus indefinite.
+
+# (dropped subj) + smark-verb-omark(recipient) + (dropped recipient) + (dropped theme, implied from discourse)
+ipakeri
+i-p-ak-i=ri
+3mS-give-PERF-REAL.I=3mO
+He gave (it) to him
+
+# (dropped subj) + smark-verb-omark(recipient) + (dropped ipakeri sekatsi
+i-p-ak-i=ri sekatsi
+3mS-give-PERF-REAL.I=3mO yuca
+He gave him the manioc
+
+# (dropped subj) + smark-verb-omark(recipient) + (dropped recipient) + overt nom indefinite theme
+ipakeri tsinane
+i-p-ak-i=ri tsinane
+3mS-give-PERF-REAL.I=3mO female
+He gave him a woman
+
+************************************************************
+DETERMINERS: 
+# (Michael 2008 Nanti Evidential... Pg. 304-309)
+
+Background:
+
+- Lacks articles
+- 3 demonstratives occur prenominally and inflect for person and gender. They also encode "specificity" and "givenness."
+    o-oka/i-oka    = speaker proximal (uniquely identifiable but not necessarily familiar to addressee)
+    o-oga/i-oga    = speaker distal (familiar to addressee but not yet mentioned in discourse)
+    o-onta/i-onta  = speaker and addressee proximal (active part of discourse)
+- The contrast clitic =ri is attached to first instance of demonstrative.
+- Pronominal possessors are identical to verbal subject markers (exception of 3m allomorphy)
+- Similarly, adjectives such as maganiro/magiro ("all" animate/inanimate") and paniro/patiro ("one" animate/inanimate) occur prenominally
+
+Test suite examples:
+
+Examples such as these demonstrate the existence vs. nonexistence of the determiner, as well as the required ordering of said determiner.
+
+# female familiar demonstrative with contrast clitic
+oogari tsinane okanti :
+o-oga=ri tsinane o-kant-i : 
+3fS-DEM.MED=CNTR female 3fS-say-realis : 
+the woman said : 
+
+# female no determiner
+tsinane okanti :
+tsinane o-kant-i : 
+female 3fS-say-realis : 
+a woman said : 
+
+# female, determiner must precede noun, ungrammatical
+tsinane oogari okanti : 
+tsinane o-oga=ri o-kant-i : 
+female 3fS-DEM.MED=CNTR 3fS-say-realis : 
+the woman said : 
+
+##################################################
+##################################################
+
+Documentation of the improvements you made the morphotactic choices. What did you change and why? Please include IGT that illustrate the effects of the changes so I can test them out.
+
+************************************************************
+For the first time trying, we merged all of our noun-pcs into 3 big noun-pcs. 
+noun-pc25 and noun-pc3 has same obligatory and order, they also share the same lexicon rule types. Also, the same thing happened when merging the noun-pcs that has same order, which is either prefix or suffix. We merge the suffix noun-pc 4, 6, 8, 10, 11, 12, 16, 17, 18, 19, 23, 27, 28 into a single noun-pc6. For the only two prefix noun-pc 20 and 5, we merge them into pc5. Unfortuantely, this great assumption failed. We got several cycles there. 
+After cutting off the cycles, only 3 merge of nonn-pc are left:
+    1. nonu-pc3 with noun-pc25
+    2. noun-pc5 with noun-pc20
+    3. noun-pc12 with noun-pc17.
+
+************************************************************
+
+We also merged all of the verb-pcs that related to "subject markers."
+
+  "no-" prefix = 1 subj
+  "pi-" prefix = 2 subj
+  "i-" prefix = 3m subj
+  "o-" prefix = 3f subj
+  (Note the following subj markers not specified in our grammar which could potentially be added in the future:)
+  "a-" prefix = 1.incl subj
+
+  - Combined the verb-pcs:
+  26,25,57,100,85,105 -> 26
+
+  common features:
+  - inputs
+  - head=subj
+  - person
+  - (gender)
+  - inflecting=yes
+  - ortho
+
+  the following steps were done to combine these pcs:
+  - remove redundant pc definitions:
+    + verb-pc25_lrt1
+    + verb-pc57_lrt1
+    + verb-pc100_lrt1
+  - merge into new lrts:
+    + verb-pc85_lrt1 -> convert to verb-pc26_lrt3
+    + verb-pc105_lrt1 -> convert to verb-pc26_lrt4
+  - add additional inputs:
+    + verb_pc26_inputs += verb280 (from verb-pc100), verb194 (from verb-pc85)
+  - update input pointers to original pcs:
+    11  -= 25, 57
+    1   -= 85
+    3   -= 85, 105
+    5   -= 85, 105
+    8   -= 85, 105
+    10  -= 85
+    11  -= 85, 105
+    33  -= 85
+    37  -= 100, 105
+    74  -= 85
+    109 -= 105
+  
+  the pcs were renamed for clarity:
+    verb-pc26_name=verb-pc-subjmarker
+    verb-pc26_lrt1_name=verb-pc-subj3m
+    verb-pc26_lrt2_name=verb-pc26-subj3f
+    verb-pc26_lrt3_name=verb-pc85-subj1
+
+************************************************************
+
+Finally, we attempted to merge verb-pcs related to realis/irrealis mood, but there is still a lot of cleanup to be don here because the ordering combinations between these affixes with other affixes led to a lot of cycles when attempting to remove. 
+
+  "-a" suffix = realis nonreflexive
+  "-i" suffix = realis reflexive
+  "-e" suffix = irrealis nonreflexive
+  "-enpa" suffix = irrealis reflexive
+  "=ne" suffix = irrealis subj focus
+  "=ni" suffix = purposive
+  "=niri" suffix = irrealis purposive
+
+Renamed:
+- verb-pc3_name=verb-pc-mood
+Combined:
+- verb-pc27_lrt2 -> verb-pc3_lrt2_lri2
+Removed:
+- verb-pc27_lrt1
+- verb-pc49
+- verb-pc50
+- verb-pc72
+- verb-pc80
+
+
+In combining verb-pc27_lrt2 into verb-pc3_lrt2_lri2, we had to add verb-pc40 from verb-pc27 to the verb-pc3_inputs.
+
+In replacing all instances of verb-pc27, we find that verb-pc49 points to verb-pc27, which would create a cycle if replaced with verb-pc3. However, verb-pc49 for "-ig" and "-ma" with input verb-pc27 is actually supposed to combine with a different usage of -i/-e/-a (not the realis/irrealis usage). The orthography of "-ig" is additionally covered by verb-pc1 and "-ma" is covered by verb-pc26, so we can (probably) safely delete verb-pc49.
+
+In trying to remove verb-pc49 from verb-pc50, we find that verb-pc50 is essentially a duplicate of verb-pc8_lrt1, so we remove verb-pc50 altogether and add its only other input verb-pc72 to verb-pc8_inputs.
+
+In trying to remove verb-pc49 from verb-pc72, we find that verb-pc72 is essentially a duplicate of verb-pc23_lrt1_lri3 and verb-pc72's input of "-ig" from verb-pc49 is covered by verb-pc23's input of verb-pc1, so we remove verb-pc72 altogether and replace any instances of it with verb-pc23.
+
+In trying to remove verb-pc49 from verb-pc80, we find that verb-pc80 is essentially a duplicate of verb-pc5/verb-pc32 and verb-pc80's input of "-ma" from verb-pc49 is covered by verb-pc5's input of verb-26, so we remove verb-pc80 altogether and replace any instances of it with verb-pc5
+
