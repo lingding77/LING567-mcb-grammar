@@ -16,6 +16,10 @@ Date: Jan 21, 2021
 #<Morpheme-by-morpheme glosses>
 #<Free translation>
 
+##################################################
+# TENSE/ASPECT
+##################################################
+
 
 # Ex 1 Grammatical  (correct order for '-PERF' and 'realis')
 Source: author
@@ -48,7 +52,7 @@ Phenomena: {aspect}
 itsikouiro
 i-tsiko-u-i=ro
 3mS-pull.with.hook-RET-realis=3fO
-He pull it down.
+He pulled it down.
 
 
 # Ex 4 Ungrammatical (Returnative + perf)
@@ -63,7 +67,6 @@ He pulled it down.
 
 
 
-
 # Ex 5 Grammatical (regressive)
 Source: author
 Vetted: f
@@ -73,7 +76,6 @@ paita inpigae
 paita i-n-pig-a-e . 
 later 3mS-irrealis-return-REG-irrealis . 
 he will return later.
-
 
 
 # Ex 6 Ungrammatical (regressive + irrealis + perf)
@@ -99,7 +101,6 @@ no=n-shig-e
 I will run.
 
 
-
 # Ex 8 Ungrammatical (lack of the first part of the affix '-irrealis')
 Source: author
 Vetted: f
@@ -123,7 +124,6 @@ i=shig-u-i
 He ran there and back.
 
 
-
 # Ex 10 Ungrammatical (add an irrealis prefix to the realis sentence.)
 Source: author
 Vetted: f
@@ -135,6 +135,342 @@ i=n-shig-u-i
 He ran there and back.
 
 
+##################################################
+# ARGUMENT OPTIONALITY
+##################################################
+# (OHagan 2018  "The Syntax of Matsigenka Object-Marking")
 
 
+# Ex 1 TRANSITIVE - GRAMMATICAL
+# overt nom subj + smark-verb-omark + (dropped obj)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+iogari matsigenka ineaigavakiro
+i-oga=ri matsigenka i-ne-a-ig-av-ak-i=ro
+3mS-DEM.MED=CNTR person 3mS-see-EPV-PL-TRNS-PERF-realis=3fO
+the man saw her
+
+# Ex 2 TRANSITIVE - GRAMMATICAL
+# overt pronom subj + smark-verb-omark + (dropped obj)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+iriro ineaigavakiro
+iriro i-ne-a-ig-av-ak-i=ro
+3m.PRO 3mS-see-EPV-PL-TRNS-PERF-realis=3fO
+he saw her
+
+# Ex 3 TRANSITIVE - GRAMMATICAL
+# (dropped subj) + smark-verb-omark + (dropped obj)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ineaigavakiro
+i-ne-a-ig-av-ak-i=ro
+3mS-see-EPV-PL-TRNS-PERF-realis=3fO
+he saw her
+
+# Ex 4 TRANSITIVE - GRAMMATICAL
+# (dropped subj) + smark-verb-omark + overt pronom obj
+# * Note: There was no evidence of overt object pronouns in the corpus, need to check the grammaticality of this with the linguist
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ineaigavakiro iroro
+i-ne-a-ig-av-ak-i=ro iroro
+3mS-see-EPV-PL-TRNS-PERF-realis=3fO 3f.PRO
+he saw her
+
+# Ex 5 TRANSITIVE - GRAMMATICAL
+# (dropped subj) + smark-verb-omark + overt nom obj
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ineaigavakiro tsinane
+i-ne-a-ig-av-ak-i=ro tsinane
+3mS-see-EPV-PL-TRNS-PERF-realis=3fO female
+he saw the woman
+
+# Ex 6 TRANSITIVE - GRAMMATICAL
+# (dropped subj) + smark-verb + overt nom indefinite obj
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ineaigavakiro tsinane
+i-ne-a-ig-av-ak-i tsinane
+3mS-see-EPV-PL-TRNS-PERF-realis female
+he saw a woman
+
+
+# * Note: Data from O'Hagan 2018 "The Syntax of Matsigenka Object-Marking," which uses the following terminology:
+# recipient = indirect object
+# theme = direct object
+
+# Ex 1 DITRANSITIVE (GIVE) - GRAMMATICAL
+# (dropped subj) + smark-verb-omark(recipient) + (dropped recipient) + (dropped theme, implied from discourse)
+#   Edited from OHagan-sentence 19: 
+#     i-oga=ri matsigenka i-p-ak-i=ri
+#     3mS-DEM=CNTR man 3mS-give-PERF-REAL.I=3mO
+#     The man gave (it) to him
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ipakeri
+i-p-ak-i=ri
+3mS-give-PERF-REAL.I=3mO
+He gave (it) to him
+
+# Ex 2 DITRANSITIVE (GIVE) - GRAMMATICAL
+# (dropped subj) + smark-verb-omark(recipient) + (dropped recipient) + overt definite nom theme
+#   Edited from OHagan-sentence 18: 
+#     i-p-ak-i=ri iri-*shinto otsitiki
+#     3mS-give-PERF-REAL.I=3mO 3mP-daughter oldest
+#     He gave him his oldest daughter
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ipakeri sekatsi
+i-p-ak-i=ri sekatsi
+3mS-give-PERF-REAL.I=3mO yuca
+He gave him the manioc
+
+# Ex 3 DITRANSITIVE (GIVE) - GRAMMATICAL
+# (dropped subj) + smark-verb-omark(recipient) + (dropped recipient) + overt nom indefinite theme
+#   Edited from OHagan-sentence 18: 
+#     i-p-ak-i=ri iri-*shinto otsitiki
+#     3mS-give-PERF-REAL.I=3mO 3mP-daughter oldest
+#     He gave him his oldest daughter
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ipakeri tsinane
+i-p-ak-i=ri tsinane
+3mS-give-PERF-REAL.I=3mO female
+He gave him a woman
+
+# Ex 4 DITRANSITIVE (GIVE) - GRAMMATICAL
+# (dropped subj) + smark-verb-omark(1st-per-recipient)-omark(theme) + (dropped recipient) + (dropped theme, implied from discourse))
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ipakeri
+i-p-ak-i=na=ro
+3mS-give-PERF-REAL.I=1O=3fO
+He gave (it) to me
+
+# Ex 5 DITRANSITIVE (GIVE) - GRAMMATICAL
+# (dropped subj) + smark-verb-omark(2nd-per-recipient)-omark(theme) + (dropped recipient) + (dropped theme, implied from discourse))
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ipakeri tsinane
+i-p-ak-i=npi=ro
+3mS-give-PERF-REAL.I=2O=3fO
+He gave (it) to you
+
+# Ex 6 DITRANSITIVE (GIVE) - GRAMMATICAL
+# (dropped subj) + smark-verb-omark(1st-per-recipient)-omark(theme) + (dropped recipient) + overt definite nom theme
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ipakeri sekatsi
+i-p-ak-i=na=ro sekatsi
+3mS-give-PERF-REAL.I=1O=3fO yuca
+He gave me the manioc
+
+# Ex 7 DITRANSITIVE (GIVE) - GRAMMATICAL
+# (dropped subj) + smark-verb-omark(1st-per-recipient)-omark(theme) + (dropped recipient) + overt indefinite nom theme
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ipakeri tsinane
+i-p-ak-i=na tsinane
+3mS-give-PERF-REAL.I=1O female
+He gave me a woman
+
+# Ex 8 DITRANSITIVE (GIVE) - UNGRAMMATICAL
+# 3rd person recipient should drop the theme marker (=ro)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pro-d}
+ipakeri
+i-p-ak-i=ri=ro
+3mS-give-PERF-REAL.I=3mO=3f0
+He gave it to him
+
+# Ex 9 DITRANSITIVE (GIVE) - UNGRAMMATICAL
+# 3rd person recipient should drop the theme marker (=ri)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pro-d}
+ipakeri
+i-p-ak-i=ro=ri
+3mS-give-PERF-REAL.I=3fO=3m0
+He gave him to her
+
+# Ex 10 RESOURCE TEXT SENTENCES 1 - GRAMMATICAL
+# (dropped subj) + smark-verb (reciprocal) + (dropped recipient) + overt indefinite nom theme
+Source: ohagan-sentence21
+Vetted: s
+Judgment: g
+Phenomena: {pro-d}
+ipavakagaiga tsinane
+i-p-a-vakag-a-ig-a tsinane
+3mS-give-EPV-RECIP-EPV-PL-REAL.A woman
+They gave each other women
+
+# Ex 11 RESOURCE TEXT SENTENCES 2 - UNGRAMMATICAL
+Source: ohagan-sentence24
+Vetted: s
+Judgment: u
+Phenomena: {pro-d}
+Ikogakerori
+i-kog-ak-i=ro=ri
+3mS-search.for-PERF-REAL.I=3fO=3mO
+He looked for her for him
+
+
+##################################################
+# DETERMINERS
+##################################################
+# (Michael 2008 Nanti Evidential... Pg. 304-309)
+
+
+# Ex 1 DEMONSTRATIVE
+# male familiar demonstrative with contrast clitic
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {det}
+iogari surari ikanti :
+i-oga=ri surari i-kant-i : 
+3mS-DEM.MED=CNTR male 3mS-say-realis : 
+the man said : 
+
+# Ex 2 DEMONSTRATIVE
+# female familiar demonstrative with contrast clitic
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {det}
+oogari tsinane okanti :
+o-oga=ri tsinane o-kant-i : 
+3fS-DEM.MED=CNTR female 3fS-say-realis : 
+the woman said : 
+
+# Ex 3 DEMONSTRATIVE
+# female no determiner
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {det}
+tsinane okanti :
+tsinane o-kant-i : 
+female 3fS-say-realis : 
+a woman said : 
+
+# Ex 4 DEMONSTRATIVE - UNGRAMMATICAL
+# male, determiner must precede noun
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {det}
+surari iogari ikanti : 
+surari i-oga=ri i-kant-i : 
+male 3mS-DEM.MED=CNTR 3mS-say-realis : 
+the man said : 
+
+# Ex 5 DEMONSTRATIVE - UNGRAMMATICAL
+# female, determiner must precede noun
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {det}
+tsinane oogari okanti : 
+tsinane o-oga=ri o-kant-i : 
+female 3fS-DEM.MED=CNTR 3fS-say-realis : 
+the woman said : 
+
+# Ex 6 DEMONSTRATIVE - UNGRAMMATICAL
+# female, determiner must agree in gender
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {det}
+iogari tsinane okanti : 
+i-oga=ri tsinane o-kant-i : 
+3mS-DEM.MED=CNTR female 3fS-say-realis : 
+the woman said : 
+
+# Ex 7 DEMONSTRATIVE
+# o-oga=ri o-oga = "this" without any noun
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {det}
+oogari ooga onti kipatsi . 
+o-oga=ri o-oga o-nti kipatsi . 
+3fS-DEM.MED=CNTR 3fS-DEM.MED 3fS-COP dirt . 
+that's soil .
+
+
+# Ex 6 QUANTITY
+# "all" without any noun
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {det}
+maganiro ikantaigi :
+maganiro i-kant-a-ig-i : 
+all.ANIM 3mS-say-EPV-PL-realis : 
+they all said: 
+
+# Ex 7 QUANTITY
+# "all" with noun
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {det}
+maganiro matsigenka ikantaigi :
+maganiro matsigenka i-kant-a-ig-i :
+all.ANIM person 3mS-say-EPV-PL-realis :
+everyone said:
+
+# Ex 8 QUANTITY
+# "one" with noun
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {det}
+paniro matsigenka ikantaigi  :
+paniro matsigenka i-kant-a-ig-i  :
+one.ANIM person 3mS-say-EPV-PL-realis :
+one person said:
+
+# Ex 9 QUANTITY - UNGRAMMATICAL
+# "one", determiner must precede noun
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {det}
+matsigenka paniro ikantaigi  :
+matsigenka paniro i-kant-a-ig-i  :
+person one.ANIM 3mS-say-EPV-PL-realis :
+one person said:
 
