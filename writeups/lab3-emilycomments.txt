@@ -1,0 +1,74 @@
+EMB> Please include your names in the write up file.
+
++ Even though we cleaned up a bunch of pcs, nouns, and verbs, there are still many left to clean. Additionally, our definitions for determiners need to be cleaned (currently the lexical entries cover all different combinations of their atomic parts and those could be stripped out into specific rules instead).
+
+EMB> I'm not quite sure what this means. Can you post to Canvas with some examples?
+
+  #590
+  no-kog-ak-i niganki=ku-nirira . 
+  1S-want-PERF-realis middle=LOC-DEL.NOMZ . 
+  "I want the one in the middle."  
+
+  Yes, reasonable. Arguments for the "want" relation have first person subject with the object corresponding to a "middle" relation.
+
+EMB> To a first approximation only. That MRS means "I want the middle", which isn't the same.
+
+  #1680
+  i-samatsa-vintsa-t-ant-ak-i=tari i-kaem-an-ak-i : 
+  3mS-mock-INCL-EPC-CHAR.ANTIPAS-PERF-realis=REAS 3mS-call.out-ABL-PERF-realis : 
+  Since he (the man) liked to joke around, he called out:
+
+  It's not clear to me if "coordination" is the right type of relation for the causal "since," but at least the subject man is the same as the subject for calling out. I think it is probably reasonable with the coordination exception. 
+
+EMB> Given the gloss =REAS, I think you're right that coordination isn't the right thing here. This should fall under clausal modifiers (available via the customization system).
+
+  2060 
+  i-kaj-a-ma-t-an-ak-i=tyo i-oko-t-an-ak-i=ro=ra : 
+  3mS-laugh-EPV-REACT-EPC-ABL-PERF-realis=AFFECT 3mS-point-EPC-ABL-PERF-realis=3fO=SUB : 
+  He began to laugh, pointing at her: 
+
+  Again, I *think* "coordination" might be okay for this type of relation, and assuming that, then the semantics are reasonable. 3rd masculine subject is both laughing and pointing.
+
+EMB> Here, coordination seems plausible, especially since both verbs seem to have equivalent inflection for tense/aspect and no other signals of subordination.
+
+  2930 
+  i-a-ve-ig-a anpovatsa=ku , iriro=tya tsog-a-ig-av-ak-i=ri tseikintsi . 
+  3mS-go-FRUS-PL-realis.refl mud=LOC , 3m.PRO=TEMP.SUCC poke.with.pointed.snout-EPV-PL-TRNS-PERF-realis=3mO worm . 
+  They went to the mud, and then the worms poked them. 
+
+  A bit confusing, but I *think* it looks correct, even with the coordination. Going, mud, and poking relations are all in tact.
+
+EMB> Arguably, the "locative" info is missing though.
+
+The first phenomena that we pick to improve is aspect.
+
+EMB> The singular form is phenomenon.
+
+- The contrast clitic =ri is attached to first instance of demonstrative.
+
+EMB> First in what? A sentence? A discourse? And I assume by "first instance" you mean "first instance with a given referent", right? Also, is =ri obligatory in such cases, or just possible in such cases?
+
+After cutting off the cycles, only 3 merge of nonn-pc are left:
+    1. nonu-pc3 with noun-pc25
+    2. noun-pc5 with noun-pc20
+    3. noun-pc12 with noun-pc17.
+
+EMB> Do you have a sense of what's behind the cycles (e.g. variable morpheme order)?
+
+  the pcs were renamed for clarity:
+    verb-pc26_name=verb-pc-subjmarker
+    verb-pc26_lrt1_name=verb-pc-subj3m
+    verb-pc26_lrt2_name=verb-pc26-subj3f
+    verb-pc26_lrt3_name=verb-pc85-subj1
+
+EMB> Good call! I'd go even a bit simpler:
+
+  the pcs were renamed for clarity:
+    verb-pc26_name=verb-pc-subjmarker
+    verb-pc26_lrt1_name=verb-subj3m
+    verb-pc26_lrt2_name=verb-subj3f
+    verb-pc26_lrt3_name=verb-subj1
+
+EMB> Overall, good clean up work!
+
+EMB> Also, please provide before & after tsdb profiles (I've updated the lab 4 instructions to reflect this.)
