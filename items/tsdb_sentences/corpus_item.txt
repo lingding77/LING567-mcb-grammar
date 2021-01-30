@@ -708,7 +708,10 @@ o-shiriaga-t-apa-ak-a=ra i-poro-ak-i i-tsamai-ri o-marane .
 3fS-go.down(.water.level)-EPC-ALL-PERF-realis.refl=SUB 3mS-clear.garden-PERF-realis 3mP-cultivate-NOMZ.INALIEN 3fS-big . 
 When the dry season arrived, he cleared (the underbrush) a large garden. 
 
-1420@@@@-1@@â€˜ no-t-ak-i=npi=tari no-kant-i mire-t-a-i=rorokari , atsi no-n-p-a-ja-t-e=ri=ta .â€™@@@@1@8@NO_GLOSS 1S love PERF realis =2O =REAS 1S say realis be.thirsty EPC REG realis =EPIST.MOD , DRCT 1S irrealis give EPV CL:fluid EPC irrealis =3mO =INTNC NO_GLOSS // â€˜Es que te quiero mucho y por eso me dije, tendrÃ¡s sed, irÃ© a llevarle.â€™ // Since I love you, I said, maybe he's thirsty, I'll give him his drink.@@\n", '1420', 'â€˜ no-t-ak-i=npi=tari no-kant-i mire-t-a-i=rorokari , atsi no-n-p-a-ja-t-e=ri=ta .â€™', 'NO_GLOSS 1S love PERF realis =2O =REAS 1S say realis be.thirsty EPC REG realis =EPIST.MOD , DRCT 1S irrealis give EPV CL:fluid EPC irrealis =3mO =INTNC NO_GLOSS // â€˜Es que te quiero mucho y por eso me dije, tendrÃ¡s sed, irÃ© a llevarle.â€™', "Since I love you, I said, maybe he's thirsty, I'll give him his drink."]
+1420
+â€˜ no-t-ak-i=npi=tari no-kant-i mire-t-a-i=rorokari , atsi no-n-p-a-ja-t-e=ri=ta .â€™
+NO_GLOSS 1S love PERF realis =2O =REAS 1S say realis be.thirsty EPC REG realis =EPIST.MOD , DRCT 1S irrealis give EPV CL:fluid EPC irrealis =3mO =INTNC NO_GLOSS 
+Since I love you, I said, maybe he's thirsty, I'll give him his drink.
 
 1430 
 pi-tsave-t-i=ri=kari matsontsori .â€™ 
