@@ -1,0 +1,65 @@
+The first phenomena we pick this week is adnominal possession. It is interesting to see that there are two possessive patterns for Matsigenka. Basically, Matsigenka nouns can be split into two categories, the alienable nouns and inalienable nouns. Inalienable nouns stand for words like kin terms, body parts and a small amount of manufactured objects, while alienable nouns are things like commodities. 
+Inalienable nouns have to appear with possessive prefixes as a noun phrase, like ‘my nose’ and ‘her brother.’ For alienable nouns, the possession is marked by three different suffixes distinguished by the prosodic factors. 
+	disyllabic nominal roots take -ne,
+	trisyllabic or larger roots take -te,
+	some specific manufactured object nouns take -re.
+Therefore, we created 5 pairs of sentences that can test the grammar. The negative sentences have problems like missing the possessive prefix, missing the possessive suffix, adding an extra alienable possessive suffix to an inalienable noun, and using wrong possessive suffix. 
+
+EMB> You'll need to create two separate noun classes to model this. One obligatorily takes the possession affixes (of the right set), the other has that as an optional position class (again, with the right set).
+
+While the subject or the object is the questioning target, we usually omit the subject/object marker.
+
+EMB> 'Usually' is a bit surprising --- so it's possible but not common to have the subject/object marker corresponding to a wh argument?
+
+ However, we cannot find an interrogative ‘who’ in our corpus. Therefore, examples 11 to 14 are sort of useless at some point. 
+
+EMB> Why does this make the examples useless?
+
+Different forms covered were:
+- deranked and ranked relative clauses
+- non-specific relative clause constructions (using interrogative pronouns like "whoever", "whatever", etc.)
+
+EMB> The clausal modifier library handles clausal modifiers of V/VP/S, not relative clauses.
+
+- verbal complement clauses (attached to verbs of communication, cognition, perception, etc.)
+
+EMB> These are clausal complements, not clausal modifiers.
+
+- possible conditionals and epistemic conditionals
+- counterfactual conditionals
+- temporal succession, brief temporal/spatial overlap, prolonged temporal overlap, temporal anteriority/posteriority
+- purposive clauses
+- cause/effect clauses
+- contrastive constructions such as frustrative clauses and "on the contrary"/"however"
+
+EMB> All of these (except maybe the last one) fall under the clausal modifiers library.
+
+- temporal/spatial overlap
+- conditionals
+
+EMB> These two are clear examples of clausal modifiers.
+
+- causative behavior
+
+EMB> Not sure what this means --- if it's like 'because', then it's a clausal modifier.
+
+- VP complements
+
+EMB> Not a clausal modifier, maybe a clausal complement.
+
+- the reality status of the subordinate clause should match that of the main clause
+
+EMB> The customization system won't give this to you, but it should be easy to add in tdl editing.
+
+**************************************************
+Other clausal phenomena TBD
+
+Here are a few other constructions we've observed in our corpus but have not constructed test suites for:
+- quoting forms
+- interrogative pronouns such as "tya-ni=rika" (whoever)
+- frustrative with "-ve"
+- simple succession with "inpo"
+- contrary status with "arionpa"
+
+EMB> You've already done way more than enough with the above!
+
