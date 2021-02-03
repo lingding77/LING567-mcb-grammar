@@ -9,7 +9,7 @@ Date: Jan 21, 2021
 #Source: {a:page, b:page, author, elicited, attested} # elicited=native, attested=non-linguistics text
 #Vetted: {t, f, s} ## t=native, f=unvetted, s=linguistics text
 #Judgment: {g, u} ## g=grammatical, u=ungrammatical
-#Phenomena: {aspect,  argument optionality, determiner...}
+#Phenomena: {gender agreement, SVO word order, aspect, argument optionality, determiner, adnominal possession, wh questions, clausal modifiers}
 #<Example in standard orthography> (one of this and transliteration is required; including both is okay)
 #<Example in transliteration> (one of this and standard orthography is required; including both is okay)
 #<Example with morpheme boundaries noted and morpheme forms regularized>
@@ -695,4 +695,559 @@ matsigenka paniro ikantaigi  :
 matsigenka paniro i-kant-a-ig-i  :
 person one.ANIM 3mS-say-EPV-PL-realis :
 one person said:
+
+
+
+
+##################################################
+# LAB 4
+##################################################
+
+
+##################################################
+# ADNOMINAL POSSESSION
+##################################################
+
+
+# Ex 1 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adnominal possession}
+ikanti i*irenti :
+i-kant-i i-*irenti : 
+3mS-say-realis 3mP-brother.ME : 
+His brother said to him: 
+
+
+# Ex 2 Ungrammatical  (lack of possessive prefix for the kin term.)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adnominal possession}
+ikanti *irenti :
+i-kant-i *irenti : 
+3mS-say-realis brother.ME : 
+Brother said to him: 
+
+
+# Ex 3 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adnominal possession}
+otarongavagetaki  opanpature
+o-tarog-a-vage-t-ak-i o-panpatu-re . 
+3fS-sweep-EPV-DUR-EPC-PERF-realis 3fS-patio-ALIEN.POSS . 
+she was sweeping her patio.  
+
+# Ex 4 Ungrammatical  (lack of ALIEN.POSS suffix.)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adnominal possession}
+otarongavagetaki  opanpature
+o-tarog-a-vage-t-ak-i o-panpatu. 
+3fS-sweep-EPV-DUR-EPC-PERF-realis 3fS-patio. 
+she was sweeping her patio. 
+
+
+
+# Ex 5 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adnominal possession}
+ipankiti ishinkire
+i-panki-t-i i-shinki-re. 
+3mS-plant-EPC-realis 3mP-corn-ALIEN.POSS.
+he planted his corn.
+
+
+# Ex 6 Ungrammatical  (change the ALIEN.POSS from -re to -ne)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adnominal possession}
+ipankiti ishinkine
+i-panki-t-i i-shinki-ne. 
+3mS-plant-EPC-realis 3mP-corn-ALIEN.POSS.
+he planted his corn.
+
+
+
+
+# Ex 7 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adnominal possession}
+oogari oshintoegi ogametiripage
+o-oga=ri o-*shinto-egi o-gametiri=page 
+3fS-DEM.MED=CNTR 3fP-daughter-PL 3fS-pretty=PL 
+Her daughters were very beautiful; 
+
+
+# Ex 8 Ungrammatical  (add an extra ALIEN.POSS to an inalienable noun.)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adnominal possession}
+oogari oshintoreegi ogametiripage
+o-oga=ri o-*shinto-re-egi o-gametiri=page 
+3fS-DEM.MED=CNTR 3fP-daughter-ALIEN.POSS-PL 3fS-pretty=PL 
+Her daughters were very beautiful; 
+
+
+
+
+# Ex 9 Grammatical  
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adnominal possession}
+ineapaakiro i*jina tononkavagetaki opariantire.
+i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti-re .
+3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain-ALIEN.POSS .
+He saw his wife grinding her plantain.
+
+
+
+
+# Ex 10 Ungrammatical  (delete the ALIEN.POSS suffix.)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adnominal possession}
+ineapaakiro i*jina tononkavagetaki opariantire.
+i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti.
+3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain.
+He saw his wife grinding her plantain.
+
+
+
+##################################################
+# WH QUESTION
+##################################################
+
+
+# Ex 11 Grammatical  (who)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+Tsini neakiri?
+tsini ne-ak-i=ri
+who.INTERR see-PERF-realis=3mO
+Who saw him?
+
+
+
+# Ex 12 Ungrammatical  (give the subject interrogation a subject marker, which is supposed to be omitted.)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+Tsinii neakiri?
+tsini-i ne-ak-i=ri
+who.INTERR-3mS see-PERF-realis=3mO
+Who saw him?
+
+
+
+# Ex 13 Grammatical  （whom）
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+Tsini ineaki?
+tsini i=ne-ak-i
+who.INTERR 3mS=see-PERF-realis
+Whom did he see?
+
+
+
+# Ex 14 Ungrammatical  (give the object interrogation a subject marker, which is supposed to be omitted.)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+Tsiniri ineaki?
+tsini=ri i=ne-ak-i
+who.INTERR=3mO 3mS=see-PERF-realis
+Whom did he see?
+
+
+# Ex 15 Grammatical  （what）
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+tata iogaka?
+tata i-og-ak-a
+what.INTERR 3mS-eat-PERF-realis.refl
+What did he eat?
+
+
+# Ex 16 Ungrammatical  （put the interrogation pronoun in a non-initial posotion.）
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+iogaka tata?
+i-og-ak-a tata 
+3mS-eat-PERF-realis.refl what.INTERR 
+What did he eat?
+
+
+
+
+# Ex 17 Grammatical  （what）
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+tata piogusoakiro?
+tata pi=oguso-ak-i=ro
+what 2S=tie-perf-real.i=3fO
+What did you tie it together with?
+
+
+
+# Ex 18 Ungrammatical  （delete object marker）
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+tata piogusoaki?
+tata pi=oguso-ak-i
+what 2S=tie-perf-real.i
+What did you tie together with?
+
+
+
+
+# Ex 19 Grammatical  （why）
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+tyara onkantakenpa pinkogakera pashini tsinane ?
+tya=ra o-n-kant-ak-enpa pi-n-kog-ak-e=ra pashini tsinane ?
+why.INTERR=SUB 3fS-irrealis-happen-PERF-irreal.refl 2S-irrealis-search.for-PERF-irrealis=SUB other female ?
+Why do you want another woman? 
+
+
+
+# Ex 20 Ungrammatical  （without the light verb 'happen'）
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+tyara pinkogakera pashini tsinane ?
+tya=ra  pi-n-kog-ak-e=ra pashini tsinane ?
+why.INTERR=SUB 2S-irrealis-search.for-PERF-irrealis=SUB other female ?
+Why do you want another woman? 
+
+
+
+##################################################
+# CLAUSAL MODIFIERS
+##################################################
+
+##################################################
+# TEMPORAL/SPATIAL OVERLAP
+##################################################
+
+# Ex 1 Temporal/spatial overlap - Grammatical
+# (from corpus sentence #30)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+imatikaki iogonketakara
+i-matik-ak-i i-ogonke-t-ak-a=ra
+3mS-sing-PERF-realis 3mS-arrive-EPC-PERF-realis.refl=SUB
+He sang when he arrived
+
+# Ex 2 Temporal/spatial overlap - Grammatical, reversed clause order
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+iogonketakara imatikaki
+i-ogonke-t-ak-a=ra i-matik-ak-i
+3mS-arrive-EPC-PERF-realis.refl=SUB 3mS-sing-PERF-realis
+When he arrived, he sang
+
+# Ex 3 Temporal/spatial overlap - Grammatical, non-coreferential subjects
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+imatikaki oogonketakara
+i-matik-ak-i o-ogonke-t-ak-a=ra
+3mS-sing-PERF-realis 3mS-arrive-EPC-PERF-realis.refl=SUB
+He sang when she arrived
+
+# Ex 4 Temporal/spatial overlap - Grammatical, aspect mismatch
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+imatikaki iogonketaara
+i-matik-ak-i i-ogonke-t-a-a=ra
+3mS-sing-PERF-realis 3mS-arrive-EPC-REG-realis.refl=SUB
+He sang when he arrived back
+
+# Ex 5 Temporal/spatial overlap - Grammatical, durational
+# (from corpus sentence #1940)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+imatikavagetaki iogonkevagetaara
+i-matik-a-vage-t-ak-i i-ogonke-vage-t-a-a=ra
+3mS-sing-EPV-DUR-EPC-PERF-realis 3mS-arrive-DUR-EPC-REG-realis.refl=SUB
+He was singing when he was arriving back 
+
+# Ex 6 Temporal/spatial overlap - Ungrammatical, mismatched reality-status  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+imatikaki inogonketakenpara
+i-matik-ak-i i-n-ogonke-t-ak-enpa=ra
+3mS-sing-PERF-realis 3mS-irrealis-arrive-EPC-PERF-irrealis.refl=SUB
+He sang when he arrives
+
+# Ex 7 Temporal/spatial overlap - Ungrammatical, mismatched reality-status  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+inmatikake iogonketakara
+i-n-matik-ak-e i-ogonke-t-ak-a=ra
+3mS-irrealis-sing-PERF-irrealis 3mS-arrive-EPC-PERF-realis.refl=SUB
+He sings when he arrived
+
+##################################################
+# VP COMPLEMENTS
+##################################################
+
+# Ex 1 VP complement - Grammatical, to see
+# (from corpus sentence #1190)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+inei iarapaaki tsinaro
+i-ne-i i-ar-apa-ak-i tsinaro
+3mS-see-realis 3mS-fly-ALL-PERF-realis grasshopper
+He sees a grasshopper flying
+
+# Ex 2 VP complement - Ungrammatical, to see, no SUB clitic required  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+inei iarapaakira tsinaro
+i-ne-i i-ar-apa-ak-i=ra tsinaro
+3mS-see-realis 3mS-fly-ALL-PERF-realis=SUB grasshopper
+He sees a grasshopper flying
+
+# Ex 3 VP complement - Ungrammatical, to see, complement must be postverbal
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+iarapaakira tsinaro inei
+i-ar-apa-ak-i=ra tsinaro i-ne-i 
+3mS-fly-ALL-PERF-realis=SUB grasshopper 3mS-see-realis 
+He sees a grasshopper flying
+
+# Ex 4 VP complement - Grammatical, to hear
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+ikemiro okantaki
+i-kem-i=ro o-kant-ak-i
+3mS-hear-realis=3fO 3fS-say-PERF-realis
+he heard her say
+
+# Ex 5 VP complement - Ungrammatical, to hear, no SUB clitic required  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+ikemiro okantakira
+i-kem-i=ro o-kant-ak-i=ra
+3mS-hear-realis=3fO 3fS-say-PERF-realis=SUB
+he heard her say
+
+# Ex 6 VP complement - Ungrammatical, to hear, complement must be postverbal (should parse but with wrong meaning)  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+okantaki ikemiro
+o-kant-ak-i i-kem-i=ro
+3fS-say-PERF-realis 3mS-hear-realis=3fO
+she says he hears
+
+# Ex 7 VP complement - Grammatical, to finish
+# (from corpus sentence #690)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+oagataki isekatakara
+o-aga-t-ak-i i-seka-t-ak-a=ra
+3fS-finish-EPC-PERF-realis 3mS-eat-EPC-PERF-realis.refl=SUB
+She finished eating
+
+##################################################
+# CAUSATIVE
+##################################################
+
+# Ex 1 VP complement - Grammatical, ovashi  * TO CHECK
+# (from corpus sentence #830)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+ovashi ikantakirira
+ovashi i-kant-ak-i=ri=ra
+so 3mS-say-PERF-realis=3mO=SUB
+So he said to him
+
+# Ex 2 VP complement - Grammatical, ovashi, no SUB clitic required  * TO CHECK
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+ovashi ikantakiri
+ovashi i-kant-ak-i=ri
+so 3mS-say-PERF-realis=3mO
+So he said to him
+
+# Ex 3 VP complement - Grammatical, ovashi, multiple sub clauses
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+ovashi inoshikakirora potsoti ikantakirira :
+ovashi i-noshik-ak-i=ro=ra potsoti i-kant-ak-i=ri=ra : 
+so 3mS-pull-PERF-realis=3fO=SUB achiote 3mS-say-PERF-realis=3mO=SUB : 
+So he pulled out the achiote and said to him: 
+
+# Ex 4 VP complement - Grammatical, ovashi on second clause
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+inoshikakiro potsoti, ovashi ikantakiri :
+i-noshik-ak-i=ro potsoti, ovashi i-kant-ak-i=ri : 
+3mS-pull-PERF-realis=3fO achiote, so 3mS-say-PERF-realis=3mO : 
+He pulled out the achiote, then he said to him: 
+
+# Ex 5 VP complement - Ungrammatical, ovashi on second clause, no SUB clitic allowed on preceding clause  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+inoshikakirora potsoti, ovashi ikantakiri :
+i-noshik-ak-i=ro=ra potsoti, ovashi i-kant-ak-i=ri : 
+3mS-pull-PERF-realis=3fO=SUB achiote, so 3mS-say-PERF-realis=3mO : 
+He pulled out the achiote, then he said to him: 
+
+# Ex 6 VP complement - Grammatical, direct reason
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+inoshikakirotari potsoti ikantakiri :
+i-noshik-ak-i=ro=tari potsoti i-kant-ak-i=ri : 
+3mS-pull-PERF-realis=3fO=REAS achiote 3mS-say-PERF-realis=3mO : 
+Because he pulled out the achiote, he said to him: 
+
+# Ex 7 VP complement - Ungrammatical, ovashi on first clause + direct reason  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+ovashi inoshikakirotari potsoti ikantakiri :
+ovashi i-noshik-ak-i=ro=tari potsoti i-kant-ak-i=ri : 
+so 3mS-pull-PERF-realis=3fO=REAS achiote 3mS-say-PERF-realis=3mO : 
+So because he pulled out the achiote and said to him: 
+
+##################################################
+# CONDITIONAL
+##################################################
+
+# Ex 1 Possible conditional (hypothetical or future conditions) - Grammatical  * TO CHECK
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+onneakeririka onkaemake
+o-n-ne-ak-e=ri=rika o-n-kaem-ak-e 
+3fS-irrealis-see-PERF-irrealis=3mO=INDEF.TEMP 3fS-irrealis-call.out-PERF-irrealis
+if she sees him, she will cry out 
+
+# Ex 2 Epistemic conditional (past condition of which speaker is ignorant) - Grammatical  * TO CHECK
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cl-mod}
+oneakiririka okaemaki
+o-ne-ak-i=ri=rika o-kaem-ak-i 
+3fS-see-PERF-realis=3mO=INDEF.TEMP 3fS-call.out-PERF-realis
+if she saw him, she cried out
+
+# Ex 3 Conditional - Ungrammatical, mismatched reality status  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+oneakiririka onkaemake
+o-ne-ak-i=ri=rika o-n-kaem-ak-e 
+3fS-see-PERF-realis=3mO=INDEF.TEMP 3fS-irrealis-call.out-PERF-irrealis
+if she saw him, she will cry out 
+
+# Ex 4 Conditional - Ungrammatical, mismatched reality status  * TO CHECK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cl-mod}
+onneakeririka okaemaki
+o-n-ne-ak-e=ri=rika o-kaem-ak-i 
+3fS-irrealis-see-PERF-irrealis=3mO=INDEF.TEMP 3fS-call.out-PERF-realis
+if she sees him, she cried out 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
