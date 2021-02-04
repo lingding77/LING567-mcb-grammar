@@ -1,0 +1,123 @@
+2: 	-a 				AFFECT.LENGTH		affective length
+					AND					andative
+					EPV					epenthetic vowel
+					REALIS.REFL			reflexive realis
+					REG					regressive
+1: 	-aa 			ASSOC.MOT:dist.reg 	distal regressive associated motion
+					POET.LENGTH poetic 	lengthening 
+1: 	-ag 			CAUS.INFL 			causative of influence (~ -akag)
+1: 	-agani 			PAS.REAL1 			realis passive 1 (-inkani is realis passive 2)
+2: 	-agantsi 		DO.well 			do well
+					NOMZ				nominalizer
+1: 	-ak 			PERF				perfective
+1: 	-akag 			CAUS.INFL 			causative of influence (~ -ag)
+					CAUS.SOC 			sociative causative
+1: 	-akagant		CAUS.MED			mediative causative (** also listed as -agant in resource gloss)
+2: 	-aki 			ASSOC.MOT:dist 		distal associated motion 
+2: 	-ako 			APPL:indr			indirective applicative 
+					CL:vessel			classifier: vessel
+1: 	-aman 			EARLY				early morning
+2: 	-an 			ABL					ablative 
+1: 	-ank 			DUR.POSIT 			durative position
+1: 	-ankits 		SUBJ.FOC1			subject focus 1 (-ats is subject focus 2)
+1: 	-ant 			APPL:instr			instrumental applicative 
+					APPL:temp 			temporal applicative
+					CHAR.ANTIPAS 		characteristic antipassive 
+					REAS 				reason 
+1: 	-apa 			ALL 				allative 
+1: 	-apanu 			DEP					departative 
+1: 	-apini			PLRACT1				pluractional
+2: 	-asano			VERIF 				verificative
+1: 	-ashi 			APPL:purp			purposive applicative
+1: 	-ats 			SUBJ.FOC2 			subject focus 2 (-ankits is subject focus 1)
+1: 	-av 			TRNS				transitivizer
+1: 	-ava 			AUM 				verbal augmentative
+1: 	-e 				IRREALIS 			irrealis non-reflexive
+1: 	-egi 			PL 					nominal plural
+1: 	-enka 			CL:immaterial		classifier: immaterial
+1: 	-enkani 		PAS.IRR 			irrealis passive 
+1: 	-enpa 			IRREAL.REFL 		irrealis reflexive 
+1: 	-gant 			CL:parabola 		classifier: parabola 
+1: 	-ge 			DSTR 				distributive
+1: 	-gise 			CL:mess 			classifier: mess
+1: 	-gite			CL:environment 		classifier: environment 
+					CL:sky 				classifier: sky 
+2: 	-i 				CL:fruit 			classifier: fruit
+					NI:fruit 			incorporated noun: fruit 
+					NI:head 			incorporated noun: head
+					NONREF 				non-referential 
+					REALIS 				non-reflexive realis 
+1: 	-ig 			PL 					verbal plural 
+2: 	-imo 			APPL:pres 			presencial applicative
+1: 	-inkani			PAS.REAL2 			realis passive 2 (-agani is realis passive 1)
+1: 	-ja 			CL:fluid 			classifier: fluid
+1: 	-ji 			CL:social.beings 	classifier: social beings
+1: 	-kanta 			REDUP:say 			(** not defined in resource gloss)
+1: 	-ki				CL:seed 			classifer: seed
+1: 	-ma				DEPICT:stat 		stative depictive 
+					NON.REACT 			non-reactive
+					REACT 				reactive
+1: 	-na				1S.O 				1st person subject marked as object
+					MAL.PLRACT 			malefactive pluractional 
+1: 	-page			PL 					generic plural 
+1: 	-pio			CL:pile 			classifier: pile		
+1: 	-poki			CL:path 			classifier: path 
+1: 	-re				NOMZ:alien.poss 	alienable possession nominalizer (∼ -te ∼ -ne)
+					REV 				reversative 
+1: 	-ri				3MO 				3rd person masculine object
+					ADJVZR 				adjectivizer
+					CNTR 				contrast
+					CONT 				continuous 
+					NOMZ 				nominalizer
+1: 	-sama			CL:short.and.chubby classifier: short and chubby
+1: 	-sano			VERIF 				verificative (** also listed as -asano in resource gloss)
+1: 	-se 			CL:mass 			classifier: formless mass
+1: 	-shiteki 		NI:worn.cloth 		incorporated noun: worn cloth 
+2: 	-t 				EPC 				epenthetic consonant 
+1: 	-te 			APPL:goal 			goal applicative 
+					NOMZ:alien.poss 	alienable possession nominalizer (∼ -re ∼ -ne)
+1: 	-tega 			CL:flower 			classifier: flower
+					NI:flower 			incorporated noun: flower
+1: 	-ti 			INAN 				inanimate 
+1: 	-tsantsa 		CL.DIM:long 		dimensional classifer: long
+					NI:trunk 			incorporated noun: trunk
+1: 	-tsito 			REDUP:flaten 		(** not defined in resource gloss)
+1: 	-u 				RET 				returnative 
+1: 	-uma 			QUANT 				extremal quantity
+1: 	-unte 			DUR.CHAR 			durational characteristic 
+1: 	-ut 			ANGR 				anger
+2: 	-vage 			DUR 				durative
+2: 	-vakag 			RECIP 				reciprocal
+1: 	-ve 			FRUS 				frustrative
+1: 	-vent 			APPL:motv 			motive applicative 
+1: 	-vintsa 		INCL 				inclination
+1: 	=kari 			WARN 				interjection of warning
+1: 	=me 			CNTF 				counterfactual 
+					DEON 				deontic
+					INFRS 				frustrative of intent
+1: 	=na 			10					(** not defined in resource gloss)
+1: 	=ne 			IRREAL.SUBJ.FOC 	irrealis subject focus (** listed as -ne in resource gloss)
+2: 	=ni 			EXASP 				exasperation 
+					PURP 				purposive 
+					REAS 				reason
+1: 	=nika 			NEG.REAS 			negative reason
+1: 	=npi 			2O 					2nd person object (** listed as -npi in resource gloss)
+1: 	=ra 			SUB 				subordinator
+3: 	=ri 			3MO 				3rd person masculine object (** listed as -ri in resource gloss)
+					3MS.O 				3rd person masculine subject marked as object (** listed as -ri in resource gloss)
+1: 	=rika 			INDEF 				temporally indefinite
+1: 	=rira 			REL 				relativizer
+1: 	=ro 			3FO 				3rd person feminine object (** listed as -ro in resource gloss)
+1: 	=roro 			EXTRM 				extremal
+1: 	=rorokari 		WK.EPIST.MOD 		weak epistemic modality
+1: 	=ta 			INTNC 				intentional (** listed as -ta in resource gloss)
+1: 	=tari 			DSC.CNGNT 			discourse congruent
+					PRESUP 				presupposition 
+					REAS 				reason
+1: 	=tyo 			AFFECT 				affect
+1: 	i-
+1: 	n-
+1: 	no-
+1: 	o-
+1: 	o[+v]-
+1: 	pi-
