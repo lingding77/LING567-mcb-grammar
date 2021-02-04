@@ -285,6 +285,14 @@ verb-pc16_lrt15-suffix :=
 %suffix (* -ki)
 verb-pc16_lrt15-lex-rule.
 
+verb-pc-ret-suffix :=
+%suffix (* -a)
+verb-pc-ret-lex-rule.
+
+verb-pc-dirplusaspect_lrt2-suffix :=
+%suffix (* -u)
+verb-pc-dirplusaspect_lrt2-lex-rule.
+
 verb-pc23_lrt1-suffix1 :=
 %suffix (* -av)
 verb-pc23_lrt1-lex-rule.
@@ -342,14 +350,10 @@ verb-pc31-suffix4 :=
 verb-pc31-lex-rule.
 
 verb-pc31-suffix5 :=
-%suffix (* -u)
-verb-pc31-lex-rule.
-
-verb-pc31-suffix6 :=
 %suffix (* -imo)
 verb-pc31-lex-rule.
 
-verb-pc31-suffix7 :=
+verb-pc31-suffix6 :=
 %suffix (* -agantsi)
 verb-pc31-lex-rule.
 
