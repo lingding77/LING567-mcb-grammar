@@ -141,33 +141,33 @@ verb-pc2_lrt1-suffix :=
 %suffix (* -ats)
 verb-pc2_lrt1-lex-rule.
 
-verb-pc3_lrt1-suffix1 :=
+verb-pc-realis-suffix1 :=
 %suffix (* -i)
-verb-pc3_lrt1-lex-rule.
+verb-pc-realis-lex-rule.
 
-verb-pc3_lrt1-suffix2 :=
+verb-pc-realis-suffix2 :=
 %suffix (* -a)
-verb-pc3_lrt1-lex-rule.
+verb-pc-realis-lex-rule.
 
-verb-pc3_lrt1-suffix3 :=
+verb-pc-realis-suffix3 :=
 %suffix (* -inkani)
-verb-pc3_lrt1-lex-rule.
+verb-pc-realis-lex-rule.
 
-verb-pc3_lrt1-suffix4 :=
+verb-pc-realis-suffix4 :=
 %suffix (* -agani)
-verb-pc3_lrt1-lex-rule.
+verb-pc-realis-lex-rule.
 
-verb-pc3_lrt2-suffix1 :=
+verb-pc-irrealis-req-infix-suffix1 :=
 %suffix (* -e)
-verb-pc3_lrt2-lex-rule.
+verb-pc-irrealis-req-infix-lex-rule.
 
-verb-pc3_lrt2-suffix2 :=
+verb-pc-irrealis-req-infix-suffix2 :=
 %suffix (* -enpa)
-verb-pc3_lrt2-lex-rule.
+verb-pc-irrealis-req-infix-lex-rule.
 
-verb-pc3_lrt2-suffix3 :=
+verb-pc-irrealis-suffix :=
 %suffix (* -enkani)
-verb-pc3_lrt2-lex-rule.
+verb-pc-irrealis-lex-rule.
 
 verb-pc4_lrt1-suffix :=
 %suffix (* =ne)
@@ -177,11 +177,7 @@ verb-pc5_lrt1-suffix :=
 %suffix (* -t)
 verb-pc5_lrt1-lex-rule.
 
-verb-pc7_lrt1-suffix1 :=
-%suffix (* =ni)
-verb-pc7_lrt1-lex-rule.
-
-verb-pc7_lrt1-suffix2 :=
+verb-pc7_lrt1-suffix :=
 %suffix (* =tari)
 verb-pc7_lrt1-lex-rule.
 

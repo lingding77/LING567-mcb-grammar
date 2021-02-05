@@ -177,11 +177,7 @@ verb-pc5_lrt1-suffix :=
 %suffix (* -t)
 verb-pc5_lrt1-lex-rule.
 
-verb-pc7_lrt1-suffix1 :=
-%suffix (* =ni)
-verb-pc7_lrt1-lex-rule.
-
-verb-pc7_lrt1-suffix2 :=
+verb-pc7_lrt1-suffix :=
 %suffix (* =tari)
 verb-pc7_lrt1-lex-rule.
 
