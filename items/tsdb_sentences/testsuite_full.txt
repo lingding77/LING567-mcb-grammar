@@ -703,7 +703,6 @@ one person said:
 # LAB 4
 ##################################################
 
-
 ##################################################
 # ADNOMINAL POSSESSION
 ##################################################
@@ -806,9 +805,9 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
-ineapaakiro i*jina tononkavagetaki opariantire.
-i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti-re .
-3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain-ALIEN.POSS .
+ineapaakiro i*jina tononkavagetaki opariantire
+i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti-re
+3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain-ALIEN.POSS
 He saw his wife grinding her plantain.
 
 
@@ -819,9 +818,9 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
-ineapaakiro i*jina tononkavagetaki opariantire.
-i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti.
-3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain.
+ineapaakiro i*jina tononkavagetaki opariantire
+i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti
+3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain
 He saw his wife grinding her plantain.
 
 
@@ -1225,9 +1224,6 @@ onneakeririka okaemaki
 o-n-ne-ak-e=ri=rika o-kaem-ak-i 
 3fS-irrealis-see-PERF-irrealis=3mO=INDEF.TEMP 3fS-call.out-PERF-realis
 if she sees him, she cried out 
-
-
-
 
 
 
