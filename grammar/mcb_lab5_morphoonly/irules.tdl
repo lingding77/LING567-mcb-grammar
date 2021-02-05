@@ -153,6 +153,10 @@ verb-pc3_lrt1-suffix3 :=
 %suffix (* -inkani)
 verb-pc3_lrt1-lex-rule.
 
+verb-pc3_lrt1-suffix4 :=
+%suffix (* -agani)
+verb-pc3_lrt1-lex-rule.
+
 verb-pc3_lrt2-suffix1 :=
 %suffix (* -e)
 verb-pc3_lrt2-lex-rule.
@@ -165,25 +169,37 @@ verb-pc3_lrt2-suffix3 :=
 %suffix (* -enkani)
 verb-pc3_lrt2-lex-rule.
 
+verb-pc4_lrt1-suffix :=
+%suffix (* =ne)
+verb-pc4_lrt1-lex-rule.
+
 verb-pc5_lrt1-suffix :=
 %suffix (* -t)
 verb-pc5_lrt1-lex-rule.
 
-verb-pc7_lrt1-suffix :=
-%suffix (* =ne)
+verb-pc7_lrt1-suffix1 :=
+%suffix (* =ni)
 verb-pc7_lrt1-lex-rule.
 
+verb-pc7_lrt1-suffix2 :=
+%suffix (* =tari)
+verb-pc7_lrt1-lex-rule.
+
+verb-pc7_lrt2-suffix :=
+%suffix (* =nika)
+verb-pc7_lrt2-lex-rule.
+
 verb-pc7_lrt3-suffix :=
-%suffix (* =ni)
+%suffix (* =ra)
 verb-pc7_lrt3-lex-rule.
 
-verb-pc7_lrt5-suffix :=
-%suffix (* =nika)
-verb-pc7_lrt5-lex-rule.
+verb-pc7_lrt4-suffix :=
+%suffix (* =rika)
+verb-pc7_lrt4-lex-rule.
 
-verb-pc7_lrt6-suffix :=
-%suffix (* =ni)
-verb-pc7_lrt6-lex-rule.
+verb-pc7_lrt5-suffix :=
+%suffix (* =rira)
+verb-pc7_lrt5-lex-rule.
 
 verb-pc8_lrt1-suffix :=
 %suffix (* -ak)
@@ -193,6 +209,10 @@ verb-pc9_lrt1-suffix :=
 %suffix (* -unte)
 verb-pc9_lrt1-lex-rule.
 
+verb-pc7_lrt6-suffix :=
+%suffix (* =ni)
+verb-pc7_lrt6-lex-rule.
+
 verb-pc11_lrt1-suffix :=
 %suffix (* -a)
 verb-pc11_lrt1-lex-rule.
@@ -200,6 +220,10 @@ verb-pc11_lrt1-lex-rule.
 verb-pc12_lrt1-suffix :=
 %suffix (* -a)
 verb-pc12_lrt1-lex-rule.
+
+verb-pc13_lrt1-suffix :=
+%suffix (* =ni)
+verb-pc13_lrt1-lex-rule.
 
 verb-pc14_lrt1-suffix1 :=
 %suffix (* -na)
@@ -305,12 +329,8 @@ verb-pc23_lrt1-suffix3 :=
 %suffix (* -an)
 verb-pc23_lrt1-lex-rule.
 
-verb-pc24_lrt1-suffix1 :=
+verb-pc24_lrt1-suffix :=
 %suffix (* -ut)
-verb-pc24_lrt1-lex-rule.
-
-verb-pc24_lrt1-suffix2 :=
-%suffix (* -agani)
 verb-pc24_lrt1-lex-rule.
 
 verb-pc25_lrt1-suffix :=
@@ -466,32 +486,16 @@ verb-pc86_lrt1-suffix1 :=
 verb-pc86_lrt1-lex-rule.
 
 verb-pc86_lrt1-suffix2 :=
-%suffix (* =rika)
-verb-pc86_lrt1-lex-rule.
-
-verb-pc86_lrt1-suffix3 :=
-%suffix (* =tari)
-verb-pc86_lrt1-lex-rule.
-
-verb-pc86_lrt1-suffix4 :=
 %suffix (* =rorokari)
 verb-pc86_lrt1-lex-rule.
 
-verb-pc86_lrt1-suffix5 :=
+verb-pc86_lrt1-suffix3 :=
 %suffix (* =tyo)
-verb-pc86_lrt1-lex-rule.
-
-verb-pc86_lrt1-suffix6 :=
-%suffix (* =ra)
 verb-pc86_lrt1-lex-rule.
 
 verb-pc86_lrt2-suffix :=
 %suffix (* =ri)
 verb-pc86_lrt2-lex-rule.
-
-verb-pc86_lrt3-suffix :=
-%suffix (* =rira)
-verb-pc86_lrt3-lex-rule.
 
 verb-pc88_lrt1-suffix :=
 %suffix (* -aki)

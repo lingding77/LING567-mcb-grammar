@@ -1,0 +1,161 @@
+#LAB5 write-up
+#NAME: Hanshu Ding, Ling Tu
+#LANGUAGE: mcb
+#PHENOMENA: 
+	1.
+	2.
+	3.
+
+##################################################
+# PHENOMENON
+##################################################
+
+--------------------------------------------------
+Morphological cleanup:
+
+Because many of our phenomenon exist as morphological components, before we embarked on our phenomenon improvements, we did additional cleanup of our morphology, grouping different 
+
+(FILL OUT)
+
+---
+SUBJMARK
+(IRREALIS)
+---
+[VERB]
+---
+QUANTIFIER = QUANT, DUR, etc <- this part has not been organized
+ARGNUM = PL, DSTR
+DIRECTIONAL + ASPECT
+	DIRECTIONAL = ABL, ALL, TRNS
+	ASPECT = PERF, (IMPERF = no marking)
+	DIRECTIONAL + ASPECT = REG, RET
+REALITYSTATUS
+OBJMARK
+SUBORDINATION = REAS, NEG.RES, SUB, INDEF, REL
+---
+EPENTHETICS = EPV, EPC
+
+
+
+Current categories:
+Prefixes:
+- verb-pc-subjmarker (26)
+- verb-pc-subjmarker-caus (62)
+- verb-pc-irrealis-infix (55)
+Suffixes:
+- verb-pc-classifiers (16)
+- verb-pc-argnumber (1)
+- verb-pc-dirplusaspect (22)
+- verb-pc-directional (23)
+- verb-pc-aspect (8)
+- verb-pc-realisirrealis-suffix (3)
+- verb-pc-realis-suffix-subjfoc (4)
+- verb-pc-objmarker (15)
+- verb-pc-clausalmods (7)
+Epenthetics:
+- verb-pc11_name=verb-pc-epv-postverb (11)
+- verb-pc12_name=verb-pc-epv-postother (12)
+
+
+--------------------------------------------------
+Phenomenon 1: TENSE/ASPECT/MOOD
+
+(FILL OUT)
+- Prose description of phenomenon and analysis
+- Specific changes to choices
+- IGT for emily to test or investigate
+
+- Sentence 24 in the test suite was parsing: ** FIX THIS IS STILL PARSING WHY???
+	i-tsiko-u-ak-i=ro
+	3mS-pull.with.hook-RET-PERF-realis=3fO
+	He pulled it down.
+  However, the dir+aspect like REG/RET cannot be in front of aspect like PERF:
+	i-tsiko-u-i=ro
+	3mS-pull.with.hook-RET-realis=3fO
+	He pulled it down.
+  To fix:
+  	Since we've already organized our verb-pcs, we just need to remove the dir+aspect verb-pc22 from the input of the direction verb-pc8. 
+
+- Sentence 28 in the test suite was parsing:
+	no-shig-e
+	1S-run-irrealis
+	I will run.
+  However, the correct form of irrealis suffix -e and -enpa require the infix -n-:
+	no-n-shig-e
+	1S-irrealis-run-irrealis
+	I will run.
+  To fix:
+  	For verb-pc-irrealis-req-infix (verb-pc3_lrt2), add requirement for verb-pc-irrealis-infix (verb-pc55):
+	    verb-pc3_lrt2_name=verb-pc-irrealis-req-infix
+	      verb-pc3_lrt2_require1_others=verb-pc55
+
+--------------------------------------------------
+Phenomenon 2:
+
+(FILL OUT)
+- Prose description of phenomenon and analysis
+- Specific changes to choices
+- IGT for emily to test or investigate
+
+--------------------------------------------------
+Phenomenon 3:
+
+(FILL OUT)
+- Prose description of phenomenon and analysis
+- Specific changes to choices
+- IGT for emily to test or investigate
+
+--------------------------------------------------
+Description of grammar performance:
+
+How many items parsed?
+- original:		x
+- new:			x
+
+What is the average number of parses per parsed item?
+- original:		x
+- new:			x
+
+How many parses did the most ambiguous item receive?
+- original:		x
+- new:			x
+
+What sources of ambiguity can you identify?
+- (FILL OUT)
+
+Semantics analysis:
+
+
+
+##################################################
+# ACE MMT
+##################################################
+
+--------------------------------------------------
+Translations remapping:
+
+Existing relations:
+- sleep (mag) - GLOSS: sleep
+- eat (seka) - GLOSS: eat
+- follow (ogia) - GLOSS: follow
+- hungry (taseg) - GLOSS: be.hungry
+
+Remapped relations:
+- cat -> jaguar (matsontsori) - GLOSS: jaguar								-> _jaguar_n_rel
+- dog -> spider monkey (osheto) - GLOSS: spider.monkey						-> _dog_n_rel
+- car -> canoe (*pito) - GLOSS: canoe (always appears as canoe-ALIEN) 		-> _car_n_rel
+- park -> forest (inkenishi) - GLOSS: forest (always appears as forest=LOC)	-> _park_n_rel
+
+Adding to lexicon:
+- canoe (*pito) - This was in sentences 1350 and 1790, but not in our lexicon; guessing with very low probability those two sentences both just happened to be in the set held out from training?
+- to be hungry (taseg) - This was in our resource grammar "Matsigenka Texts Written By Matsigenka Authors" (2013, Pereira and Pereira)
+
+--------------------------------------------------
+Sentence analysis:
+
+(FILL OUT: which sentences may be impossible, etc)
+
+--------------------------------------------------
+Ace setup:
+
+(FILL OUT: A description what happened when you tried the MT set up. What difficulties did you encounter and how did you resolve them? What output did you get?)

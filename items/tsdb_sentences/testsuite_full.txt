@@ -249,8 +249,8 @@ Vetted: f
 Judgment: g
 Phenomena: {aspect}
 Nonehakiri
-no=neh-ak-i=ri
-1S=see-PERF-realis=3mO
+no-ne-ak-i=ri
+1S-see-PERF-realis=3mO
 I saw him.
 
 
@@ -260,8 +260,8 @@ Vetted: f
 Judgment: u
 Phenomena: {aspect}
 Nonehiakri
-no=neh-i-ak=ri
-1S=see-realis-PERF=3mO
+no-ne-i-ak=ri
+1S-see-realis-PERF=3mO
 'I saw him.'
 
 
@@ -283,7 +283,7 @@ Vetted: f
 Judgment: u
 Phenomena: {aspect}
 itsikouiakro
-i-tsiko-u-i-ak=ro
+i-tsiko-u-ak-i=ro
 3mS-pull.with.hook-RET-PERF-realis=3fO
 He pulled it down.
 
@@ -318,8 +318,8 @@ Vetted: f
 Judgment: g
 Phenomena: {aspect}
 Nonshige
-no=n-shig-e
-1S=irrealis-run-irrealis
+no-n-shig-e
+1S-irrealis-run-irrealis
 I will run.
 
 
@@ -329,8 +329,8 @@ Vetted: f
 Judgment: u
 Phenomena: {aspect}
 Noshige.
-no=shig-e
-1S=run-irrealis
+no-shig-e
+1S-run-irrealis
 I will run.
 
 
@@ -341,8 +341,8 @@ Vetted: f
 Judgment: g
 Phenomena: {aspect}
 Ishiguti.
-i=shig-u-i 
-3mS=run-RET-realis
+i-shig-u-i 
+3mS-run-RET-realis
 He ran there and back.
 
 
@@ -352,8 +352,8 @@ Vetted: f
 Judgment: u
 Phenomena: {aspect}
 Ishiguti.
-i=n-shig-u-i 
-3mS=irrealis-run-RET-realis
+i-n-shig-u-i 
+3mS-irrealis-run-RET-realis
 He ran there and back.
 
 
@@ -703,7 +703,6 @@ one person said:
 # LAB 4
 ##################################################
 
-
 ##################################################
 # ADNOMINAL POSSESSION
 ##################################################
@@ -806,9 +805,9 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
-ineapaakiro i*jina tononkavagetaki opariantire.
-i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti-re .
-3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain-ALIEN.POSS .
+ineapaakiro i*jina tononkavagetaki opariantire
+i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti-re
+3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain-ALIEN.POSS
 He saw his wife grinding her plantain.
 
 
@@ -819,9 +818,9 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
-ineapaakiro i*jina tononkavagetaki opariantire.
-i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti.
-3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain.
+ineapaakiro i*jina tononkavagetaki opariantire
+i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti
+3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain
 He saw his wife grinding her plantain.
 
 
@@ -920,8 +919,8 @@ Vetted: f
 Judgment: u
 Phenomena: {wh question}
 tata piogusoaki?
-tata pi=oguso-ak-i
-what 2S=tie-perf-real.i
+tata pi-oguso-ak-i
+what 2S-tie-perf-real.i
 What did you tie together with?
 
 
@@ -1232,10 +1231,39 @@ if she sees him, she cried out
 
 
 
+##################################################
+# LAB 5 - MMIT
+##################################################
 
+# Ex 1 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto imag
+osheto i-mag
+spider.monkey 3mS-sleep
+Spider monkeys sleep
 
+# Ex 2 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto iogia pitotsi
+osheto i-ogia *pito-tsi
+spider.monkey 3mS-follow canoe.ALIEN
+Spider monkeys follow canoes
 
-
+# Ex 3 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+noogianpi
+no-ogia=npi
+1S-follow=2O
+I follow you
 
 
 

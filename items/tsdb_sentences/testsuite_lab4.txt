@@ -124,8 +124,8 @@ Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
 ineapaakiro i*jina tononkavagetaki opariantire
-i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti-re .
-3mS-see-ALL-PERF-realis=3fO  3mP-wife-grind-EPV-DUR-EPC-PERF-realis 3fP-plantain-ALIEN.POSS
+i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti-re
+3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain-ALIEN.POSS
 He saw his wife grinding her plantain.
 
 
@@ -137,8 +137,8 @@ Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
 ineapaakiro i*jina tononkavagetaki opariantire
-i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti.
-3mS-see-ALL-PERF-realis=3fO  3mP-wife-grind-EPV-DUR-EPC-PERF-realis 3fP-plantain
+i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti
+3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain
 He saw his wife grinding her plantain.
 
 
@@ -202,7 +202,7 @@ Judgment: g
 Phenomena: {wh question}
 tata iogaka?
 tata i-og-ak-a
-what.INTERR 3mS=eat-PERF-realis.refl
+what.INTERR 3mS-eat-PERF-realis.refl
 What did he eat?
 
 
@@ -213,7 +213,7 @@ Judgment: u
 Phenomena: {wh question}
 iogaka tata?
 i-og-ak-a tata 
-3mS=eat-PERF-realis.refl what.INTERR 
+3mS-eat-PERF-realis.refl what.INTERR 
 What did he eat?
 
 
@@ -251,7 +251,7 @@ Judgment: g
 Phenomena: {wh question}
 tyara onkantakenpa pinkogakera pashini tsinane ?
 tya=ra o-n-kant-ak-enpa pi-n-kog-ak-e=ra pashini tsinane ?
-why.INTERR=SUB 3fS-irrealis-happen-PERF-irreal.refl 2S-irrealis-search.for-PERF-irrealis=SUB other female  
+why.INTERR=SUB 3fS-irrealis-happen-PERF-irreal.refl 2S-irrealis-search.for-PERF-irrealis=SUB other female ?
 Why do you want another woman? 
 
 
@@ -263,7 +263,7 @@ Judgment: u
 Phenomena: {wh question}
 tyara pinkogakera pashini tsinane ?
 tya=ra  pi-n-kog-ak-e=ra pashini tsinane ?
-why.INTERR=SUB 2S-irrealis-search.for-PERF-irrealis=SUB other female  
+why.INTERR=SUB 2S-irrealis-search.for-PERF-irrealis=SUB other female ?
 Why do you want another woman? 
 
 
