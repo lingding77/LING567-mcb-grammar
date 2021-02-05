@@ -1231,7 +1231,39 @@ if she sees him, she cried out
 
 
 
+##################################################
+# LAB 5 - MMIT
+##################################################
 
+# Ex 1 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto imag
+osheto i-mag
+spider.monkey 3mS-sleep
+Spider monkeys sleep
+
+# Ex 2 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto iogia pitotsi
+osheto i-ogia *pito-tsi
+spider.monkey 3mS-follow canoe.ALIEN
+Spider monkeys follow canoes
+
+# Ex 3 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+noogianpi
+no-ogia=npi
+1S-follow=2O
+I follow you
 
 
 
