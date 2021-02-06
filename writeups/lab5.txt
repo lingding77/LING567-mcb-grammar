@@ -60,12 +60,63 @@ Epenthetics:
 --------------------------------------------------
 Phenomenon 1: TENSE/ASPECT/MOOD
 
-(FILL OUT)
-- Prose description of phenomenon and analysis
-- Specific changes to choices
-- IGT for emily to test or investigate
+Overview: -------------------------
 
-- Sentence 24 in the test suite was parsing: ** FIX THIS IS STILL PARSING WHY???
+A detailed description of the phenomenon can be found in our lab3 writeup, but a brief overview is that we have chosen to keep three aspects (perfective, continuational, durative) and two moods (realis, irrealis) while removing all other aspects and moods that were auto-generated (pot, rel, recip, prp). Our grammar does not utilize tense, as far as we know.
+
+Existing aspect and mood types:
+* Note, these are also set on misc aux verbs, but a bunch of those seem like verbs and not auxs, not convinced we have auxs, but we can clean this up later...
+ASPECT:
+- pvf
+	-ak 		PERF
+- cont
+	=ri 		CONT
+- dur
+	-vage 		DUR
+	-unte 		DUR.CHAR
+	-ank 		DUR.POSIT
+MOOD:
+- real
+	-i 			REALIS
+	-a 			REALIS.REFL
+	-agani 		PAS.REAL1
+	-inkani 	PAS.REAL2
+- irr
+	n- 			IRREALIS (prefix/infix required for -e and -enpa)
+	-e 			IRREALIS
+	-enpa 		IRREAL.REFL
+	-enkani 	PAS.IRR
+	=ne 		IRREAL.SUBJ.FOC (tbh I'm not sure what this does, it seems to be compatible with both real and irr)
+
+Some of this work was done in simply removing the extraneous features and the corresponding assignments of those features in verb-pcs (see "Changes" below).
+
+Most of the additional work was done in the morphological cleanup (see "Morphological Cleanup" in the previous section). The morphological cleanup went a long way in being able to distinguish erroneous combinations of affixes (allowing us to remove things like duplicates of -vakag) and enforce some/cleaner ordering restrictions.
+
+Some specific examples of things that were improved with the morphological cleanup wrt tense/mood (see Cleanup below):
+- The grammar has a restriction on directionals (ABL, ALL, TRNS) coocurring with aspect (PERF, IMPERF), but not the directional+aspect (REG, RET), aka REG+PERF is not valid. We were able to implement that by combining affixes into their respective categories and then cleaning up their inputs (sentence 24 of Cleanup, though we need some help with this, for some reason it's still parsing even though it shouldn't).
+- Mood irrealis for the suffixes -e and -enpa require an infix -n- before the verb. This was implemented with a requirement on those irrealis categories to require the verb-pc for "n-".
+
+* QUESTION: We have two directional+aspect categories of REG (regressive) and RET (returnative) and we're not sure how we should implement them. Should they be considered aspect=reg and aspect=ret? For reference, this was what was in our lab3 writeup:
+
+1. regressive: "indicates motion from some point back to a salient point of origin,"
+    eg: went back; return; repair.
+2. returnative: "indicates motion
+from some initial point to a distal point, and subsequently back to the initial point,"
+    eg: some verb with a 'back and forth' intention.
+
+Changes: -------------------------
+
+Removing extraneous aspect and mood types:
+ASPECT:
+- pot (used in aux11 "koviti" -> deleting aux11, since "koviti" actually means a pot for cooking)
+- rel (used in verb-pc7 "=rira")
+MOOD:
+- recip (used in verb-pc37_lrt1 "-vakag")
+- prp (used in verb-pc10_lrt1 "=ni" -> deleting verb-pc10, it didn't seem to be used anyway and was a dupe of verb-pc13)
+
+Cleanup: -------------------------
+
+Sentence 24 in the test suite was parsing when it shouldn't have:
 	i-tsiko-u-ak-i=ro
 	3mS-pull.with.hook-RET-PERF-realis=3fO
 	He pulled it down.
@@ -73,10 +124,12 @@ Phenomenon 1: TENSE/ASPECT/MOOD
 	i-tsiko-u-i=ro
 	3mS-pull.with.hook-RET-realis=3fO
 	He pulled it down.
-  To fix:
+  Fix:
   	Since we've already organized our verb-pcs, we just need to remove the dir+aspect verb-pc22 from the input of the direction verb-pc8. 
 
-- Sentence 28 in the test suite was parsing:
+* QUESTION: this is still parsing despite our fix. verb-pc8 should not have verb-pc22 as an input, and there are no other instances of the affix -u and the affix -ak in the choices file now. When I inspect the tree, I see that all the rules are as I expect except that it is in fact reading "verb-pc8_lrt1". Additionally, the first rule is showing up as "verb-pc-dirplusaspect_lrt2" (aka correctly replacing verb-pc22 with verb-pc-dirplusaspect) but the second rule is showing up as "verb-pc8_lrt1" - shouldn't they both behave the same (aka, shouldn't I see verb-pc-aspect_lrt1 instead?)
+
+Sentence 28 in the test suite was parsing when it shouldn't have:
 	no-shig-e
 	1S-run-irrealis
 	I will run.
@@ -84,7 +137,7 @@ Phenomenon 1: TENSE/ASPECT/MOOD
 	no-n-shig-e
 	1S-irrealis-run-irrealis
 	I will run.
-  To fix:
+  Fix:
   	For verb-pc-irrealis-req-infix (verb-pc3_lrt2), add requirement for verb-pc-irrealis-infix (verb-pc55):
 	    verb-pc3_lrt2_name=verb-pc-irrealis-req-infix
 	      verb-pc3_lrt2_require1_others=verb-pc55
@@ -138,7 +191,7 @@ Existing relations:
 - sleep (mag) - GLOSS: sleep
 - eat (seka) - GLOSS: eat
 - follow (ogia) - GLOSS: follow
-- hungry (taseg) - GLOSS: be.hungry
+- hungry (taseg) - GLOSS: be.hungryn 
 
 Remapped relations:
 - cat -> jaguar (matsontsori) - GLOSS: jaguar								-> _jaguar_n_rel
