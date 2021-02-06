@@ -150,6 +150,32 @@ Phenomenon 2:
 - Specific changes to choices
 - IGT for emily to test or investigate
 
+
+
+
+section=clausalmods
+  cms1_position=either
+  cms1_modifier-attach=either
+  cms1_subordinator=none
+  cms1_pred=_when_subord_rel
+    cms1_feat1_name=form
+    cms1_feat1_value=nonfinite
+  cms2_position=either
+  cms2_modifier-attach=either
+  cms2_subordinator=free
+  cms2_subposition=before
+  cms2_subordinator-type=head
+    cms2_freemorph1_orth=ovashi
+    cms2_freemorph1_pred=_so_subord_rel
+
+
+verb-pc7_lrt3_name=verb-pc7_lrt3
+  verb-pc7_lrt3_feat1_name=form
+  verb-pc7_lrt3_feat1_value=nonfinite
+  verb-pc7_lrt3_feat1_head=verb
+  verb-pc7_lrt3_lri1_inflecting=yes
+  verb-pc7_lrt3_lri1_orth==ra
+
 --------------------------------------------------
 Phenomenon 3:
 
