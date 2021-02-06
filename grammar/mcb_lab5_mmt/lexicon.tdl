@@ -567,7 +567,7 @@ tsoeg := noun71-noun-lex &
   [ STEM < "tsoeg" >,
     SYNSEM.LKEYS.KEYREL.PRED "_lie_n_rel" ].
 
-koviti_1 := noun72-noun-lex &
+koviti := noun72-noun-lex &
   [ STEM < "koviti" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pron_n_rel" ].
 
@@ -1703,9 +1703,6 @@ ga := neg10-aux-lex &
   [ STEM < "ga" >,
     SYNSEM.LKEYS.KEYREL.PRED "neg_rel" ].
 
-koviti_2 := aux11-aux-lex &
-  [ STEM < "koviti" > ].
-
 ;;; Determiners
 
 i-oga-egi_3Dri := det1-determiner-lex &
@@ -1765,3 +1762,7 @@ i-ntiri5 := conj-lex &
   [ STEM < "i-ntiri" >,
     SYNSEM.LKEYS.KEYREL.PRED "_and_coord_rel",
     CFORM "5" ].
+
+ovashi := clause-init-subord-lex-item &
+  [ STEM < "ovashi" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_so_subord_rel" ].

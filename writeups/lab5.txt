@@ -162,6 +162,32 @@ To fix the grammar, we first created two classes of possession pronouns in the A
 As Hanshu mentioned on canvas, when setting up the possession pronouns, we need to  declare if this poss feature *specified on itself/possessum/possessor*, Emily's advice for the possessive prefixes are *possessor*. However, after changing it from *itself* to *possessor*, the red asterisk appeared. I tried to set the agreement for poss page as YES but it seems that matrix doesn't like it. (I clicked save and stay but the choices file that generated after this change still give the agreement a NO.) I am quite confused, so I omit the change from *itself* to *possessor* for now. 
 
 
+
+
+
+section=clausalmods
+  cms1_position=either
+  cms1_modifier-attach=either
+  cms1_subordinator=none
+  cms1_pred=_when_subord_rel
+    cms1_feat1_name=form
+    cms1_feat1_value=nonfinite
+  cms2_position=either
+  cms2_modifier-attach=either
+  cms2_subordinator=free
+  cms2_subposition=before
+  cms2_subordinator-type=head
+    cms2_freemorph1_orth=ovashi
+    cms2_freemorph1_pred=_so_subord_rel
+
+
+verb-pc7_lrt3_name=verb-pc7_lrt3
+  verb-pc7_lrt3_feat1_name=form
+  verb-pc7_lrt3_feat1_value=nonfinite
+  verb-pc7_lrt3_feat1_head=verb
+  verb-pc7_lrt3_lri1_inflecting=yes
+  verb-pc7_lrt3_lri1_orth==ra
+
 --------------------------------------------------
 Phenomenon 3:
 
