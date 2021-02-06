@@ -50,3 +50,7 @@ np5-bottom-coord := np5-bottom-coord-rule.
 np6-top-coord := np6-top-coord-rule.
 
 np6-bottom-coord := np6-bottom-coord-rule.
+
+adj-head-scop := adj-head-scop-phrase.
+
+head-adj-scop := head-adj-scop-phrase.

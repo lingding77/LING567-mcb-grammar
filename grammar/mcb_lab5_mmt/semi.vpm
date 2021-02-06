@@ -63,8 +63,6 @@ E.TENSE : E.TENSE
 
 E.ASPECT : E.ASPECT
   cont <> cont
-  rel <> rel
-  pot <> pot
   dur <> dur
   pfv <> pfv
   * <> *
@@ -72,6 +70,4 @@ E.ASPECT : E.ASPECT
 E.MOOD : E.MOOD
   irr <> irr
   real <> real
-  recip <> recip
-  prp <> prp
   * <> *

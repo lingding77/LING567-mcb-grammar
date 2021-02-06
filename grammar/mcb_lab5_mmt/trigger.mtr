@@ -8,7 +8,3 @@ matik_3_gr := arg0e_gtr &
 atsi_gr := arg0e_gtr &
   [ CONTEXT.RELS.LIST < [ PRED "non_existing_rel" ] >,
     FLAGS.TRIGGER "atsi" ].
-
-koviti_2_gr := arg0e_gtr &
-  [ CONTEXT.RELS.LIST < [ ARG0.E.ASPECT pot ] >,
-    FLAGS.TRIGGER "koviti_2" ].
