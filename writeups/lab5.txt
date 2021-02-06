@@ -2,8 +2,8 @@
 #NAME: Hanshu Ding, Ling Tu
 #LANGUAGE: mcb
 #PHENOMENA: 
-	1.
-	2.
+	1.TENSE/ASPECT/MOOD
+	2.ADNOMINAL POSSESSION
 	3.
 
 ##################################################
@@ -143,12 +143,24 @@ Sentence 28 in the test suite was parsing when it shouldn't have:
 	      verb-pc3_lrt2_require1_others=verb-pc55
 
 --------------------------------------------------
-Phenomenon 2:
+Phenomenon 2: ADNIMINAL POSSESSION
 
-(FILL OUT)
-- Prose description of phenomenon and analysis
-- Specific changes to choices
-- IGT for emily to test or investigate
+----------------------
+
+phenomenon description:--------------
+Basically, Matsigenka nouns can be split into two categories, the alienable nouns and inalienable nouns. Inalienable nouns stand for words like kin terms, body parts and a small amount of manufactured objects, while alienable nouns are things like commodities. 
+Both types of nouns have to go with a possessive prefix to form a noun phrase. However, for alienable nouns, the possession is additionally marked by a suffix -re. 
+
+analysis: ----------------------------
+We make a spreadshit listing the coresponding noun-pc orth with their gloss and specific description. By searching all of these noun-pc orth inside of the item file, we realized that noun-pc5, the only prefix noun-pc in this language, stands for the obligatory possessive markeres. Besides, noun-pc6, the suffix -re, stands for the ailenable possessive suffix marker. 
+
+specific changes:----------------------
+To fix the grammar, we first created two classes of possession pronouns in the ADNOMIMAL POSSESSION subpage. (We created possession pronouns rather than possession stretegy because the possessive markers in this language are affixes.) Next, we jumped into the morphology subpage, found noun-pc5, noun-pc6. We added a [poss_pron1(the inalien one)] feature to noun-pc5's lexicon rule type and set this pc obligatory, and then added [poss_pron2(the alien one)] feature to noun-pc6. 
+
+
+*Questions: ----------------------
+As Hanshu mentioned on canvas, when setting up the possession pronouns, we need to  declare if this poss feature *specified on itself/possessum/possessor*, Emily's advice for the possessive prefixes are *possessor*. However, after changing it from *itself* to *possessor*, the red asterisk appeared. I tried to set the agreement for poss page as YES but it seems that matrix doesn't like it. (I clicked save and stay but the choices file that generated after this change still give the agreement a NO.) I am quite confused, so I omit the change from *itself* to *possessor* for now. 
+
 
 --------------------------------------------------
 Phenomenon 3:

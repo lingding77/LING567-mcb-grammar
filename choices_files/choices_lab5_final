@@ -51,7 +51,7 @@ nom-acc-acc-case-name=acc
 
 section=adnom-poss
   poss-pron1_type=affix
-  poss-pron1_agr=agree
+  poss-pron1_agr=non-agree
   poss-pron1_mod-spec=spec
   poss-pron2_type=affix
   poss-pron2_agr=non-agree
@@ -1257,7 +1257,7 @@ section=morphology
     noun-pc5_lrt1_name=noun-pc5-poss_lrt1
       noun-pc5_lrt1_feat1_name=poss-pron1
       noun-pc5_lrt1_feat1_value=plus
-      noun-pc5_lrt1_feat1_head=possessor
+      noun-pc5_lrt1_feat1_head=itself
       noun-pc5_lrt1_lri1_inflecting=yes
       noun-pc5_lrt1_lri1_orth=i-
       noun-pc5_lrt1_lri2_inflecting=yes
