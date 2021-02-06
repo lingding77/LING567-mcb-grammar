@@ -216,7 +216,7 @@ masero := noun6-noun-lex &
 
 matsontsori := noun6-noun-lex &
   [ STEM < "matsontsori" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_jaguar_n_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "_cat_n_rel" ].
 
 maã±o := noun6-noun-lex &
   [ STEM < "maã±o" >,
@@ -249,7 +249,7 @@ oaku := noun6-noun-lex &
 
 osheto := noun6-noun-lex &
   [ STEM < "osheto" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_spider.monkey_n_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "_dog_n_rel" ].
 
 otishi := noun6-noun-lex &
   [ STEM < "otishi" >,
@@ -409,7 +409,7 @@ chahuares := noun6-noun-lex &
 
 inkenishi_1 := noun6-noun-lex &
   [ STEM < "inkenishi" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_forest_n_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "_park_n_rel" ].
 
 inperita := noun6-noun-lex &
   [ STEM < "inperita" >,
@@ -567,7 +567,7 @@ tsoeg := noun71-noun-lex &
   [ STEM < "tsoeg" >,
     SYNSEM.LKEYS.KEYREL.PRED "_lie_n_rel" ].
 
-koviti_1 := noun72-noun-lex &
+koviti := noun72-noun-lex &
   [ STEM < "koviti" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pron_n_rel" ].
 
@@ -578,6 +578,10 @@ maganiro := noun73-noun-lex &
 matik_1 := noun74-noun-lex &
   [ STEM < "matik" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pron_n_rel" ].
+
+*pito := noun_vessel-noun-lex &
+  [ STEM < "*pito" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_car_n_rel" ].
 
 ;;; Adjectives
 
@@ -1591,6 +1595,10 @@ tsova := verb192-verb-lex &
   [ STEM < "tsova" >,
     SYNSEM.LKEYS.KEYREL.PRED "_be.prow.of.boat_v_rel" ].
 
+taseg := verb192-verb-lex &
+  [ STEM < "taseg" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_be.hungry_v_rel" ].
+
 netsa := verb193-verb-lex &
   [ STEM < "netsa" >,
     SYNSEM.LKEYS.KEYREL.PRED "_visit_v_rel" ].
@@ -1694,9 +1702,6 @@ atsi := aux9-aux-lex &
 ga := neg10-aux-lex &
   [ STEM < "ga" >,
     SYNSEM.LKEYS.KEYREL.PRED "neg_rel" ].
-
-koviti_2 := aux11-aux-lex &
-  [ STEM < "koviti" > ].
 
 ;;; Determiners
 
