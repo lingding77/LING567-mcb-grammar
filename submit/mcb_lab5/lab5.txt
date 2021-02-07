@@ -1,0 +1,548 @@
+#LAB5 write-up
+#NAME: Hanshu Ding, Ling Tu
+#LANGUAGE: mcb
+#PHENOMENA: 
+	1.TENSE/ASPECT/MOOD
+	2.ADNOMINAL POSSESSION
+	3.CLAUSAL MODIFIERS
+
+##################################################
+# PHENOMENON
+##################################################
+
+--------------------------------------------------
+Morphological cleanup:
+
+Because many of our phenomenon exist as morphological components, before we embarked on our phenomenon improvements, we did additional cleanup of our morphology, grouping different categories of affixes into logical position classes so that we could better control their inputs/characteristics and giving them more sensible names so that our grammar is easier to inspect in the future.
+
+Affix position class ordering: -------------------------
+
+Note that this is not a comprehensive list of categories, just the ones that we were able to clean up so far. Some of these were found in Nanti Evidential Practice (Michael 2008) Figure 6.6, and others were deduced from the data in our corpus items file.
+
+General verb order:
+---
+SUBJMARK
+(IRREALIS)
+---
+[VERB]
+---
+QUANTIFIER = QUANT, DUR, etc <- this part has not been organized
+ARGNUM = PL, DSTR
+DIRECTIONAL + ASPECT
+	DIRECTIONAL = ABL, ALL, TRNS
+	ASPECT = PERF, (IMPERF = no marking)
+	DIRECTIONAL + ASPECT = REG, RET
+REALITYSTATUS
+OBJMARK
+SUBORDINATION = REAS, NEG.RES, SUB, INDEF, REL
+---
+
+Additionally, epenthetics are inserted between many of these, which we can clean up with tdl editing later:
+EPENTHETICS = EPV, EPC
+
+Current verb-pcs categories: -------------------------
+
+Prefixes:
+- verb-pc-subjmarker (26)
+- verb-pc-subjmarker-caus (62)
+- verb-pc-irrealis-infix (55)
+Suffixes:
+- verb-pc-classifiers (16)
+- verb-pc-argnumber (1)
+- verb-pc-dirplusaspect (22)
+- verb-pc-directional (23)
+- verb-pc-aspect (8)
+- verb-pc-realisirrealis-suffix (3)
+- verb-pc-realis-suffix-subjfoc (4)
+- verb-pc-objmarker (15)
+- verb-pc-clausalmods (7)
+Epenthetics:
+- verb-pc11_name=verb-pc-epv-postverb (11)
+- verb-pc12_name=verb-pc-epv-postother (12)
+
+Cleanup steps: -------------------------
+
+Category: arg number
+- Suffixes:
+	-ge	DSTR	distributive
+	-ig	PL		verbal plural
+- Changes:
+	- Move -ge to group with -ig
+		verb-pc109_lrt1_lri9 -> verb-pc1_lrt2
+	- Add: (verb-pc109 is already an input to verb-pc1)
+		verb294 to inputs of verb-pc1
+	- Rename:
+		verb-pc1_name=verb-pc-argnumber
+		verb-pc1_lrt1_name=verb-pc-plural
+		verb-pc1_lrt2_name=verb-pc-distributive
+
+Category: directional
+- Suffixes:
+	-an	 ABL	ablative
+	-apa ALL	allative
+	-av	 TRNS	transitivizer
+- Changes 1:
+	- Split verb-pc23 into verb-pc23 and verb-pc24
+	  Move non -an/-apa/-av suffixes into verb-pc24
+		verb-pc23_lrt1_lri4 -> verb-pc24_lrt1_lri1
+		verb-pc23_lrt1_lri5 -> verb-pc24_lrt1_lri2
+	- Replace: 
+		references to "verb-pc23" with "verb-pc23, verb-pc24"
+	- Rename:
+		verb-pc23_name=verb-pc-directional
+- Changes 2:
+	- Remove second instance of -an
+		verb-pc10_lrt1_lri2 -> verb-pc10_lrt1_lri1
+	- Add:
+		verb-pc37 to inputs of verb-pc23
+
+Category: directional+aspect
+- Suffixes:
+	-a  REG 	regressive
+	-u  RET 	returnative
+- Changes:
+	- Create:
+		verb-pc22_lrt2_lri1 ("-a" for REG)
+	- Move:
+		verb-pc31_lrt1_lri5 -> verb-pc22_lrt2_lri1
+	- Replace: 
+		references to "verb-pc31" with "verb-pc31, verb-pc22"
+	- Rename:
+		verb-pc22_name=verb-pc-dirplusaspect
+
+Category: classifiers
+- Suffixes:
+	-ako		CL:vessel
+	-enka		CL:immaterial
+	-gant		CL:parabola
+	-gise		CL:mess
+	-gite		CL:environment
+	-gite		CLsky
+	-i			CL:fruit
+	-ja			CL:fluid
+	-ji			CL:social.beings
+	-ki			CL:seed
+	-pio		CL:pile
+	-poki		CL:path
+	-sama		CL:short.and.chubby
+	-se			CL:mass
+	-tega		CL:flower
+	-tsantsa	CL.DIM:long
+- Changes:
+	- Collect all suffixes into verb-pc16
+	- Move:
+		verb-pc17_lrt1 -> verb-pc16_lrt2
+		(create verb-pc16_lrt3 = -sama-pio to account for the existence of -sama + -pio)
+		verb-pc110_lrt1 -> verb-pc16_lrt4
+		verb-pc10_lrt1 -> verb-pc16_lrt5
+		verb-pc109_lrt1_lri2 -> verb-pc16_lrt6_lri1
+		verb-pc109_lrt1_lri3 -> verb-pc16_lrt7_lri1
+		verb-pc109_lrt1_lri4 -> verb-pc16_lrt8_lri1
+		verb-pc109_lrt1_lri7 -> verb-pc16_lrt9_lri1
+		verb-pc109_lrt1_lri8 -> verb-pc16_lrt10_lri1
+		verb-pc109_lrt1_lri11 -> verb-pc16_lrt11_lri1
+		verb-pc14_lrt1 -> verb-pc16_lrt12
+		verb-pc37_lrt2_lri7 -> verb-pc16_lrt13_lri1
+		verb-pc37_lrt2_lri1 -> verb-pc16_lrt14_lri1
+		verb-pc89_lrt1_lri4 -> verb-pc16_lrt15_lri1
+	- Add:
+		verb8, verb158, verb187, verb294, verb-pc11, verb-pc26, verb-pc37 to inputs of verb-pc16
+	- Remove:
+		verb16 from inputs of verb-pc89 (to avoid cycles)
+	- Replace: 
+		references to "verb-pc17" with "verb-pc16"
+		references to "verb-pc110" with "verb-pc16"
+		references to "verb-pc10" with "verb-pc16"
+		references to "verb-pc109" with "verb-pc109, verb-pc16" (but not for verb-pc-objmarker)
+		references to "verb-pc14" with "verb-pc14, verb-pc16"
+		references to "verb-pc37" with "verb-pc37, verb-pc16"
+		references to "verb-pc89" with "verb-pc37, verb-pc16"
+	- Rename:
+		verb-pc16_name=verb-pc-classifiers
+
+Category: realis
+- Suffixes:
+	- realis:
+		-i 			REALIS
+		-a 			REALIS.REFL
+		-agani	 	PAS.REAL1
+		-inkani 	PAS.REAL2
+	- irrealis requiring -n- infix:
+		-e 			IRREALIS
+		-enpa 		IRREAL.REFL
+	- irrealis not requiring -n- infix:
+		-enkani 	PAS.IRR
+	- realis
+		=ne 		IRREAL.SUBJ.FOC
+- Changes:
+	- Move:
+		verb-pc89_lrt1_lri5 -> verb-pc3_lrt1_lri3
+		verb-pc89_lrt2_lri1 -> verb-pc3_lrt3_lri1
+		(remove verb-pc89_lrt1_lri1 which already exists as verb-pc3_lrt1_lri1)
+		verb-pc24_lrt1_lri2 -> verb-pc3_lrt1_lri4
+		verb-pc7_lrt1 -> verb-pc4_lrt1
+	- Add:
+		verb8, verb-pc109 to inputs of verb-pc3
+		verb-pc15 to inputs of verb-pc4
+	- Rename:
+		verb-pc3_name=verb-pc-realisirrealis-suffix
+		verb-pc4_name=verb-pc-realis-suffix-subjfoc
+		verb-pc3_lrt1_name=verb-pc-realis
+		verb-pc3_lrt2_name=verb-pc-irrealis-req-infix
+		verb-pc3_lrt3_name=verb-pc-irrealis
+		verb-pc55_name=verb-pc-irrealis-infix
+
+Category: clauses
+- Suffixes:
+	=ni		REAS
+	=nika	NEG.REAS
+	=ra 	SUB
+	=tari 	REAS
+- Changes:
+	- Move:
+		verb-pc86_lrt1_lri2 -> verb-pc7_lrt1_lri2
+		verb-pc7_lrt5 -> verb-pc7_lrt2
+		verb-pc86_lrt1_lri6 -> verb-pc7_lrt3_lri1
+		verb-pc86_lrt1_lri1 -> verb-pc7_lrt4_lri1
+		verb-pc86_lrt3 -> verb-pc7_lrt5
+	- Add:
+		verb-pc7, verb-pc15, verb-pc23, verb-pc24, verb-pc25, verb-pc69, verb-pc89, verb-pc111 to inputs of verb-pc7 
+	- Replace:
+		verb-pc7 with verb-pc13 in inputs of verb-pc25 and verb-pc15
+
+	- Rename:
+		verb-pc7_name=verb-pc-clausalmods
+
+Category: epenthetics
+- Duplicate:
+	verb-pc11_name -> verb-pc12_name, verb-pc13_name
+- Rename:
+	verb-pc11_name=verb-pc-epv-postverb
+	verb-pc12_name=verb-pc-epv-postother
+- Replace:
+	references to "verb-pc11" with "verb-pc11, verb-pc12" except in verb-pc16 (verb-pc11 postverb only)
+
+Random fixes:
+- Remove verb-pc26 (subj markers) from inputs of verb-pc11 (-a)
+- Remove verb-pc55 (irrealis infix -n) from inputs of verb-pc26 (verb-pc-subjmarker)
+- Move verb-pc15_lrt3 (obj-markers) "-roro" to new verb-pc25_lrt1
+  Replace references to "verb-pc15" with "verb-pc15, verb-pc25"
+- Move verb-pc8_lrt2 (aspect) "-unte" to new verb-pc9_lrt1
+  Replace references to "verb-pc8" with "verb-pc8, verb-pc9"
+- Move verb-pc7_lrt6 (=ni) to verb-pc10_lrt1 for PURP mood to deal with later
+- Duplicate verb-pc7_lrt1_lri1 (=ni) to verb-pc25_lrt1 for APPL move to deal with later
+- Remove verb-pc40_lrt2 (-vakag) because it is a dupe of verb-pc37_lrt1 with more incorrect inputs
+- Remove verb-pc40_lrt3 (-vage) because it is a dupe of verb-pc33_lrt1 with more incorrect inputs
+- Adding verb-pc55 (verb-pc-realis-infix) to inputs of verb-pc26 (subj markers)
+
+--------------------------------------------------
+Phenomenon 1: TENSE/ASPECT/MOOD
+
+Overview: -------------------------
+
+A detailed description of the phenomenon can be found in our lab3 writeup, but a brief overview is that we have chosen to keep three aspects (perfective, continuational, durative) and two moods (realis, irrealis) while removing all other aspects and moods that were auto-generated (pot, rel, recip, prp). Our grammar does not utilize tense, as far as we know.
+
+Existing aspect and mood types:
+* Note, these are also set on misc aux verbs, but a bunch of those seem like verbs and not auxs, not convinced we have auxs, but we can clean this up later...
+ASPECT:
+- pvf
+	-ak 		PERF
+- cont
+	=ri 		CONT
+- dur
+	-vage 		DUR
+	-unte 		DUR.CHAR
+	-ank 		DUR.POSIT
+MOOD:
+- real
+	-i 			REALIS
+	-a 			REALIS.REFL
+	-agani 		PAS.REAL1
+	-inkani 	PAS.REAL2
+- irr
+	n- 			IRREALIS (prefix/infix required for -e and -enpa)
+	-e 			IRREALIS
+	-enpa 		IRREAL.REFL
+	-enkani 	PAS.IRR
+	=ne 		IRREAL.SUBJ.FOC (tbh I'm not sure what this does, it seems to be compatible with both real and irr)
+
+Some of this work was done in simply removing the extraneous features and the corresponding assignments of those features in verb-pcs (see "Changes" below).
+
+Most of the additional work was done in the morphological cleanup (see "Morphological Cleanup" in the previous section). The morphological cleanup went a long way in being able to distinguish erroneous combinations of affixes (allowing us to remove things like duplicates of -vakag) and enforce some/cleaner ordering restrictions.
+
+Some specific examples of things that were improved with the morphological cleanup wrt tense/mood (see Cleanup below):
+- The grammar has a restriction on directionals (ABL, ALL, TRNS) coocurring with aspect (PERF, IMPERF), but not the directional+aspect (REG, RET), aka REG+PERF is not valid. We were able to implement that by combining affixes into their respective categories and then cleaning up their inputs (sentence 24 of Cleanup, though we need some help with this, for some reason it's still parsing even though it shouldn't).
+- Mood irrealis for the suffixes -e and -enpa require an infix -n- before the verb. This was implemented with a requirement on those irrealis categories to require the verb-pc for "n-".
+
+* QUESTION: We have two directional+aspect categories of REG (regressive) and RET (returnative) and we're not sure how we should implement them. Should they be considered aspect=reg and aspect=ret? For reference, this was what was in our lab3 writeup:
+
+1. regressive: "indicates motion from some point back to a salient point of origin,"
+    eg: went back; return; repair.
+2. returnative: "indicates motion
+from some initial point to a distal point, and subsequently back to the initial point,"
+    eg: some verb with a 'back and forth' intention.
+
+Changes: -------------------------
+
+Removing extraneous aspect and mood types:
+ASPECT:
+- pot (used in aux11 "koviti" -> deleting aux11, since "koviti" actually means a pot for cooking)
+- rel (used in verb-pc7 "=rira")
+MOOD:
+- recip (used in verb-pc37_lrt1 "-vakag")
+- prp (used in verb-pc10_lrt1 "=ni" -> deleting verb-pc10, it didn't seem to be used anyway and was a dupe of verb-pc13)
+
+Cleanup: -------------------------
+
+Sentence 24 in the test suite was parsing when it shouldn't have:
+	i-tsiko-u-ak-i=ro
+	3mS-pull.with.hook-RET-PERF-realis=3fO
+	He pulled it down.
+  However, the dir+aspect like REG/RET cannot be in front of aspect like PERF:
+	i-tsiko-u-i=ro
+	3mS-pull.with.hook-RET-realis=3fO
+	He pulled it down.
+  Fix:
+  	Since we've already organized our verb-pcs, we just need to remove the dir+aspect verb-pc22 from the input of the direction verb-pc8. 
+
+* QUESTION: this is still parsing despite our fix. verb-pc8 should not have verb-pc22 as an input, and there are no other instances of the affix -u and the affix -ak in the choices file now. When I inspect the tree, I see that all the rules are as I expect except that it is in fact reading "verb-pc8_lrt1". Additionally, the first rule is showing up as "verb-pc-dirplusaspect_lrt2" (aka correctly replacing verb-pc22 with verb-pc-dirplusaspect) but the second rule is showing up as "verb-pc8_lrt1" - shouldn't they both behave the same (aka, shouldn't I see verb-pc-aspect_lrt1 instead?)
+
+Sentence 28 in the test suite was parsing when it shouldn't have:
+	no-shig-e
+	1S-run-irrealis
+	I will run.
+  However, the correct form of irrealis suffix -e and -enpa require the infix -n-:
+	no-n-shig-e
+	1S-irrealis-run-irrealis
+	I will run.
+  Fix:
+  	For verb-pc-irrealis-req-infix (verb-pc3_lrt2), add requirement for verb-pc-irrealis-infix (verb-pc55):
+	    verb-pc3_lrt2_name=verb-pc-irrealis-req-infix
+	      verb-pc3_lrt2_require1_others=verb-pc55
+
+--------------------------------------------------
+Phenomenon 2: ADNOMINAL POSSESSION
+
+Phenomenon Description:--------------
+
+Basically, Matsigenka nouns can be split into two categories, the alienable nouns and inalienable nouns. Inalienable nouns stand for words like kin terms, body parts and a small amount of manufactured objects, while alienable nouns are things like commodities. 
+
+Both types of nouns have to go with a possessive prefix to form a noun phrase. However, for alienable nouns, the possession is additionally marked by a suffix -re. 
+
+Analysis: ----------------------------
+We made a spreadsheet listing the corresponding noun-pc orth with their gloss and specific description. By searching all of these noun-pc orth inside of the item file, we realized that noun-pc5, the only prefix noun-pc in this language, stands for the obligatory possessive markeres. Besides, noun-pc6, the suffix -re, stands for the ailenable possessive suffix marker. 
+
+Specific Changes:----------------------
+
+To fix the grammar, we first created two classes of possession pronouns in the ADNOMIMAL POSSESSION subpage. (We created possession pronouns rather than possession stretegy because the possessive markers in this language are affixes.) Next, we jumped into the morphology subpage, found noun-pc5, noun-pc6. We added a [poss_pron1(the inalien one)] feature to noun-pc5's lexicon rule type and set this pc obligatory, and then added [poss_pron2(the alien one)] feature to noun-pc6. 
+
+*NOTE: After loading our poss change, our analysis went down from 50% to 20%, so there must be some question inside of the change we made. We decided to eventually strip out this change to give ourselves some more time for proper investigation. Here are some possible avenues for exploration:
+
+* QUESTIONS:
+
+As Hanshu mentioned on canvas, when setting up the possession pronouns, we need to  declare if this poss feature *specified on itself/possessum/possessor*, Emily's advice for the possessive prefixes are *possessor*. However, after changing it from *itself* to *possessor*, the red asterisk appeared. I tried to set the agreement for poss page as YES but it seems that matrix doesn't like it. (I clicked save and stay but the choices file that generated after this change still give the agreement a NO.) I am quite confused, so I omit the change from *itself* to *possessor* for now. 
+
+1) Emily mentioned on canvas that we should create two noun class, one for alienable and another for inalienable, does it mean that we should separate our nouns into two category manually? 
+
+2) In the noun-pc section, I found noun-pc5 is most likely to be the possessive prefix, and the inputs for that pc are noun6, noun72 and noun73. Should I go to noun6, noun72 and noun73's lexicon and edit their feature? Inside of these noun classes, I can pick the POSS feature I created before, but there is no option for *specified on ____*. 
+
+3) We set the poss pc as an obligatory pc for the inputs, which I guess is wrong. We will check the testing after turn off the obligatory option. 
+
+--------------------------------------------------
+Phenomenon 3:
+
+There are many different types of clausal modifiers, which we documented in lab4. Just to get an idea for how they work, we decided to just start with two:
+- The clausal clitic =ra, which marks =SUB and is by far the most prevalent clausal marker.
+- The modifier "ovashi", which means "so" and was previously missing from our lexicon.
+
+1) Our initial change to the matrix included adding the morphological subordinator relation _when_subord_rel. Tbh, it's not entirely clearly to us how this eventually hooks up to the "=ra" orthography, but it did seem to add a _when_subord_rel relation in the semantics, which was very mysterious (we can ask in class!).
+
+  cms1_position=either
+  cms1_modifier-attach=either
+  cms1_subordinator=none
+  cms1_pred=_when_subord_rel
+    cms1_feat1_name=form
+    cms1_feat1_value=nonfinite
+
+Additionally, we added a nonfinite feature to the verb-pc7 that covers "=ra". We're not 100% sure about this because we have actually witnessed sentences that have =SUB marked on all verbs (particularly in conjunction with "ovashi" as mentioned below), but it also feels weird for it to not be marked nonfinite? Not sure:
+
+  verb-pc7_lrt3_name=verb-pc7_lrt3
+    verb-pc7_lrt3_feat1_name=form
+    verb-pc7_lrt3_feat1_value=nonfinite
+    verb-pc7_lrt3_feat1_head=verb
+    verb-pc7_lrt3_lri1_inflecting=yes
+    verb-pc7_lrt3_lri1_orth==ra
+
+Example sentence with all subordinated clauses:
+
+	ovashi i-noshik-ak-i=ro=ra potsoti i-kant-ak-i=ri=ra : 
+	so 3mS-pull-PERF-realis=3fO=SUB achiote 3mS-say-PERF-realis=3mO=SUB : 
+	So he pulled out the achiote and said to him: 
+
+*NOTE: This addition worked well in our testsuite, and sentences seemed to parse fine. However, it caused our parse on our full corpus to grind to a halt, hanging at 2% parsing. We're not sure what exactly is going on here, so we decided eventually to strip it from our grammar for now.
+
+2) The second change we made was to add the clausal modifier "ovashi". This seemed to work well, but again, we're not sure about the subordination non-finite aspect of this.
+
+  cms2_position=either
+  cms2_modifier-attach=either
+  cms2_subordinator=free
+  cms2_subposition=before
+  cms2_subordinator-type=head
+    cms2_freemorph1_orth=ovashi
+    cms2_freemorph1_pred=_so_subord_rel
+
+Here is an example of a sentence that should parse and doesn't, presumably because it thinks it's non-finite and refused to succeed as a sentence?
+
+	ovashi i-kant-ak-i=ri=ra
+	so 3mS-say-PERF-realis=3mO=SUB
+	So he said to him
+
+
+--------------------------------------------------
+Description of grammar performance:
+
+How many items parsed?
+- original:		48
+- new:			54
+
+What is the average number of parses per parsed item?
+- original:		90.73
+- new:			86.06
+
+How many parses did the most ambiguous item receive?
+- original:		752
+- new:			696
+
+What sources of ambiguity can you identify?
+- coordination still hasn't been cleaned up
+- we are still seeing free word order issues because we haven't fixed that
+- the verb "kant" has two readings - "say" or "do" - and this comes up a lot in sentences
+- pcs are much cleaner though!
+
+Semantics analysis:
+
+
+450
+	i-kaem-ako-t-i=ri :
+	3mS-call.out-APPL:INDR-EPC-realis=3mO :
+	He called out:
+	Yes, reasonable, the subject is 3m for the verb call_out.
+510
+	o-ogonke-t-a-a=ra *panko-tsi=ku o-teig-apa-ak-i=ro anpei .
+	3fS-arrive-EPC-REG-realis.refl=SUB house-ALIEN=LOC 3fS-remove.seed.from.boll-ALL-PERF-realis=3fO cotton .
+	When she arrived back (at the house) she removed the seeds from the bolls.
+	Yes, reasonable. The subject is 3rd f for both arrive and remove.the.seed.from.
+
+590
+	no-kog-ak-i niganki=ku-nirira .
+	1S-want-PERF-realis middle=LOC-DEL.NOMZ .
+	“I want the one in the middle.”
+	NO, not reasonable, because there is no locative in the semantics, it could be I want the middle.
+
+820
+	i-kamant-ak-i=ri i-kant-i=ri :
+	3mS-tell-PERF-realis=3mO 3mS-say-realis=3mO :
+	He told him, he said:
+	NO, not reasonable, there is no ‘say’ in the semantic for one of his parses, and the person is not declared in the accusative case.
+
+890
+	i-avis-ak-i=ro=ra aityara i-sonkava-t-a-i=ra .
+	3mS-pass.by-PERF-realis=3fO=SUB opposite.side 3mS-puquear-EPC-REG-realis=SUB .
+	When he got to the other side, he would begin to whistle.
+	NO, the tense and aspect for _and_coord_rel is not marked, we cannot tell the tense.
+
+960 
+	iriro=ri i-kant-i : 
+	3m.PRO=CNTR 3mS-say-realis : 
+	He (Moritoni) said:  
+	Yes, assuming we pick the correct KANT verb relation. Pronoun seems to be working too.
+
+1570 
+	iroro=ri o-pi-t-ak-i=tyo o-tarog-a-vage-t-a-i=ra . 
+	3f.PRO=CNTR 3fS-COP:LOC-EPC-PERF-realis=AFFECT 3fS-sweep-EPV-DUR-EPC-REG-realis=SUB . 
+	She continued sweeping. 
+	NO, continue and sweeping are being parsed as two separate verbs that are coordinated. This is an example of a verbal complement we'd want to apply.
+
+1850
+	i-kamagu-t-ak-i=ro=tyo .
+	3mS-look-EPC-PERF-realis=3fO=AFFECT .
+	He looked at it.
+ 	Yes, reasonable. The subject is 3m and the object is 3rd female in the semantics.
+
+2330
+	o-kant-i=ri :
+	3fS-say-realis=3mO :
+	She said to him:
+ 	No, not reasonable, the subject is 3rd female, but there is no semantics shows he “to him” part, the ARG2 in the verb has no gender marker.
+	
+2350
+	o-tent-an-ak-a=ri , o-kant-i=ri : 
+	3fS-accompany-ABL-PERF-realis.refl=3mO , 3fS-say-realis=3mO : 
+	She accompanied him, and she said to him: 
+	YES, depending on which verson of the verb "kant" is picked. The only thing is that the =ri clitic is not parsing as male in the "accompany" relation, not sure why or if that's just an ambiguity.
+
+
+
+##################################################
+# ACE MMT
+##################################################
+
+--------------------------------------------------
+Translations remapping:
+
+Existing relations:
+- sleep (mag) - GLOSS: sleep
+- eat (seka) - GLOSS: eat
+- follow (ogia) - GLOSS: follow
+- hungry (taseg) - GLOSS: be.hungry
+
+Remapped relations:
+- cat -> jaguar (matsontsori) - GLOSS: jaguar								-> _jaguar_n_rel
+- dog -> spider monkey (osheto) - GLOSS: spider.monkey						-> _dog_n_rel
+- car -> canoe (*pito) - GLOSS: canoe (always appears as canoe-ALIEN) 		-> _car_n_rel
+- park -> forest (inkenishi) - GLOSS: forest (always appears as forest=LOC)	-> _park_n_rel
+
+Adding to lexicon:
+- canoe (*pito) - This was in sentences 1350 and 1790, but not in our lexicon; guessing with very low probability those two sentences both just happened to be in the set held out from training?
+- to be hungry (taseg) - This was in our resource grammar "Matsigenka Texts Written By Matsigenka Authors" (2013, Pereira and Pereira)
+
+--------------------------------------------------
+Sentence analysis:
+
+A few cursory things looking at the list of english sentences that will be potentially difficult:
+- We have a verb representing the state of being hungry, but there is no adverbial form. Not sure how lkb handles that.
+- You mentioned on canvas that we don't really handle relativizers, so we're not totally sure how something like "Dogs in the park eat" will parse, unless I'm misunderstanding relativization.
+- In general, some of the clausal components may be sort of difficult to handle in complexity, esp when combined with wh- questions.
+
+--------------------------------------------------
+Ace setup:
+
+When trying the MT setup, the generation portion of the setup takes forever out of the box with our grammar (even with the simple sentence 'i-kant-i' (which we also witnessed in the class demo last week). For that reason, we are packaging a separate mcb_lab5_mmt grammar along with our mcb_lab5_FINAL grammar for the mmt purposes that has many irules stripped out. The tsdb test suites and relevant interactive lkb testing information should be in the _FINAL version.
+
+Because so far our sentences are still quite simple, we've pared down our irules.tdl file to only include the affixes needed for subject marking, nominal possessive, realias marking suffixes, and the alien marker -tsi.
+
+As such, 'i-kant-i' now gives the following results:
+
+`ace -g grammars/mcb/mcb.dat -Tf1 | ace -g grammars/mcb/mcb.dat -e` gives the following result:
+i-kant-i
+NOTE: 1 readings, added 9 / 4 edges to chart (4 fully instantiated, 2 actives used, 3 passives used)	RAM: 113k
+I-kant-agani
+I-kant-inkani
+I-kant-i
+I-kant-a matik
+I-kant-a
+I-kant-agani matik
+I-kant-inkani matik
+I-kant-i matik
+NOTE: 9 passive, 102 active edges in final generation chart; built 20 passives total. [8 results]
+
+With this change, ./translate-line.sh eng mcb 1 works! Yay!
+
+`/translate-line.sh eng mcb 1 | wc -l` shows us that we have 1261 different generated outputs in mcb, many of which have different possessors and determiners it seems.
+
+
+
+
+
+
+
