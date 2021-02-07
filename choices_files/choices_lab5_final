@@ -50,13 +50,7 @@ nom-acc-acc-case-name=acc
   case4_name=all
 
 section=adnom-poss
-  poss-pron1_type=affix
-  poss-pron1_agr=agree
-  poss-pron1_mod-spec=spec
-  poss-pron2_type=affix
-  poss-pron2_agr=non-agree
-  poss-pron2_mod-spec=spec
-  
+
 section=direct-inverse
 
 section=tense-aspect-mood
@@ -1254,14 +1248,10 @@ section=morphology
       noun-pc4_lrt1_lri4_orth=-aga
       noun-pc4_lrt1_lri5_inflecting=yes
       noun-pc4_lrt1_lri5_orth=-nti
-
-  noun-pc5_name=noun-pc5-poss
+  noun-pc5_name=noun-pc5
   noun-pc5_order=prefix
   noun-pc5_inputs=noun6, noun72, noun73
-    noun-pc5_lrt1_name=noun-pc5-poss_lrt1
-      noun-pc5_lrt1_feat1_name=poss-pron1
-      noun-pc5_lrt1_feat1_value=plus
-      noun-pc5_lrt1_feat1_head=possessor
+    noun-pc5_lrt1_name=noun-pc5_lrt1
       noun-pc5_lrt1_lri1_inflecting=yes
       noun-pc5_lrt1_lri1_orth=i-
       noun-pc5_lrt1_lri2_inflecting=yes
