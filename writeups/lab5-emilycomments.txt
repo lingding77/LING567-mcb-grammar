@@ -1,0 +1,144 @@
+Additionally, epenthetics are inserted between many of these, which we can clean up with tdl editing later:
+EPENTHETICS = EPV, EPC
+
+EMB> Please let me know if you have any questions about how to do this with tdl editing. I think what you want to do is to remove the epenthetic PCs and then just add alternate forms for each of the affixes that follow (or alternatively, precede, but only one or the other) the epenthics such that they include them. For example, if you had an epenthetic -e that could precede -na, then this rule would look like:
+
+verb-pc14_lrt1-suffix1 :=
+%suffix (* -na) (* -e-na)
+verb-pc14_lrt1-lex-rule.
+
+Prefixes:
+- verb-pc-subjmarker (26)
+- verb-pc-subjmarker-caus (62)
+- verb-pc-irrealis-infix (55)
+
+EMB> What do the numbers in parens mean? Do you really have 55 different irrealis infixes??
+
+Category: classifiers
+- Suffixes:
+	-ako		CL:vessel
+	-enka		CL:immaterial
+	-gant		CL:parabola
+	-gise		CL:mess
+	-gite		CL:environment
+	-gite		CLsky
+	-i			CL:fruit
+	-ja			CL:fluid
+	-ji			CL:social.beings
+	-ki			CL:seed
+	-pio		CL:pile
+	-poki		CL:path
+	-sama		CL:short.and.chubby
+	-se			CL:mass
+	-tega		CL:flower
+	-tsantsa	CL.DIM:long
+
+EMB> I'm afraid these are going to be really hard to model in the semantics, meaning they'll give LOTS of generator output. Maybe best to remove them for now? (Or, we could use tdl editing to have them throw in a semantic predication, without worrying about getting it just right, since that would be enough to keep them from showing up in generation.)
+
+	- realis:
+		-i 			REALIS
+		-a 			REALIS.REFL
+		-agani	 	PAS.REAL1
+		-inkani 	PAS.REAL2
+
+EMB> Is PAS passive? If so, you'll want to remove these.
+
+Category: clauses
+- Suffixes:
+	=ni		REAS
+	=nika	NEG.REAS
+	=ra 	SUB
+	=tari 	REAS
+
+EMB> These look like markers of subordinate clauses. If the lexical rules here aren't connected to a subordination strategy, this is just going to give you extra realizations.
+
+Existing aspect and mood types:
+* Note, these are also set on misc aux verbs, but a bunch of those seem like verbs and not auxs, not convinced we have auxs, but we can clean this up later...
+
+EMB> Yes, it would be surprising for a language to have as much morphology and mcb AND ALSO have auxiliaries. I think you're right to remove these.
+
+- The grammar has a restriction on directionals (ABL, ALL, TRNS) coocurring with aspect (PERF, IMPERF), but not the directional+aspect (REG, RET), aka REG+PERF is not valid. We were able to implement that by combining affixes into their respective categories and then cleaning up their inputs (sentence 24 of Cleanup, though we need some help with this, for some reason it's still parsing even though it shouldn't).
+
+EMB> Nice!
+
+* QUESTION: We have two directional+aspect categories of REG (regressive) and RET (returnative) and we're not sure how we should implement them. Should they be considered aspect=reg and aspect=ret? For reference, this was what was in our lab3 writeup:
+
+1. regressive: "indicates motion from some point back to a salient point of origin,"
+    eg: went back; return; repair.
+2. returnative: "indicates motion
+from some initial point to a distal point, and subsequently back to the initial point,"
+    eg: some verb with a 'back and forth' intention.
+
+EMB> This doesn't seem quite like aspect to me, but rather something that would best be implemented via an additional predication associated with the lexical rule. I'd recommend skipping this (and removing those lex rules) for now.
+
+* QUESTION: this is still parsing despite our fix. verb-pc8 should not have verb-pc22 as an input, and there are no other instances of the affix -u and the affix -ak in the choices file now. When I inspect the tree, I see that all the rules are as I expect except that it is in fact reading "verb-pc8_lrt1". Additionally, the first rule is showing up as "verb-pc-dirplusaspect_lrt2" (aka correctly replacing verb-pc22 with verb-pc-dirplusaspect) but the second rule is showing up as "verb-pc8_lrt1" - shouldn't they both behave the same (aka, shouldn't I see verb-pc-aspect_lrt1 instead?)
+
+EMB> I think I answered this question on Canvas last Friday? Here's what I wrote:
+
+I'm not entirely sure what is going on, but here is what I've found that might help. First, the DTR type for the PC class that verb-pc8_lrt1 fits into is verb-pc-aspect-or-verb-pc9-rule-dtr and this is a supertype for verb-pc-directional-lex-rule-super. That's what's allowing the combination:
+
+verb-pc-directional-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-or-verb-pc13_lrt1-rule-dtr & verb-pc-aspect-or-verb-pc9-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc99-rule-dtr &
+  [ INFLECTED #infl,
+    DTR verb-pc-directional-or-verb-pc24-rule-dtr &
+        [ INFLECTED #infl ] ].
+
+How you ended up with that kind of -rule-dtr type I'm not immediately sure, but it might be something like pc8 (aspect) can take pc9 as its input, and pc9 can take directional as its input, but pc9 is optional?
+
+EMB> Were you able to look into that suggestion?
+
+1) Emily mentioned on canvas that we should create two noun class, one for alienable and another for inalienable, does it mean that we should separate our nouns into two category manually? 
+
+EMB> Yes
+
+2) In the noun-pc section, I found noun-pc5 is most likely to be the possessive prefix, and the inputs for that pc are noun6, noun72 and noun73. Should I go to noun6, noun72 and noun73's lexicon and edit their feature? Inside of these noun classes, I can pick the POSS feature I created before, but there is no option for *specified on ____*. 
+
+EMB> The *specified on __* feature seems like it should be on affixes only.  Can you please post to Canvas with a) an IGT exemplifying the phenomenon and b) a choices file snippet with what you've stried so far?
+
+3) We set the poss pc as an obligatory pc for the inputs, which I guess is wrong. We will check the testing after turn off the obligatory option. 
+
+EMB> It should be obligatory, but then should also have a non-inflecting, non-possessive rule in it.
+
+1) Our initial change to the matrix included adding the morphological subordinator relation _when_subord_rel. Tbh, it's not entirely clearly to us how this eventually hooks up to the "=ra" orthography, but it did seem to add a _when_subord_rel relation in the semantics, which was very mysterious (we can ask in class!).
+
+EMB> Yes please do!
+
+*NOTE: This addition worked well in our testsuite, and sentences seemed to parse fine. However, it caused our parse on our full corpus to grind to a halt, hanging at 2% parsing. We're not sure what exactly is going on here, so we decided eventually to strip it from our grammar for now.
+
+EMB> I'm guessing that the item right after the 2% mark is pathologically ambiguous with this change in. I'd be happy to look into this with interactive debugging if you can still repro the problem in your grammar on Thursday.
+
+Here is an example of a sentence that should parse and doesn't, presumably because it thinks it's non-finite and refused to succeed as a sentence?
+
+	ovashi i-kant-ak-i=ri=ra
+	so 3mS-say-PERF-realis=3mO=SUB
+	So he said to him
+
+EMB> Yes, I'd be tempted to consider that a sentence fragment and would be happy to have the grammar rule it out as a stand-alone sentence (for now).
+
+890
+	i-avis-ak-i=ro=ra aityara i-sonkava-t-a-i=ra .
+	3mS-pass.by-PERF-realis=3fO=SUB opposite.side 3mS-puquear-EPC-REG-realis=SUB .
+	When he got to the other side, he would begin to whistle.
+	NO, the tense and aspect for _and_coord_rel is not marked, we cannot tell the tense.
+
+EMB> I'd not expect tense/aspect on _and_coord_rel, but rather on each verb. OTOH, this is an example where both are =SUB, and I'm not quite sure what to do with that, except to say that I think having a _subord_rel would be better than an _and_coord_rel connecting them.
+
+1570 
+	iroro=ri o-pi-t-ak-i=tyo o-tarog-a-vage-t-a-i=ra . 
+	3f.PRO=CNTR 3fS-COP:LOC-EPC-PERF-realis=AFFECT 3fS-sweep-EPV-DUR-EPC-REG-realis=SUB . 
+	She continued sweeping. 
+	NO, continue and sweeping are being parsed as two separate verbs that are coordinated. This is an example of a verbal complement we'd want to apply.
+
+EMB> This is a control verb, not a clausal complement. So, not currently on the menu.
+
+- We have a verb representing the state of being hungry, but there is no adverbial form. Not sure how lkb handles that.
+
+EMB> There's no adverbial use of hungry in the mmt sentences. The question is actually: how does adnominal modification work in mcb?
+
+- You mentioned on canvas that we don't really handle relativizers, so we're not totally sure how something like "Dogs in the park eat" will parse, unless I'm misunderstanding relativization.
+
+EMB> That depends on whether the translation of that in mcb involves a relative clause. There's no relative clause in the English sentence, just an adnominal modifier.
+
+`/translate-line.sh eng mcb 1 | wc -l` shows us that we have 1261 different generated outputs in mcb, many of which have different possessors and determiners it seems.
+
+EMB> Okay, so good hints as to where to start cutting back!
+
