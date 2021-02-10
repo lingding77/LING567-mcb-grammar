@@ -45,6 +45,43 @@ So I noticed in the outputs that our verb sleep was combining with all mood=real
 
 %%%%% PHENOMENON SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Our "additional" phenomenon that we would like to tackle this week is clausal complements. There seem to be several verbs in our corpus that qualify as taking clausal complements, which are listed below (verbs that were noted in our Nanti grammar text are listed under perception/cognition/phasal, and others are listed at the bottom), along with any behaviors that were mentioned in the text:
+
+General properties are:
+- all complements are post-verbal, usually replacing object NPs
+- only main clause can be negated (exception: verbs that take direct speech complements)
+- require coreferential subjects in both main and complement clauses
+	+ exception: verbs of communication, cognition, perception
+- * This was not in the text, but the behavior observed in the corpus seems to suggest that aspect of the main and complement clauses can take on many different combinations, including PERF-PERF, (no aspect)-PERF, (no aspect)-(no aspect), and PERF-(no aspect). However, it's possible the verbs of perception may disallow PERF-(no aspect), based on the corpus data.
+
+Verbs of perception:
+	reality status of complement clause matches main clause
+	complement clause sometimes (rarely) marked with subordinate clause clitic =ra
+- see
+- hear
+- know
+Verbs of cognition:
+- think
+Phasal verbs:
+	reality status of complement clause matches main clause
+	subject of main clause and complement clause necessarily coreferential
+- begin
+- finish
+- remain
+Other:
+- want
+	subject of main clause and complement clause necessarily coreferential
+	complement clause must be irrealis-marked (regardless of reality status of main clause)
+- feel
+- go
+- teach
+- prepare
+
+Due to the erratic use of the =ra subordinating clause clitic, the signal that a clause is in fact a complement clause seems to rely solely its position following a complement-clause-taking verb. The main clause verb can take an object marker, which seems to agree in gender and person with the subject of the complement clause, but that object marker is also not consistently used, so we're not 100% sure about this.
+
+Question: Should we be "nominalizing" these complement clauses even if there is no nominalization marker? We do have a NOMZ nominalization marker, but those seem to be nominalizing single verbs into single nouns, not clauses.
+
+
 
 CLAUSAL COMPLEMENTS ---------------------------------------------------
 
@@ -453,13 +490,12 @@ i-ovetsik-an-ak-a i-n-a-t-ak-i=ra i-*panko=ku i-n-a-ve-t-a=ra pairani .
 3mS-prepare-ABL-PERF-realis.refl 3mS-irrealis-go-EPC-PERF-realis=SUB 3mP-house=LOC 3mS-COP.LOC-EPV-FRUS-EPC-realis.refl=SUB long.ago . 
 He prepared to go back to his house, where he formerly lived. 
 
+KNOW *************************
 
-
-
-
-
-
-
+2760 
+iroro-egi te o-ogo-ig-e o-pogere-a-ig-ak-i=ri=ra shonporekitagantsi ovashi o-a-ig-ak-i o-ne-ant-a-ig-e=ra . 
+3f.PRO-PL NEG.REAL 3fS-know-PL-irrealis 3fS-be.exterminated-EPV-PL-PERF-realis=3mO=SUB measles so 3fS-go-PL-PERF-realis 3fS-visit-ANTIP-EPV-PL-irrealis=SUB . 
+They (the women) did not know that Shomporekitagantsi had exterminated them (the villagers), and so went to visit.  
 
 
 
