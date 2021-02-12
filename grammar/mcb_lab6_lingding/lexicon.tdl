@@ -1027,10 +1027,6 @@ ma := verb_trans-verb-lex &
   [ STEM < "ma" >,
     SYNSEM.LKEYS.KEYREL.PRED "_repeat.action_v_rel" ].
 
-mag := verb_trans-verb-lex &
-  [ STEM < "mag" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_sleep_v_rel" ].
-
 manint := verb_trans-verb-lex &
   [ STEM < "manint" >,
     SYNSEM.LKEYS.KEYREL.PRED "_shun_v_rel" ].
@@ -1458,6 +1454,10 @@ tsego := verb-intrans-verb-lex &
 pavi_2 := verb-intrans-verb-lex &
   [ STEM < "pavi" >,
     SYNSEM.LKEYS.KEYREL.PRED "_build.ladder_n_rel" ].
+
+mag := verb-intrans-verb-lex &
+  [ STEM < "mag" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_sleep_v_rel" ].
 
 mire := verb-intrans-be_predadj-verb-lex &
   [ STEM < "mire" >,

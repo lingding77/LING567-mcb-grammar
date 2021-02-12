@@ -2,7 +2,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Grammar of mcb
 ;;; created at:
-;;;     Fri Feb 12 12:21:52 UTC 2021
+;;;     Fri Feb 12 13:18:08 UTC 2021
 ;;; based on Matrix customization system version of:
 ;;;     Fri Feb  5 21:00:23 UTC 2021
 ;;;
@@ -231,8 +231,8 @@ main-verb-lex := verb-lex & basic-verb-lex & basic-non-wh-word-lex & verb-pc-25-
                                [ VAL [ SPR < >,
                                        COMPS < > ] ],
                            CONT.HOOK.INDEX #xarg ] ],
-    INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
-                VERB-PC-ASPECT-FLAG - ] ].
+    INFLECTED [ VERB-PC-ASPECT-FLAG -,
+                VERB-PC-REALISIRREALIS-SUFFIX-FLAG - ] ].
 
 aux-lex := verb-lex & basic-icons-lex-item &
   [ SYNSEM [ LOCAL.CAT.HEAD.AUX +,
@@ -468,49 +468,49 @@ det9-determiner-lex := determiner-lex & no-icons-lex-item &
 
 ;;; Intermediate rule types
 
-verb-pc5-rule-dtr := word-or-lexrule.
-verb-pc78-rule-dtr := word-or-lexrule.
-verb-pc-subjmarker-rule-dtr := word-or-lexrule.
-noun-pc8-rule-dtr := word-or-lexrule.
-verb-pc-epv-postother-rule-dtr := word-or-lexrule.
-noun-pc10-rule-dtr := word-or-lexrule.
-verb-pc99-rule-dtr := word-or-lexrule.
-noun-pc23-rule-dtr := word-or-lexrule.
-verb-pc31-rule-dtr := word-or-lexrule.
-verb-pc-realis-suffix-subjfoc-rule-dtr := word-or-lexrule.
-verb-pc40-rule-dtr := word-or-lexrule.
-verb-pc-25-or-verb-pc-objmarker-rule-dtr := word-or-lexrule.
-noun-pc12-rule-dtr := word-or-lexrule.
-verb-pc-clausalmods-rule-dtr := word-or-lexrule.
-verb-pc-appl-rule-dtr := word-or-lexrule.
-verb-pc33-rule-dtr := word-or-lexrule.
-verb-pc2-rule-dtr := word-or-lexrule.
-verb-pc37-rule-dtr := word-or-lexrule.
-verb-pc69-rule-dtr := word-or-lexrule.
-noun-pc18-rule-dtr := word-or-lexrule.
-verb-pc74-rule-dtr := word-or-lexrule.
-verb-pc88-rule-dtr := word-or-lexrule.
-verb-pc34-rule-dtr := word-or-lexrule.
-verb-pc32-rule-dtr := word-or-lexrule.
-verb-pc9-rule-dtr := word-or-lexrule.
-noun-pc3-rule-dtr := word-or-lexrule.
-verb-pc-directional-or-verb-pc24-rule-dtr := word-or-lexrule.
-verb-pc86-rule-dtr := word-or-lexrule.
-noun-pc5-rule-dtr := word-or-lexrule.
-noun-pc6-rule-dtr := word-or-lexrule.
-verb-pc89-rule-dtr := word-or-lexrule.
-verb-pc-classifiers-rule-dtr := word-or-lexrule.
 verb-pc-argnumber-rule-dtr := word-or-lexrule.
-noun-pc27-rule-dtr := word-or-lexrule.
-noun-pc26-rule-dtr := word-or-lexrule.
-verb-pc-realisirrealis-suffix-rule-dtr := word-or-lexrule.
-verb-pc104-rule-dtr := word-or-lexrule.
-noun-pc19-rule-dtr := word-or-lexrule.
-verb-pc-irrealis-infix-rule-dtr := word-or-lexrule.
-verb-pc103-rule-dtr := word-or-lexrule.
-verb-pc109-rule-dtr := word-or-lexrule.
 verb-pc-aspect-rule-dtr := word-or-lexrule.
+verb-pc-directional-or-verb-pc24-rule-dtr := word-or-lexrule.
+noun-pc23-rule-dtr := word-or-lexrule.
+verb-pc86-rule-dtr := word-or-lexrule.
+noun-pc19-rule-dtr := word-or-lexrule.
+verb-pc-classifiers-rule-dtr := word-or-lexrule.
+verb-pc89-rule-dtr := word-or-lexrule.
+verb-pc37-rule-dtr := word-or-lexrule.
+verb-pc103-rule-dtr := word-or-lexrule.
+noun-pc8-rule-dtr := word-or-lexrule.
+verb-pc88-rule-dtr := word-or-lexrule.
+noun-pc27-rule-dtr := word-or-lexrule.
+verb-pc2-rule-dtr := word-or-lexrule.
+verb-pc5-rule-dtr := word-or-lexrule.
+verb-pc69-rule-dtr := word-or-lexrule.
+verb-pc-realisirrealis-suffix-rule-dtr := word-or-lexrule.
+verb-pc34-rule-dtr := word-or-lexrule.
+verb-pc-25-or-verb-pc-objmarker-rule-dtr := word-or-lexrule.
+verb-pc-irrealis-infix-rule-dtr := word-or-lexrule.
+verb-pc109-rule-dtr := word-or-lexrule.
+verb-pc74-rule-dtr := word-or-lexrule.
+noun-pc6-rule-dtr := word-or-lexrule.
+noun-pc3-rule-dtr := word-or-lexrule.
+verb-pc-epv-postother-rule-dtr := word-or-lexrule.
+verb-pc-realis-suffix-subjfoc-rule-dtr := word-or-lexrule.
+noun-pc18-rule-dtr := word-or-lexrule.
+verb-pc-subjmarker-rule-dtr := word-or-lexrule.
+verb-pc31-rule-dtr := word-or-lexrule.
+noun-pc26-rule-dtr := word-or-lexrule.
+verb-pc99-rule-dtr := word-or-lexrule.
+noun-pc12-rule-dtr := word-or-lexrule.
+noun-pc5-rule-dtr := word-or-lexrule.
+verb-pc33-rule-dtr := word-or-lexrule.
+noun-pc10-rule-dtr := word-or-lexrule.
+verb-pc32-rule-dtr := word-or-lexrule.
+verb-pc104-rule-dtr := word-or-lexrule.
+verb-pc9-rule-dtr := word-or-lexrule.
+verb-pc-appl-rule-dtr := word-or-lexrule.
+verb-pc40-rule-dtr := word-or-lexrule.
 verb-pc14-rule-dtr := word-or-lexrule.
+verb-pc-clausalmods-rule-dtr := word-or-lexrule.
+verb-pc78-rule-dtr := word-or-lexrule.
 
 ;;; Lexical rule types
 
