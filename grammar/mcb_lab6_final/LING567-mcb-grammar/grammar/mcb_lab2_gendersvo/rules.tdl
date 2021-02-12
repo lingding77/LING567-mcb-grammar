@@ -1,0 +1,46 @@
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+decl-head-opt-subj := decl-head-opt-subj-phrase.
+
+basic-head-opt-comp := basic-head-opt-comp-phrase.
+
+head-comp := head-comp-phrase.
+
+subj-head := subj-head-phrase.
+
+head-spec := head-spec-phrase.
+
+bare-np := bare-np-phrase.
+
+comp-head := comp-head-phrase.
+
+vp1-top-coord := vp1-top-coord-rule.
+
+vp1-bottom-coord := vp1-bottom-coord-rule.
+
+vp2-top-coord := vp2-top-coord-rule.
+
+vp2-mid-coord := vp2-mid-coord-rule.
+
+vp2-bottom-coord := vp2-bottom-coord-rule.
+
+vp3-top-coord := vp3-top-coord-rule.
+
+vp3-mid-coord := vp3-mid-coord-rule.
+
+vp3-bottom-coord := vp3-bottom-coord-rule.
+
+np4-top-coord := np4-top-coord-rule.
+
+np4-mid-coord := np4-mid-coord-rule.
+
+np4-bottom-coord := np4-bottom-coord-rule.
+
+np5-top-coord := np5-top-coord-rule.
+
+np5-mid-coord := np5-mid-coord-rule.
+
+np5-bottom-coord := np5-bottom-coord-rule.
+
+np6-top-coord := np6-top-coord-rule.
+
+np6-bottom-coord := np6-bottom-coord-rule.
