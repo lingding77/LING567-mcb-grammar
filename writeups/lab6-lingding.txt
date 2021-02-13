@@ -1,6 +1,9 @@
-####################################################################################################
-**** CHOICES FILE ****************
-####################################################################################################
+###########################################################################################
+#LAB6 write-up
+#NAME: Ling Tu, Hanshu Ding
+#LANGUAGE: mcb
+##########################################################################################
+
 
 ##################################################
 REALIS/IRREALIS CLEANUP
@@ -142,6 +145,52 @@ In preparation for setting up clausal complements, cleaning up the verb section:
       noun37_stem2 (_be.hot_n_rel) -> verb192_stem39 (intrans)
       noun6_stem38 (_be.sticky_n_rel) -> verb192_stem40 (intrans)
 
+
+##################################################
+VERB CLEANUP
+##################################################
+
+In preparation for setting up clausal complements, cleaning up the verb section:
+
+*Note: In doing this we found several verbs that were not hooked up to any verb-pcs and now are, though it didn't seem to improve coverage much (those sentences tended to also have other weird things happening, so I suppose it's not surprising). We also found lots of transitivity mismatches.
+
+- Verb transitivity/intransitivity:
+  + Renaming trans and intrans verb classes (not sure how accurate they are and they can definitely be cleaned up, but it helps with debugging):
+      verb8_name=verb_trans
+      verb188_name=verb-intrans
+  + Recategorize several verbs from trans to intrans, including "sleep" for MMT purposes
+      verb8_stem145 "mag" (_sleep_v_rel) -> verb188_stem5
+  + Combine:
+      verb8 <- verb8, verb89, verb158, verb193, verb297
+  + Update inputs
+
+- Predicate adjectives:
+  + Rename: verb192_name=verb-be-intrans-predadj (all "be"+adj verbs)
+  + Move:
+      verb192_stem3 (_paint.with.achiote_v_rel) -> verb8_stem54
+      verb190_stem1 (_be.resistant_v_rel) -> verb192_stem6
+      verb189_stem1 (_be.yellow_v_rel) -> verb192_stem7
+      verb158_stem* misc verbs
+      verb8_stem* misc verbs
+      verb7_stem* misc verbs
+  + Update inputs:
+      verb-pc84_inputs=verb189 -> verb192
+  + Setting transitivity to intransitive (previous transitive markings seem erroneous)
+      verb192_valence=intrans
+
+- Verb/noun miscategorization:
+  + Remove erroneous verbs:
+      verb190_stem2 (poreatsiri) = sun (moving to noun section, this was parsed as a verb but not hooked into any verb-pcs)
+      verb295_stem1 (sekatsi) = yuca (already a noun)
+        + removing verb295_stem1 (sekatsi) leaves sekatsi-sano=rira (yuca-VERIF=REL) unparsable, which would be an NP
+        + removing verb-pc111 (-sano) because it is also erroneous and only works with sekatsi
+      verb296_stem1 (shigekari) = malaria (already a noun)
+  + Create new verbs from miscategorized verbs:
+      noun63_stem1 (_build.ladder_n_rel) -> verb188_stem4 (intrans)
+      noun67_stem1 (_defend_n_rel) -> verb8_stem57 (trans)
+      noun37_stem2 (_be.hot_n_rel) -> verb192_stem39 (intrans)
+      noun6_stem38 (_be.sticky_n_rel) -> verb192_stem40 (intrans)
+
 ##################################################
 CLAUSAL COMPLEMENTS (NEW PHENOMENON)
 ##################################################
@@ -197,7 +246,87 @@ A sentence that the complement clause behavior can be tested on is:
     3mS-know-realis 3mS-hear-realis=SUB
     He knows he sings
 
-< LINGDING FILL IN WITH DESCRIPTION OF PHENOM >
+
+
+##################################################
+NOUN CLEANUP + ADNOMINAL POSSESSION SET UP
+##################################################
+Background: ------------------------------
+One of the phenomena that we were working on last week was ADNOMINAL POSSESSION, it did not work at the end of last week because we did not reclassify the nouns. It turns out that we should reorganize the noun classes in order to make the possessive noun pc work. 
+
+Changes: ------------------------------
+Noun classes:
+It is hard for us to separate the nouns only by their alienability. We thus decided to separate all nouns by their natural categories. The categories are listed below:
+ -food
+ -animals
+ -plants
+ -regular nouns
+ -non-physical nouns    ----> nouns that are alienable
+ -time
+ -vessel
+
+
+ -body parts
+ -manu objects          ----> nouns that are inalienable (kin terms, body parts, etc.)
+ -femaleper
+ -maleper
+
+ -noun-per
+ -all_anim           ----> independent nouns that do not accept possession.
+ -pronoun
+ -places
+
+Our noun classes look much cleaner after the reclassification. These natural classes of the nouns can help us indicate whether these nouns are good options for the corresponding noun-pcs, not only the possessive one, but also the noun-pcs like PL(plural). 
+
+There are some other things we did to clean up the noun classes:
+ -delete no_gloss nouns:
+	matik --> verb:sing
+ -move the verby nouns to the verb class:
+	ex: be.cold, be.sticky, defend.
+ -correct the wrong pred:
+	koviti --> ‘pot’
+	shinki --> '_corn_n_rel'
+
+
+Noun-pcs:
+- Merge the noun pcs that has same function.
+	noun-pc3 + noun-pc25
+	noun-pc5 + noun-pc20
+- Comment out the noun-pcs that is supposed to be in the verb-pcs:
+	-nominalizer
+	-EPC/EPV
+	-CL(classifier)
+	-COP(copula)
+- Rename the noun pcs by their functions:
+	ex: noun-pc5 = noun-pc-poss
+	    noun-pc12 = noun-pc-PL
+- reset each noun pc's input based on their distribution that we can observe from the corpus.  
+
+Feature:
+- Fill out the adnominal possession section:
+      section=adnom-poss
+  	poss-pron1_type=affix
+  	poss-pron1_agr=non-agree
+  	poss-pron1_mod-spec=spec
+  	poss-pron2_type=affix
+  	poss-pron2_agr=non-agree
+  	poss-pron2_mod-spec=spec
+-add these two features into the corresponding possessive noun-pcs:
+	under noun-pc5(poss prefix):
+		noun-pc5_lrt1_feat1_name=poss-pron1
+      		noun-pc5_lrt1_feat1_value=plus
+      		noun-pc5_lrt1_feat1_head=itself
+	under noun-pc6 (poss suffix):
+	        noun-pc6_lrt1_feat1_name=poss-pron2
+                noun-pc6_lrt1_feat1_value=plus
+      		noun-pc6_lrt1_feat1_head=itself
+
+Results: ------------------------------
+
+After making this fix, the number of parse for the corpus testsuite went down from 54 to 39. However, this change reduce the parse of 'dogs sleep' from 120 to 24 (after adding this noun clean up to the other clean ups). 
+
+
+
 
 ####################################################################################################
 **** VPM ****************
@@ -258,9 +387,16 @@ Prior to this week, we were seeing spurious ambiguity in:
 - The "mag" verb for "sleep" was erroneously listed as transitive, which was showing optional object marking
 - The alien noun suffix being attached to "dogs", which should be non-alien (this has not been fixed yet)
 
-After updating our grammar for obligatory realis/irrealis suffix, auxiliary cleanup, verb class and pc cleanup, clausal complements, irules.tdl editing, and vpm remapping, we were able to get our parses down from ~1200 to ~120!
+After updating our grammar for obligatory realis/irrealis suffix, auxiliary cleanup, verb class and pc cleanup, noun class and pc cleanup, adnominal possession setting up, clausal complements, irules.tdl editing, and vpm remapping, we were able to get our parses down from ~1200 to 24!
 
-QUESTION: One existing remaining source of ambiguity is that there pfv and ipfv as supertype classes of a few other aspects. This means that when the specification is, say, pfv, then both pfv suffixes and suffixes for the subtypes of pfv (reg, ret, assoc-dist, assoc-dist-reg) are generated. Is there any way to avoid this, or is behavior by design?
+QUESTION: ------------------------------
+1. One existing remaining source of ambiguity is that there pfv and ipfv as supertype classes of a few other aspects. This means that when the specification is, say, pfv, then both pfv suffixes and suffixes for the subtypes of pfv (reg, ret, assoc-dist, assoc-dist-reg) are generated. Is there any way to avoid this, or is behavior by design?
 
 
 
+
+
+
+1. create new test suite inside of tsdb (full test suite)
+2. Run those test, see the result, write it up
+3. file we need to upload 
