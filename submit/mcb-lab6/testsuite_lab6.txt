@@ -1,0 +1,55 @@
+Language: Matsigenka
+Language code: mcb
+Lines: orth orth-seg gloss translat
+Author: Ling Tu, Hanshu Ding
+Date: Jan 27, 2021
+
+### FILE SYNTAX REFERENCE
+##Ex number and optional comment
+#Source: {a:page, b:page, author, elicited, attested} # elicited=native, attested=non-linguistics text
+#Vetted: {t, f, s} ## t=native, f=unvetted, s=linguistics text
+#Judgment: {g, u} ## g=grammatical, u=ungrammatical
+#Phenomena: {mmt}
+#<Example in standard orthography> (one of this and transliteration is required; including both is okay)
+#<Example in transliteration> (one of this and standard orthography is required; including both is okay)
+#<Example with morpheme boundaries noted and morpheme forms regularized>
+#<Morpheme-by-morpheme glosses>
+#<Free translation>
+
+
+##################################################
+# LAB 6 - MMT
+##################################################
+
+# Ex 1 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto imag
+osheto i-mag
+spider.monkey 3mS-sleep
+Spider monkeys sleep
+
+# Ex 2 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto iogia pitotsi
+osheto i-ogia *pito-tsi
+spider.monkey 3mS-follow canoe.ALIEN
+Spider monkeys follow canoes
+
+# Ex 3 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+noogianpi
+no-ogia=npi
+1S-follow=2O
+I follow you
+
+
+
