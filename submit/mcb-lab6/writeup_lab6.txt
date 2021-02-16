@@ -1,0 +1,415 @@
+###########################################################################################
+#LAB6 write-up
+#NAME: Ling Tu, Hanshu Ding
+#LANGUAGE: mcb
+##########################################################################################
+
+
+##################################################
+REALIS/IRREALIS CLEANUP
+##################################################
+
+Marked verb-pc-realisirrealis-suffix as obligatory:
+- realis/irrealis 
+	verb-pc3_name = verb-pc-realisirrealis-suffix
+	verb-pc3_obligatory=on
+
+##################################################
+PERFECTIVE/IMPERFECTIVE ASPECT CLEANUP
+##################################################
+
+Background: ------------------------------
+
+After some inspection of chart 6.6 in the Nanti grammar, it has become apparent that aspect is actually an obligatory position class, and the lack of a surface form (-0) actually maps to the imperfective aspect.
+
+Additionally, there is a concept of "directionality" in the aspect, which, according to the paper that our linguist sent us, "Matsigenka directionals and associated motion" (2011), is fairly well developed in mcb. The description states that while typically linguistic aspect considers what part of the event is temporally "in view" on a 1-D timeline, the directionality vector in mcb adds a second spatial dimension to create a 2-D plane, and motion trajectories are curves along the plane describing what is "in view" for the event in both time and space.
+
+According to the paper, our directionals are as follows:
+Category 1 (directional-only, must attach to aspect-only but can potentially combine with directional+aspect): 
+- ABL (-an) = ablative
+- ALL (-apa) = allative
+- DEP (-apanu) = departive
+Category 2 (directional+aspect, mutually exclusive with aspect-only): 
+- REG (-a) = regressive (perfective)
+- RET (-u-t) = returnative (perfective)
+- ASSOC.MOT:dist (-aki) = distal associated motion (perfective)
+- ASSOC.MOT:dist.reg (-aa) = distal regressive associated motion (imperfective)
+- ?? (-ana) = distal regressive (??) <- this suffix isn't in our corpus anyway, just in the resource text
+
+The behavior described in the Nanti text suggests directional-only can only precede aspect-only suffixes; however, in cross-referencing with our corpus, we have found a fairly common occurrence of ABL-REG, suggesting that Nanti and Matsigenka may behave slightly differently in this respect.
+
+Therefore, the behavior we aimed to model had directional-only suffixes (ablative, allative) as one position class, while aspect-only (perfective, imperfective) and directional+aspect (returnative, regressive, 2 distal motion translocative) suffixes formed a second position class. The former could combine with either of the latter two, while the latter two are mutually exclusive to each other.
+
+In combining these position classes, we also reclassified all suffixes matching directional+aspect as subtypes of perfective and imperfective. This allowed us to mark the "aspect" position class as obligatory, with proper combinatorial and exclusivity behavior.
+
+Changes: ------------------------------
+
+Features:
+- Added new aspect features to account for imperfective, REG, RET, ASSOC.MOT:dist, and ASSOC.MOT:dist.reg
+  aspect4_name=ipfv
+    aspect4_supertype1_name=aspect
+  aspect5_name=reg
+    aspect5_supertype1_name=pfv
+  aspect6_name=ret
+    aspect6_supertype1_name=pfv
+  aspect7_name=assoc-dist
+    aspect7_supertype1_name=pfv
+  aspect8_name=assoc-dist-reg
+    aspect8_supertype1_name=ipfv
+
+Verb-pcs:
+- Marked verb-pc-aspect as obligatory.
+	verb-pc8_name=verb-pc-aspect
+  	verb-pc8_obligatory=on
+- Created new non-inflecting lexical rule for basic imperfective.
+    verb-pc8_lrt2_name=verb-pc8_ipfv
+      verb-pc8_lrt2_feat1_name=aspect
+      verb-pc8_lrt2_feat1_value=ipfv
+      verb-pc8_lrt2_feat1_head=verb
+      verb-pc8_lrt2_lri1_inflecting=no
+- Moved all newly defined aspect features from verb-pc-dirplusaspect into verb-pc-aspect and delete the original.
+	* Note: Created two lri for RET because that one seems to always be followed by the epenthetic consonant -t. This can be replaced later with tdl editing into a single lri.
+		  verb-pc8_lrt3_lri1_inflecting=yes
+	      verb-pc8_lrt3_lri1_orth=-a
+	      verb-pc8_lrt3_lri2_inflecting=yes
+	      verb-pc8_lrt3_lri2_orth=-a-t
+- Add verb-pc-aspect (verb-pc8) to verb-pc9 input that had verb-pc-dirplusaspect (verb-pc22) previously. 
+- Remove verb-pc22 from verb-pc40, verb-pc-argnumber, verb-pc32 inputs, which were incorrect.
+- We had the suffix -av miscategorized as a directional (the gloss for TRNS looked like a translocative but was actually a transitivizer), so we moved that back to its original verb-pc: verb-pc23_lrt1 -> verb-pc24_lrt2
+
+Results: ------------------------------
+
+After making this fix, we fixed one issue that we were seeing last week with the weird rule verb-pc-aspect-or-verb-pc9-rule-dtr that was erroneously parsing the sentence:
+	i-tsiko-u-ak-i=ro
+	3mS-pull.with.hook-RET-PERF-realis=3fO
+	He pulled it down.
+Now the sentence correctly fails to parse.
+
+##################################################
+AUXILIARY CLEANUP
+##################################################
+
+Removing the following auxiliaries:
+- "matik" (sing) - this one is just a mistake, it's a verb being nominalized with a =NOMZ
+- "pirini" (sit) - this one is also a mistake, one usage is a verb being nominalized with a =NOMZ; the other usage is as a copula "cop:loc-or-remain_v_rel" that is covered by a different aux entry
+
+We're leaving the other "auxiliaries" for now. They include:
+- entries marked as "cop" for copula
+- the verbs "pi" and "pirini" that are marked "cop:loc-or-remain" for relations
+- be.able_v_rel
+- exst_v_rel
+- neg_rel (two forms for realis and irrealis? I think based on our corpus, the NEG.REAL negates an irrealis verb and the NEG.IRREAL negates a realis verb)
+
+##################################################
+VERB CLEANUP
+##################################################
+
+In preparation for setting up clausal complements, cleaning up the verb section:
+
+*Note: In doing this we found several verbs that were not hooked up to any verb-pcs and now are, though it didn't seem to improve coverage much (those sentences tended to also have other weird things happening, so I suppose it's not surprising). We also found lots of transitivity mismatches.
+
+- Verb transitivity/intransitivity:
+  + Renaming trans and intrans verb classes (not sure how accurate they are and they can definitely be cleaned up, but it helps with debugging):
+      verb8_name=verb_trans
+      verb188_name=verb-intrans
+  + Recategorize several verbs from trans to intrans, including "sleep" for MMT purposes
+      verb8_stem145 "mag" (_sleep_v_rel) -> verb188_stem5
+  + Combine:
+      verb8 <- verb8, verb89, verb158, verb193, verb297
+  + Update inputs
+
+- Predicate adjectives:
+  + Rename: verb192_name=verb-be-intrans-predadj (all "be"+adj verbs)
+  + Move:
+      verb192_stem3 (_paint.with.achiote_v_rel) -> verb8_stem54
+      verb190_stem1 (_be.resistant_v_rel) -> verb192_stem6
+      verb189_stem1 (_be.yellow_v_rel) -> verb192_stem7
+      verb158_stem* misc verbs
+      verb8_stem* misc verbs
+      verb7_stem* misc verbs
+  + Update inputs:
+      verb-pc84_inputs=verb189 -> verb192
+  + Setting transitivity to intransitive (previous transitive markings seem erroneous)
+      verb192_valence=intrans
+
+- Verb/noun miscategorization:
+  + Remove erroneous verbs:
+      verb190_stem2 (poreatsiri) = sun (moving to noun section, this was parsed as a verb but not hooked into any verb-pcs)
+      verb295_stem1 (sekatsi) = yuca (already a noun)
+        + removing verb295_stem1 (sekatsi) leaves sekatsi-sano=rira (yuca-VERIF=REL) unparsable, which would be an NP
+        + removing verb-pc111 (-sano) because it is also erroneous and only works with sekatsi
+      verb296_stem1 (shigekari) = malaria (already a noun)
+  + Create new verbs from miscategorized verbs:
+      noun63_stem1 (_build.ladder_n_rel) -> verb188_stem4 (intrans)
+      noun67_stem1 (_defend_n_rel) -> verb8_stem57 (trans)
+      noun37_stem2 (_be.hot_n_rel) -> verb192_stem39 (intrans)
+      noun6_stem38 (_be.sticky_n_rel) -> verb192_stem40 (intrans)
+
+
+##################################################
+VERB CLEANUP
+##################################################
+
+In preparation for setting up clausal complements, cleaning up the verb section:
+
+*Note: In doing this we found several verbs that were not hooked up to any verb-pcs and now are, though it didn't seem to improve coverage much (those sentences tended to also have other weird things happening, so I suppose it's not surprising). We also found lots of transitivity mismatches.
+
+- Verb transitivity/intransitivity:
+  + Renaming trans and intrans verb classes (not sure how accurate they are and they can definitely be cleaned up, but it helps with debugging):
+      verb8_name=verb_trans
+      verb188_name=verb-intrans
+  + Recategorize several verbs from trans to intrans, including "sleep" for MMT purposes
+      verb8_stem145 "mag" (_sleep_v_rel) -> verb188_stem5
+  + Combine:
+      verb8 <- verb8, verb89, verb158, verb193, verb297
+  + Update inputs
+
+- Predicate adjectives:
+  + Rename: verb192_name=verb-be-intrans-predadj (all "be"+adj verbs)
+  + Move:
+      verb192_stem3 (_paint.with.achiote_v_rel) -> verb8_stem54
+      verb190_stem1 (_be.resistant_v_rel) -> verb192_stem6
+      verb189_stem1 (_be.yellow_v_rel) -> verb192_stem7
+      verb158_stem* misc verbs
+      verb8_stem* misc verbs
+      verb7_stem* misc verbs
+  + Update inputs:
+      verb-pc84_inputs=verb189 -> verb192
+  + Setting transitivity to intransitive (previous transitive markings seem erroneous)
+      verb192_valence=intrans
+
+- Verb/noun miscategorization:
+  + Remove erroneous verbs:
+      verb190_stem2 (poreatsiri) = sun (moving to noun section, this was parsed as a verb but not hooked into any verb-pcs)
+      verb295_stem1 (sekatsi) = yuca (already a noun)
+        + removing verb295_stem1 (sekatsi) leaves sekatsi-sano=rira (yuca-VERIF=REL) unparsable, which would be an NP
+        + removing verb-pc111 (-sano) because it is also erroneous and only works with sekatsi
+      verb296_stem1 (shigekari) = malaria (already a noun)
+  + Create new verbs from miscategorized verbs:
+      noun63_stem1 (_build.ladder_n_rel) -> verb188_stem4 (intrans)
+      noun67_stem1 (_defend_n_rel) -> verb8_stem57 (trans)
+      noun37_stem2 (_be.hot_n_rel) -> verb192_stem39 (intrans)
+      noun6_stem38 (_be.sticky_n_rel) -> verb192_stem40 (intrans)
+
+##################################################
+CLAUSAL COMPLEMENTS (NEW PHENOMENON)
+##################################################
+
+Background: ------------------------------
+
+Our new phenomenon for the week is clausal complements. Per Emily's suggestion on Canvas, we focused our work this week on the two verbs "know" and "think", skipping seeming control/raising verbs (want/prepare/teach). Here is the relevant information from our original Canvas post regarding these two verbs:
+
+*****
+General properties are:
+- all complements are post-verbal, usually replacing object NPs
+- only main clause can be negated (exception: verbs that take direct speech complements)
+- require coreferential subjects in both main and complement clauses
+  + exception: verbs of communication, cognition, perception
+- * This was not in the text, but the behavior observed in the corpus seems to suggest that aspect of the main and complement clauses can take on many different combinations, including PERF-PERF, (no aspect)-PERF, (no aspect)-(no aspect), and PERF-(no aspect). However, it's possible the verbs of perception may disallow PERF-(no aspect), based on the corpus data.
+
+Verbs of perception:
+  reality status of complement clause matches main clause
+  complement clause sometimes (rarely) marked with subordinate clause clitic =ra
+- see
+- hear
+- know
+Verbs of cognition:
+- think
+
+Due to the erratic use of the =ra subordinating clause clitic, the signal that a clause is in fact a complement clause seems to rely solely its position following a complement-clause-taking verb. The main clause verb can take an object marker, which seems to agree in gender and person with the subject of the complement clause, but that object marker is also not consistently used, so we're not 100% sure about this.
+*****
+
+The current setup of the complements should allow us to other verbs like "see" and "hear to the class of verb class we've now set up for "know" and "think", which we can maybe add next week. However, the current setup also employs the subordinating clitic =ra, which may not behave correctly with complement-clause-taking verbs like "see" where it is not commonly used. Will have to do more testing on this!
+
+Changes: ------------------------------
+
+Additional morphology cleanup in the choices file:
+  + Create new verb type verb_trans_compclause (verb400):
+      verb158_stem87 "sure" (_remember-or-think_v_rel) -> verb400_stem1
+      verb8_stem26 "ogo" (_know_v_rel) -> verb400_stem2
+  + Add all verb classes as possible inputs to most verb-pcs because the way they are being included is currently fairly arbitrary according to the small corpus and not based on any actual logic. This extends beyong just the verb_trans_compclause class to all verbs for now, and it didn't seem to have any detrimental effects on the grammar.
+
+Set up in matrix:
+- Other Features > add new feature for form=subordinate
+- Clausal Complements >
+    in the same position as regular noun complements
+    this strategy is for embedding propositions
+    embedded verb set FORM=subordinate
+- Lexicon >
+    verb_trans_compclause arg structure = transitive-clausal-comps1 (nom-unspecified)
+- Morphology >
+    set feature FORM=subordinate on verb-pc-clausalmods-ra (verb-pc7_lrt3)
+    add verb400
+
+A sentence that the complement clause behavior can be tested on is:
+    i-ogo-i i-kem-i=ra
+    3mS-know-realis 3mS-hear-realis=SUB
+    He knows he sings
+
+
+
+##################################################
+NOUN CLEANUP + ADNOMINAL POSSESSION SET UP
+##################################################
+Background: ------------------------------
+One of the phenomena that we were working on last week was ADNOMINAL POSSESSION, it did not work at the end of last week because we did not reclassify the nouns. It turns out that we should reorganize the noun classes in order to make the possessive noun pc work. 
+
+Changes: ------------------------------
+Noun classes:
+It is hard for us to separate the nouns only by their alienability. We thus decided to separate all nouns by their natural categories. The categories are listed below:
+ -food
+ -animals
+ -plants
+ -regular nouns
+ -non-physical nouns    ----> nouns that are alienable
+ -time
+ -vessel
+
+
+ -body parts
+ -manu objects          ----> nouns that are inalienable (kin terms, body parts, etc.)
+ -femaleper
+ -maleper
+
+ -noun-per
+ -all_anim           ----> independent nouns that do not accept possession.
+ -pronoun
+ -places
+
+Our noun classes look much cleaner after the reclassification. These natural classes of the nouns can help us indicate whether these nouns are good options for the corresponding noun-pcs, not only the possessive one, but also the noun-pcs like PL(plural). 
+
+There are some other things we did to clean up the noun classes:
+ -delete no_gloss nouns:
+	matik --> verb:sing
+ -move the verby nouns to the verb class:
+	ex: be.cold, be.sticky, defend.
+ -correct the wrong pred:
+	koviti --> ‘pot’
+	shinki --> '_corn_n_rel'
+
+
+Noun-pcs:
+- Merge the noun pcs that has same function.
+	noun-pc3 + noun-pc25
+	noun-pc5 + noun-pc20
+- Comment out the noun-pcs that is supposed to be in the verb-pcs:
+	-nominalizer
+	-EPC/EPV
+	-CL(classifier)
+	-COP(copula)
+- Rename the noun pcs by their functions:
+	ex: noun-pc5 = noun-pc-poss
+	    noun-pc12 = noun-pc-PL
+- reset each noun pc's input based on their distribution that we can observe from the corpus.  
+
+Feature:
+- Fill out the adnominal possession section:
+      section=adnom-poss
+  	poss-pron1_type=affix
+  	poss-pron1_agr=non-agree
+  	poss-pron1_mod-spec=spec
+  	poss-pron2_type=affix
+  	poss-pron2_agr=non-agree
+  	poss-pron2_mod-spec=spec
+-add these two features into the corresponding possessive noun-pcs:
+	under noun-pc5(poss prefix):
+		noun-pc5_lrt1_feat1_name=poss-pron1
+      		noun-pc5_lrt1_feat1_value=plus
+      		noun-pc5_lrt1_feat1_head=itself
+	under noun-pc6 (poss suffix):
+	        noun-pc6_lrt1_feat1_name=poss-pron2
+                noun-pc6_lrt1_feat1_value=plus
+      		noun-pc6_lrt1_feat1_head=itself
+
+Results: ------------------------------
+
+After making this fix, the number of parse for the corpus testsuite went down from 54 to 39. However, this change reduce the parse of 'dogs sleep' from 120 to 24 (after adding this noun clean up to the other clean ups). 
+
+
+
+
+####################################################################################################
+**** VPM ****************
+####################################################################################################
+
+irules.tdl edits: ------------------------------
+
+*Note: Since we cleaned up our aspect marking behavior, we decided to uncomment a few more suffixes in our irules.tdl, namely the aspect and object markers. Therefore, the subset of irules present in our mcb_lab6_mmt grammar are:
+- possessive prefixes
+- subject markers
+- object markers
+- realis suffixes
+- aspect suffixes
+- alien marker -tsi
+
+However, for now, because we don't have differentiation between the different realis suffixes set up (regular, reflexive, passive), we're removing the additional suffixes other than -i and -e (realis and irrealis).
+
+Vpm changes: ------------------------------
+
+- remove E. and PNG. prefixes on output features
+- delete TENSE (mcb doesn't have tense)
+- change PER output to match english
+- remapped misc ASPECT values:
+    E.ASPECT : ASPECT
+      cont <> continuous
+      dur <> durative
+      pfv <> perfective
+      ipfv <> imperfective
+      reg >> perfective
+      ret >> perfective
+      assoc-dist >> perfective
+      assoc-distreg >> imperfective
+      cont << progressive
+      cont << prog
+      ipfv << [e]
+- added default MOOD realis:
+    E.MOOD : MOOD
+      irr <> irr
+      real <> real
+      real << [e]
+
+Results: ------------------------------
+
+Prior to this week, we were seeing spurious ambiguity in:
+- Adnominal possessive prefixes, which are attaching to "dogs sleep" because the features marking the poss_rel was not set up on the mcb side:
+  no- = 'my'
+  pi- = 'your'
+  i- = 'his'
+  o- = 'her'
+- Realis marking was showing as optional, which was creating both entries for with and without a marker (this was fixed marking that verb-pc class as obligatory)
+- Multiple realis suffixes not being differentiated (we have not further constrained this from our grammar, but we did comment all of the rules except the base -i realis and -e irrealis out of our irules.tdl):
+  -i      REALIS
+  -a      REALIS.REFL
+  -agani    PAS.REAL1
+  -inkani   PAS.REAL2
+- Multiple aspects were 
+- The "matik" sing_v_rel was being marked as both an auxiliary and a noun (this was fixed with our pass at auxiliary and verb cleanup)
+- The "mag" verb for "sleep" was erroneously listed as transitive, which was showing optional object marking
+- The alien noun suffix being attached to "dogs", which should be non-alien (this has not been fixed yet)
+
+After updating our grammar for obligatory realis/irrealis suffix, auxiliary cleanup, verb class and pc cleanup, noun class and pc cleanup, adnominal possession setting up, clausal complements, irules.tdl editing, and vpm remapping, we were able to get our parses down from ~1200 to 24!
+
+
+Description of grammar performance:
+
+How many items parsed?
+- original:		54
+- new:			39
+
+What is the average number of parses per parsed item?
+- original:		86.06
+- new:			53.05
+
+How many parses did the most ambiguous item receive?
+- original:		696
+- new:			696
+
+What sources of ambiguity can you identify?
+-there are several noun-pcs and verb-pcs overlapped with each other, we therefore commented out the noun-pcs that do not make sense under the noun circumstance. These comment out might cause some problem and therefore increase the ambiguity. 
+
+
+
+QUESTION: ------------------------------
+1. One existing remaining source of ambiguity is that there pfv and ipfv as supertype classes of a few other aspects. This means that when the specification is, say, pfv, then both pfv suffixes and suffixes for the subtypes of pfv (reg, ret, assoc-dist, assoc-dist-reg) are generated. Is there any way to avoid this, or is behavior by design?
+
+
