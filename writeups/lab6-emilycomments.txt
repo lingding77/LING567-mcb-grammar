@@ -1,0 +1,102 @@
+- Moved all newly defined aspect features from verb-pc-dirplusaspect into verb-pc-aspect and delete the original.
+	* Note: Created two lri for RET because that one seems to always be followed by the epenthetic consonant -t. This can be replaced later with tdl editing into a single lri.
+		  verb-pc8_lrt3_lri1_inflecting=yes
+	      verb-pc8_lrt3_lri1_orth=-a
+	      verb-pc8_lrt3_lri2_inflecting=yes
+	      verb-pc8_lrt3_lri2_orth=-a-t
+
+EMB> You can replace this:
+
+verb-pc-reg-suffix1 :=
+%suffix (* -a)
+verb-pc-reg-lex-rule.
+
+verb-pc-reg-suffix2 :=
+%suffix (* -a-t)
+verb-pc-reg-lex-rule.
+
+EMB> With this:
+
+verb-pc-reg-suffix1 :=
+%suffix (* -a) (* -a-t)
+verb-pc-reg-lex-rule.
+
+;verb-pc-reg-suffix2 :=
+;%suffix (* -a-t)
+;verb-pc-reg-lex-rule.
+
+- We had the suffix -av miscategorized as a directional (the gloss for TRNS looked like a translocative but was actually a transitivizer), so we moved that back to its original verb-pc: verb-pc23_lrt1 -> verb-pc24_lrt2
+
+EMB> A transitivizer is a valence-changing affix, meaning that there's no way the lexrule for this one is doing the right thing & it should probably just be removed. (This can be analyzed, via the valence changing lex rules library, or tdl editing, but it's low priority.)
+
+After making this fix, we fixed one issue that we were seeing last week with the weird rule verb-pc-aspect-or-verb-pc9-rule-dtr that was erroneously parsing the sentence:
+	i-tsiko-u-ak-i=ro
+	3mS-pull.with.hook-RET-PERF-realis=3fO
+	He pulled it down.
+Now the sentence correctly fails to parse.
+
+EMB> But how did you fix it?
+
+- neg_rel (two forms for realis and irrealis? I think based on our corpus, the NEG.REAL negates an irrealis verb and the NEG.IRREAL negates a realis verb)
+
+EMB> What did your initial choices file say about sentential negation in this language? If it had negative auxiliaries these wouldn't be semantically empty and thus wouldn't be causing problems.
+
+Due to the erratic use of the =ra subordinating clause clitic, the signal that a clause is in fact a complement clause seems to rely solely its position following a complement-clause-taking verb. The main clause verb can take an object marker, which seems to agree in gender and person with the subject of the complement clause, but that object marker is also not consistently used, so we're not 100% sure about this.
+
+EMB> This would be expected for object raising/control verbs, but surprising for verbs like 'think'. Are you seeing it in 'think' and 'say', or just the others?
+
+The current setup of the complements should allow us to other verbs like "see" and "hear to the class of verb class we've now set up for "know" and "think", which we can maybe add next week. However, the current setup also employs the subordinating clitic =ra, which may not behave correctly with complement-clause-taking verbs like "see" where it is not commonly used. Will have to do more testing on this!
+
+EMB> That depends, I think: "I heard them sing" could be an ordinary clausal complement construction or it could be object raising....
+
+ -body parts
+ -manu objects          ----> nouns that are inalienable (kin terms, body parts, etc.)
+ -femaleper
+ -maleper
+
+EMB> What are "femaleper" and "maleper" and why would these be inalienable.
+
+	    noun-pc12 = noun-pc-PL
+
+EMB> Are nouns without a plural marker specifically singular (like in English) or underspecified for number?
+
+EMB> No tdl for me to test for the possessives.
+
+However, for now, because we don't have differentiation between the different realis suffixes set up (regular, reflexive, passive), we're removing the additional suffixes other than -i and -e (realis and irrealis).
+
+EMB> I don't expect to get to reflexives at all this quarter; passives only if you really want to.
+
+After updating our grammar for obligatory realis/irrealis suffix, auxiliary cleanup, verb class and pc cleanup, noun class and pc cleanup, adnominal possession setting up, clausal complements, irules.tdl editing, and vpm remapping, we were able to get our parses down from ~1200 to 24!
+
+EMB> Do you mean translation outputs? (Also, nice work!)
+
+Description of grammar performance:
+
+How many items parsed?
+- original:		54
+- new:			39
+
+What is the average number of parses per parsed item?
+- original:		86.06
+- new:			53.05
+
+How many parses did the most ambiguous item receive?
+- original:		696
+- new:			696
+
+EMB> I expect to see this comparison for both the testsuite and the test corpus. Which one is this?
+
+What sources of ambiguity can you identify?
+-there are several noun-pcs and verb-pcs overlapped with each other, we therefore commented out the noun-pcs that do not make sense under the noun circumstance. These comment out might cause some problem and therefore increase the ambiguity. 
+
+EMB> I don't understand how commenting something out might increase ambiguity.
+
+1. One existing remaining source of ambiguity is that there pfv and ipfv as supertype classes of a few other aspects. This means that when the specification is, say, pfv, then both pfv suffixes and suffixes for the subtypes of pfv (reg, ret, assoc-dist, assoc-dist-reg) are generated. Is there any way to avoid this, or is behavior by design?
+
+EMB> What is the motivation for making the others subtypes of these? You can rearrange that if you like, or you can make additional subtypes like:
+
+reg-pfv := pfv.
+reg-ipfv := ipfv.
+
+... and then have the semi.vpm map external (im)perfective to reg-(i)pfv. That should keep reg, ret, etc from appearing.
+
