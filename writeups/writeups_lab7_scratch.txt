@@ -1,0 +1,107 @@
+##################################################
+ NON-VERBAL PREDICATES
+##################################################
+
+-nti	COP
+=ku		=LOC
+-ri		ADJVZR (after noun, matsigenka texts only, not in corpus)
+
+NPs: ----------------------------------------
+
+- COP ("the cat is the dog" = cat COP dog)
+
+Example sentence:
+	i=nti surari 
+	3mS= COP.eq male 
+	He is male
+
+PPs: ----------------------------------------
+
+- =LOC ("the cat is in the park" = cat COP park=LOC)
+- COP.LOC ("the cat walks where the dog is" = cat walk dog-COP.LOC)
+
++ can be both modifier and complement (see: anu = "to walk")
++ [CASE loc] is already defined on noun-pc3 (where =ku is defined)
++ copied over the locative-pp-phrase under Phrasal Types in mcb.tdl, add to rules.tdl
+
+
+Example sentence:
+	i-anu-t-ak-i inkenishi=ku
+	3mS-walk-EPC-PERF-realis forest=LOC
+	He walked in the forest
+
+APs: ----------------------------------------
+
+- deverbal adjective ("the cat is hungry" = cat be.hungry)
+- adj + noun ("hungry cat" = be.hungry-ADJZ cat)
+
+
+(Note: From Nanti grammar but not observed in our MCB text, where COP.EQ takes the same n- form as COP.LOC)
+XXX ADJZ + COP.EQ ("the cat is hungry" = be.hungry-ADJZ cat is-COP.EQ)
+
+****************************************
+
+
+QUESTIONS: ----------------------------------------
+FOR CANVAS:
+- not handling adjectives like "hungry dogs" but rather just "dogs are hungry" in this lab?
+- how many testsuite items? 30?!?!?!
+- "NPs as stand-alone predicates" - what does this mean?!?!
+- what is a "verbal projection" ("Note that this rule builds PPs that can either be the complement of a copula or function as modifiers of verbal projections.")
+- does _cop_v_rel need to _be_v_rel?
+- general advice on copulas
+
+FOR OH:
+Copulas:
+- hard to distinguish copula subject?
+	3fS-COP
+	3mS-COP.LOC <- inflected
+- COP has some affixes?
+	3mS-COP=AFFECT 
+	3fS-COP=DSC.CNGNT
+	3mS-COP=DSC.CNGNT
+	3fS-COP=EPIST.MOD
+	3fS-COP=REAS
+- do we need to handle both COP and COP.LOC?
+- are the verbs like "be.hungry" considered "copula APs"?
+PP:
++ ?? there is no rule for VP -> V + PP, which modifier rule works best? what if it can be either a mod or comp?
+
+TO DO: ----------------------------------------
+
+Copula:
+- Copula requirement of realis marking needs to be removed.
+- Change _cop_v_rel to _be_v_rel
+
+
+
+
+
+##################################################
+ POTENTIAL STARTER SENTENCES
+##################################################
+
+
+tsonpogi 	inside
+
+650 
+tera , o-nti no-kant-i , tya=ra pi-a-t-an-ak-e ? 
+nothing , 3fS-COP 1S-say-realis , how.EMBED=SUB 2S-go-EPC-ABL-PERF-irrealis ? 
+"Nothing, I just said 'Where are you going?'." 
+
+740  -> what arg1 in "which/where/who"? is 3fS-COP acting as a complementizer?
+i-o[+v]-kire-a-ig-ak-i=ri maganiro ovashi i-kemisant-asano-ig-ak-i=ri i-ni-ak-i=ra o-nti i-n-ak-i inkenishi=ku . 
+3mS-CAUS3-open.eyes-EPV-PL-PERF-realis=3mO all.ANIM so 3mS-listen-VERIF-PL-PERF-realis=3mO 3mS-speak-PERF-realis=SUB 3fS-COP 3mS-COP.LOC-PERF-realis forest=LOC . 
+He woke everyone up, and then they listened carefully to the chant, which was in the forest.{CHECK:iniakera or inakera} 
+
+
+1020 
+o-katsinka-se-t-an-ak-i=ra o-*se shitea , o-am-an-ak-i=ro o-n-ak-i=ra vatea o-sok-ak-i=ro=ra anta . 
+3fS-be.cold-CL:mass-EPC-ABL-PERF-realis=SUB 3fP-mass manioc.beer , 3fS-bring-ABL-PERF-realis=3fO 3fS-COP.LOC-PERF-realis=SUB basin 3fS-toss.out.of.vessel-PERF-realis=3fO=SUB there . 
+When the manioc mash had gotten cold, she would bring it to where a basin was, and empty it there. 
+
+
+740 
+i-o[+v]-kire-a-ig-ak-i=ri maganiro ovashi i-kemisant-asano-ig-ak-i=ri i-ni-ak-i=ra o-nti i-n-ak-i inkenishi=ku . 
+3mS-CAUS3-open.eyes-EPV-PL-PERF-realis=3mO all.ANIM so 3mS-listen-VERIF-PL-PERF-realis=3mO 3mS-speak-PERF-realis=SUB 3fS-COP 3mS-COP.LOC-PERF-realis forest=LOC . 
+He woke everyone up, and then they listened carefully to the chant, which was in the forest.{CHECK:iniakera or inakera} 
