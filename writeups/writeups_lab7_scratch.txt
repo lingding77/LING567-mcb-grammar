@@ -1,57 +1,341 @@
+LAB FRIDAY:
+- copulas <- fix the copula
+- locatives <- why parsing PPs on all nouns now
+	seems to be that it requires [CASE loc] but all NPs are underspecified and also picking up
+	how to specify? could add non-loc case and all non-loc cases are subtypes + a flag, but this seems like a lot of work
+- are we done with the stative verbs? just rename _v_ -> _a_? (optional?)
+
+
+
+
+
+
+
+
+
+TO DO:
+- why is "surari" parsing as PP? seems like LOc is optional
+- i-kant-i surari -> why is HEAD-SUBJ parsing as V instead of S?
+	V label has nonempty COMP
+	VP label has nonempty SUBJ
+	S has empty COMPS and SUBJ
+
+(OLD) Copula:
+- Copula requirement of realis marking needs to be removed.
+- Change _cop_v_rel to _be_v_rel
+
+##################################################
+ TEMP FRIDAY NOTES
+##################################################
+
+sentences:
+i-nti surari (reg cop)
+o-n-ak-i inkenishi=ku (loc cop)
+
+
+- copy emily trigger rules
+
+- Cleanup extra "n" entries (exist as verb and aux, cop as verb)
+
+n_1 := verb_trans-verb-lex &
+  [ STEM < "n" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_cop_v_rel" ].
+
+n_2 := verb_trans-verb-lex &
+  [ STEM < "n" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_exst_v_rel" ].
+
+n_4 := aux7-aux-lex &
+  [ STEM < "n" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_exst_v_rel" ].    
+
+- Fixing entries for "nti" and "n" aux copula 
+
+# (type transitive-verb-lex-super, setting pred be_v_id_rel)
+nti := transitive-verb-lex-super &
+  [ STEM < "nti" >,
+       LKEYS.KEYREL.PRED "_be_v_id_rel" ].
+
+# (type subj-raise-aux-pp-cop and removed relation)
+n_cop := subj-raise-aux-pp-cop &
+  [ STEM < "n" > ].
+
+
+- copula_verb_lex (didn't make it an aux verb, feels like it shoudln't be subj raising and also subj-raising-aux is being used by other aux verbs, who knows if they are right or not)
+
+- took out emily's subj&comps case specification on nti lexical entry bcause that is hacky, this was only serving to reduce ambiguity from locative noun-pc rule firing with no morphology ("purp" case), which we need to fix anyway
+
+- o-n-ak-i inkenishi=ku
+still has two parses, one of which is NP-B coordination (NP6-BOTTOM_COORD)
+adding [COORD -] to single arg in ARGS of locative-pp-phrase
+
+
+
+aspect is not obligatory ??? osheto i-n-i inkenishi=ku
+V going into vp has VERB-PC-ASPECT-FLAG as luk, VP output has VERB-PC-ASPECT-FLAG na-or-+??? (HEAD-COMP??)
+
+
+CORPUS PARSING HANGING ON THIS OR SENTENCE AFTERWARDS?
+(1460) `anta=ri i-a-ig-a-i=ra Marankeato=ku i-kamant-a-ig-apa-ak-i=ri Pereyra , iriro=ri te i-n-kematsa-ig-e=ri , ovashi i-pok-ak-i i-ne-ak-i=ro=ra iriro=ri .' [100000]
+
+
 ##################################################
  NON-VERBAL PREDICATES
 ##################################################
+
+#########################
+ DESCRIPTION
+#########################
+
+Non-verbal predicates in Matsigenka take on slightly different forms for the following categories:
+
+NPs: ----------------------------------------
+
+1) COP ("the cat is the dog" = cat COP dog)
+
+Example sentence:
+	i-nti surari 
+	3mS-COP male 
+	He is male
+
+PPs: ----------------------------------------
+
+2) =LOC ("the cat is in the park" = cat COP park=LOC)
+3) COP.LOC ("the cat walks where the dog is" = cat walk dog-COP.LOC)
+
++ can be both modifier and complement (note: we trying to figure out how to handle this, will ask in OH tmr)
+
+Example sentence:
+    i-anu-t-ak-i inkenishi=ku
+    3mS-walk-EPC-PERF-realis forest=LOC
+    He walked in the forest
+
+    i-anu-t-ak-i inkenishi=ku
+    3mS-walk-EPC-PERF-realis forest=LOC
+    He walked in the forest
+
+APs: ----------------------------------------
+
+4) deverbal adjective ("the cat is hungry" = cat be.hungry)
+5) adj + noun ("hungry cat" = be.hungry-ADJZ cat)
+
+- Note: There is an alternate form in the Nanti grammar that we have not observed in our text, so we're skipping it:
+     ADJZ + COP.EQ ("the cat is hungry" = be.hungry-ADJZ cat is-COP.EQ)
+
+
+----------------------------------------
+< FILL IN figure out where to put this >: 
 
 -nti	COP
 =ku		=LOC
 -ri		ADJVZR (after noun, matsigenka texts only, not in corpus)
 
+Example (6.136) of the Nanti grammar:
+    i-   nti  surari 
+    3mS- COP  male 
+    He is male
+
+Example (6.138) of the Nanti grammar:
+    tera    surari o-    n   -e
+    NEG.REL man    3nmS- COP -IRREAL.I
+    She is not male
+
+Example (6.139) of the Nanti grammar:
+    kiraha -ri   o-    n   -i      no- sapiro
+    be.red -ADJZ 3nmS- COP -REAL.I 1P- clothing
+    My article of clothing is red
+
+Example (6.140) of the Nanti grammar:
+    o-    n   -ak   -i      no- banko =ku
+    3nmS- COP -PERF -REAL.I 1S- house =LOC
+    It is in my house
+
+Example (6.162a) of the Nanti grammar:
+	tenani oni.
+	tena     -ni   o-    n   -i
+	be.heavy -ADJZ 2nmS- COP -REAL.I
+	It is heavy.
+
+Example (6.162b) of the Nanti grammar:
+	otenatake.
+	o-    tena     -ak   -i
+	3nmS- be.heavy -PERF -REAL.I
+	It is heavy.
+
+Example (6.163a) of the Nanti grammar:
+    kiraha -ri   o-    n   -i
+    be.red -ADJZ 3nmS- COP -REAL.I
+    It is red
+
+Example (6.163b) of the Nanti grammar:
+    tera     o-    n-     kiraha -e
+    NEG.REAL 3nmS- IRREAL be.red -IRREAL.I
+    It is not red
+
+Example (6.163c) of the Nanti grammar:
+    tera     kiraha -ri   o-    n   -e
+    NEG.REAL be.red -ADJZ 3nmS- COP -IRREAL.I
+    It is not red
+
+
+
+#########################
+ TDL EDITING
+#########################
+A prose description of the analysis you implemented
+The specific tdl you added/changed (paste it into the file)
+IGT I can use to test the analysis
+Any questions you have/things you want me to look into.
+
+    i-anu-t-ak-i inkenishi=ku
+    3mS-walk-EPC-PERF-realis forest=LOC
+    He walked in the forest
+
 NPs: ----------------------------------------
 
-- COP ("the cat is the dog" = cat COP dog)
+< TO FIX >
 
-Example sentence:
-	i=nti surari 
-	3mS= COP.eq male 
-	He is male
+1) mcb.tdl: create "subj-raise-aux-no-pred" for use with copular verb "nti" (be_v_rel)
+- Create type definition (based off "subj-raise-aux-with-pred").
+- Change supertype "trans-first-arg-raising-lex-item-1" to "trans-first-arg-raising-lex-item-2" for semantically empty "be".
+- Regular verbs require realis-irrealis suffix, but the copula does not. Therefore setting the flag [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG + ] on the "subj-raise-aux-no-pred" type. (Note that this is set to - on the "main-verb-lex" for regular verbs, so it does not conflict with "subj-raise-aux-no-pred", which is an "aux-verb" type.)
+
+	subj-raise-aux-no-pred := subj-raise-aux & norm-sem-lex-item & trans-first-arg-raising-lex-item-2 &
+  		[ INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG + ] ].
+
+2) mcb.tdl: fix bugs in aux-lex
+- "nti" was not accepting the subject marking input, which we were able to see in the parse chart, because auxiliaries were not hooked up to the "verb-pc-subjmarker". Therefore adding added "verb-pc-subjmarker-rule-dtr as subtype of "aux-lex".
+
+	aux-lex := verb-lex & basic-icons-lex-item & verb-pc-subjmarker-rule-dtr &
+  [ SYNSEM [ LOCAL.CAT.HEAD.AUX +,
+             L-QUE - ] ].
+
+3) lexicon.tdl: Hooking up lexical entry for "nti" to the correct supertype.
+- Moved "nti" from regular verbs to auxiliaries section (just for cleanliness).
+- Changed its supertype from "verb_trans-verb-lex" to "subj-raise-aux-no-pred".
+- Removed predicate "_be_v_rel".
+
+	TDL:
+	nti := subj-raise-aux-no-pred &
+  		[ STEM < "nti" > ].
+
+3) 
+
+
+"He is a dog"
+Head-Comp Rule = [ARG-ST <Verb, Comp of type X>]
+trans-first-arg-raising-lex-item 
+	defined originally to be for AUX-VERB + VERB-COMP
+	therefore, expecting:
+		first element of comps list =  [SPR <>
+		  								SUBJ <N/NP>]
+
+thought it shoudl be something to do with it not being a trans-raising verb ^ tried commenting out the "your specifier is my specifier" section, maybe this is not the right section? 
+trans-first-arg-raising-lex-item := non-local-none-lex-item &
+   [ ARG-ST < [ LOCAL [ CAT cat-sat,
+                        CONT.HOOK.INDEX #ind ] ],
+          [ LOCAL [ CAT cat-sat,
+                    CONT.HOOK.XARG #ind ] ] > ].
+
+- Should we split these up into different subtypes?
+                           HEAD noun ] ] > ].
+                           ; HEAD adp ] ] > ].
+                           ; HEAD verb ] ] > ].
+	+ we need noun "the cat is a dog"
+	+ don't need adj (stative verbs)
+	+ need adp "the cat is in the park"
+	+ separate verb into two p
 
 PPs: ----------------------------------------
 
-- =LOC ("the cat is in the park" = cat COP park=LOC)
-- COP.LOC ("the cat walks where the dog is" = cat walk dog-COP.LOC)
+< TO FIX> 
+
+2) =LOC ("the cat is in the park" = cat COP park=LOC)
+XX 3) COP.LOC ("the cat walks where the dog is" = cat walk dog-COP.LOC)
 
 + can be both modifier and complement (see: anu = "to walk")
 + [CASE loc] is already defined on noun-pc3 (where =ku is defined)
 + copied over the locative-pp-phrase under Phrasal Types in mcb.tdl, add to rules.tdl
 
+tenani oni.
+tena         -ni        o-        n       -i
+be.heavy -ADJZ 2nmS- COP -REAL.I
+It is heavy.
+
+otenatake.
+o-          tena   -ak       -i
+3nmS- heavy -PERF -REAL.I
+It is heavy.
 
 Example sentence:
 	i-anu-t-ak-i inkenishi=ku
 	3mS-walk-EPC-PERF-realis forest=LOC
 	He walked in the forest
 
+
 APs: ----------------------------------------
 
-- deverbal adjective ("the cat is hungry" = cat be.hungry)
-- adj + noun ("hungry cat" = be.hungry-ADJZ cat)
+Last week we grouped all of our "stative verbs" into the category "verb-intrans-be_predadj-verb-lex". Other than this, the parsing and semantics of the verbs seemed to work out of the box.
+
+Therefore, the only changes we have made are to rename the relations from "_be.myadj_v_rel" to "_be.myadj_a_rel" for clarity.
+
+IGT to test:
+	osheto i-taseg-i
+	dog 3mS-be.hungry-realis
+	The dogs are hungry
+
+##################################################
+ MMT TRANSLATIONS
+##################################################
+
+Translations: ----------------------------------------
+
+osheto i-nti matsontsori
+osheto i-taseg-i
+osheto i-n-i inkenishi=ku
+
+15) osheto i-   nti matsontsori
+	dog    3mS- COP cat
+	The dogs are the cats
+
+16)	osheto i-   taseg     -i
+	dog    3mS- be.hungry -realis
+	The dogs are hungry
+
+17)	osheto i-   n       -i      inkenishi =ku
+	dog    3mS- COP.LOC -realis park      =LOC
+	The dogs are in the park
+
+(For reference, here are the relations that we remapped in our grammar:)
+- cat -> jaguar (matsontsori)
+- dog -> spider monkey (osheto)
+- car -> canoe (*pito)
+- park -> forest (inkenishi)
+
+Analysis: ----------------------------------------
+
+Do they go through? How much ambiguity? If they don't go through, how do the MRSes differ?
+< FILL IN >
+
+##################################################
+ WH QUESTIONS
+##################################################
+
+A description of how wh questions of non-verbal predicates work in your language (if available) and what happened when you tried parsing them (after adding non-verbal predicates).
+< FILL IN >
+
+##################################################
+ GRAMMAR PERFORMANCE
+##################################################
+
+A description of the performance of your final grammar for this week on the test suite and test corpus, as compared to your starting grammar (see details above).
+< FILL IN > 
 
 
-(Note: From Nanti grammar but not observed in our MCB text, where COP.EQ takes the same n- form as COP.LOC)
-XXX ADJZ + COP.EQ ("the cat is hungry" = be.hungry-ADJZ cat is-COP.EQ)
+##################################################
+ SCRATCH
+##################################################
 
-****************************************
-
-
-QUESTIONS: ----------------------------------------
-FOR CANVAS:
-- not handling adjectives like "hungry dogs" but rather just "dogs are hungry" in this lab?
-- how many testsuite items? 30?!?!?!
-- "NPs as stand-alone predicates" - what does this mean?!?!
-- what is a "verbal projection" ("Note that this rule builds PPs that can either be the complement of a copula or function as modifiers of verbal projections.")
-- does _cop_v_rel need to _be_v_rel?
-- general advice on copulas
-
-FOR OH:
 Copulas:
 - hard to distinguish copula subject?
 	3fS-COP
@@ -62,25 +346,11 @@ Copulas:
 	3mS-COP=DSC.CNGNT
 	3fS-COP=EPIST.MOD
 	3fS-COP=REAS
-- do we need to handle both COP and COP.LOC?
-- are the verbs like "be.hungry" considered "copula APs"?
-PP:
-+ ?? there is no rule for VP -> V + PP, which modifier rule works best? what if it can be either a mod or comp?
-
-TO DO: ----------------------------------------
-
-Copula:
-- Copula requirement of realis marking needs to be removed.
-- Change _cop_v_rel to _be_v_rel
-
-
-
 
 
 ##################################################
  POTENTIAL STARTER SENTENCES
 ##################################################
-
 
 tsonpogi 	inside
 
@@ -105,3 +375,57 @@ When the manioc mash had gotten cold, she would bring it to where a basin was, a
 i-o[+v]-kire-a-ig-ak-i=ri maganiro ovashi i-kemisant-asano-ig-ak-i=ri i-ni-ak-i=ra o-nti i-n-ak-i inkenishi=ku . 
 3mS-CAUS3-open.eyes-EPV-PL-PERF-realis=3mO all.ANIM so 3mS-listen-VERIF-PL-PERF-realis=3mO 3mS-speak-PERF-realis=SUB 3fS-COP 3mS-COP.LOC-PERF-realis forest=LOC . 
 He woke everyone up, and then they listened carefully to the chant, which was in the forest.{CHECK:iniakera or inakera} 
+
+
+420 <-- is this a normal adjective?? "ugly?"
+i-nti i-vegaga=page i-saank-ak-i o-ntiri pairo i-atsipere-a-ig-i . 
+3mS-COP 3mS-ugly=PL 3mS-be.invisible-PERF-realis 3fS-COORD very.much 3mS-suffer-EPV-PL-realis . 
+Son feos, invisibles y sufridos. 
+
+
+
+Example (6.136) of the Nanti grammar:
+    i-   nti  surari 
+    3mS- COP  male 
+    He is male
+Example (6.138) of the Nanti grammar:
+    tera    surari o-    n   -e
+    NEG.REL man    3nmS- COP -IRREAL.I
+    She is not male
+Example (6.139) of the Nanti grammar:
+    kiraha -ri   o-    n   -i      no- sapiro
+    be.red -ADJZ 3nmS- COP -REAL.I 1P- clothing
+    My article of clothing is red
+Example (6.140) of the Nanti grammar:
+    o-    n   -ak   -i      no- banko =ku
+    3nmS- COP -PERF -REAL.I 1S- house =LOC
+    It is in my house
+Example (6.162a) of the Nanti grammar:
+	tenani oni.
+	tena     -ni   o-    n   -i
+	be.heavy -ADJZ 2nmS- COP -REAL.I
+	It is heavy.
+Example (6.162b) of the Nanti grammar:
+	otenatake.
+	o-    tena     -ak   -i
+	3nmS- be.heavy -PERF -REAL.I
+	It is heavy.
+Example (6.163a) of the Nanti grammar:
+    kiraha -ri   o-    n   -i
+    be.red -ADJZ 3nmS- COP -REAL.I
+    It is red
+Example (6.163b) of the Nanti grammar:
+    tera     o-    n-     kiraha -e
+    NEG.REAL 3nmS- IRREAL be.red -IRREAL.I
+    It is not red
+Example (6.163c) of the Nanti grammar:
+    tera     kiraha -ri   o-    n   -e
+    NEG.REAL be.red -ADJZ 3nmS- COP -IRREAL.I
+    It is not red
+
+
+
+
+
+
+

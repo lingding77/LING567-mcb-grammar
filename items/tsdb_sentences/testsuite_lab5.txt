@@ -38,7 +38,7 @@ Judgment: g
 Phenomena: {mmt}
 osheto iogia-i pitotsi
 osheto i-ogia-i *pito-tsi
-spider.monkey 3mS-follow-realis canoe.ALIEN
+spider.monkey 3mS-follow-realis canoe-ALIEN
 Spider monkeys follow canoes
 
 # Ex 3 Grammatical
