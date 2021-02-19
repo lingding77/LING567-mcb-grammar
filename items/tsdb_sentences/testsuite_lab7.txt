@@ -1,0 +1,378 @@
+Language: Matsigenka
+Language code: mcb
+Lines: orth orth-seg gloss translat
+Author: Ling Tu, Hanshu Ding
+Date: Feb 19, 2021
+Source a: Nanti Evidential Practice (Michael 2008)
+Source b: Matsigenka Texts Written By Matsigenka Authors" (2013, Pereira and Pereira)
+#Phenomena:
+#	{non-verbal predicates, wh-questions w/ non-verbal predicates, mmt}
+
+
+### FILE SYNTAX REFERENCE
+##Ex number and optional comment
+#Source: {a:page, b:page, author, elicited, attested} # elicited=native, attested=non-linguistics text
+#Vetted: {t, f, s} ## t=native, f=unvetted, s=linguistics text
+#Judgment: {g, u} ## g=grammatical, u=ungrammatical
+#Phenomena: {...}
+#<Example in standard orthography> (one of this and transliteration is required; including both is okay)
+#<Example in transliteration> (one of this and standard orthography is required; including both is okay)
+#<Example with morpheme boundaries noted and morpheme forms regularized>
+#<Morpheme-by-morpheme glosses>
+#<Free translation>
+
+##################################################
+# LAB 7
+##################################################
+
+##################################################
+# NP PREDICATES
+##################################################
+
+# Sentence 1 Grammatical - Example (6.136) of the Nanti grammar
+# Positive polarity NP copula
+Source: a:292
+Vetted: s
+Judgment: g
+Phenomena: {cop}
+inti surari
+i-nti surari 
+3mS-COP male 
+He is a male
+
+# Sentence 1 Grammatical - free word order
+# Positive polarity NP copula
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+surari inti
+surari i-nti-i
+male 3mS-COP-irrealis
+He is a male
+
+# Sentence 1 Grammatical - different subj and pred
+# Positive polarity NP copula
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+kamagarini inti surari
+kamagarini i-nti surari 
+demon.type 3mS-COP male 
+The demon is a male
+
+# Sentence 1 Ungrammatical? - not sure, but we've seen no evidence the COP appears by itself
+# Positive polarity NP copula
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cop}
+inti
+i-nti
+3mS-COP
+He is
+
+# Sentence 1 Ungrammatical - positive polarity COP should not inflect
+# Positive polarity NP copula
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cop}
+inti surari
+i-nti-i surari 
+3mS-COP-irrealis male 
+He is a male
+
+# Sentence 1 Ungrammatical - positive polarity COP should use uninflected nti
+# Positive polarity NP copula
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cop}
+ini surari
+i-n-i surari 
+3mS-COP.LOC-realis male 
+He is a male
+
+# Sentence 2 Grammatical - Adjusted from example (6.138) of the Nanti grammar
+# Negative polarity NP copula 
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+te surari one
+te surari o-n-e
+NEG.REAL man 3nmS-COP.LOC-irrealis
+She is not a male
+
+# Sentence 2 Ungrammatical - negative polarity COP should use inflected n
+# Negative polarity NP copula 
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cop}
+te surari onti
+te surari o-nti
+NEG.REAL man 3nmS-COP
+She is not a male
+
+# Sentence 3 Grammatical - copula clause
+# Positive polarity NP copula as a clause marker
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+i-ne-i inti surari
+i-ne-i i-nti surari 
+3mS-see-realis 3mS-COP male 
+He sees that he is male
+
+# Sentence 3 Grammatical - copula as subordinator
+# Positive polarity NP copula as a clause marker
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+i-ne-i inti oogakaro
+i-ne-i i-nti o-og-ak-a=ro
+3mS-see-realis 3fS-COP 3fS-eat-PERF-realis.refl=3fO
+He saw that she ate it
+
+##################################################
+# PP PREDICATES
+##################################################
+
+# Sentence 1 Grammatical - Adjusted from example (6.140) of the Nanti grammar and sentence 740 of corpus
+# Locative NPs as PP copula
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+onaki inkenishiku
+o-n-ak-i inkenishi=ku
+3fS-COP.LOC-PERF-realis forest=LOC
+It is in the forest
+
+# Sentence 1 Ungrammatical - should be inflected
+# Locative NPs as PP copula
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+on inkenishiku
+o-n inkenishi=ku
+3fS-COP.LOC forest=LOC
+It is in the forest
+
+# Sentence 1 Ungrammatical - should use n instead of nti
+# Locative NPs as PP copula
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+onti inkenishiku
+o-nti inkenishi=ku
+3fS-COP forest=LOC
+It is in the forest
+
+# Sentence 2 Grammatical - Adjusted from sentence 3230 of corpus
+# Locative NPs as PP modifier clause
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+ianutaki inkenishiku
+i-anu-t-ak-i inkenishi=ku
+3mS-walk-EPC-PERF-realis forest=LOC
+He walked in the forest
+
+# Sentence 3 Grammatical - Adjusted from sentence 1020 of corpus
+# Locative NPs as PP modifier clause
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cop}
+oamanakiro onakira vatea
+o-am-ak-i=ro o-n-ak-i=ra vatea
+3fS-bring-PERF-realis=3fO 3fS-COP.LOC-PERF-realis=SUB basin
+she brought it to where a basin was
+
+##################################################
+# AP PREDICATES
+##################################################
+
+# Ex 1 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {copula with AP}
+te onkatsinkate
+te o-n-katsinka-e
+NEG.REAL 3fS-irrealis-be.cold-irrealis
+It is not cold
+
+
+# Ex 2 Ungrammatical (-COP + adjective verb)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {copula with AP}
+te onntikatsinkate
+te o-n-nti-katsinka-e
+NEG.REAL 3fS-irrealis-COP-be.cold-irrealis
+It is not cold
+
+
+# Ex 3 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {copula with AP}
+otsiretaki
+o-tsire-ak-i
+3fS-be.sticky-PERF-realis
+It is sticky
+
+
+# Ex 4 Ungrammatical (adjective verb + -COP)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {copula with AP}
+otsirentiaki
+o-tsire-nti-ak-i
+3fS-be.sticky-COP-PERF-realis
+It is sticky
+
+
+# Ex 5 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {copula with AP}
+kironpi itasegaki
+kironpi i-taseg-ak-i
+fish 3mS-be.hungry-PERF-realis
+The fish is hungry
+
+
+# Ex 6 Ungrammatical (add adjectizer and make the stative verb adjective)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {copula with AP}
+kironpi itasegriaki
+kironpi i-taseg-ri-ak-i
+fish 3mS-be.hungry-ADJZ-PERF-realis
+The fish is hungry
+
+
+# Ex 7 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {copula with AP}
+kutari oni
+kuta-ri o-n-i
+be.white-ADJZ 3fS-COP-ireallis
+It is white
+
+
+# Ex 8 Ungrammatical (COP + adjective verb + adjectizer)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {copula with AP}
+kutari oni
+o-n-kuta-ri-i
+3fS-COP-be.white-ADJZ-ireallis
+It is white
+
+
+##################################################
+# WH QUESTIONS W/ PREDICATES
+##################################################
+
+
+# Ex 9 Grammatical  (who)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+Tsini katsinkaaki ?
+tsini katsinka-ak-i ?
+who.INTERR be.cold-PERF-realis ?
+Who was cold?
+
+
+
+# Ex 10 Ungrammatical  (COP + adjective verb)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+Tsini ntikatsinkaaki ?
+tsini nti-katsinka-ak-i ?
+who.INTERR COP-be.cold-PERF-realis ?
+Who was cold?
+
+
+# Ex 11 Grammatical  (who)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+Tsini ntasege
+tsini n-taseg-e
+who.INTERR irealis-be.hungry-irrealis
+Who is hungry?
+
+
+
+# Ex 12 Ungrammatical  (COP + adjective verb)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+Tsini intasege
+tsini i-n-taseg-e
+who.INTERR 3mS-irealis-be.hungry-irrealis
+Who is (she) hungry?
+
+
+
+##################################################
+# MMT
+##################################################
+
+# Sentence 15 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto inti matsontsori
+osheto i-nti matsontsori
+dog 3mS-COP cat
+The dogs are the cats
+
+# Sentence 16 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto itasegi
+osheto i-taseg-i
+dog 3mS-be.hungry-realis
+The dogs are hungry
+
+# Sentence 17 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+noogianpi
+osheto i-n-i inkenishi=ku
+dog 3mS-COP.LOC-realis park=LOC
+The dogs are in the park
+
