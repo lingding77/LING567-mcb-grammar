@@ -37,18 +37,18 @@ COG-ST : COG-ST
   * <> *
 
 
-PNG.PER : PNG.PER
-  3rd <> 3rd
-  2nd <> 2nd
-  1st <> 1st
+PNG.PER : PER
+  3rd <> third
+  2nd <> second
+  1st <> first
   * <> *
 
-PNG.NUM : PNG.NUM
+PNG.NUM : NUM
   pl <> pl
   sg <> sg
   * <> *
 
-PNG.GEND : PNG.GEND
+PNG.GEND : GEND
   fi <> fi
   fa <> fa
   ma <> ma
@@ -58,21 +58,24 @@ PNG.GEND : PNG.GEND
   anim <> anim
   * <> *
 
-E.TENSE : E.TENSE
-  * <> *
+; E.TENSE : E.TENSE
+;  * <> *
 
-E.ASPECT : E.ASPECT
-  cont <> cont
-  dur <> dur
-  reg <> reg
-  ret <> ret
-  assoc-dist <> assoc-dist
-  pfv <> pfv
-  assoc-distreg <> assoc-distreg
-  ipfv <> ipfv
-  * <> *
+E.ASPECT : ASPECT
+  cont <> continuous
+  dur <> durative
+  pfv <> perfective
+  ipfv <> imperfective
+  reg >> perfective
+  ret >> perfective
+  assoc-dist >> perfective
+  assoc-distreg >> imperfective
+  cont << progressive
+  cont << prog
+  ipfv << [e]
 
-E.MOOD : E.MOOD
+E.MOOD : MOOD
   irr <> irr
   real <> real
-  * <> *
+  real << [e]
+
