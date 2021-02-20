@@ -271,7 +271,6 @@ verb-lex := non-mod-lex-item &
              L-QUE - ],
     INFLECTED.VERB-PC-IRREALIS-INFIX-FLAG na-or-- ].
 
-;; LINGDING - moved INFLECTED.VERB-PC-REALISIRREALIS-SUFFIX-FLAG to subtypes intransitive-verb-lex and transitive-verb-lex
 main-verb-lex := verb-lex & basic-verb-lex & basic-non-wh-word-lex & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-irrealis-infix-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc-subjmarker-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ SYNSEM [ L-QUE -,
              LOCAL [ CAT [ HEAD.AUX -,
@@ -284,12 +283,10 @@ main-verb-lex := verb-lex & basic-verb-lex & basic-non-wh-word-lex & verb-pc-25-
                                        COMPS < > ] ],
                            CONT.HOOK.INDEX #xarg ] ] ].
 
-;; LINGDING - added "verb-pc-subjmarker-rule-dtr" to inherited types
 aux-lex := verb-lex & basic-icons-lex-item & verb-pc-subjmarker-rule-dtr &
   [ SYNSEM [ LOCAL.CAT.HEAD.AUX +,
              L-QUE - ] ].
 
-;; LINGDING - added INFLECTED.VERB-PC-REALISIRREALIS-SUFFIX-FLAG
 intransitive-verb-lex := main-verb-lex & intransitive-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < >,
     ARG-ST < [ LOCAL.CAT.HEAD noun &
@@ -297,7 +294,6 @@ intransitive-verb-lex := main-verb-lex & intransitive-lex-item &
     INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
                 VERB-PC-ASPECT-FLAG - ] ].
 
-;; LINGDING - created verb-lex-super and moved INFLECTED.VERB-PC-REALISIRREALIS-SUFFIX-FLAG to transitive-verb-lex
 transitive-verb-lex-super := main-verb-lex & transitive-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comps >,
     ARG-ST < [ LOCAL.CAT.HEAD noun &
@@ -369,7 +365,6 @@ verb_trans_compclause-verb-lex := clausal-nom-verb-lex & clausal-second-arg-tran
 
 ;;; Auxiliaries
 
-;; LINGDING - fix notes later
 copula-verb-lex := aux-lex & trans-first-arg-raising-lex-item-2 &
   [ SYNSEM.LOCAL [ CAT.VAL [ SUBJ < #subj >,
                              COMPS < #comps >,
@@ -1138,11 +1133,8 @@ head-subj-phrase := decl-head-subj-phrase & head-initial-head-nexus.
 
 subj-head-phrase := decl-head-subj-phrase & head-final-head-nexus.
 
-;; LINGDING - Noticed that the english grammar does not specify AUX on the head-comp-phrase and accepts [AUX +] on the copula verb. Tried removing [AUX -] from the head-comp-phrase to see if that helps parse the copula (it did not). 
 head-comp-phrase := basic-head-1st-comp-phrase & head-initial-head-nexus &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT + ].
-;  [ SYNSEM.LOCAL.CAT.HEAD.AUX -,
-;    HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT + ].
 
 comp-head-phrase := basic-head-1st-comp-phrase & head-final-head-nexus &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT - ].
@@ -1172,8 +1164,9 @@ extracted-subj-phrase := basic-extracted-subj-phrase &
 
 ;;; Wh-question-related phrasal types
 
-;; LINGDING - adding locative-pp-phrase for parsing =ku suffix
-locative-pp-phrase := unary-phrase &
+;;; Locative PP phrase for parsing =LOC suffixes
+
+locative-pp-phrase := unary-phrase & 
   [ SYNSEM [ LOCAL.CAT [ HEAD adp & [ MOD < [ LOCAL intersective-mod &
                                                     [ CAT.HEAD verb,
                                                       CONT.HOOK.INDEX #xarg ] ] > ],

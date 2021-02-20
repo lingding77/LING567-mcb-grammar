@@ -1,0 +1,480 @@
+###########################################################################################
+#LAB7 write-up
+#NAME: Ling Tu, Hanshu Ding
+#LANGUAGE: mcb
+##########################################################################################
+
+##################################################
+ NON-VERBAL PREDICATES
+##################################################
+
+#########################
+ DESCRIPTION
+#########################
+
+
+Non-verbal predicates in Matsigenka take on slightly different forms in the categories of NPs, PPs, and APs.
+
+NPs: ----------------------------------------
+- NP predicates use the copula verb "nti" in the positive polarity case (glossed as COP), which has the following properties:
+- "nti" has no inflectional or derivation morphology (and is also irregular in 1-sg, 1-pl, 2-sg), except for the subject marking prefix and potentially contrastive marking suffixes.
+- The copula can be used to create clauses such as "I saw the man who was a doctor."
+
+	Example IGT (positive polarity):
+		i-nti surari 
+		3mS-COP male 
+		He is male
+
+- *NOTE: (cross-posted from canvas)
+In MCB, the copula "nti" is positive polarity only. 
+The negative polarity uses the "n" verb, which is the same as the basic locative and attributive copular. "n" is fully inflectional.
+
+	Example IGT (negative polarity):
+		tera surari o-n-e
+		NEG.REL man 3nmS-COP-IRREAL.I
+		She is not male
+
+PPs: ----------------------------------------
+- PP predicates use the copula verb "n" that inflects as a regular verb (glossed as COP.LOC).
+- The copula's complement PP is formed from an NP via the suffix "=ku" (glossed as =LOC), which takes on [CASE loc].
+- In some cases "-mashi" or "-mashi=ku" is also used (glossed as -ABUND.LOC=LOC), but we treat them the same as "-ku" for now.
+- The same [CASE loc] PP can be used as both the complement to the copula verb "n" or as a modifier PP in sentences like "the cat walks where the dog is", but we are not currently handling the modifier case.
+
+	Example IGT:
+		o-n-i inkenishi=ku
+		3fS-COP.LOC-realis park=LOC
+		It is in the park
+
+APs: ----------------------------------------
+- AP predicates are treated as stative verbs in the predicative case ("the cat is hungry").
+- The stative verbs are adjectivized with an affix (glossed as -ADJZ) when used in the attributive case before a noun ("hungry cat"), but we are not handling this case currrently (and it is not a part of our corpus either). 
+
+	Example IGT:
+		osheto i-taseg-i
+		dog 3mS-be.hungry-realis
+		The dogs are hungry
+
+- *NOTE: A mixture of strategies are described in the Nanti grammar dealing with adjectives in both positive and negative polarity. These can use the regular stative verb, the adjectivized form, and the same morpheme "n" as the COP.LOC PP predicate (which we can call COP.ADJ or something if we really want to differentiate). We are not dealing with most of these forms, but we leave the examples from the grammar resource here for reference.
+
+	Example (6.162a) of the Nanti grammar:
+		tenani oni.
+		tena     -ni   o-    n   -i
+		be.heavy -ADJZ 2nmS- COP -REAL.I
+		It is heavy.
+
+	Example (6.162b) of the Nanti grammar:
+		otenatake.
+		o-    tena     -ak   -i
+		3nmS- be.heavy -PERF -REAL.I
+		It is heavy.
+
+	Example (6.139) of the Nanti grammar:
+	    kiraha -ri   o-    n   -i      no- sapiro
+	    be.red -ADJZ 3nmS- COP -REAL.I 1P- clothing
+	    My article of clothing is red
+
+	Example (6.163a) of the Nanti grammar:
+	    kiraha -ri   o-    n   -i
+	    be.red -ADJZ 3nmS- COP -REAL.I
+	    It is red
+
+	Example (6.163b) of the Nanti grammar:
+	    tera     o-    n-     kiraha -e
+	    NEG.REAL 3nmS- IRREAL be.red -IRREAL.I
+	    It is not red
+
+	Example (6.163c) of the Nanti grammar:
+	    tera     kiraha -ri   o-    n   -e
+	    NEG.REAL be.red -ADJZ 3nmS- COP -IRREAL.I
+	    It is not red
+
+#########################
+ TDL EDITING
+#########################
+
+* Note, in tdl snippets, all irrelevant code is denoted with "..."
+
+NPs: ----------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+IGT for testing:
+	i-nti surari 
+	3mS-COP male 
+	He is a male
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Setting up NP copula verb "nti":
+- Converted "transitive-verb-lex" into "transitive-verb-lex-super", with two subtypes "transitive-verb-lex" and "transitive-noninflecting-verb-lex". This is so that we can add flags to control behavior of the obligatory realis and aspect suffixes. All verbs previously marked "transitive-verb-lex" maintained their original behavior, while "transitive-noninflecting-verb-lex" marked realis and aspect to be already satisfied.
+- Set the "n_cop" lexical item as a subtype of "copula-pp-verb-lex".
+- Changed the prior "_cop_v_rel" relation from "nti" to "_be_v_id_rel.
+	******************************
+	main-verb-lex := ...
+	intransitive-verb-lex := main-verb-lex & intransitive-lex-item &
+	  [ ...
+	  	INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
+	                VERB-PC-ASPECT-FLAG - ] ].
+	transitive-verb-lex-super := main-verb-lex & transitive-lex-item &
+	  [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comps >,
+	    ARG-ST < [ LOCAL.CAT.HEAD noun &
+	                              [ CASE real-case ] ],
+	             #comps &
+	             [ LOCAL.CAT cat-sat &
+	                         [ VAL [ SPR < >,
+	                                 COMPS < > ],
+	                           HEAD noun &
+	                                [ CASE real-case ] ] ] > ].
+	transitive-verb-lex := transitive-verb-lex-super &
+	  [ INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
+	                VERB-PC-ASPECT-FLAG - ] ].
+	transitive-noninflecting-verb-lex := transitive-verb-lex-super &
+	  [ INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG +,
+	                VERB-PC-ASPECT-FLAG + ] ].
+	******************************
+	nti := transitive-noninflecting-verb-lex &
+	  [ STEM < "nti" >,
+	    SYNSEM.LKEYS.KEYREL.PRED "_be_v_id_rel" ].
+	******************************
+
+*QUESTION: Should we mark default behavior for realis and aspect (mood=realis, aspect=ipfv) inside the transitive-noninflecting-verb-lex class to mimic the behavior of other verbs without going through their respective irules?
+
+Constraining pc rule FLAG inputs:
+- We noticed that while our settings for VERB-PC-REALISIRREALIS-SUFFIX-FLAG and VERB-PC-ASPECT-FLAG were correctly allowing the uninflected forms of the verb "nti", it was also incorrectly allowing the inflected forms. This is because the verb-pc-lex rules that mark the flags as + on OUTPUT have no restriction on the flag values on INPUT.
+i.e. Flag values are as follows:
+	 	inflected 		= luk
+		infl-satisfied 	= na-or-+
+		normal verbs 	= -
+		nti verb 		= +
+	 	pc rule INPUT 	= <underspecified>
+	 	pc rule OUTPUT 	= +
+	 The pc rule can take either normal verbs or the nti copula as input and give a flag + output. The infl-satisfied definition cannot tell the difference, so the nti copula is allowed to go through inflection.
+To solve this issue, we constrained the inputs to the verb-pc-lex rules to be flag - only.
+*NOTE: Though it didn't apply for the "nti" copula, we employed the same behavior to the NOUN-PC-LOC-FLAG described in the locative section for consistency.
+	******************************
+	verb-pc-realisirrealis-suffix-lex-rule-super := ... &
+	  [ INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG +,
+	                VERB-PC-ASPECT-FLAG #verb-pc-aspect,
+	                VERB-PC-IRREALIS-INFIX-FLAG #verb-pc-irrealis-infix,
+	                NOUN-PC-LOC-FLAG #noun-pc-loc ],
+	    DTR verb-pc-realisirrealis-suffix-rule-dtr &
+	        [ INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
+	                      VERB-PC-ASPECT-FLAG #verb-pc-aspect,
+	                      VERB-PC-IRREALIS-INFIX-FLAG #verb-pc-irrealis-infix,
+	                      NOUN-PC-LOC-FLAG #noun-pc-loc ] ] ].
+	(same for the following other pc-lex rules:)
+	verb-pc-aspect-lex-rule-super := ...
+	verb-pc-irrealis-infix-lex-rule-super := ...
+	noun-pc-loc-lex-rule-super := ...
+	******************************
+
+PPs: ----------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+IGT for testing:
+	o-n-i inkenishi=ku
+	3fS-COP.LOC-realis park=LOC
+	It is in the park
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Setting up locative copula verb "n":
+- Created "copula-verb-lex" type for handling the locative copula that inherits from "aux-lex" and "trans-first-arg-raising-lex-item-2" (as described in the Lab 7 instructions). 
+- Set VERB-PC-ASPECT-FLAG and VERB-PC-REALISIRREALIS-SUFFIX-FLAG on "copula-verb-lex" to match behavior of "intransitive-verb-lex" and "transitive-verb-lex".
+- Created subtype "copula-pp-verb-lex" that specifies its COMPS to be of HEAD type adp with empty COMPS.
+*NOTE: We initially had the "copula-verb-lex" as "subj-raise-aux-pp-cop" (which we created during lecture), but after some thought, it felt like the "copula-pp-verb" wasn't really doing any "subject raising" and it didn't make sense to edit the contents of its parent "subj-raise-aux" to remove the "subject raising" behavior that it was named after (subj-raise-aux was also being used by some existing "auxiliaries" that, while probably not really working correct, should probably be left alone for the time being). Additionally, we split out the subtype for PPs because the copula verb "n" has a few other use cases in MCB (like potentially parsing negative polarity copula and AP complements) that we're not prepared to deal with yet.
+- Set the "n_cop" lexical item as a subtype of "copula-pp-verb-lex".
+- Removed the prior "_cop_v_rel" relation from "n_cop" in favor of a trigger rule adding a "loc_p_rel".
+- Fix aux-lex to allow for subject marking by adding "verb-pc-subjmarker-rule-dtr" to its supertypes.
+- Removed extra "n" entries for COP.LOC (exist as verb and aux, cop as verb)
+	******************************
+	copula-verb-lex := aux-lex & trans-first-arg-raising-lex-item-2 &
+	  [ SYNSEM.LOCAL [ CAT.VAL [ SUBJ < #subj >,
+	                             COMPS < #comps >,
+	                             SPR < >,
+	                             SPEC < > ],
+	                   CONT.HOOK.XARG #xarg ],
+	    ARG-ST < #subj &
+	             [ LOCAL [ CONT.HOOK.INDEX #xarg,
+	                       CAT [ VAL [ SPR < >,
+	                                   COMPS < > ],
+	                             HEAD noun ] ] ],
+	             #comps >,
+	    INFLECTED [ VERB-PC-ASPECT-FLAG -,
+	                VERB-PC-REALISIRREALIS-SUFFIX-FLAG - ] ].
+	copula-pp-verb-lex := copula-verb-lex &
+	  [ SYNSEM.LOCAL [ CAT.VAL [ SUBJ < #subj >,
+	                             COMPS < #comps > ] ],
+	    ARG-ST < #subj,
+	             #comps &
+	             [ LOCAL.CAT [ VAL [ COMPS < > ],
+	                           HEAD adp ] ] > ].
+	******************************
+	n_cop := copula-pp-verb-lex &
+	  [ STEM < "n" > ].
+	******************************
+	n_gr := arg0e_gtr &
+	  [ CONTEXT.RELS.LIST < [ PRED "_loc_p_rel" ] >,
+	    FLAGS.TRIGGER "n_cop" ].
+	******************************
+	aux-lex := ... & verb-pc-subjmarker-rule-dtr & ...
+	******************************
+	; n_1 := verb_trans-verb-lex &
+	;   [ STEM < "n" >,
+	;     SYNSEM.LKEYS.KEYREL.PRED "_cop_v_rel" ].
+	; n_2 := verb_trans-verb-lex &
+	;   [ STEM < "n" >,
+	;     SYNSEM.LKEYS.KEYREL.PRED "_exst_v_rel" ].
+	; n_4 := aux7-aux-lex &
+	;   [ STEM < "n" >,
+	;     SYNSEM.LKEYS.KEYREL.PRED "_exst_v_rel" ].
+	******************************
+
+Setting up locative PP phrase for use with "n":
+- Added "locative-pp-phrase" as a unary-phrase rule (as described in the Lab 7 instructions) that takes NP of [CASE loc] and licenses a PP to act a complement "n"
+- Added "nocoord" as a supertype of "locative-pp-phrase" to prevent coordination on the bare NP daughters (the locative suffix can only apply to one word at a time, so coordination would necessarily need to happen at the PP level).
+	******************************
+	locative-pp-phrase := unary-phrase & nocoord &
+	  [ SYNSEM [ LOCAL.CAT [ HEAD adp & [ MOD < [ LOCAL intersective-mod &
+	                                                    [ CAT.HEAD verb,
+	                                                      CONT.HOOK.INDEX #xarg ] ] > ],
+	              VAL [ COMPS < >,
+	              SUBJ < >, 
+	              SPR < > ]]],
+	    C-CONT [ HOOK [ LTOP #ltop,
+	        INDEX #index,
+	        XARG #xarg ],
+	       RELS.LIST < arg12-ev-relation &
+	       [ PRED "_loc_p_rel",
+	         LBL #ltop,
+	         ARG0 #index,
+	         ARG1 #xarg,
+	         ARG2 #dtr ] >,
+	       HCONS.LIST < >  ],
+	    ARGS < [ SYNSEM.LOCAL [ CAT [ HEAD noun & [CASE loc],
+	                                  VAL.SPR < > ],
+	                            CONT.HOOK [ INDEX #dtr ]]] > ].
+	******************************
+
+Cleaning up case-marking:
+- We noticed that our [CASE loc] NPs were correctly parsing as inputs of the locative PP phrase; however, all of our other NPs were also parsing as inputs because they were underspecified for CASE. Therefore, we cleaned up our case marking in nouns to only a top category of locative/non-locative (where non-locative is marked non-inflecting). The original nom/acc cases were changed to be subtypes of non-loc.
+*NOTE: Emily, you've asked us several times whether we actually have nom and acc case in our language. We don't really in the sense that the nouns themselves are not morphologically marked, but there is obviously a difference in the markers used for subject and object, and hence depending on the gender agreements to the existing free NPs in the sentence, case can technically be inferred sometimes (the Nanti text also does use the term "nominative-accusative alignment"). We tried testing removing nom/acc altogether to see what happened, and it resulted in some parsing issues (sorry, we didn't note them at the time), so we decided to leave them as internal infrastructure.
+- Removed all previously used case-markers that were likely inaccurate (prox, purp, all) from "all_anim-noun-lex" (all), "det4-determiner-lex" (pro), "noun-pc-nonloc-lex-rule" (replace pur with nlc)
+- Set CASE as a feature type of "noun" only (previously it was "+nd", but we don't really have case marking on the determiners anyway).
+- Added flag NOUN-PC-LOC-FLAG to nouns to force loc/nlc as obligatory for nouns.
+- Set flag as - in noun_lex and + in "noun-pc-loc-lex-rule-super".
+- Set flag as pass-through in verb_pc_* lex rules (example below).
+	******************************
+	case := *top*.
+	real-case := case.  ; intermediate case type for all real cases
+	loc := real-case.  ; loc
+	nlc := real-case.  ; non-loc
+	nom := nlc.  ; nom
+	acc := nlc.  ; acc
+	******************************
+	noun :+ [ CASE case ].
+	inflected :+ [ NOUN-PC-LOC-FLAG luk,
+				   ... ].
+	infl-satisfied :+ [ NOUN-PC-LOC-FLAG na-or-+,
+	    				... ].
+	******************************
+	noun-lex := ... &
+	  [ ...
+	    INFLECTED.NOUN-PC-LOC-FLAG -,
+	    ... ] ].
+	******************************
+	noun-pc-loc-lex-rule-super := add-only-no-ccont-rule & noun-pc-del_nomz-rule-dtr &
+	  [ INFLECTED [ NOUN-PC-LOC-FLAG +,
+	                ... ],
+	    DTR noun-pc-loc-rule-dtr &
+	        [ INFLECTED [ NOUN-PC-LOC-FLAG -,
+	                      ... ] ] ].
+	******************************
+	verb-pc-aspect-lex-rule-super := ... &
+	  [ INFLECTED [ ...
+	                NOUN-PC-LOC-FLAG #noun-pc-loc ],
+	    DTR verb-pc-aspect-rule-dtr &
+	        [ INFLECTED [ ...
+	                      NOUN-PC-LOC-FLAG #noun-pc-loc ] ] ].
+	******************************
+
+Fix pc bugs:
+- We noticed that some sentenced with the -ALIEN and -ALIEN.POSS flags were not parsing after we made =LOC mandatory, and we realized it was because some of the noun pcs that can technically combine with "noun-pc-loc" were not correctly marked. Therefore, we added "noun-pc-loc-rule-dtr" as a supertype for these.
+- While cross checking all of the pc attachments for "noun-pc-loc", we noticed "noun-pc-poss-lex-rule-super" was also taking "noun-pc-loc-rule-dtr", which felt extraneous because the former is a prefix and the latter is a suffix, so we removed the dtr as a supertype.
+	******************************
+	noun-pc-alien-poss-lex-rule-super := ... & noun-pc-loc-rule-dtr & ...
+	noun-pc-temp_succ-lex-rule-super := ... & noun-pc-loc-rule-dtr & ...
+	noun-pc-poss-lex-rule-super := ...
+	******************************
+
+Fix head-comp bugs:
+- We noticed that the HEAD-COMP rule was unable to accept [AUX +] verbs as heads because the "head-comp-phrase" rule set its daughter to be [AUX -]. Comparing with the English grammar, this felt like it should be underspecified in the rule, so we removed it.
+	******************************
+	head-comp-phrase := ... &
+	  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT + ].
+	;  [ SYNSEM.LOCAL.CAT.HEAD.AUX -,
+	;    HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT + ].
+	******************************
+
+APs: ----------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+IGT for testing:
+	osheto i-taseg-i
+	dog 3mS-be.hungry-realis
+	The dogs are hungry
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Last week we grouped all of our "stative verbs" into the category "verb-intrans-be_predadj-verb-lex". Other than this, the parsing and semantics of the verbs seemed to work out of the box.
+
+Therefore, the only changes we have made are to rename the relations from "_be.myadj_v_rel" to "_myadj_a_rel" for clarity.
+
+##################################################
+ MMT TRANSLATIONS
+##################################################
+
+Translations: ----------------------------------------
+
+(For reference, here are the relations that we remapped in our grammar:)
+- cat <- jaguar (matsontsori)
+- dog <- spider monkey (osheto)
+- car <- canoe (*pito)
+- park <- forest (inkenishi)
+
+15)	osheto i-   taseg     -i
+	dog    3mS- be.hungry -realis
+	The dogs are hungry
+
+16)	osheto i-   n       -i      inkenishi =ku
+	dog    3mS- COP.LOC -realis park      =LOC
+	The dogs are in the park
+
+17) osheto i-   nti matsontsori
+	dog    3mS- COP cat
+	The dogs are the cats
+
+(formatted here for easy copy-past to LKB)
+osheto i-taseg-i
+osheto i-n-i inkenishi=ku
+osheto i-nti matsontsori
+
+MMT grammar version: ----------------------------------------
+
+As in previous labs, we have a stripped down version of our grammar "mcb_lab7_grammar" called "mcb_lab7_mmt" for MMT purposes to help rein in our "exuberant" grammar generation. 
+
+For reference, in Lab 6 we used the following subset of irules.tdl in the mmt grammar and commented out the others:
+- possessive prefixes
+- subject markers
+- object markers
+- realis suffixes
+- aspect suffixes
+- alien marker -tsi
+We also commented out the multiple realis/irrealis suffixes (reflexive, passive) other than the basic form -i/-e.
+
+In this week's Lab 7, we have now also added the suffixes to irules.tdl for:
+- locative marker -ku
+
+semi.vpm remains the same as was used in Lab 6.
+
+Analysis: ----------------------------------------
+
+Sentences 15 and 17 are parsing correctly both mcb2mcb and eng2mcb with the following ambiguities:
+- Free word order (expected).
+- Gender ambiguity in dog/cat (we didn't specify gender yet on animals but we can fix this, as they are masculine).
+- Locative marker firing optionally on all nouns (see Question #1).
+- Object markers firing optionally on "nti" NP copula verb (see Question #2).
+
+Sentence 16 ("the dogs are in the park") is only generating mcb2mcb and failing in eng2mcb with this error:
+	`EP '"_in_p_rel"' is unknown in the semantic index`
+This is presumably because the Eng semantics is using "_in_p_rel" while the Mcb is using "_loc_p_rel", as specified in the lab code for the locative-pp-phrase. We assume that since Mcb uses LOC for many preposition types that loc is more accurate and that if we really want to map this we would write some sort of transfer rule?
+
+QUESTIONS: ----------------------------------------
+
+1) We simplified our CASE options to just loc (locative), nlc (non-locative), nom (subtype of nlc), acc (subtype of nlc), but there doesn't seem to be a way to handle case in the mrs.tdl file, so we assume that this is not something handled by semi.vpm? However, our sentences are now generating two versions for every noun, one that is nlc (no suffix) and one that is loc (suffix -ku). How should we handle this?
+
+2) Our copula verb "nti" is current listed as transitive-noninflecting-verb-lex, which upon doing the MMT we realized is not 100% accurate in both naming and behavior. Currently it has a flag to not require the realis and aspect markers which are otherwise mandatory on inflecting verbs. This correctly removes the realis and aspect marker requirements, but it does not rule out all other affixes. Therefore, we are generating sentences for "the dogs are the cats" both with and without the object marking suffix. We're not sure the best way to handle this - we thought about changing "nti" to be a non-inflecting verb, but then we realized that it does take the subject marking prefix; the other option felt like creating a flag for "all other affixes except subject" but then we weren't sure how to "satisfy" that requirement with all of the verb-pc classes between "nti" and the non-"nti" verbs.
+
+##################################################
+ WH QUESTIONS
+##################################################
+
+Description: ----------------------------------------
+
+wh question with non-verbal predicate:
+	tyani = who.interr
+	tata = what.interr
+	tyara = where.interr
+
+When it comes to the wh questions of non-verbal predicates, we think about sentences like:
+	1) What is it? (NP)
+	2) Who is hungry? (AP)
+	3) Where are you? (PP)
+
+-According to the language resource, indentity wh questions like 1) in mcb has its own interrogative indentity verb 'ita' as the predicate. This indentity verb always take the subject prefix without vowel epenthesis. Therefore, this verb always appear as 'iita' or 'oita' depending on their gender. 
+	IGT: 
+		tata o-ita ?
+		what.INTERR 3fS-IDENT ?
+		What is it?
+-The PP in mcb is a NP with the locative marker. The predicate for the sentence with locative NP is the copula 'n'. We cannot find any information about the locative interrogative verb, so we assume that copula 'n' will turn to 'ita' in this situation as well. 
+	IGT:
+		tyara o-ita ?
+		where 3nmS-IDENT ?
+		where is it?
+
+-In the declarative sentence with stative verb like 'be.cold', these verbs function as normal verbs and can be inflected with all kinds of affixes. There is no specific description for the AP interrogation, I thus assume that there is no special rule for AP interrogation. 
+    IGT:    
+        tyani n-taseg-e ?
+        who.INTERR irealis-be.hungry-irrealis ?
+        Who is hungry?
+
+Analysis: ----------------------------------------
+
+Currently wh questions are not parsing in our grammar because a) we haven't implemented the infrastructure for them, and b) the question words like "tyani" are not part of our lexicon and would have to be added.
+
+##################################################
+ GRAMMAR PERFORMANCE
+##################################################
+
+*Note: As per usual, since we have both a mcb_lab7_final and mcb_lab7_mmt, our tsdb testsuites can be found in mcb_lab7_final.
+
+Overall: Even though our stats don't look on the surface to be improving much, we actually feel like, based on our test sentences, our ambiguity has gone down, our semantics have improved, and we are parsing fewer erroneous sentences in the phenomena that we have been working on.
+
+How many items parsed?
+*NOTE: this is a weird coincidence that both corpus and testsuite have the exact same number of parses as before, because if you look carefully, they are actually different sentences!
+Corpus:
+- original:		39
+- new:			39
+Testsuite: 
+- original:		67
+- new:			67
+
+What is the average number of parses per parsed item?
+Corpus:
+- original:		53.05
+- new:			67.72
+Testsuite: (well-formed sentences)
+- original:		8.50
+- new:			4.70
+
+How many parses did the most ambiguous item receive?
+Corpus:
+- original:		696
+- new:			752
+Testsuite:
+- original:		80
+- new:			40
+
+What new sources of ambiguity can you identify?
+- To be honest, we feel like we've mostly been reducing our ambiguity, and any new sources that appeared we have tried to fix as they appeared. Only sentence 2120 of our corpus increased in ambiguity (224->432), which might have accounted for the over increase in average ambiguity, and it is an already complicated sentence (we're not sure where the increase came from and it's difficult to analyze).
+- As mentioned in the MMT section, it's *possible* there may be some ambiguity introduced by our case cleanup, but we haven't noticed any obvious changes there.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
