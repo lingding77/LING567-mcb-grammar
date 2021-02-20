@@ -1023,7 +1023,7 @@ verb-pc-irrealis-infix-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule 
                       VERB-PC-ASPECT-FLAG #verb-pc-aspect,
                       NOUN-PC-LOC-FLAG #noun-pc-loc ] ] ].
 
-verb-pc55_lrt1-lex-rule := verb-pc-irrealis-infix-lex-rule-super &
+verb-pc-irrealis-infix-lex-rule := verb-pc-irrealis-infix-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.MOOD irr ].
 
 verb-pc-subjmarker-caus-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-irrealis-infix-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc-subjmarker-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &

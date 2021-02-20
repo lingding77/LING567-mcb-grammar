@@ -1,0 +1,10 @@
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+;;; Semantically Empty Lexical Entries
+
+atsi_gr := arg0e_gtr &
+  [ CONTEXT.RELS.LIST < [ PRED "non_existing_rel" ] >,
+    FLAGS.TRIGGER "atsi" ].
+    
+n_gr := arg0e_gtr &
+  [ CONTEXT.RELS.LIST < [ PRED "_loc_p_rel" ] >,
+    FLAGS.TRIGGER "n_cop" ].
