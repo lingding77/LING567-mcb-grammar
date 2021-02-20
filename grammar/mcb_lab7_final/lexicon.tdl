@@ -1401,155 +1401,155 @@ mag := verb-intrans-verb-lex &
 
 mire := verb-intrans-be_predadj-verb-lex &
   [ STEM < "mire" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.thirsty_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "thirsty_a_rel" ].
 
 tsimenkito := verb-intrans-be_predadj-verb-lex &
   [ STEM < "tsimenkito" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.charcoal_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "charcoal_a_rel" ].
 
 taseg := verb-intrans-be_predadj-verb-lex &
   [ STEM < "taseg" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.hungry_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "hungry_a_rel" ].
 
 kuso := verb-intrans-be_predadj-verb-lex &
   [ STEM < "kuso" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.resistant_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "resistant_a_rel" ].
 
 kiteri := verb-intrans-be_predadj-verb-lex &
   [ STEM < "kiteri" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.yellow_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "yellow_a_rel" ].
 
 sanpa := verb-intrans-be_predadj-verb-lex &
   [ STEM < "sanpa" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.dry.(plant)_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "dry.(plant)_a_rel" ].
 
 shintsi := verb-intrans-be_predadj-verb-lex &
   [ STEM < "shintsi" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.insistent_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "insistent_a_rel" ].
 
 posa := verb-intrans-be_predadj-verb-lex &
   [ STEM < "posa" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.cooked_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "cooked_a_rel" ].
 
 pogere := verb-intrans-be_predadj-verb-lex &
   [ STEM < "pogere" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.exterminated_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "exterminated_a_rel" ].
 
 ogoge := verb-intrans-be_predadj-verb-lex &
   [ STEM < "ogoge" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.sexually.forward_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "sexually.forward_a_rel" ].
 
 niganki_2 := verb-intrans-be_predadj-verb-lex &
   [ STEM < "niganki" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.middle_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "middle_a_rel" ].
 
 metso := verb-intrans-be_predadj-verb-lex &
   [ STEM < "metso" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.smooth_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "smooth_a_rel" ].
 
 maani := verb-intrans-be_predadj-verb-lex &
   [ STEM < "maani" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.little_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "little_a_rel" ].
 
 katsinka := verb-intrans-be_predadj-verb-lex &
   [ STEM < "katsinka" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.cold_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "cold_a_rel" ].
 
 chapini := verb-intrans-be_predadj-verb-lex &
   [ STEM < "chapini" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.night_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "night_a_rel" ].
 
 ariomonki := verb-intrans-be_predadj-verb-lex &
   [ STEM < "ariomonki" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.pregnant_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "pregnant_a_rel" ].
 
 ama := verb-intrans-be_predadj-verb-lex &
   [ STEM < "ama" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.narrow-or-weave_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "narrow-or-weave_a_rel" ].
 
 tova := verb-intrans-be_predadj-verb-lex &
   [ STEM < "tova" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.numerous_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "numerous_a_rel" ].
 
 shigopi := verb-intrans-be_predadj-verb-lex &
   [ STEM < "shigopi" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.tired_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "tired_a_rel" ].
 
 shine := verb-intrans-be_predadj-verb-lex &
   [ STEM < "shine" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.happy-or-like_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "happy-or-like_a_rel" ].
 
 saank := verb-intrans-be_predadj-verb-lex &
   [ STEM < "saank" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.invisible_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "invisible_a_rel" ].
 
 shinki_2 := verb-intrans-be_predadj-verb-lex &
   [ STEM < "shinki" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.drunk_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "drunk_a_rel" ].
 
 ame := verb-intrans-be_predadj-verb-lex &
   [ STEM < "ame" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.accustomed_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "accustomed_a_rel" ].
 
 katinka := verb-intrans-be_predadj-verb-lex &
   [ STEM < "katinka" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.straight(.up)_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "straight(.up)_a_rel" ].
 
 kemisant := verb-intrans-be_predadj-verb-lex &
   [ STEM < "kemisant" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.silent-or-hear-or-listen_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "silent-or-hear-or-listen_a_rel" ].
 
 kenkisure := verb-intrans-be_predadj-verb-lex &
   [ STEM < "kenkisure" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.worried_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "worried_a_rel" ].
 
 inkenishi_2 := verb-intrans-be_predadj-verb-lex &
   [ STEM < "inkenishi" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.forested_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "forested_a_rel" ].
 
 kuta := verb-intrans-be_predadj-verb-lex &
   [ STEM < "kuta" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.white_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "white_a_rel" ].
 
 oegi := verb-intrans-be_predadj-verb-lex &
   [ STEM < "oegi" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.round.tuber_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "round.tuber_a_rel" ].
 
 tsova := verb-intrans-be_predadj-verb-lex &
   [ STEM < "tsova" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.prow.of.boat_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "prow.of.boat_a_rel" ].
 
 shavini := verb-intrans-be_predadj-verb-lex &
   [ STEM < "shavini" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.afternoon_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "afternoon_a_rel" ].
 
 antari := verb-intrans-be_predadj-verb-lex &
   [ STEM < "antari" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.adult.male_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "adult.male_a_rel" ].
 
 tinkami := verb-intrans-be_predadj-verb-lex &
   [ STEM < "tinkami" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.leader.of_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "leader.of_a_rel" ].
 
 surari_2 := verb-intrans-be_predadj-verb-lex &
   [ STEM < "surari" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.male_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "male_a_rel" ].
 
 antaro := verb-intrans-be_predadj-verb-lex &
   [ STEM < "antaro" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.adult.female_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "adult.female_a_rel" ].
 
 anta := verb-intrans-be_predadj-verb-lex &
   [ STEM < "anta" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.adult_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "adult_a_rel" ].
 
 katsirinka := verb-intrans-be_predadj-verb-lex &
   [ STEM < "katsirinka" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.hot_n_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "hot_a_rel" ].
 
 tsire := verb-intrans-be_predadj-verb-lex &
   [ STEM < "tsire" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be.sticky_n_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "sticky_a_rel" ].
 
 amu := verb194-verb-lex &
   [ STEM < "amu" >,
@@ -1605,13 +1605,11 @@ ogo := verb_trans_compclause-verb-lex &
 
 ;;; Auxiliaries
 
-;; LINGDING - recategorizing nti
 nti := transitive-noninflecting-verb-lex &
   [ STEM < "nti" >,
     SYNSEM.LKEYS.KEYREL.PRED "_be_v_id_rel" ].
 
-;; LINGDING - recategorizing n
-n_3 := copula-verb-lex &
+n_cop := copula-pp-verb-lex &
   [ STEM < "n" > ].
 
 agave_2 := aux2-aux-lex &

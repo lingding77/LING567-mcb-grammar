@@ -381,13 +381,17 @@ copula-verb-lex := aux-lex & trans-first-arg-raising-lex-item-2 &
                        CAT [ VAL [ SPR < >,
                                    COMPS < > ],
                              HEAD noun ] ] ],
+             #comps >,
+    INFLECTED [ VERB-PC-ASPECT-FLAG -,
+                VERB-PC-REALISIRREALIS-SUFFIX-FLAG - ] ].
+
+copula-pp-verb-lex := copula-verb-lex &
+  [ SYNSEM.LOCAL [ CAT.VAL [ SUBJ < #subj >,
+                             COMPS < #comps > ] ],
+    ARG-ST < #subj,
              #comps &
              [ LOCAL.CAT [ VAL [ COMPS < > ],
-                           HEAD +jp ] ] > ].
-
-;  &
-;  [ INFLECTED [ VERB-PC-ASPECT-FLAG -
-;                VERB-PC-REALISIRREALIS-SUFFIX-FLAG - ] ].
+                           HEAD adp ] ] > ].
 
 subj-raise-aux := aux-lex & trans-first-arg-raising-lex-item &
   [ SYNSEM.LOCAL [ CAT.VAL [ SPEC < >,
@@ -1167,14 +1171,6 @@ extracted-subj-phrase := basic-extracted-subj-phrase &
   [ SYNSEM.LOCAL.CAT.HEAD verb ].
 
 ;;; Wh-question-related phrasal types
-
-;; LINGDING - just copied from elsewhere for reference in locative-pp-phrase
-; noun-pc-loc-lex-rule-super := add-only-no-ccont-rule & noun-pc-del_nomz-rule-dtr &
-;   [ INFLECTED #infl,
-;     DTR noun-pc-loc-rule-dtr &
-;         [ INFLECTED #infl ] ].; 
-; noun-pc-loc-lex-rule := infl-lex-rule & noun-pc-loc-lex-rule-super &
-;   [ SYNSEM.LOCAL.CAT.HEAD.CASE loc ].
 
 ;; LINGDING - adding locative-pp-phrase for parsing =ku suffix
 locative-pp-phrase := unary-phrase &
