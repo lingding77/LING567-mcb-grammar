@@ -149,16 +149,16 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {cop}
-onaki inkenishiku
-o-n-ak-i inkenishi=ku
-3fS-COP.LOC-PERF-realis forest=LOC
+oni inkenishiku
+o-n-i inkenishi=ku
+3fS-COP.LOC-realis forest=LOC
 It is in the forest
 
 # Sentence 1 Ungrammatical - should be inflected
 # Locative NPs as PP copula
 Source: author
 Vetted: f
-Judgment: g
+Judgment: u
 Phenomena: {cop}
 on inkenishiku
 o-n inkenishi=ku
@@ -169,7 +169,7 @@ It is in the forest
 # Locative NPs as PP copula
 Source: author
 Vetted: f
-Judgment: g
+Judgment: u
 Phenomena: {cop}
 onti inkenishiku
 o-nti inkenishi=ku
@@ -290,54 +290,89 @@ o-n-kuta-ri-i
 It is white
 
 
+
 ##################################################
 # WH QUESTIONS W/ PREDICATES
 ##################################################
 
-
-# Ex 9 Grammatical  (who)
+# Ex 9 Grammatical  (what)
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {wh question}
-Tsini katsinkaaki ?
-tsini katsinka-ak-i ?
+tata oita ?
+tata o-ita ?
+what.INTERR 3fS-IDENT ?
+What is it?
+
+# Ex 10 Ungrammatical  (use COP rather than IDENT in indentity interrogation)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+tata onti ?
+tata o-nti ?
+what.INTERR 3fS-COP ?
+What is it?
+
+# Ex 11 Grammatical  (where)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+tyara oita ?
+tyara o-ita ?
+where 3nmS-IDENT ?
+where is it?
+
+# Ex 12 Ungrammatical  (inflected IDENT)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {wh question}
+tyara oitaaki ?
+tyara o-ita-ak-i ?
+where 3nmS-IDENT-ak-i ?
+where was it
+
+# Ex 13 Grammatical  (who)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {wh question}
+tyani katsinkaaki ?
+tyani katsinka-ak-i ?
 who.INTERR be.cold-PERF-realis ?
 Who was cold?
 
-
-
-# Ex 10 Ungrammatical  (COP + adjective verb)
+# Ex 14 Ungrammatical  (COP + adjective verb)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
-Tsini ntikatsinkaaki ?
-tsini nti-katsinka-ak-i ?
+tyani ntikatsinkaaki ?
+tyani nti-katsinka-ak-i ?
 who.INTERR COP-be.cold-PERF-realis ?
 Who was cold?
 
-
-# Ex 11 Grammatical  (who)
+# Ex 15 Grammatical  (who)
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {wh question}
-Tsini ntasege
-tsini n-taseg-e
-who.INTERR irealis-be.hungry-irrealis
+tyani ntasege ?
+tyani n-taseg-e ?
+who.INTERR irealis-be.hungry-irrealis ?
 Who is hungry?
 
-
-
-# Ex 12 Ungrammatical  (COP + adjective verb)
+# Ex 16 Ungrammatical  (COP + adjective verb)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
-Tsini intasege
-tsini i-n-taseg-e
-who.INTERR 3mS-irealis-be.hungry-irrealis
+tyani intasege ?
+tyani i-n-taseg-e ?
+who.INTERR 3mS-irealis-be.hungry-irrealis ?
 Who is (she) hungry?
 
 
