@@ -1,0 +1,67 @@
+- The copula can be used to create clauses such as "I saw the man who was a doctor."
+
+EMB> I'm not sure what this means ... do you mean that there are relative clauses in the language and the copula can be used as the head verb of a relative clause?
+
+- The same [CASE loc] PP can be used as both the complement to the copula verb "n" or as a modifier PP in sentences like "the cat walks where the dog is", but we are not currently handling the modifier case.
+
+EMB> "Where the dog is" is more complicated than just a modifier PP in English. Are you really seeing examples like "cat walk dog-loc" that mean this? (In that case, maybe a better translation would be "the cat walks near the dog".)
+
+*QUESTION: Should we mark default behavior for realis and aspect (mood=realis, aspect=ipfv) inside the transitive-noninflecting-verb-lex class to mimic the behavior of other verbs without going through their respective irules?
+
+EMB> If nti has these values inherently, then yes, that would be a good place to put the info, unless there are contrasting forms that have different values. At that point, you'd push it down to the lex entries (or subtypes of transitive-noninflecting-verb-lex).
+
+- Created subtype "copula-pp-verb-lex" that specifies its COMPS to be of HEAD type adp with empty COMPS.
+*NOTE: We initially had the "copula-verb-lex" as "subj-raise-aux-pp-cop" (which we created during lecture), but after some thought, it felt like the "copula-pp-verb" wasn't really doing any "subject raising" and it didn't make sense to edit the contents of its parent "subj-raise-aux" to remove the "subject raising" behavior that it was named after (subj-raise-aux was also being used by some existing "auxiliaries" that, while probably not really working correct, should probably be left alone for the time being). Additionally, we split out the subtype for PPs because the copula verb "n" has a few other use cases in MCB (like potentially parsing negative polarity copula and AP complements) that we're not prepared to deal with yet.
+
+EMB> It *is* doing subject raising though in that it identifies the INDEX of its SUBJ with the XARG/SUBJ's INDEX of the PP complement! I can't test that with this IGT:
+
+	o-n-i inkenishi=ku
+	3fS-COP.LOC-realis park=LOC
+	It is in the park
+
+EMB> Because the subject is not overt. If you do something like "the dog is in the park", and the copula isn't doing the subject raising thing, the index of the dog won't be linked in in the right way.
+
+- Removed the prior "_cop_v_rel" relation from "n_cop" in favor of a trigger rule adding a "loc_p_rel".
+
+EMB> Trigger rules do *not* add relations. They add lexical entries to the generator chart if a relation is in the input semantics. _loc_p_rel comes from your PP over NP rule.
+
+*NOTE: Emily, you've asked us several times whether we actually have nom and acc case in our language. We don't really in the sense that the nouns themselves are not morphologically marked, but there is obviously a difference in the markers used for subject and object, and hence depending on the gender agreements to the existing free NPs in the sentence, case can technically be inferred sometimes (the Nanti text also does use the term "nominative-accusative alignment"). We tried testing removing nom/acc altogether to see what happened, and it resulted in some parsing issues (sorry, we didn't note them at the time), so we decided to leave them as internal infrastructure.
+
+EMB> Thanks for answering this. What do mean by "markers used for subject and object" though? Are these separate words? Verbal affixes? (Things attaching to a verb are NEVER case, despite linguists sometimes using case terminology to refer to them.)
+
+- While cross checking all of the pc attachments for "noun-pc-loc", we noticed "noun-pc-poss-lex-rule-super" was also taking "noun-pc-loc-rule-dtr", which felt extraneous because the former is a prefix and the latter is a suffix, so we removed the dtr as a supertype.
+
+EMB> But the affixes attach one at a time, so your morphology has to be set up so that the prefixes attach after the suffixes (and some prefix PC takes a suffix PC as its daughter) or vice versa. If they both attach to the root, you never get both in the same word.
+
+- We noticed that the HEAD-COMP rule was unable to accept [AUX +] verbs as heads because the "head-comp-phrase" rule set its daughter to be [AUX -]. Comparing with the English grammar, this felt like it should be underspecified in the rule, so we removed it.
+
+EMB> This is probably a holdover from the analysis of the inferred auxiliaries.
+
+This is presumably because the Eng semantics is using "_in_p_rel" while the Mcb is using "_loc_p_rel", as specified in the lab code for the locative-pp-phrase. We assume that since Mcb uses LOC for many preposition types that loc is more accurate and that if we really want to map this we would write some sort of transfer rule?
+
+EMB> Yep, this is transfer rule territory! Week 9.
+
+1) We simplified our CASE options to just loc (locative), nlc (non-locative), nom (subtype of nlc), acc (subtype of nlc), but there doesn't seem to be a way to handle case in the mrs.tdl file, so we assume that this is not something handled by semi.vpm? However, our sentences are now generating two versions for every noun, one that is nlc (no suffix) and one that is loc (suffix -ku). How should we handle this?
+
+EMB> That's because CASE isn't a semantic feature! If you have loc nouns showing up where nlc nouns are expected, then you need to constrain the arguments of the verbs to be [ CASE nlc ].
+
+2) Our copula verb "nti" is current listed as transitive-noninflecting-verb-lex, which upon doing the MMT we realized is not 100% accurate in both naming and behavior. Currently it has a flag to not require the realis and aspect markers which are otherwise mandatory on inflecting verbs. This correctly removes the realis and aspect marker requirements, but it does not rule out all other affixes. Therefore, we are generating sentences for "the dogs are the cats" both with and without the object marking suffix. We're not sure the best way to handle this - we thought about changing "nti" to be a non-inflecting verb, but then we realized that it does take the subject marking prefix; the other option felt like creating a flag for "all other affixes except subject" but then we weren't sure how to "satisfy" that requirement with all of the verb-pc classes between "nti" and the non-"nti" verbs.
+
+EMB> First, are you sure that nti doesn't appear with the object markers? (I wouldn't be surprised either way.) If it doesn't, then a flag to keep it out of that position class also makes sense.
+
+-The PP in mcb is a NP with the locative marker. The predicate for the sentence with locative NP is the copula 'n'. We cannot find any information about the locative interrogative verb, so we assume that copula 'n' will turn to 'ita' in this situation as well. 
+	IGT:
+		tyara o-ita ?
+		where 3nmS-IDENT ?
+		where is it?
+
+EMB> I would have guessed that you get n, not ita. It's not about identity here.
+
+Overall: Even though our stats don't look on the surface to be improving much, we actually feel like, based on our test sentences, our ambiguity has gone down, our semantics have improved, and we are parsing fewer erroneous sentences in the phenomena that we have been working on.
+
+EMB> Sounds like progress :)
+
+
+
+
+
