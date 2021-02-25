@@ -242,7 +242,7 @@ Vetted: f
 Judgment: g
 Phenomena: {mmt}
 tata pinetiri itogoti osheto ?
-tata pi-ne-i=ri i-ogo-i osheto ?
+tata pi-ne-i=ri i-ogia-i osheto ?
 what you-think.that-realis=3mO 3mS-chase-realis dogs ?
 what do you think the dogs chase
 
