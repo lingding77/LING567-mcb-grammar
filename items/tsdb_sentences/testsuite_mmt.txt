@@ -251,8 +251,8 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {mmt}
-tyani kamantaki tata itogiati osheto ?
-tya-ni kamant-ak-i tata i-ogia-i osheto ?
+tyani kogakoaki tata itogiati osheto ?
+tya-ni kogako-ak-i tata i-ogia-i osheto ?
 who.INTERR-ANIM ask-PERF-realis what.EMBED 3mS-chase-realis dogs ?
 Who asked what the dogs chase
 
