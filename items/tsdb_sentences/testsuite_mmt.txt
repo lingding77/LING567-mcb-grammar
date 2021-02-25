@@ -43,7 +43,7 @@ Judgment: g
 Phenomena: {mmt}
 iogia-i osheto pitotsi
 i-ogia-i osheto *pito-tsi
-3mS-follow-realis dog car-ALIEN 
+3mS-chase-realis dog car-ALIEN 
 Dogs chase cars
 
 # Sentence 3 Grammatical
@@ -53,7 +53,7 @@ Judgment: g
 Phenomena: {mmt}
 noogianpi
 no-ogia-i=npi
-1S-follow-realis=2O
+1S-chase-realis=2O
 I chase you
 
 # Sentence 4 Grammatical
@@ -83,7 +83,7 @@ Judgment: g
 Phenomena: {mmt}
 noneiri piogoi=a iogiaira osheto *pitotsi
 no-ne-i=ri pi-ogo-i=ra i-ogia-i=ra osheto *pito-tsi
-1S-think.that-realis=3mO you-know-realis=SUB 3mS-follow-realis=SUB dog car-ALIEN 
+1S-think.that-realis=3mO you-know-realis=SUB 3mS-chase-realis=SUB dog car-ALIEN 
 I think that you know that dogs chase cars
 
 # Sentence 7 Grammatical
@@ -93,7 +93,7 @@ Judgment: g
 Phenomena: {mmt}
 nokogakoi piogoirika iogiaira osheto *pitotsi
 no-kogako-i pi-ogo-i=rika i-ogia-i=ra osheto *pito-tsi
-1S-ask-realis you-know-realis=INDEF 3mS-follow-realis=SUB dog car-ALIEN 
+1S-ask-realis you-know-realis=INDEF 3mS-chase-realis=SUB dog car-ALIEN 
 I ask whether you know that dogs chase cars
 
 # Sentence 8 
@@ -103,7 +103,7 @@ Judgment: g
 Phenomena: {mmt}
 iogiai matsontsori intiri osheto *pitotsi
 i-ogia-i matsontsori i-ntiri osheto *pito-tsi
-3mS-follow-realis cat 3mS-COORD dog car-ALIEN 
+3mS-chase-realis cat 3mS-COORD dog car-ALIEN 
 Cats and dogs chase cars
 
 # Sentence 9
@@ -113,7 +113,7 @@ Judgment: g
 Phenomena: {mmt}
 iogiai osheto *pitotsi , iogiai matsontsori osheto
 i-ogia-i osheto *pito-tsi , i-ogia-i matsontsori osheto
-3mS-follow-realis dog car-ALIEN , 3mS-follow-realis cat dog
+3mS-chase-realis dog car-ALIEN , 3mS-chase-realis cat dog
 Dogs chase cars and cats chase dogs
 
 # Sentence 10
@@ -123,7 +123,7 @@ Judgment: g
 Phenomena: {mmt}
 iogiai matsontsori osheto imagi
 i-ogia-i matsontsori osheto i-mag-i
-3mS-follow-realis cat dog 3mS-sleep-realis
+3mS-chase-realis cat dog 3mS-sleep-realis
 Cats chase dogs and sleep
 
 # Sentence 11 Grammatical <FIXXXX
@@ -233,7 +233,7 @@ Judgment: g
 Phenomena: {mmt}
 tata itogiati osheto ?
 tata i-ogia-i osheto ?
-what.INTERR 3mS-follow-realis dogs ?
+what.INTERR 3mS-chase-realis dogs ?
 What do the dogs chase ?
 
 # Ex 22 Grammatical
@@ -253,7 +253,7 @@ Judgment: g
 Phenomena: {mmt}
 tyani kamantaki tata itogiati osheto ?
 tya-ni kamant-ak-i tata i-ogia-i osheto ?
-who.INTERR-ANIM ask-PERF-realis what.EMBED 3mS-follow-realis dogs ?
+who.INTERR-ANIM ask-PERF-realis what.EMBED 3mS-chase-realis dogs ?
 Who asked what the dogs chase
 
 # Sentence 24 Grammatical
@@ -263,7 +263,7 @@ Judgment: g
 Phenomena: {mmt}
 nokogakoi tata iogiai osheto
 no-kogako-i tata i-ogia-i osheto
-1S-ask-realis what 3mS-follow-realis dog
+1S-ask-realis what 3mS-chase-realis dog
 I asked what the dogs chased
 
 # Sentence 25 Grammatical
