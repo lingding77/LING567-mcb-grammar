@@ -121,6 +121,10 @@ section=coordination
 section=matrix-yes-no
 
 section=wh-q
+front-matrix=single
+matrix-front-opt=single-oblig
+pied-pip=on
+oblig-pied-pip-noun=on
 
 section=info-str
 
@@ -499,6 +503,13 @@ section=lexicon
   noun75_det=opt
     noun75_stem1_orth=*pito
     noun75_stem1_pred=_car_n_rel
+  noun76_name=wh
+  noun76_inter=on
+  noun76_det=imp
+    noun76_stem1_orth=tata
+    noun76_stem1_pred=_thing_n_rel
+    noun76_stem2_orth=tya-ni
+    noun76_stem2_pred=_person_n_rel
   verb3_name=verb3
   verb3_valence=trans
     verb3_stem1_orth=ag
@@ -1193,6 +1204,11 @@ section=lexicon
     det9_feat1_value=3rd
     det9_feat2_name=gender
     det9_feat2_value=m
+  adv1_name=wh-adv
+    adv1_stem1_orth=tya=ra
+    adv1_stem1_pred=_place_a_rel
+  adv1_inter=on
+  adv1_type=loc
 
 section=morphology
   noun-pc3_name=noun-pc-loc
@@ -1269,7 +1285,7 @@ section=morphology
   noun-pc23_inputs=noun10
     noun-pc23_lrt1_name=noun-pc23_lrt1
       noun-pc23_lrt1_lri1_inflecting=yes
-      noun-pc23_lrt1_lri1_orth=-tsi  
+      noun-pc23_lrt1_lri1_orth=-tsi
   verb-pc1_name=verb-pc-argnumber
   verb-pc1_order=suffix
   verb-pc1_inputs=verb3, verb8, verb187, verb188, verb192, verb194, verb252, verb285, verb294, verb301, verb400, verb-pc11, verb-pc12, verb-pc14, verb-pc16, verb-pc26, verb-pc31, verb-pc33, verb-pc34, verb-pc37, verb-pc40, verb-pc109

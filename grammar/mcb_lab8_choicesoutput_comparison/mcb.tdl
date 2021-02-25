@@ -2,7 +2,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Grammar of mcb
 ;;; created at:
-;;;     Fri Feb 12 17:22:32 UTC 2021
+;;;     Thu Feb 25 03:41:03 UTC 2021
 ;;; based on Matrix customization system version of:
 ;;;     Fri Feb  5 21:00:23 UTC 2021
 ;;;
@@ -31,12 +31,12 @@ head :+ [ PRON bool,
 +nd :+ [ CASE case ].
 
 inflected :+ [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG luk,
-    VERB-PC-IRREALIS-INFIX-FLAG luk,
-    VERB-PC-ASPECT-FLAG luk ].
+    VERB-PC-ASPECT-FLAG luk,
+    VERB-PC-IRREALIS-INFIX-FLAG luk ].
 
 infl-satisfied :+ [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG na-or-+,
-    VERB-PC-IRREALIS-INFIX-FLAG na-or-+,
-    VERB-PC-ASPECT-FLAG na-or-+ ].
+    VERB-PC-ASPECT-FLAG na-or-+,
+    VERB-PC-IRREALIS-INFIX-FLAG na-or-+ ].
 
 png :+ [ PER person,
     NUM number,
@@ -108,6 +108,8 @@ mid-coord-rule :+ [ SYNSEM.LOCAL.CAT [ HEAD.POSSESSOR #possessor,
 
 basic-head-mod-phrase-simple :+ [ SYNSEM.LOCAL.CAT.MC #mc,
     HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
+
+adj-head-int-phrase :+ [ HEAD-DTR.SYNSEM.NON-LOCAL.SLASH.LIST < > ].
 
 ;;;;;;;;;;;;;;
 ;;; Features
@@ -194,6 +196,22 @@ real := mood.
 
 ;;; Nouns
 
+wh-pronoun-noun-lex := basic-wh-word-lex & norm-hook-lex-item & basic-icons-lex-item & non-mod-lex-item & zero-arg-que &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD noun,
+                           VAL [ SPR < >,
+                                 SUBJ < >,
+                                 COMPS < >,
+                                 SPEC < > ] ],
+                     CONT [ RELS.LIST < [ LBL #larg,
+                                          ARG0 ref-ind & #arg0 ],
+                                        quant-relation &
+                                        [ PRED "which_q_rel",
+                                          ARG0 #arg0,
+                                          RSTR #harg ] >,
+                            HCONS.LIST < [ HARG #harg,
+                                           LARG #larg ] > ] ],
+             NON-LOCAL.QUE.LIST < #arg0 > ] ].
+
 noun-lex := basic-noun-lex & basic-non-wh-word-lex & non-local-none-lex-item & no-hcons-lex-item & non-mod-lex-item & noun-pc-del_nomz-rule-dtr & noun-pc-loc-rule-dtr &
   [ ARG-ST < #spr >,
     SYNSEM.LOCAL.CAT [ VAL [ SPR < #spr &
@@ -203,6 +221,19 @@ noun-lex := basic-noun-lex & basic-non-wh-word-lex & non-local-none-lex-item & n
                              SPEC < > ],
                        HEAD.POSSESSOR nonpossessive,
                        POSSESSUM nonpossessive ] ].
+
+no-spr-noun-lex := noun-lex &
+  [ SYNSEM.LOCAL.CAT.VAL.SPR < [ OPT + ] > ].
+
+; Nouns which cannot take specifiers mark their SPR requirement
+; as OPT +.  Making the non-head daughter OPT - in this rule
+; keeps such nouns out.
+; 
+; Rules for building NPs.  Note that the Matrix uses SPR for
+; the specifier of nouns and SUBJ for the subject (specifier) of verbs.
+
+head-spec-phrase := basic-head-spec-phrase & head-final &
+  [ NON-HEAD-DTR.SYNSEM.OPT - ].
 
 food-noun-lex := noun-lex & noun-pc-alien-poss-rule-dtr &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.PER 3rd ].
@@ -264,6 +295,8 @@ all_anim-noun-lex := noun-lex &
 noun_vessel-noun-lex := noun-lex & noun-pc-alien-poss-rule-dtr & noun-pc-poss-rule-dtr &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.GEND inanim ].
 
+wh-noun-lex := wh-pronoun-noun-lex.
+
 ;;; Verbs
 
 verb-lex := non-mod-lex-item &
@@ -271,7 +304,7 @@ verb-lex := non-mod-lex-item &
              L-QUE - ],
     INFLECTED.VERB-PC-IRREALIS-INFIX-FLAG na-or-- ].
 
-main-verb-lex := verb-lex & basic-verb-lex & basic-non-wh-word-lex & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-irrealis-infix-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc-subjmarker-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+main-verb-lex := verb-lex & basic-verb-lex & basic-non-wh-word-lex & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-irrealis-infix-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc-subjmarker-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ SYNSEM [ L-QUE -,
              LOCAL [ CAT [ HEAD.AUX -,
                            VAL [ SPEC < >,
@@ -282,8 +315,8 @@ main-verb-lex := verb-lex & basic-verb-lex & basic-non-wh-word-lex & verb-pc-25-
                                [ VAL [ SPR < >,
                                        COMPS < > ] ],
                            CONT.HOOK.INDEX #xarg ] ],
-    INFLECTED [ VERB-PC-ASPECT-FLAG -,
-                VERB-PC-REALISIRREALIS-SUFFIX-FLAG - ] ].
+    INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
+                VERB-PC-ASPECT-FLAG - ] ].
 
 aux-lex := verb-lex & basic-icons-lex-item &
   [ SYNSEM [ LOCAL.CAT.HEAD.AUX +,
@@ -460,7 +493,25 @@ clause-init-subord-lex-item := subord-with-verbal-comp-lex &
   [ SYNSEM.LOCAL.CAT [ VAL.COMPS < [ LOCAL.CAT.VAL.SUBJ < > ] >,
                        HEAD.INIT + ] ].
 
-clause :+ [ SYNSEM.NON-LOCAL.QUE.LIST < > ].
+; Do not allow extracting "And Kim"
+
+basic-head-filler-phrase :+ [ ARGS < [ SYNSEM.LOCAL.COORD - ],
+           [ SYNSEM.LOCAL.COORD - ] > ].
+
+extracted-comp-phrase := basic-extracted-comp-phrase &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ cons ].
+
+extracted-subj-phrase := basic-extracted-subj-phrase &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < >,
+    SYNSEM.LOCAL.CAT.HEAD verb ].
+
+; Subject extraction
+
+head-adj-int-phrase :+ [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ clist,
+                                    COMPS clist ] ].
+
+phrase-or-lexrule :+ [ SYNSEM.L-QUE #lque,
+    ARGS.FIRST.SYNSEM.L-QUE #lque ].
 
 ;;; Complementizers
 
@@ -517,48 +568,87 @@ det9-determiner-lex := determiner-lex & no-icons-lex-item &
 
 ;;; Adverbs
 
+adverb-lex-item := nonscop-adverb-lex &
+  [ SYNSEM [ LOCAL [ CAT [ VAL [ SUBJ < >,
+                                 SPEC < >,
+                                 SPR < >,
+                                 COMPS < > ],
+                           HEAD adv &
+                                [ MOD < [ LOCAL [ CAT.HEAD verb,
+                                                  CONT.HOOK [ CLAUSE-KEY #clause,
+                                                              LTOP #ltop ] ] ] > ] ],
+                     CONT [ RELS.LIST < [ LBL #ltop,
+                                          ARG0 event,
+                                          ARG1 #clause,
+                                          ARG2 #ind ],
+                                        [ PRED #pred,
+                                          ARG0 #ind,
+                                          LBL #larg ],
+                                        [ ARG0 #ind,
+                                          RSTR #harg ] >,
+                            HOOK.LTOP #ltop,
+                            HCONS.LIST < qeq &
+                                         [ HARG #harg,
+                                           LARG #larg ] > ] ],
+             LKEYS.KEYREL [ PRED #pred,
+                            ARG0 ref-ind & #ind,
+                            LBL #ltop ] ] ].
+
+loc-adverb-lex-item := adverb-lex-item &
+  [ SYNSEM.LOCAL.CONT.RELS.LIST.FIRST.PRED "loc_nonsp_rel" ].
+
+wh-adverb-lex := basic-wh-word-lex & adverb-lex-item & zero-arg-que &
+  [ SYNSEM [ LOCAL.CONT.RELS.LIST < [ ],
+                                    [ ARG0 #arg0 ],
+                                    quant-relation &
+                                    [ PRED "which_q_rel" ] >,
+             NON-LOCAL.QUE.LIST < #arg0 > ] ].
+
+wh-adv-adverb-lex := loc-adverb-lex-item & wh-adverb-lex.
+
 ;;;;;;;;;;;;;;;;;;;
 ;;; Lexical Rules
 ;;;;;;;;;;;;;;;;;;;
 
 ;;; Intermediate rule types
 
+verb-pc-clausalmods-rule-dtr := word-or-lexrule.
+verb-pc109-rule-dtr := word-or-lexrule.
+verb-pc-directional-or-verb-pc24-rule-dtr := word-or-lexrule.
+verb-pc-aspect-rule-dtr := word-or-lexrule.
+verb-pc34-rule-dtr := word-or-lexrule.
+verb-pc40-rule-dtr := word-or-lexrule.
+verb-pc-irrealis-infix-rule-dtr := word-or-lexrule.
+noun-pc-PL-rule-dtr := word-or-lexrule.
+verb-pc-epv-postother-rule-dtr := word-or-lexrule.
+verb-pc103-rule-dtr := word-or-lexrule.
+noun-pc-loc-rule-dtr := word-or-lexrule.
+verb-pc-classifiers-rule-dtr := word-or-lexrule.
+verb-pc-25-or-verb-pc-objmarker-rule-dtr := word-or-lexrule.
+verb-pc14-rule-dtr := word-or-lexrule.
 noun-pc-poss-rule-dtr := word-or-lexrule.
 verb-pc33-rule-dtr := word-or-lexrule.
-verb-pc103-rule-dtr := word-or-lexrule.
-verb-pc37-rule-dtr := word-or-lexrule.
-verb-pc-realisirrealis-suffix-rule-dtr := word-or-lexrule.
-verb-pc14-rule-dtr := word-or-lexrule.
-verb-pc5-rule-dtr := word-or-lexrule.
-verb-pc86-rule-dtr := word-or-lexrule.
-verb-pc99-rule-dtr := word-or-lexrule.
-noun-pc-loc-rule-dtr := word-or-lexrule.
-verb-pc109-rule-dtr := word-or-lexrule.
-verb-pc104-rule-dtr := word-or-lexrule.
-verb-pc-epv-postother-rule-dtr := word-or-lexrule.
-verb-pc2-rule-dtr := word-or-lexrule.
-verb-pc-argnumber-rule-dtr := word-or-lexrule.
-verb-pc34-rule-dtr := word-or-lexrule.
-verb-pc-irrealis-infix-rule-dtr := word-or-lexrule.
-verb-pc-aspect-rule-dtr := word-or-lexrule.
 verb-pc-appl-rule-dtr := word-or-lexrule.
-verb-pc-classifiers-rule-dtr := word-or-lexrule.
-verb-pc78-rule-dtr := word-or-lexrule.
-noun-pc-PL-rule-dtr := word-or-lexrule.
-noun-pc-del_nomz-rule-dtr := word-or-lexrule.
-verb-pc74-rule-dtr := word-or-lexrule.
-verb-pc-25-or-verb-pc-objmarker-rule-dtr := word-or-lexrule.
-verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr := word-or-lexrule.
-verb-pc31-rule-dtr := word-or-lexrule.
-noun-pc-alien-poss-rule-dtr := word-or-lexrule.
-verb-pc-clausalmods-rule-dtr := word-or-lexrule.
-verb-pc9-rule-dtr := word-or-lexrule.
-verb-pc32-rule-dtr := word-or-lexrule.
-verb-pc40-rule-dtr := word-or-lexrule.
-verb-pc-realis-suffix-subjfoc-rule-dtr := word-or-lexrule.
 verb-pc89-rule-dtr := word-or-lexrule.
+verb-pc-realis-suffix-subjfoc-rule-dtr := word-or-lexrule.
+verb-pc88-rule-dtr := word-or-lexrule.
+verb-pc-realisirrealis-suffix-rule-dtr := word-or-lexrule.
+noun-pc-del_nomz-rule-dtr := word-or-lexrule.
+verb-pc2-rule-dtr := word-or-lexrule.
+verb-pc78-rule-dtr := word-or-lexrule.
+verb-pc32-rule-dtr := word-or-lexrule.
+verb-pc5-rule-dtr := word-or-lexrule.
 verb-pc69-rule-dtr := word-or-lexrule.
+verb-pc104-rule-dtr := word-or-lexrule.
+verb-pc86-rule-dtr := word-or-lexrule.
+noun-pc-alien-poss-rule-dtr := word-or-lexrule.
+verb-pc-argnumber-rule-dtr := word-or-lexrule.
+verb-pc9-rule-dtr := word-or-lexrule.
 verb-pc-subjmarker-rule-dtr := word-or-lexrule.
+verb-pc99-rule-dtr := word-or-lexrule.
+verb-pc74-rule-dtr := word-or-lexrule.
+verb-pc37-rule-dtr := word-or-lexrule.
+verb-pc31-rule-dtr := word-or-lexrule.
 
 ;;; Lexical rule types
 
@@ -696,7 +786,7 @@ noun-pc-alienator-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & nou
 
 noun-pc23_lrt1-lex-rule := noun-pc-alienator-lex-rule-super.
 
-verb-pc-argnumber-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc-argnumber-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc-argnumber-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -715,11 +805,11 @@ verb-pc2_lrt1-lex-rule := verb-pc2-lex-rule-super.
 
 verb-pc-realisirrealis-suffix-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr &
   [ INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG +,
-                VERB-PC-IRREALIS-INFIX-FLAG #verb-pc-irrealis-infix,
-                VERB-PC-ASPECT-FLAG #verb-pc-aspect ],
+                VERB-PC-ASPECT-FLAG #verb-pc-aspect,
+                VERB-PC-IRREALIS-INFIX-FLAG #verb-pc-irrealis-infix ],
     DTR verb-pc-realisirrealis-suffix-rule-dtr &
-        [ INFLECTED [ VERB-PC-IRREALIS-INFIX-FLAG #verb-pc-irrealis-infix,
-                      VERB-PC-ASPECT-FLAG #verb-pc-aspect ] ] ].
+        [ INFLECTED [ VERB-PC-ASPECT-FLAG #verb-pc-aspect,
+                      VERB-PC-IRREALIS-INFIX-FLAG #verb-pc-irrealis-infix ] ] ].
 
 verb-pc-irrealis-req-infix-lex-rule := verb-pc-realisirrealis-suffix-lex-rule-super &
   [ DTR.INFLECTED.VERB-PC-IRREALIS-INFIX-FLAG +,
@@ -738,7 +828,7 @@ verb-pc-realis-suffix-subjfoc-lex-rule-super := add-only-no-ccont-rule & infl-le
 verb-pc4_lrt1-lex-rule := verb-pc-realis-suffix-subjfoc-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.MOOD irr ].
 
-verb-pc5-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc40-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc5-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc40-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc5-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -795,14 +885,14 @@ verb-pc9-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-o
 verb-pc9_lrt1-lex-rule := verb-pc9-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT dur ].
 
-verb-pc-epv-postverb-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc-epv-postverb-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb_trans-verb-lex &
         [ INFLECTED #infl ] ].
 
 verb-pc11_lrt1-lex-rule := verb-pc-epv-postverb-lex-rule-super.
 
-verb-pc-epv-postother-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc-epv-postother-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc-epv-postother-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -816,7 +906,7 @@ verb-pc-appl-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-
 
 verb-pc13_lrt1-lex-rule := verb-pc-appl-lex-rule-super.
 
-verb-pc14-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc14-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc14-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -842,7 +932,7 @@ verb-pc_obj1-lex-rule := verb-pc-objmarker-lex-rule-super &
 verb-pc_obj2-lex-rule := verb-pc-objmarker-lex-rule-super &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.PER 2nd ].
 
-verb-pc-classifiers-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc-classifiers-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc-classifiers-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -879,14 +969,14 @@ verb-pc16_lrt15-lex-rule := verb-pc-classifiers-lex-rule-super.
 
 verb-pc-directional-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
-    DTR verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr &
+    DTR verb-pc-directional-or-verb-pc24-rule-dtr &
         [ INFLECTED #infl ] ].
 
 verb-pc23_lrt1-lex-rule := verb-pc-directional-lex-rule-super.
 
 verb-pc24-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
-    DTR verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr &
+    DTR verb-pc-directional-or-verb-pc24-rule-dtr &
         [ INFLECTED #infl ] ].
 
 verb-pc24_lrt1-lex-rule := verb-pc24-lex-rule-super.
@@ -900,7 +990,7 @@ verb-pc-25-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-cl
 
 verb-pc25_lrt1-lex-rule := verb-pc-25-lex-rule-super.
 
-verb-pc-subjmarker-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc-subjmarker-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc-subjmarker-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -919,19 +1009,19 @@ verb-pc-subj1-lex-rule := verb-pc-subjmarker-lex-rule-super &
 verb-pc-subj2-lex-rule := verb-pc-subjmarker-lex-rule-super &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.PER 2nd ].
 
-verb-pc31-lex-rule := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc40-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc31-lex-rule := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc40-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc31-rule-dtr &
         [ INFLECTED #infl ] ].
 
-verb-pc32-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc32-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc32-rule-dtr &
         [ INFLECTED #infl ] ].
 
 verb-pc32_lrt1-lex-rule := verb-pc32-lex-rule-super.
 
-verb-pc33-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc33-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc33-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -939,14 +1029,14 @@ verb-pc33-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-
 verb-pc33_lrt1-lex-rule := verb-pc33-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT dur ].
 
-verb-pc34-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc34-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc34-rule-dtr &
         [ INFLECTED #infl ] ].
 
 verb-pc34_lrt1-lex-rule := verb-pc34-lex-rule-super.
 
-verb-pc37-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc37-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc37-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -958,14 +1048,14 @@ verb-pc37_lrt2-lex-rule := verb-pc37-lex-rule-super.
 verb-pc37_lrt3-lex-rule := verb-pc37-lex-rule-super &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
 
-verb-pc40-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc40-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc40-rule-dtr &
         [ INFLECTED #infl ] ].
 
 verb-pc40_lrt1-lex-rule := verb-pc40-lex-rule-super.
 
-verb-pc-irrealis-infix-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc-subjmarker-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc-irrealis-infix-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc-subjmarker-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED [ VERB-PC-IRREALIS-INFIX-FLAG +,
                 VERB-PC-REALISIRREALIS-SUFFIX-FLAG #verb-pc-realisirrealis-suffix,
                 VERB-PC-ASPECT-FLAG #verb-pc-aspect ],
@@ -976,7 +1066,7 @@ verb-pc-irrealis-infix-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule 
 verb-pc55_lrt1-lex-rule := verb-pc-irrealis-infix-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.MOOD irr ].
 
-verb-pc-subjmarker-caus-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-irrealis-infix-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc-subjmarker-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc-subjmarker-caus-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-irrealis-infix-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc-subjmarker-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb_trans-verb-lex &
         [ INFLECTED #infl ] ].
@@ -990,21 +1080,21 @@ verb-pc69-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-cla
 
 verb-pc69_lrt1-lex-rule := verb-pc69-lex-rule-super.
 
-verb-pc74-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc74-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc74-rule-dtr &
         [ INFLECTED #infl ] ].
 
 verb-pc74_lrt1-lex-rule := verb-pc74-lex-rule-super.
 
-verb-pc78-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc78-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc2-rule-dtr & verb-pc32-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc78-rule-dtr &
         [ INFLECTED #infl ] ].
 
 verb-pc78_lrt1-lex-rule := verb-pc78-lex-rule-super.
 
-verb-pc84-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc84-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-intrans-be_predadj-verb-lex &
         [ INFLECTED #infl ] ].
@@ -1023,12 +1113,12 @@ verb-pc86_lrt2-lex-rule := verb-pc86-lex-rule-super &
 
 verb-pc88-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule &
   [ INFLECTED #infl,
-    DTR verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr &
+    DTR verb-pc88-rule-dtr &
         [ INFLECTED #infl ] ].
 
 verb-pc88_lrt1-lex-rule := verb-pc88-lex-rule-super.
 
-verb-pc89-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc89-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc89-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -1063,7 +1153,7 @@ verb-pc104-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule &
 
 verb-pc104_lrt1-lex-rule := verb-pc104-lex-rule-super.
 
-verb-pc109-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
+verb-pc109-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc88-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc109-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -1099,30 +1189,65 @@ head-comp-phrase-2 := basic-head-2nd-comp-phrase & head-initial-head-nexus.
 
 comp-head-phrase-2 := basic-head-2nd-comp-phrase & head-final-head-nexus.
 
-; Rules for building NPs.  Note that the Matrix uses SPR for
-; the specifier of nouns and SUBJ for the subject (specifier) of verbs.
-
-head-spec-phrase := basic-head-spec-phrase & head-final.
-
 ; Bare NP phrase.  Consider modifying the PRED value of the quantifier relation
 ; introduced to match the semantic effect of bare NPs in your language.
 
 bare-np-phrase := basic-bare-np-phrase &
-  [ C-CONT.RELS.LIST < [ PRED "exist_q_rel" ] > ].
+  [ C-CONT.RELS.LIST < [ PRED "exist_q_rel" ] >,
+    SYNSEM.LIGHT - ].
+
+;;; Head Adjunct rules
+
+; For intersective adjuncts with underspecified attachment locations:
+
+my-head-adj-phrase := head-adj-int-phrase &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD +nvr,
+                                VAL [ SUBJ clist,
+                                      COMPS clist ] ],
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD +jrp,
+                                    VAL.COMPS < > ] ].
+
+my-adj-head-phrase := adj-head-int-phrase &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD +nvr,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD +jrp,
+                                    VAL.COMPS < > ] ].
+
+;;; Wh-question-related phrasal types
+
+wh-ques-phrase := basic-head-filler-phrase & interrogative-clause & head-final &
+  [ SYNSEM [ LOCAL.CAT [ WH.BOOL +,
+                         MC bool,
+                         VAL #val,
+                         HEAD verb ],
+             NON-LOCAL.QUE.LIST < > ],
+    NON-HEAD-DTR.SYNSEM [ NON-LOCAL.QUE.LIST < ref-ind >,
+                          LOCAL.CONT.HOOK.ICONS-KEY focus ],
+    HEAD-DTR.SYNSEM.LOCAL.CAT [ VAL #val &
+                                    [ SUBJ < >,
+                                      COMPS < > ],
+                                MC na-or-+ ] ].
+
+; Complement extraction
+
+; Adjunct extraction
 
 basic-filler-phrase :+ [ SYNSEM.NON-LOCAL.SLASH.LIST < >,
     ARGS < [ SYNSEM [ LOCAL #slash,
                       NON-LOCAL.SLASH.LIST < > ] ],
            [ SYNSEM.NON-LOCAL.SLASH.LIST < #slash > ] > ].
 
-extracted-subj-phrase := basic-extracted-subj-phrase &
-  [ SYNSEM.LOCAL.CAT.HEAD verb ].
-
-;;; Wh-question-related phrasal types
-
 ;;;;;;;;;;;;;;;;;;
 ;;; Coordination
 ;;;;;;;;;;;;;;;;;;
+
+adv1-top-coord-rule := basic-adv-top-coord-rule & monopoly-top-coord-rule &
+  [ SYNSEM.LOCAL.COORD-STRAT "1" ].
+
+adv1-mid-coord-rule := basic-adv-mid-coord-rule & monopoly-mid-coord-rule &
+  [ SYNSEM.LOCAL.COORD-STRAT "1" ].
+
+adv1-bottom-coord-rule := conj-first-bottom-coord-rule & adv-bottom-coord-phrase &
+  [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
 ;;; Coordination Strategy 1
 

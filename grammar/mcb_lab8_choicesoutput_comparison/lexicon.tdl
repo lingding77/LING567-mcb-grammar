@@ -535,6 +535,14 @@ maganiro := all_anim-noun-lex &
   [ STEM < "*pito" >,
     SYNSEM.LKEYS.KEYREL.PRED "_car_n_rel" ].
 
+tata := wh-noun-lex &
+  [ STEM < "tata" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+tya-ni := wh-noun-lex &
+  [ STEM < "tya-ni" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
 ;;; Adjectives
 
 ;;; Verbs
@@ -1687,6 +1695,10 @@ i-oga := det9-determiner-lex &
     SYNSEM.LKEYS.KEYREL.PRED "_exist_q_rel" ].
 
 ;;; Adverbs
+
+tya_3Dra := wh-adv-adverb-lex &
+  [ STEM < "tya=ra" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_place_a_rel" ].
 
 o-ntiri2 := conj-lex &
   [ STEM < "o-ntiri" >,
