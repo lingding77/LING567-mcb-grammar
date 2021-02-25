@@ -1,0 +1,295 @@
+Language: Matsigenka
+Language code: mcb
+Lines: orth orth-seg gloss translat
+Author: Ling Tu, Hanshu Ding
+Date: Feb 19, 2021
+Source a: Nanti Evidential Practice (Michael 2008)
+Source b: Matsigenka Texts Written By Matsigenka Authors" (2013, Pereira and Pereira)
+#Phenomena:
+#{mmt target sentences}
+
+
+### FILE SYNTAX REFERENCE
+##Ex number and optional comment
+#Source: {a:page, b:page, author, elicited, attested} # elicited=native, attested=non-linguistics text
+#Vetted: {t, f, s} ## t=native, f=unvetted, s=linguistics text
+#Judgment: {g, u} ## g=grammatical, u=ungrammatical
+#Phenomena: {...}
+#<Example in standard orthography> (one of this and transliteration is required; including both is okay)
+#<Example in transliteration> (one of this and standard orthography is required; including both is okay)
+#<Example with morpheme boundaries noted and morpheme forms regularized>
+#<Morpheme-by-morpheme glosses>
+#<Free translation>
+
+
+##################################################
+# MMT target sentences
+##################################################
+
+# Sentence 1 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+imagi osheto 
+i-mag-i osheto 
+3mS-sleep-realis dogs
+Dogs sleep
+
+# Sentence 2 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+iogia-i osheto pitotsi
+i-ogia-i osheto *pito-tsi
+3mS-follow-realis dog car-ALIEN 
+Dogs chase cars
+
+# Sentence 3 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+noogianpi
+no-ogia-i=npi
+1S-follow-realis=2O
+I chase you
+
+# Sentence 4 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+itogti osheto
+i-og-i osheto 
+3mS-eat-realis dogs
+Dogs eat
+
+# Sentence 5 Grammatical -------------
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+to fill in
+to-fill-in
+to-fill-in
+The dogs don‘t chase cars
+
+# Sentence 6 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+noneiri piogoi=a iogiaira osheto *pitotsi
+no-ne-i=ri pi-ogo-i=ra i-ogia-i=ra osheto *pito-tsi
+1S-think.that-realis=3mO you-know-realis=SUB 3mS-follow-realis=SUB dog car-ALIEN 
+I think that you know that dogs chase cars
+
+# Sentence 7 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+nokogakoi piogoirika iogiaira osheto *pitotsi
+no-kogako-i pi-ogo-i=rika i-ogia-i=ra osheto *pito-tsi
+1S-ask-realis you-know-realis=INDEF 3mS-follow-realis=SUB dog car-ALIEN 
+I ask whether you know that dogs chase cars
+
+# Sentence 8 
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+iogiai matsontsori intiri osheto *pitotsi
+i-ogia-i matsontsori i-ntiri osheto *pito-tsi
+3mS-follow-realis cat 3mS-COORD dog car-ALIEN 
+Cats and dogs chase cars
+
+# Sentence 9
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+iogiai osheto *pitotsi , iogiai matsontsori osheto
+i-ogia-i osheto *pito-tsi , i-ogia-i matsontsori osheto
+3mS-follow-realis dog car-ALIEN , 3mS-follow-realis cat dog
+Dogs chase cars and cats chase dogs
+
+# Sentence 10
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+iogiai matsontsori osheto imagi
+i-ogia-i matsontsori osheto i-mag-i
+3mS-follow-realis cat dog 3mS-sleep-realis
+Cats chase dogs and sleep
+
+# Sentence 11 Grammatical <FIXXXX
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+matsontsori iogiairi osheto ？
+matsontsori i-ogia-i=ri osheto ?
+cats 3mS-chase-realis=3mO dog ?
+Do cats chase dogs
+
+# Sentence 12 Grammatical ----------------------
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+to fill in
+to-fill-in
+to-fill-in
+Hungry dogs eat
+
+# Sentence 13 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+ini inkenishiku osheto iogi
+i-n-i inkenishi=ku osheto i-og-i
+3mS-COP.LOC-realis park=LOC dog 3mS-eat-realis
+Dogs in the park eat
+
+# Sentence 14 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+iogi inkenishiku osheto 
+i-og-i inkenishi=ku osheto 
+3mS-eat-realis park=LOC dog 
+Dogs eat in the park
+
+# Sentence 15 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto inti matsontsori
+osheto i-nti matsontsori
+dog 3mS-COP cat
+The dogs are the cats
+
+# Sentence 16 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+osheto itasegi
+osheto i-taseg-i
+dog 3mS-be.hungry-realis
+The dogs are hungry
+
+# Sentence 17 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+noogianpi
+osheto i-n-i inkenishi=ku
+dog 3mS-COP.LOC-realis park=LOC
+The dogs are in the park
+
+# Ex 18 Grammatical --------------
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+to fill in
+to-fill-in
+to-fill-in
+The dog's car sleeps
+
+# Ex 19 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+imagi nooshetore
+i-mag-i no-osheto-re
+3mS-sleep-realis 1P-dogs-ALIEN.POSS 
+My dogs sleep
+
+# Ex 20 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+tyani magi ?
+tya-ni mag-i ?
+who.INTERR-ANIM sleep-realis ?
+Who sleeps ?
+
+# Ex 21 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+tata itogiati osheto ?
+tata i-ogia-i osheto ?
+what.INTERR 3mS-follow-realis dogs ?
+What do the dogs chase ?
+
+# Ex 22 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+tata pinetiri itogoti osheto ?
+tata pi-ne-i=ri i-ogo-i osheto ?
+what you-think.that-realis=3mO 3mS-chase-realis dogs ?
+what do you think the dogs chase
+
+# Ex 23 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+tyani kamantaki tata itogiati osheto ?
+tya-ni kamant-ak-i tata i-ogia-i osheto ?
+who.INTERR-ANIM ask-PERF-realis what.EMBED 3mS-follow-realis dogs ?
+Who asked what the dogs chase
+
+# Sentence 24 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+nokogakoi tata iogiai osheto
+no-kogako-i tata i-ogia-i osheto
+1S-ask-realis what 3mS-follow-realis dog
+I asked what the dogs chased
+
+# Sentence 25 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+imagi osheto imagitari matsontsori 
+i-mag-i osheto i-mag-i=tari matsontsori 
+3mS-sleep-realis dog 3mS-sleep-realis=REAS cat
+The dog sleeps because the cat sleeps
+
+# Sentence 26 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+imagi matsontsori, inpo imagi osheto
+i-mag-i matsontsori, inpo i-mag-i osheto
+3mS-sleep-realis cat, then 3mS-sleep-realis dog
+The dog sleeps after the cat sleeps
+
+
+
+
+
+
+
+
