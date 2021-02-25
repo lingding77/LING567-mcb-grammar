@@ -1,0 +1,167 @@
+###########################################################################################
+#LAB 8 write-up
+#NAME: Hanshu Ding, Ling Tu
+#LANGUAGE: mcb
+##########################################################################################
+
+
+1. A description of how the phenomenon you picked to work on is expressed in your language, including IGT.
+
+2. A description of your implementation of this phenomenon, including:
+	-A prose description of the analysis you implemented
+	-The specific tdl you added/changed (paste it into the file)
+	-IGT I can use to test the analysis
+	-Any questions you have/things you want me to look into.
+
+3. A description of any clean up work you did to get generation down to a reasonable number of outputs, including:
+	-Which MMT items you worked on in this way
+	-What the sources of extra generation output were
+	-What changes you made to grammar (described in prose and illustrated with tdl)
+	-Before/after numbers on how many outputs you're getting
+
+4. A description of the status of each MMT item, with sje as source and with eng as source. Possible statuses:
+	-Works! (But document how many outputs you get)
+	-Doesn't work, because your language string doesn't parse and/or isn't available.
+	-Doesn't work, because MRSes are different. Indicate how they differ.
+	-Doesn't work, MRSes look the same, not sure what's going on.
+	-A description of the performance of your final grammar for this week on the test suite and test corpus, as compared to your starting grammar (see details above).
+
+
+
+02.23:----------
+1. Pick one more phenomenon: wh questions/negation
+     - Read the resources
+     - Post it on canvas
+     - Make testsuite
+2. Go over the whole lab process, distribute some assignment
+     - generation output ambiguity clean up:
+	^ Free word order (expected).
+	^ Gender ambiguity in dog/cat (we didn't specify gender yet on animals but we can fix this, as they are masculine).
+	^ Locative marker firing optionally on all nouns (see Question #1).
+	^ Object markers firing optionally on "nti" NP copula verb (see Question #2).
+--------------------------------
+-take passive out
+-EPV/EPC to lexical rule?
+
+
+
+-translate sentences
+
+1. Dogs sleep
+2. Dogs chase cars
+3. I chase you
+4. Dogs eat
+5. The dogs dont chase cars
+6. I think that you know that dogs chase cars
+7. I ask whether you know that dogs chase cars
+8. Cats and dogs chase cars
+9. Dogs chase cars and cats chase dogs
+10. Cats chase dogs and sleep
+11. Do cats chase dogs
+12. Hungry dogs eat
+13. Dogs in the park eat
+14. Dogs eat in the park
+15. The dogs are hungry
+16. The dogs are in the park
+17. The dogs are the cats
+18. The dog s car sleeps
+19. My dogs sleep
+20. Who sleeps
+21. What do the dogs chase
+22. What do you think the dogs chase
+23. Who asked what the dogs chase
+24. I asked what the dogs chased
+25. The dog sleeps because the cat sleeps
+26. The dog sleeps after the cat sleeps
+
+
+Ding:--------------------
+The dogs don‘t chase cars === The spider monkeys don't follow canoes
+Dogs eat === Spider monkeys eat
+Do cats chase dogs === Do jaguars follow spider monkeys
+Hungry dogs eat === Hungry spider monkeys eat
+The dog’s car sleeps === The spider monkey's canoe sleeps
+My dogs sleep === My spider monkeys sleep
+Who sleeps 
+What do the dogs chase === What do the spider monkeys follow
+****What do you think the dogs chase === what do you think the spider monkeys follow
+Who asked what the dogs chase === Who asked what the spider monkeys follow
+
+
+--wh question on canvas 
+
+
+
+1. Translate and test suite
+ Reading resources (wh questions, yes/no questions)
+	-do 
+	-negation
+2. Post sth on canvas
+3. 
+
+
+
+--------------------------------------------------
+Translations remapping:
+Cat = jaguar (matsontsori)
+Dog = spider monkey (osheto)
+Park = forest (inkenishi)
+Car = canoe (*pito)
+
+
+Existing relations:
+- sleep (mag) - GLOSS: sleep
+- eat (seka) - GLOSS: eat
+- follow (ogia) - GLOSS: follow
+- hungry (taseg) - GLOSS: be.hungry
+
+Remapped relations:
+- cat -> jaguar (matsontsori) - GLOSS: jaguar								-> _jaguar_n_rel
+- dog -> spider monkey (osheto) - GLOSS: spider.monkey						-> _dog_n_rel
+- car -> canoe (*pito) - GLOSS: canoe (always appears as canoe-ALIEN) 		-> _car_n_rel
+- park -> forest (inkenishi) - GLOSS: forest (always appears as forest=LOC)	-> _park_n_rel
+- ask -> tell (kamant) - GLOSS: tell -> _tell_v_rel
+
+Adding to lexicon:
+- canoe (*pito) - This was in sentences 1350 and 1790, but not in our lexicon; guessing with very low probability those two sentences both just happened to be in the set held out from training?
+- to be hungry (taseg) - This was in our resource grammar "Matsigenka Texts Written By Matsigenka Authors" (2013, Pereira and Pereira)
+
+
+
+
+-------
+#2
+
+
+
+
+
+
+
+
+-------
+Yes/no questions:
+-distinguished by a rising-falling contour over the last syllables of the utterance
+-relatively fixed NP position:
+	-argument NP --> pre-subject position
+	-topic NP --> right margin
+
+
+
+ask ---> tell
+
+
+-------
+-tsi: the input of noun-pc for -tsi 
+
+
+manu_object-noun-lex
+noun-pc-alienator-rule-dtr
+
+
+
+
+
+
+
+

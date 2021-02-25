@@ -835,7 +835,7 @@ kaem := verb_trans-verb-lex &
   [ STEM < "kaem" >,
     SYNSEM.LKEYS.KEYREL.PRED "_call.out_v_rel" ].
 
-ne_2 := verb_trans-verb-lex &
+ne_2 := verb_trans_compclause-verb-lex &
   [ STEM < "ne" >,
     SYNSEM.LKEYS.KEYREL.PRED "_feel-or-know-or-meet-or-think.that-or-visit-or-watch.over_v_rel" ].
 
