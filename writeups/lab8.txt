@@ -161,6 +161,46 @@ noun-pc-alienator-rule-dtr
 
 
 
+-----------------------------------
+
+LING NOTES:
+
+Grammar updates:
+- Changed "ogio" predication "_follow_v_rel" to "_chase_v_rel" for mmt purpose
+- 
+
+
+
+MMT sentence semantics:
+1) Yes, expected MRS
+- 2) Yes, expected MRS, except coordination ambiguity
+3) Yes, expected MRS
+4) Yes, expected MRS, with sentence ambiguity from:
+	- two different lexical entries for "og" ("eat" and "put", both observed in the corpus)
+	- HEAD-SUBJ vs HEAD-COMP vs BASIC-HEAD-OPT-COMP
+5) -- not yet parsing
+- 6) -- too many parses (72)
+- 7) -- too many parses (48)
+8) Yes, expected MRS, except coordination ambiguity
+- 9) No, NP subject and object are being coordinated
+- 10) No, NP subject and object are being coordinated
+11) -- not yet parsing
+12) -- not yet parsing
+13) No, Head-Comp is not the correct rule to use here but we don't have PP adverbial modifiers set up
+14) No, 
+15) Yes, expected MRS
+16) Yes, expected MRS
+- 17) EX-COMP, EX-ADJ, HEAD-ADJ rules are adding too much ambiguity
+18) -- not yet parsing
+19)
+20)
+21)
+22)
+23)
+24)
+25)
+26)
+
 
 
 
