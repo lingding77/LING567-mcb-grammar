@@ -1,21 +1,21 @@
 ;;; -*- Mode: TDL; Coding: utf-8 -*-
 ;;; Inflecting Lexical Rule Instances
 
-noun-pc5_lrt1-prefix1 :=
+noun-pc-poss3m-prefix :=
 %prefix (* i-)
-noun-pc5_lrt1-lex-rule.
+noun-pc-poss3m-lex-rule.
 
-noun-pc5_lrt1-prefix2 :=
+noun-pc-poss3f-prefix :=
 %prefix (* o-)
-noun-pc5_lrt1-lex-rule.
+noun-pc-poss3f-lex-rule.
 
-noun-pc5_lrt1-prefix3 :=
+noun-pc-poss1-prefix :=
 %prefix (* no-)
-noun-pc5_lrt1-lex-rule.
+noun-pc-poss1-lex-rule.
 
-noun-pc5_lrt1-prefix4 :=
+noun-pc-poss2-prefix :=
 %prefix (* pi-)
-noun-pc5_lrt1-lex-rule.
+noun-pc-poss2-lex-rule.
 
 verb-pc-subj3m-prefix :=
 %prefix (* i-)
@@ -123,9 +123,9 @@ noun-pc23_lrt1-lex-rule.
 
 ;;;;; COMMENT EVERYTHING AFTER THIS FOR MMT SIMPLICITY PURPOSES ;;;;;
 
-noun-pc6_lrt1-suffix :=
+noun-pc-alien-poss-suffix :=
 %suffix (* -re)
-noun-pc6_lrt1-lex-rule.
+noun-pc-alien-poss-lex-rule.
 
 noun-pc12_lrt1-suffix1 :=
 %suffix (* -egi)
@@ -147,9 +147,9 @@ noun-pc13_lrt1-suffix2 :=
 %suffix (* =ri)
 noun-pc13_lrt1-lex-rule.
 
-noun-pc19_lrt1-suffix :=
+noun-pc-del_nomz-suffix :=
 %suffix (* -nirira)
-noun-pc19_lrt1-lex-rule.
+noun-pc-del_nomz-rule.
 
 verb-pc-plural-suffix :=
 %suffix (* -ig)

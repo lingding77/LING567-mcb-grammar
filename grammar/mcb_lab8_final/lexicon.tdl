@@ -571,10 +571,6 @@ amanpi_1 := verb_trans-verb-lex &
   [ STEM < "amanpi" >,
     SYNSEM.LKEYS.KEYREL.PRED "_accompany.following_v_rel" ].
 
-ne_1 := verb_trans-verb-lex &
-  [ STEM < "ne" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_find-or-see_v_rel" ].
-
 nint := verb_trans-verb-lex &
   [ STEM < "nint" >,
     SYNSEM.LKEYS.KEYREL.PRED "_fall.love.with_v_rel" ].
@@ -601,7 +597,11 @@ kamoso := verb_trans-verb-lex &
 
 og_1 := verb_trans-verb-lex &
   [ STEM < "og" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_eat-or-put_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
+
+; og_2 := verb_trans-verb-lex &
+;   [ STEM < "og" >,
+;     SYNSEM.LKEYS.KEYREL.PRED "_do.until-or-put_v_rel" ].
 
 apato := verb_trans-verb-lex &
   [ STEM < "apato" >,
@@ -843,10 +843,6 @@ kaem := verb_trans-verb-lex &
   [ STEM < "kaem" >,
     SYNSEM.LKEYS.KEYREL.PRED "_call.out_v_rel" ].
 
-ne_2 := verb_trans_compclause-verb-lex &
-  [ STEM < "ne" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_feel-or-know-or-meet-or-think.that-or-visit-or-watch.over_v_rel" ].
-
 poni := verb_trans-verb-lex &
   [ STEM < "poni" >,
     SYNSEM.LKEYS.KEYREL.PRED "_come.from_v_rel" ].
@@ -1011,17 +1007,13 @@ noshik := verb_trans-verb-lex &
   [ STEM < "noshik" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pull-or-pull.out_v_rel" ].
 
-og_2 := verb_trans-verb-lex &
-  [ STEM < "og" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_do.until_v_rel" ].
-
 ogag := verb_trans-verb-lex &
   [ STEM < "ogag" >,
     SYNSEM.LKEYS.KEYREL.PRED "_change_v_rel" ].
 
 ogia := verb_trans-verb-lex &
   [ STEM < "ogia" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_follow_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "_chase_v_rel" ].
 
 oguso := verb_trans-verb-lex &
   [ STEM < "oguso" >,
@@ -1603,15 +1595,23 @@ viro_2 := verb301-verb-lex &
   [ STEM < "viro" >,
     SYNSEM.LKEYS.KEYREL.PRED "_be_v_rel" ].
 
-sure := verb_trans_compclause-verb-lex &
+ne_1 := verb_trans-verb-lex &
+  [ STEM < "ne" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_find-or-see_v_rel" ].
+
+ne_2 := verb_trans_compclause-prop-verb-lex &
+  [ STEM < "ne" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_feel-or-know-or-meet-or-think.that-or-visit-or-watch.over_v_rel" ].
+
+sure := verb_trans_compclause-prop-verb-lex &
   [ STEM < "sure" >,
     SYNSEM.LKEYS.KEYREL.PRED "_remember-or-think_v_rel" ].
 
-ogo := verb_trans_compclause-verb-lex &
+ogo := verb_trans_compclause-prop-verb-lex &
   [ STEM < "ogo" >,
     SYNSEM.LKEYS.KEYREL.PRED "_know_v_rel" ].
 
-kogako := verb_trans_compclause-verb-lex &
+kogako := verb_trans_compclause-ques-verb-lex &
   [ STEM < "kogako" >,
     SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
 
