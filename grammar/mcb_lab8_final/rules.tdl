@@ -5,15 +5,15 @@ basic-head-opt-comp := basic-head-opt-comp-phrase.
 
 head-comp := head-comp-phrase.
 
-head-subj := head-subj-phrase.
-
-comp-head := comp-head-phrase.
-
-subj-head := subj-head-phrase.
-
 head-comp-2 := head-comp-phrase-2.
 
-comp-head-2 := comp-head-phrase-2.
+head-subj := head-subj-phrase.
+
+; comp-head := comp-head-phrase.
+; 
+; subj-head := subj-head-phrase.
+; 
+; comp-head-2 := comp-head-phrase-2.
 
 head-spec := head-spec-phrase.
 
@@ -26,6 +26,10 @@ adv1-bottom-coord := adv1-bottom-coord-rule.
 adv1-mid-coord := adv1-mid-coord-rule.
 
 adv1-top-coord := adv1-top-coord-rule.
+
+s1-top-coord := s1-top-coord-rule.
+
+s1-bottom-coord := s1-bottom-coord-rule.
 
 vp1-top-coord := vp1-top-coord-rule.
 
@@ -55,9 +59,9 @@ np5-mid-coord := np5-mid-coord-rule.
 
 np5-bottom-coord := np5-bottom-coord-rule.
 
-np6-top-coord := np6-top-coord-rule.
-
-np6-bottom-coord := np6-bottom-coord-rule.
+; np6-top-coord := np6-top-coord-rule.
+; 
+; np6-bottom-coord := np6-bottom-coord-rule.
 
 adj-head-scop := adj-head-scop-phrase.
 

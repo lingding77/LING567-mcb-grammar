@@ -136,14 +136,14 @@ matsontsori i-ogia-i=ri osheto ?
 cats 3mS-chase-realis=3mO dog ?
 Do cats chase dogs
 
-# Sentence 12 Grammatical ----------------------
+# Sentence 12 Grammatical
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {mmt}
-to fill in
-to-fill-in
-to-fill-in
+osheto tasegri iogi
+osheto taseg-ri i-og-i
+dog be.hungry-ADJVZR 3mS-eat-realis
 Hungry dogs eat
 
 # Sentence 13 Grammatical
@@ -166,6 +166,26 @@ i-og-i inkenishi=ku osheto
 3mS-eat-realis park=LOC dog 
 Dogs eat in the park
 
+# Sentence 16 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+itasegi osheto 
+i-taseg-i osheto 
+3mS-be.hungry-realis dog 
+The dogs are hungry
+
+# Sentence 17 Grammatical
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {mmt}
+noogianpi
+i-n-i osheto inkenishi=ku
+3mS-COP.LOC-realis dog park=LOC
+The dogs are in the park
+
 # Sentence 15 Grammatical
 Source: author
 Vetted: f
@@ -175,26 +195,6 @@ osheto inti matsontsori
 osheto i-nti matsontsori
 dog 3mS-COP cat
 The dogs are the cats
-
-# Sentence 16 Grammatical
-Source: author
-Vetted: f
-Judgment: g
-Phenomena: {mmt}
-osheto itasegi
-osheto i-taseg-i
-dog 3mS-be.hungry-realis
-The dogs are hungry
-
-# Sentence 17 Grammatical
-Source: author
-Vetted: f
-Judgment: g
-Phenomena: {mmt}
-noogianpi
-osheto i-n-i inkenishi=ku
-dog 3mS-COP.LOC-realis park=LOC
-The dogs are in the park
 
 # Ex 18 Grammatical --------------
 Source: author
