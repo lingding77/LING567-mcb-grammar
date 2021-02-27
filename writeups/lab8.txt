@@ -163,82 +163,51 @@ noun-pc-alienator-rule-dtr
 
 -----------------------------------
 
-LING NOTES:
+WH- QUESTIONS IMPLEMENTATION:
 
-Grammar updates:
-- Added output of wh- questions from grammar matrix
+Choices file:
+Added output of wh- questions from grammar matrix
 	tata, tya-ni, tya=ra
-- Changed "ogio" predication "_follow_v_rel" to "_chase_v_rel" for mmt purpose
-- Clean up "og" noun: *TOFIX: we want just "_eat_v_rel" should just pick one...
-	- og_1 "eat-or-put_v_rel" changed to just "eat"
-		og_1 := verb_trans-verb-lex &
-	  		[ STEM < "og" >,
-	    	  SYNSEM.LKEYS.KEYREL.PRED "_eat-or-put_v_rel" ].
-	- og_2 "bite(.insect)" relation feels more similar to "eat" so removing that:
-		og_2 := verb_trans-verb-lex &
-		  [ STEM < "og" >,
-		    SYNSEM.LKEYS.KEYREL.PRED "_bite(.insect)-or-do.until_v_rel" ].
-- Changed lexical entry for "*pito" to "*pito-tsi"
-	*pito-tsi := noun_vessel-noun-lex &
-  		[ STEM < "*pito-tsi" >,
-- Added lexical entry for "ask", which was not in our corpus but was in Matsigenka texts. Made it a compclause for now to get it to parse, not sure if this is right or not:
-	kogako := verb_trans_compclause-verb-lex &
-	  [ STEM < "kogako" >,
-	    SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
-- Made sure there was a clausal version of "ne", which can both mean "see" in the perceptual sense or "think/feel/know" in the clausal complemental sense.
 
-
-
-MMT sentence semantics:
-*1) Yes, expected MRS
-*2) Yes, expected MRS
-*3) Yes, expected MRS
-4) Yes, expected MRS
-	*NOTE: (3 parses) Excess ambiguity expected in subj vs comp and where the decl-head-opt-subj rule fires
-5) -- not yet parsing due to negation not being implemented
-- 6) -- too many parses (72)
-- 7) -- too many parses (48)
-8) Yes, expected MRS, except coordination ambiguity
-*9) Yes, expected MRS
-*10) Yes, expected MRS, except that in MCB the sentence "cats chase dogs and sleep" would require anaphora resolution between the subject of chase and the subject of sleep, so "sleep" currently just has an unspecific 3rd-per masculine subject.
-11) -- not yet parsing <- question words have order change...
-12) -- not yet parsing
-*13) Yes, expected MRS
-	*NOTE: (4 parses) Excess ambiguity = PP phrase EX-COMP/EX-ADJ firing unnecessarily
-14) No, 
-*15) Yes, expected MRS
-*16) Yes, expected MRS
-	*NOTE: (5 parses) Excess ambiguity = PP phrase EX-COMP/EX-ADJ firing unnecessarily
-- 17) -- not yet parsing due to word order "nti"
-18) -- not yet parsing
-19)
-*20) Yes, expected MRS
-*21) Yes, expected MRS, with expected ambiguity ("what chased the dog" vs "what did the dog chase")
-22)
-23)
-24)
-- 25) -> fix REAS marker
-26)
-
-
-- Sentence 13: Excess ambiguity = PP phrase EX-COMP/EX-ADJ firing unnecessarily
-- Sentence 25 add REAS marker semantics
-- Rewrite nti copula rule? does it require word order change? (15-17)
-- Sentence 11 lost, how do deal with word order change
-
-- QUESTION: Our Nanti resource says that "Nanti noun phrases are consistently right-headed", meaning that the coordinating word "ntiri" is inflected with "o-" and "i-" depending on the gender of NP to the right of word. Fixing this could reduce generator ambiguity, but we're not sure how we would implement this with the existing matrix coordination rules.
-
-
-
-940 
-â€˜ o-nti i-parant-a-gise-ig-ak-a , maika iriro-egi i-nti kamagarini-egi .â€™ 
-NO_GLOSS 3fS-COP 3mS-engage.in.incest-EPV-CL:mess-PL-PERF-realis.refl , now 3m.PRO-PL 3mS-COP demon.type-PL NO_GLOSS 
-They've engaged in incest, now they are demons. 
+Tdl cleanup:
+- Force wh-pronoun-noun-lex to require [CASE nlc] (non-locative) inputs instead (so that it doesn't accept PPs as inputs) 
+	mcb.tdl: ---------------
+		wh-pronoun-noun-lex := ... &
+		  [ SYNSEM [ LOCAL [ CAT [ HEAD noun & [ CASE nlc ], ... ] ] ] ].
+- Replace verb_trans_compclause-verb-lex with two rules, one for propositions and one for questions, and recategorize compclause verbs to be either prop or ques
+	mcb.tdl: ---------------
+		verb_trans_compclause-prop-verb-lex := clausal-nom-verb-lex & clausal-second-arg-trans-lex-item &
+		  [ SYNSEM [ LOCAL.CAT.VAL.COMPS < [ LOCAL [ CAT [ HEAD verb &
+		                                                        [ FORM subordinate ],
+		                                                   WH.BOOL - ],
+		                                             CONT.HOOK.INDEX.SF prop ] ] >,
+		             NON-LOCAL.QUE.LIST < > ] ].
+		verb_trans_compclause-ques-verb-lex := clausal-nom-verb-lex & clausal-second-arg-trans-lex-item &
+		  [ SYNSEM [ LOCAL.CAT.VAL.COMPS < [ LOCAL [ CAT [ HEAD verb &
+		                                                        [ FORM subordinate ] ],
+		                                             CONT.HOOK.INDEX.SF ques ] ] >,
+		             NON-LOCAL.QUE.LIST < > ] ].
+	lexicon.tdl: ---------------
+		ne_2 := verb_trans_compclause-prop-verb-lex &
+		  [ STEM < "ne" >,
+		    SYNSEM.LKEYS.KEYREL.PRED "_think_v_rel" ].
+		sure := verb_trans_compclause-prop-verb-lex &
+		  [ STEM < "sure" >,
+		    SYNSEM.LKEYS.KEYREL.PRED "_remember-or-think_v_rel" ].
+		ogo := verb_trans_compclause-prop-verb-lex &
+		  [ STEM < "ogo" >,
+		    SYNSEM.LKEYS.KEYREL.PRED "_know_v_rel" ].
+		kogako := verb_trans_compclause-ques-verb-lex &
+		  [ STEM < "kogako" >,
+		    SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
 
 --------------------------------
+--------------------------------
 GRAMMAR UPDATES: 
+[ TO DO: which MMT items we worked with, before and after numbers ]
 
-Lexical cleanup:
+--------------------------------
+Lexical cleanup (reducing verb choice ambiguity, unifying MRS relations, adding missing words):
 - Comment out second meaning of verb "og" ("eat") and dump all additional meanings of "og" into the commented out lexical entry for now
 	og_1 := verb_trans-verb-lex &
 	  [ STEM < "og" >,
@@ -246,9 +215,25 @@ Lexical cleanup:
 	; og_2 := verb_trans-verb-lex &
 	;   [ STEM < "og" >,
 	;     SYNSEM.LKEYS.KEYREL.PRED "_do.until-or-put_v_rel" ].
+- Cleaned up lexical entry for "ne", which can mean "see" in the perceptual sense or "see/think" in the cognitive sense for mmt purpose
+	ne_2 := verb_trans_compclause-prop-verb-lex &
+	  [ STEM < "ne" >,
+	    SYNSEM.LKEYS.KEYREL.PRED "_think_v_rel" ].
+- Changed "ogio" predication "_follow_v_rel" to "_chase_v_rel" for mmt purpose
+- Added lexical entry for "ask", which was not in our corpus but was in Matsigenka texts. Made it a compclause for now to get it to parse, not sure if this is right or not:
+	kogako := verb_trans_compclause-verb-lex &
+	  [ STEM < "kogako" >,
+	    SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
+- Changed lexical entry for "*pito" to "*pito-tsi" to simplify the "alienable" noun situation for now (and comment out the -tsi suffix lexical rule in our mmt grammar)
+	*pito-tsi := noun_vessel-noun-lex &
+  		[ STEM < "*pito-tsi" >,
+- Specify gender for animal-noun-lex to remove ambiguity in animal subject MMT output.
+	animals-noun-lex := noun-lex & noun-pc-alien-poss-rule-dtr & noun-pc-poss-rule-dtr &
+	  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ PER 3rd,
+	                                       GEND m ] ].
 
-
-Word order cleanup:
+--------------------------------
+Word order cleanup (removing parse and generator ambiguity for word order):
 - Remove comp-head, subj-head, comp-head-2
 	rules.tdl: ---------------
 		; comp-head := comp-head-phrase.
@@ -256,7 +241,8 @@ Word order cleanup:
 		; comp-head-2 := comp-head-phrase-2.
 - Force all SUBJ-fulfilling rules to fire before COMPS-fulfilling rules (so that VSO is enabled but VOS is disallowed) by having all COMPS related rules require [ SUBJ < > ].
 	+ Replace basic-head-opt-subj-phrase (head daughter of optional subj phrase has COMPS requirement already fulfilled) with basic-head-opt-comp-phrase (head daughter of optional comp phrase has SUBJ requirement already fulfilled)
-	+ Add requirement to head-comp-phrase for head daught SUBJ to be empty.
+	+ Add requirement to head-comp-phrase for head daughter SUBJ to be empty.
+	+ Remove requirement to extracted-subj-phrase for head daughter COMPS to be empty and add requirement to extracted-comp-phrase for head daughter SUBJ to be empty to allow embedded question phrases like "who asked what the dogs chase" to also parse correctly.
 
 	mcb.tdl: ---------------
 		; basic-head-opt-subj-phrase :+ [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
@@ -264,18 +250,21 @@ Word order cleanup:
 		head-comp-phrase := basic-head-1st-comp-phrase & head-initial-head-nexus &
 		  [ HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD.INIT +,
 		                                VAL.SUBJ < >].	
+		extracted-comp-phrase := basic-extracted-comp-phrase &
+		  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < > ].
+		;  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ cons ].
+		extracted-subj-phrase := basic-extracted-subj-phrase &
+		  [ SYNSEM.LOCAL.CAT.HEAD verb ].
+		;  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < >,
+		;    SYNSEM.LOCAL.CAT.HEAD verb ].
 
-QUESTION:
-Initially we were trying to reduce the ambiguity in sentences by forcing head-comp-phrase to take only COMPS that had [SUBJ <>] valence features (effectively forcing subj to fire first, biasing VSO order and disallowing VOS). This fixed the ambiguity in the following sentence (#9):
-	i-ogia-i osheto *pito-tsi , i-ogia-i matsontsori osheto
-	3mS-chase-realis dog car-ALIEN , 3mS-chase-realis cat dog
-	Dogs chase cars and cats chase dogs
-However, we realized that this broke our question words on occasion, because the extracted subjects still have [SUBJ cons]. With our change, this sentence (#23) was no longer showing the expected behavior:
-	tya-ni kogako-ak-i tata i-ogia-i osheto ?
-	who.INTERR-ANIM ask-PERF-realis what.EMBED 3mS-chase-realis dogs ?
-	Who asked what the dogs chase
+--------------------------------
+Noun pc cleanup (removing parse and generator ambiguity for noun-pc combinatorial possibilities):
+- Noun pcs weren't consistently firing, so we reorganized them to fire in the correct order by hooking up the correct dtr inheritance (thereby also addressing Emily's comment last week: "But the affixes attach one at a time, so your morphology has to be set up so that the prefixes attach after the suffixes (and some prefix PC takes a suffix PC as its daughter) or vice versa. If they both attach to the root, you never get both in the same word.")
+	[ no tdl attached because we touched most noun-pc classes, but basically we reorganized the dtr supertypes ]
 
-Coordination cleanup:
+--------------------------------
+Coordination cleanup (removing parse ambiguity for NP coordination, improving accuracy of behavior for S coordination):
 - Remove np6 coordination rules for asyndetic coordination on NPs
 	rules.tdl: ---------------
 		; np6-top-coord := np6-top-coord-rule.
@@ -305,49 +294,8 @@ Coordination cleanup:
 		s1-top-coord := s1-top-coord-rule.
 		s1-bottom-coord := s1-bottom-coord-rule.
 
-
-WH- word cleanup:
-- Force wh-pronoun-noun-lex to require [CASE nlc] (non-locative) inputs instead (so that it doesn't accept PPs as inputs) 
-	mcb.tdl: ---------------
-		wh-pronoun-noun-lex := ... &
-		  [ SYNSEM [ LOCAL [ CAT [ HEAD noun & [ CASE nlc ], ... ] ] ] ].
-- Replace verb_trans_compclause-verb-lex with two rules, one for propositions and one for questions, and recategorize compclause verbs to be either prop or ques
-	mcb.tdl: ---------------
-		verb_trans_compclause-prop-verb-lex := clausal-nom-verb-lex & clausal-second-arg-trans-lex-item &
-		  [ SYNSEM [ LOCAL.CAT.VAL.COMPS < [ LOCAL [ CAT [ HEAD verb &
-		                                                        [ FORM subordinate ],
-		                                                   WH.BOOL - ],
-		                                             CONT.HOOK.INDEX.SF prop ] ] >,
-		             NON-LOCAL.QUE.LIST < > ] ].
-		verb_trans_compclause-ques-verb-lex := clausal-nom-verb-lex & clausal-second-arg-trans-lex-item &
-		  [ SYNSEM [ LOCAL.CAT.VAL.COMPS < [ LOCAL [ CAT [ HEAD verb &
-		                                                        [ FORM subordinate ] ],
-		                                             CONT.HOOK.INDEX.SF ques ] ] >,
-		             NON-LOCAL.QUE.LIST < > ] ].
-	lexicon.tdl: ---------------
-		ne_2 := verb_trans_compclause-prop-verb-lex &
-		  [ STEM < "ne" >,
-		    SYNSEM.LKEYS.KEYREL.PRED "_feel-or-know-or-meet-or-think.that-or-visit-or-watch.over_v_rel" ].
-		sure := verb_trans_compclause-prop-verb-lex &
-		  [ STEM < "sure" >,
-		    SYNSEM.LKEYS.KEYREL.PRED "_remember-or-think_v_rel" ].
-		ogo := verb_trans_compclause-prop-verb-lex &
-		  [ STEM < "ogo" >,
-		    SYNSEM.LKEYS.KEYREL.PRED "_know_v_rel" ].
-		kogako := verb_trans_compclause-ques-verb-lex &
-		  [ STEM < "kogako" >,
-		    SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
-
-Lexical cleanup:
-- Specify gender for animal-noun-lex to remove ambiguity in animal subject MMT output.
-	animals-noun-lex := noun-lex & noun-pc-alien-poss-rule-dtr & noun-pc-poss-rule-dtr &
-	  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ PER 3rd,
-	                                       GEND m ] ].
-
-Noun pc cleanup:
-- Noun pcs weren't consistently firing, so we reorganized them to fire in the correct order by hooking up the correct dtr inheritance (thereby also addressing Emily's comment last week: "But the affixes attach one at a time, so your morphology has to be set up so that the prefixes attach after the suffixes (and some prefix PC takes a suffix PC as its daughter) or vice versa. If they both attach to the root, you never get both in the same word.")
-
-Possessives cleanup:
+--------------------------------
+Possessives cleanup (removing generator ambiguity of poss prefixes by constraining person/gender):
 - Fix possessives to specify correct PER and GEND, which were previously underspecified, by making subclasses of noun-pc-poss-lex-rule.
 	mcb.tdl: ---------------
 		noun-pc-poss3m-lex-rule := noun-pc-poss-lex-rule &
@@ -374,10 +322,86 @@ Possessives cleanup:
 		%prefix (* pi-)
 		noun-pc-poss2-lex-rule.
 
+--------------------------------
+Nonlocative suffix cleanup (removing generator ambiguity on locative suffix attaching to all nouns):
+- Constrain intranstive and transitive verb class to have [CASE nlc] (non-locative) subject and complement to reduce MMT ambiguity. The copula PP is type aux-lex and will not inherit this change, allowing it to still take the nlc PP.
+	mcb.tdl: ---------------
+		transitive-verb-lex-super := main-verb-lex & transitive-lex-item &
+		  [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comps >,
+		    ARG-ST < [ LOCAL.CAT.HEAD noun &
+		                              [ CASE nlc ] ],
+		             #comps &
+		             [ LOCAL.CAT cat-sat &
+		                         [ VAL [ SPR < >,
+		                                 COMPS < > ],
+		                           HEAD noun &
+		                                [ CASE nlc ] ] ] > ].
+		intransitive-verb-lex := main-verb-lex & intransitive-lex-item &
+		  [ SYNSEM.LOCAL.CAT.VAL.COMPS < >,
+		    ARG-ST < [ LOCAL.CAT.HEAD noun &
+		               [ CASE nlc ] ] >,
+		    INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
+		                VERB-PC-ASPECT-FLAG - ] ].
 
+-----------------------------------
+-----------------------------------
+Section 4: Description of the status of each MMT item.
 
-
-
+MMT sentence semantics:
+1) eng: Works (4 results)
+   sje: (same)
+2) eng: Works (8 results)
+   sje: (same)
+3) eng: Does not work, MRS is different ("pron_rel" is unknown because mcb does not use overt pronouns for "I chase you" so there is no relation for "I" and "you")
+   sje: (same)
+4) eng: Works (40 results)
+   sje: Works (64 results)
+5) Does not work, MCB not yet parsing due to negation not being implemented
+6) eng: Does not work, MRS is different ("pron_rel" is unknown)
+   sje: (same)
+7) eng: Does not work, MRS is different ("pron_rel" is unknown)
+   sje: Does not work, sje has this sentence SKIPPED
+8) eng: Works (160 results)
+   sje: Works (96 results)
+   	*NOTE: A lot of ambiguity here is because our coordinating word "-ntiri" is inflected for the gender of the NP to its right, but we have not implemented gender agreement on this yet, so both coordinating words are generating, as well as both subject markers on the verb (since the coordinated NP has underspecified gender after coordination)
+9) eng: Works (64 results)
+   sje: (same)
+    *NOTE: A lot of ambiguity here is because MCB verbs take an object marker if the object is definite but not if it is indefinite, and we haven't implemented anything to constrain the definite-ness of the nouns
+10) eng: Does not work, unknown reason "transfer did 0 successful unifies and 0 failed ones"
+   	sje: Works (96 results)
+	 *SIDE NOTE: We checked the MRS and it seems correct, except that in MCB the sentence "cats chase dogs and sleep" would require anaphora resolution between the subject of chase and the subject of sleep, so "sleep" currently just has an unspecific 3rd-per masculine subject.
+11) eng: Works (8 results), but the output generations are not correct
+   	sje: (same)
+   	 *NOTE: We believe that in MCB the polar questions require the topic NP in a post-verbal position and the other argument NP needs to be pre-verbal. For this sentence, our "correct" generation should be "matsontsori i-ogia-i=ri osheto ?" but our generations are variants on "ogia-i matsontsori osheto". The polar questions in Mcb are generally distinguished by intonation; we are not sure what in Eng/Sje would signal to the Mcb generator to treat the sentence as a polar question with this word order change.
+12) Does not work, MCB not yet parsing due to non-copular APs not being implemented
+13) eng: Does not work, MRS is different ("_in_p_rel" in Eng is "_loc_p_rel" in Mcb)
+   	sje: Does not work, sje has this sentence SKIPPED
+14) eng: Does not work, MRS is different ("_in_p_rel" in Eng is "_loc_p_rel" in Mcb)
+   	sje: Does not work, sje has this sentence SKIPPED
+15) eng: Works (4 results)
+   	sje: Does not work, sje has this sentence SKIPPED
+16) eng: Does not work, MRS is different ("_in_p_rel" in Eng is "_loc_p_rel" in Mcb)
+   	sje: Does not work, sje has this sentence SKIPPED
+17) eng: Works (4 results)
+   	sje: Does not work, sje has this sentence SKIPPED
+18) eng: Does not work, MCB not yet parsing (we are not really sure how to translate this sentence either) because we don't have non-pronomial possession implemented
+	sje: (same)
+19) eng: Works (8 results)
+	sje: (same)
+20) eng: Does not work, MRS is different ("_wh_q_rel" in Eng is "_which_q_rel" in Mcb, and it is also complaining about "_person_n_rel" but that looks the same in Mcb so we don't understand why that one is not mapping)
+	sje: (same)
+21) eng: Does not work, MRS is different ("_wh_q_rel" in Eng is "_which_q_rel" in Mcb, and it is also complaining about "_thing_n_rel" but that looks the same in Mcb so we don't understand why that one is not mapping)
+	sje: (same)
+22) eng: Does not work, MRS is different (same as #21, plus "pron_rel" is unknown)
+	sje: (same)
+23) eng: Does not work, MRS is different (same as combination of all of the issues in #20-22)
+	sje: (same)
+24) eng: Does not work, MRS is different (same as combination of all of the issues in #20-22)
+	sje: (same)
+25) eng: Does not work, MRS is different ("_because_subord_rel" needs to be implemented in Mcb - we should be able to do this next week, just didn't get to it when we did clausal modifiers)
+	sje: Does not work, sje has this sentence SKIPPED
+25) eng: Does not work, MRS is different ("_after_subord_rel" is not specified in Mcb - this is generally underspecified in Mcb as clausal combinations often leave temporal succession to be determined from context)
+	sje: Does not work, sje has this sentence SKIPPED
 
 
 
