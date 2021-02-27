@@ -58,7 +58,6 @@ basic-bare-np-phrase :+ [ SYNSEM.LOCAL.CAT [ VAL.SPEC < >,
 basic-head-1st-comp-phrase :+ [ SYNSEM.LOCAL.CAT.POSSESSUM #poss,
     HEAD-DTR.SYNSEM.LOCAL.CAT.POSSESSUM #poss ].
 
-;; LINGDING
 ; basic-head-opt-subj-phrase :+ [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
 basic-head-opt-comp-phrase :+ [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < > ].
 
@@ -326,20 +325,20 @@ aux-lex := verb-lex & basic-icons-lex-item & verb-pc-subjmarker-rule-dtr &
 intransitive-verb-lex := main-verb-lex & intransitive-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < >,
     ARG-ST < [ LOCAL.CAT.HEAD noun &
-               [ CASE real-case ] ] >,
+               [ CASE nlc ] ] >,
     INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
                 VERB-PC-ASPECT-FLAG - ] ].
 
 transitive-verb-lex-super := main-verb-lex & transitive-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comps >,
     ARG-ST < [ LOCAL.CAT.HEAD noun &
-                              [ CASE real-case ] ],
+                              [ CASE nlc ] ],
              #comps &
              [ LOCAL.CAT cat-sat &
                          [ VAL [ SPR < >,
                                  COMPS < > ],
                            HEAD noun &
-                                [ CASE real-case ] ] ] > ].
+                                [ CASE nlc ] ] ] > ].
 
 transitive-verb-lex := transitive-verb-lex-super &
   [ INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
@@ -539,11 +538,13 @@ basic-head-filler-phrase :+ [ ARGS < [ SYNSEM.LOCAL.COORD - ],
            [ SYNSEM.LOCAL.COORD - ] > ].
 
 extracted-comp-phrase := basic-extracted-comp-phrase &
-  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ cons ].
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < > ].
+;  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ cons ].
 
 extracted-subj-phrase := basic-extracted-subj-phrase &
-  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < >,
-    SYNSEM.LOCAL.CAT.HEAD verb ].
+  [ SYNSEM.LOCAL.CAT.HEAD verb ].
+;  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < >,
+;    SYNSEM.LOCAL.CAT.HEAD verb ].
 
 ; Subject extraction
 
@@ -693,7 +694,7 @@ verb-pc-subjmarker-rule-dtr := word-or-lexrule.
 
 ;; NOUN PCS
 
-noun-pc-poss-lex-rule-super := infl-lex-rule & noun-pc-del_nomz-rule-dtr & 
+noun-pc-poss-lex-rule-super := infl-lex-rule & noun-pc-PL-rule-dtr & noun-pc-alienator-rule-dtr & noun-pc-alien-poss-rule-dtr & noun-pc-loc-rule-dtr & noun-pc-del_nomz-rule-dtr &
   [ INFLECTED #infl,
     DTR noun-pc-poss-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -754,7 +755,7 @@ noun-pc-poss1-lex-rule := noun-pc-poss-lex-rule &
 noun-pc-poss2-lex-rule := noun-pc-poss-lex-rule &
   [ C-CONT.RELS.LIST.FIRST.ARG0.PNG [ PER 2nd] ].
 
-noun-pc-PL-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & noun-pc-poss-rule-dtr &
+noun-pc-PL-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & noun-pc-alienator-rule-dtr & noun-pc-alien-poss-rule-dtr & noun-pc-loc-rule-dtr & noun-pc-del_nomz-rule-dtr &
   [ INFLECTED #infl,
     DTR noun-pc-PL-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -762,12 +763,14 @@ noun-pc-PL-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & noun-pc-po
 noun-pc12_lrt1-lex-rule := noun-pc-PL-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
 
-noun-pc-alienator-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & noun-pc-poss-rule-dtr & noun-pc-PL-rule-dtr & noun-pc-loc-rule-dtr &
+noun-pc-alienator-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & noun-pc-alien-poss-rule-dtr & noun-pc-loc-rule-dtr & noun-pc-del_nomz-rule-dtr &
   [ INFLECTED #infl,
     DTR noun-pc-alienator-rule-dtr &
         [ INFLECTED #infl ] ].
 
-noun-pc-alien-poss-lex-rule-super := infl-lex-rule & noun-pc-poss-rule-dtr & noun-pc-PL-rule-dtr & noun-pc-alienator-rule-dtr &
+noun-pc23_lrt1-lex-rule := noun-pc-alienator-lex-rule-super.
+
+noun-pc-alien-poss-lex-rule-super := infl-lex-rule & noun-pc-loc-rule-dtr & noun-pc-del_nomz-rule-dtr &
   [ INFLECTED #infl,
     DTR noun-pc-alien-poss-rule-dtr &
         [ INFLECTED #infl ] ].
@@ -814,9 +817,7 @@ noun-pc-alien-poss-lex-rule := noun-pc-alien-poss-lex-rule-super &
                                    SUBJ #subj,
                                    COMPS #comps ] ] ] ].
 
-noun-pc23_lrt1-lex-rule := noun-pc-alienator-lex-rule-super.
-
-noun-pc-loc-lex-rule-super := add-only-no-ccont-rule & noun-pc-poss-rule-dtr & noun-pc-PL-rule-dtr & noun-pc-alienator-rule-dtr & noun-pc-alien-poss-rule-dtr &
+noun-pc-loc-lex-rule-super := add-only-no-ccont-rule & noun-pc-del_nomz-rule-dtr &
   [ INFLECTED [ NOUN-PC-LOC-FLAG +,
                 VERB-PC-ASPECT-FLAG #verb-pc-aspect,
                 VERB-PC-IRREALIS-INFIX-FLAG #verb-pc-irrealis-infix,
@@ -833,14 +834,14 @@ noun-pc-loc-lex-rule := infl-lex-rule & noun-pc-loc-lex-rule-super &
 noun-pc-nonloc-lex-rule := const-lex-rule & noun-pc-loc-lex-rule-super &
   [ SYNSEM.LOCAL.CAT.HEAD.CASE nlc ].
 
-noun-pc-del_nomz-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & noun-pc-poss-rule-dtr & noun-pc-PL-rule-dtr & noun-pc-alienator-rule-dtr & noun-pc-alien-poss-rule-dtr & noun-pc-loc-rule-dtr &
+noun-pc-del_nomz-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & 
   [ INFLECTED #infl,
     DTR noun-pc-del_nomz-rule-dtr &
         [ INFLECTED #infl ] ].
 
 noun-pc-del_nomz-rule := noun-pc-del_nomz-lex-rule-super.
 
-noun-pc-temp_succ-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & noun-pc-poss-rule-dtr & noun-pc-PL-rule-dtr & noun-pc-alienator-rule-dtr & noun-pc-alien-poss-rule-dtr & noun-pc-loc-rule-dtr &
+noun-pc-temp_succ-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule &
   [ INFLECTED #infl,
     DTR pro-noun-lex &
         [ INFLECTED #infl ] ].
@@ -1248,20 +1249,19 @@ head-final-head-nexus := head-final &
 
 head-subj-phrase := decl-head-subj-phrase & head-initial-head-nexus.
 
-subj-head-phrase := decl-head-subj-phrase & head-final-head-nexus.
+; subj-head-phrase := decl-head-subj-phrase & head-final-head-nexus.
 
-;; LINGDING
 head-comp-phrase := basic-head-1st-comp-phrase & head-initial-head-nexus &
-  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT + ].
-;  [ HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ INIT + ],
-;                                VAL [ SUBJ < > ] ] ].
+;  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT + ].
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ INIT + ],
+                                VAL [ SUBJ < > ] ] ].
 
-comp-head-phrase := basic-head-1st-comp-phrase & head-final-head-nexus &
-  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT - ].
+; comp-head-phrase := basic-head-1st-comp-phrase & head-final-head-nexus &
+;   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT - ].
 
 head-comp-phrase-2 := basic-head-2nd-comp-phrase & head-initial-head-nexus.
 
-comp-head-phrase-2 := basic-head-2nd-comp-phrase & head-final-head-nexus.
+; comp-head-phrase-2 := basic-head-2nd-comp-phrase & head-final-head-nexus.
 
 ; Bare NP phrase.  Consider modifying the PRED value of the quantifier relation
 ; introduced to match the semantic effect of bare NPs in your language.

@@ -1597,11 +1597,12 @@ viro_2 := verb301-verb-lex &
 
 ne_1 := verb_trans-verb-lex &
   [ STEM < "ne" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_find-or-see_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "_find-or-see-or-meet-or-visit-or-watch.over_v_rel" ].
 
 ne_2 := verb_trans_compclause-prop-verb-lex &
   [ STEM < "ne" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_feel-or-know-or-meet-or-think.that-or-visit-or-watch.over_v_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "_think_v_rel" ].
+; "_feel-or-know-or-think.that_v_rel" ].
 
 sure := verb_trans_compclause-prop-verb-lex &
   [ STEM < "sure" >,
