@@ -1,173 +1,51 @@
-###########################################################################################
+##########################################################################################
 #LAB 8 write-up
 #NAME: Hanshu Ding, Ling Tu
 #LANGUAGE: mcb
 ##########################################################################################
 
-
+######################################################
 1. A description of how the phenomenon you picked to work on is expressed in your language, including IGT.
+	#phenomenon: Wh-questions
+	#description:
+	WH-question in Matsigenka is similar to the interrogation patterns in English. The interrogation pronoun is put in the sentence initial position. The common interrogate gloss is presented below.
+		     interrogative          gloss
+			tata                `what'
+			tyani        `who'/'which one (anim)'
+			tyati        `which one (inanimate)'
+			tya(ra)             `where', `how'
+  While the subject or the object is the questioning target, we omit the subject/object marker to give a hint about it.
+  ---answering some concerns Emily has on canvas: The overt subject and object NPs can co-occur with both the subj/obj marker. As for the wh-questions, I believe that only target questioning NP will be omitted. ---
+When a peripheral argument (neither object nor subject) is being interrogated, neither subject marker nor object marker would be omitted. 
+   Also, the word ‘why’ in Matsigenka cannot be presented as a single word, but a word ‘where/how’ plus a light verb ‘happen’. The light verb 'happen' here can be inflected with realis and subject markers. The implementation for word 'why' is out of the range we would like to touch for now, we are mainly focusing on implementing the word 'what' and 'who'. 
+ (The word 'tyani and 'tyati' is represent as an independent word in Nanti resources, however in our corpus these words are seperated as 'tya-ni' and 'tya-ti', where the GLOSS are 'how.EMBED-ANIM'. To make it easier to deal with, we set our lexicon for 'who' as 'tya-ni'.) 
 
-2. A description of your implementation of this phenomenon, including:
-	-A prose description of the analysis you implemented
-	-The specific tdl you added/changed (paste it into the file)
-	-IGT I can use to test the analysis
-	-Any questions you have/things you want me to look into.
+	#some IGT:
+		tya-ni ne-ak-i=ri
+		who.INTERR-AINM see-PERF-realis=3mO
+		Who saw him?
 
-3. A description of any clean up work you did to get generation down to a reasonable number of outputs, including:
-	-Which MMT items you worked on in this way
-	-What the sources of extra generation output were
-	-What changes you made to grammar (described in prose and illustrated with tdl)
-	-Before/after numbers on how many outputs you're getting
+		tya-ni i=ne-ak-i
+		who.INTERR-ANIM 3mS=see-PERF-realis
+		Whom did he see?
 
-4. A description of the status of each MMT item, with sje as source and with eng as source. Possible statuses:
-	-Works! (But document how many outputs you get)
-	-Doesn't work, because your language string doesn't parse and/or isn't available.
-	-Doesn't work, because MRSes are different. Indicate how they differ.
-	-Doesn't work, MRSes look the same, not sure what's going on.
-	-A description of the performance of your final grammar for this week on the test suite and test corpus, as compared to your starting grammar (see details above).
+		tata i-og-ak-a
+		what.INTERR 3mS-eat-PERF-realis.refl
+		What did he eat?
 
+###################################################################
+2. A description of your implementation of this phenomenon:
 
-
-02.23:----------
-1. Pick one more phenomenon: wh questions/negation
-     - Read the resources
-     - Post it on canvas
-     - Make testsuite
-2. Go over the whole lab process, distribute some assignment
-     - generation output ambiguity clean up:
-	^ Free word order (expected).
-	^ Gender ambiguity in dog/cat (we didn't specify gender yet on animals but we can fix this, as they are masculine).
-	^ Locative marker firing optionally on all nouns (see Question #1).
-	^ Object markers firing optionally on "nti" NP copula verb (see Question #2).
---------------------------------
--take passive out
--EPV/EPC to lexical rule?
-
-
-
--translate sentences
-
-1. Dogs sleep
-2. Dogs chase cars
-3. I chase you
-4. Dogs eat
-5. The dogs dont chase cars
-6. I think that you know that dogs chase cars
-7. I ask whether you know that dogs chase cars
-8. Cats and dogs chase cars
-9. Dogs chase cars and cats chase dogs
-10. Cats chase dogs and sleep
-11. Do cats chase dogs
-12. Hungry dogs eat
-13. Dogs in the park eat
-14. Dogs eat in the park
-15. The dogs are hungry
-16. The dogs are in the park
-17. The dogs are the cats
-18. The dog s car sleeps
-19. My dogs sleep
-20. Who sleeps
-21. What do the dogs chase
-22. What do you think the dogs chase
-23. Who asked what the dogs chase
-24. I asked what the dogs chased
-25. The dog sleeps because the cat sleeps
-26. The dog sleeps after the cat sleeps
-
-
-Ding:--------------------
-The dogs don‘t chase cars === The spider monkeys don't follow canoes
-Dogs eat === Spider monkeys eat
-Do cats chase dogs === Do jaguars follow spider monkeys
-Hungry dogs eat === Hungry spider monkeys eat
-The dog’s car sleeps === The spider monkey's canoe sleeps
-My dogs sleep === My spider monkeys sleep
-Who sleeps 
-What do the dogs chase === What do the spider monkeys follow
-****What do you think the dogs chase === what do you think the spider monkeys follow
-Who asked what the dogs chase === Who asked what the spider monkeys follow
-
-
---wh question on canvas 
-
-
-
-1. Translate and test suite
- Reading resources (wh questions, yes/no questions)
-	-do 
-	-negation
-2. Post sth on canvas
-3. 
-
-
-
---------------------------------------------------
-Translations remapping:
-Cat = jaguar (matsontsori)
-Dog = spider monkey (osheto)
-Park = forest (inkenishi)
-Car = canoe (*pito)
-
-
-Existing relations:
-- sleep (mag) - GLOSS: sleep
-- eat (seka) - GLOSS: eat
-- follow (ogia) - GLOSS: follow
-- hungry (taseg) - GLOSS: be.hungry
-
-Remapped relations:
-- cat -> jaguar (matsontsori) - GLOSS: jaguar								-> _jaguar_n_rel
-- dog -> spider monkey (osheto) - GLOSS: spider.monkey						-> _dog_n_rel
-- car -> canoe (*pito) - GLOSS: canoe (always appears as canoe-ALIEN) 		-> _car_n_rel
-- park -> forest (inkenishi) - GLOSS: forest (always appears as forest=LOC)	-> _park_n_rel
-- ask -> tell (kamant) - GLOSS: tell -> _tell_v_rel
-
-Adding to lexicon:
-- canoe (*pito) - This was in sentences 1350 and 1790, but not in our lexicon; guessing with very low probability those two sentences both just happened to be in the set held out from training?
-- to be hungry (taseg) - This was in our resource grammar "Matsigenka Texts Written By Matsigenka Authors" (2013, Pereira and Pereira)
-
-
-
-
--------
-#2
-
-
-
-
-
-
-
-
--------
-Yes/no questions:
--distinguished by a rising-falling contour over the last syllables of the utterance
--relatively fixed NP position:
-	-argument NP --> pre-subject position
-	-topic NP --> right margin
-
-
-
-ask ---> tell
-
-
--------
--tsi: the input of noun-pc for -tsi 
-
-
-manu_object-noun-lex
-noun-pc-alienator-rule-dtr
-
-
-
-
------------------------------------
-
-WH- QUESTIONS IMPLEMENTATION:
 
 Choices file:
-Added output of wh- questions from grammar matrix
-	tata, tya-ni, tya=ra
+We went back to the grammar matrix:
+ -add a wh-question noun class, which includes two nouns: 
+	1. tata -- '_thing_n_rel'
+	2. tya-ni -- '_person_rel'
+ -add aa adverb:
+	tya=ra - 'why'
+
+Based on the grammar we generated from the matrix, which the wh-qestions is implemented:
 
 Tdl cleanup:
 - Force wh-pronoun-noun-lex to require [CASE nlc] (non-locative) inputs instead (so that it doesn't accept PPs as inputs) 
@@ -201,12 +79,62 @@ Tdl cleanup:
 		  [ STEM < "kogako" >,
 		    SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
 
---------------------------------
---------------------------------
-GRAMMAR UPDATES: 
-[ TO DO: which MMT items we worked with, before and after numbers ]
+#IGT:
+	tya-ni mag-i ?
+	who.INTERR-ANIM sleep-realis ?
+	Who sleeps ?
 
---------------------------------
+	tata i-ogia-i osheto ?
+	what.INTERR 3mS-chase-realis dogs ?
+	What do the dogs chase ?
+
+	tya-ni kogako-ak-i tata i-ogia-i osheto ?
+	who.INTERR-ANIM ask-PERF-realis what.EMBED 3mS-chase-realis dogs ?
+	Who asked what the dogs chase ?
+
+
+#########################################################
+3. A description of any clean up work you did to get generation down to a reasonable number of outputs, including:
+
+
+MMT before/after eng2mcb:
+	(** marks reduced ambiguity
+	 -- marks newly working parses)
+
+	** 1) 24 results -> 4 results
+	-- 2) not parsing -> 8 results
+	   3) not parsing -> not parsing
+	** 4) 240 results -> 40 results
+	   5) not parsing -> not parsing
+	   5) not parsing -> not parsing
+	   6) not parsing -> not parsing
+	   7) not parsing -> not parsing
+	-- 8) not parsing -> 160 results
+	-- 9) not parsing -> 64 results
+	   10) not parsing -> not parsing
+	-- 11) not parsing -> 8 results
+	   12) not parsing -> not parsing
+	   13) not parsing -> not parsing
+	   14) not parsing -> not parsing
+	** 15) 24 results -> 4 results
+	   16) not parsing -> not parsing
+	** 17) 216 results -> 4 results
+	   18) not parsing -> not parsing
+	-- 19) not parsing -> 8 results
+	   20) not parsing -> not parsing
+	   21) not parsing -> not parsing
+	   22) not parsing -> not parsing
+	   23) not parsing -> not parsing
+	   24) not parsing -> not parsing
+	   25) not parsing -> not parsing
+	   26) not parsing -> not parsing
+
+Reduced the following ambiguity sources for sentences described in the grammar below, as well as a few other cleanup changes:
+- Sentence word order
+- Spurious adding of locative suffix "-ku"
+- Gender underspecification of nouns
+
+-------------------------------------
 Lexical cleanup (reducing verb choice ambiguity, unifying MRS relations, adding missing words):
 - Comment out second meaning of verb "og" ("eat") and dump all additional meanings of "og" into the commented out lexical entry for now
 	og_1 := verb_trans-verb-lex &
@@ -232,7 +160,7 @@ Lexical cleanup (reducing verb choice ambiguity, unifying MRS relations, adding 
 	  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ PER 3rd,
 	                                       GEND m ] ].
 
---------------------------------
+-----------------------------------
 Word order cleanup (removing parse and generator ambiguity for word order):
 - Remove comp-head, subj-head, comp-head-2
 	rules.tdl: ---------------
@@ -258,12 +186,12 @@ Word order cleanup (removing parse and generator ambiguity for word order):
 		;  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < >,
 		;    SYNSEM.LOCAL.CAT.HEAD verb ].
 
---------------------------------
+------------------------------------
 Noun pc cleanup (removing parse and generator ambiguity for noun-pc combinatorial possibilities):
 - Noun pcs weren't consistently firing, so we reorganized them to fire in the correct order by hooking up the correct dtr inheritance (thereby also addressing Emily's comment last week: "But the affixes attach one at a time, so your morphology has to be set up so that the prefixes attach after the suffixes (and some prefix PC takes a suffix PC as its daughter) or vice versa. If they both attach to the root, you never get both in the same word.")
 	[ no tdl attached because we touched most noun-pc classes, but basically we reorganized the dtr supertypes ]
 
---------------------------------
+------------------------------------
 Coordination cleanup (removing parse ambiguity for NP coordination, improving accuracy of behavior for S coordination):
 - Remove np6 coordination rules for asyndetic coordination on NPs
 	rules.tdl: ---------------
@@ -294,7 +222,7 @@ Coordination cleanup (removing parse ambiguity for NP coordination, improving ac
 		s1-top-coord := s1-top-coord-rule.
 		s1-bottom-coord := s1-bottom-coord-rule.
 
---------------------------------
+--------------------------------------
 Possessives cleanup (removing generator ambiguity of poss prefixes by constraining person/gender):
 - Fix possessives to specify correct PER and GEND, which were previously underspecified, by making subclasses of noun-pc-poss-lex-rule.
 	mcb.tdl: ---------------
@@ -322,7 +250,7 @@ Possessives cleanup (removing generator ambiguity of poss prefixes by constraini
 		%prefix (* pi-)
 		noun-pc-poss2-lex-rule.
 
---------------------------------
+-------------------------------------
 Nonlocative suffix cleanup (removing generator ambiguity on locative suffix attaching to all nouns):
 - Constrain intranstive and transitive verb class to have [CASE nlc] (non-locative) subject and complement to reduce MMT ambiguity. The copula PP is type aux-lex and will not inherit this change, allowing it to still take the nlc PP.
 	mcb.tdl: ---------------
@@ -343,9 +271,9 @@ Nonlocative suffix cleanup (removing generator ambiguity on locative suffix atta
 		    INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -,
 		                VERB-PC-ASPECT-FLAG - ] ].
 
------------------------------------
------------------------------------
-Section 4: Description of the status of each MMT item.
+
+###############################################################
+4: Description of the status of each MMT item.
 
 MMT sentence semantics:
 1) eng: Works (4 results)
@@ -400,11 +328,70 @@ MMT sentence semantics:
 	sje: (same)
 25) eng: Does not work, MRS is different ("_because_subord_rel" needs to be implemented in Mcb - we should be able to do this next week, just didn't get to it when we did clausal modifiers)
 	sje: Does not work, sje has this sentence SKIPPED
-25) eng: Does not work, MRS is different ("_after_subord_rel" is not specified in Mcb - this is generally underspecified in Mcb as clausal combinations often leave temporal succession to be determined from context)
+26) eng: Does not work, MRS is different ("_after_subord_rel" is not specified in Mcb - this is generally underspecified in Mcb as clausal combinations often leave temporal succession to be determined from context)
 	sje: Does not work, sje has this sentence SKIPPED
 
 
+##########################################################
+5.A description of the performance of your final grammar for this week on the test suite and test corpus, as compared to your starting grammar.
 
+	(1). How many items parsed?
+	Corpus:
+	- original:		39
+	- new:			32
+	Testsuite: 
+	- original:		67
+	- new:			58
+	MMT:
+	- original:		10
+	- new:			19
+
+	(2). What is the average number of parses per parsed item?
+	Corpus:
+	- original:		53.05
+	- new:			67.72
+	Testsuite: (well-formed sentences)
+	- original:		4.32
+	- new:			8.50
+	MMT:
+	- original:		3.30
+	- new:			4.16
+
+	(3). How many parses did the most ambiguous item receive?
+	Corpus:
+	- original:		752
+	- new:			784
+	Testsuite:
+	- original:		40
+	- new:			88
+	MMT:
+	- original:		10
+	- new:			22
+
+	This week, since we were focusing on the MMT in particular, we made a separate test suite for just MMT sentences and focused on performance of those (with two sentences skipped). We are including "Testsuite", which is mostly non-MMT sentences from previous labs, but we feel several of these sentences need to be rewritten to accomodate our new bias for VSO word order. Though many of our stats have gotten worse (overall corpus parsing, increased ambiguity), based purely on the metric of number of MMT sentences parsed, we have almost doubled our coverage.
+	*NOTE: As per usual, since we have both a mcb_lab8_final and mcb_lab8_mmt, our tsdb testsuites can be found in mcb_lab8_final.
+
+	(4). What new sources of ambiguity can you identify?
+		- Much of our additional ambiguity comes from the addition of the WH-question framework. The infrastructure for these involves EX-COMP/EX-SUBJ/EX-ADJ unary branching rules that have added a lot of ambiguity to our parsing. So, after adding WH-questions our ambiguity actually exploded and a lot of work we did was cutting down ambiguity from there. Much of this ambiguity is expected, though, because of the argument dropping in Mcb can lead much NP resolution up to context.
+
+
+
+
+------------------------------------------------
+###Translations mapping/remapping###
+	Existing relations:
+	- sleep (mag) - GLOSS: sleep
+	- eat (seka) - GLOSS: eat
+	- hungry (taseg) - GLOSS: be.hungry
+	Remapped relations:
+	- cat -> jaguar (matsontsori) - GLOSS: jaguar -> _jaguar_n_rel
+	- dog -> spider monkey (osheto) - GLOSS: spider.monkey	-> _dog_n_rel
+	- car -> canoe (*pito) - GLOSS: canoe (always appears as canoe-ALIEN) -> _car_n_rel
+	- park -> forest (inkenishi) - GLOSS: forest (always appears as forest=LOC) -> _park_n_rel
+	- chase -> follow (ogia) - GLOSS: follow -> _chase_v_rel
+	Adding to lexicon:
+	- canoe (*pito) - This was in sentences 1350 and 1790, but not in our lexicon; 
+	- to be hungry (taseg) - This was in our resource grammar "Matsigenka Texts Written By Matsigenka Authors" (2013, Pereira and Pereira)
 
 
 
