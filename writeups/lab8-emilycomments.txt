@@ -1,0 +1,74 @@
+  ---answering some concerns Emily has on canvas: The overt subject and object NPs can co-occur with both the subj/obj marker. As for the wh-questions, I believe that only target questioning NP will be omitted. ---
+
+EMB> I'm not sure what the second sentence means here. Surely the wh NP itself isn't omitted?
+
+- Force wh-pronoun-noun-lex to require [CASE nlc] (non-locative) inputs instead (so that it doesn't accept PPs as inputs) 
+
+EMB> I think you mean so that it can't be the daughter of the PP over NP rule. This is a lexical type; it doesn't take any "inputs".
+
+	tya-ni kogako-ak-i tata i-ogia-i osheto ?
+	who.INTERR-ANIM ask-PERF-realis what.EMBED 3mS-chase-realis dogs ?
+	Who asked what the dogs chase ?
+
+EMB> hooray!
+
+	   3) not parsing -> not parsing
+
+EMB> Technically, it's that your grammar isn't *generating* anything for
+those inputs.
+
+- Fix possessives to specify correct PER and GEND, which were previously underspecified, by making subclasses of noun-pc-poss-lex-rule.
+	mcb.tdl: ---------------
+		noun-pc-poss3m-lex-rule := noun-pc-poss-lex-rule &
+		  [ C-CONT.RELS.LIST.FIRST.ARG0.PNG [ PER 3rd,
+		                                      GEND m] ].
+		noun-pc-poss3f-lex-rule := noun-pc-poss-lex-rule &
+		  [ C-CONT.RELS.LIST.FIRST.ARG0.PNG [ PER 3rd,
+		                                      GEND f] ].
+		noun-pc-poss1-lex-rule := noun-pc-poss-lex-rule &
+		  [ C-CONT.RELS.LIST.FIRST.ARG0.PNG [ PER 1st] ].
+		noun-pc-poss2-lex-rule := noun-pc-poss-lex-rule &
+		  [ C-CONT.RELS.LIST.FIRST.ARG0.PNG [ PER 2nd] ].
+
+EMB> Is that the path to the possessor variable? (Seems like a slightly odd path to be using, anyway.)
+
+21) eng: Does not work, MRS is different ("_wh_q_rel" in Eng is "_which_q_rel" in Mcb, and it is also complaining about "_thing_n_rel" but that looks the same in Mcb so we don't understand why that one is not mapping)
+
+EMB> This can be fixed with a transfer rule in lab 9.
+
+   	*NOTE: A lot of ambiguity here is because our coordinating word "-ntiri" is inflected for the gender of the NP to its right, but we have not implemented gender agreement on this yet, so both coordinating words are generating, as well as both subject markers on the verb (since the coordinated NP has underspecified gender after coordination)
+
+EMB> The conjunction gets inflected for agreement? That's unusual!!
+
+9) eng: Works (64 results)
+   sje: (same)
+    *NOTE: A lot of ambiguity here is because MCB verbs take an object marker if the object is definite but not if it is indefinite, and we haven't implemented anything to constrain the definite-ness of the nouns
+
+EMB> How does that get to 64 results, though?
+
+10) eng: Does not work, unknown reason "transfer did 0 successful unifies and 0 failed ones"
+   	sje: Works (96 results)
+	 *SIDE NOTE: We checked the MRS and it seems correct, except that in MCB the sentence "cats chase dogs and sleep" would require anaphora resolution between the subject of chase and the subject of sleep, so "sleep" currently just has an unspecific 3rd-per masculine subject.
+
+EMB> I think the first thing here is to check where it fails. Use the other alternatives in translate-line.sh to see if there is actually transfer output.
+
+   	 *NOTE: We believe that in MCB the polar questions require the topic NP in a post-verbal position and the other argument NP needs to be pre-verbal. For this sentence, our "correct" generation should be "matsontsori i-ogia-i=ri osheto ?" but our generations are variants on "ogia-i matsontsori osheto". The polar questions in Mcb are generally distinguished by intonation; we are not sure what in Eng/Sje would signal to the Mcb generator to treat the sentence as a polar question with this word order change.
+
+EMB> This is a little surprsing to me as a pattern. What is the source of the generalization?
+
+13) eng: Does not work, MRS is different ("_in_p_rel" in Eng is "_loc_p_rel" in Mcb)
+   	sje: Does not work, sje has this sentence SKIPPED
+14) eng: Does not work, MRS is different ("_in_p_rel" in Eng is "_loc_p_rel" in Mcb)
+   	sje: Does not work, sje has this sentence SKIPPED
+
+EMB> Can be addressed with transfer rules
+
+20) eng: Does not work, MRS is different ("_wh_q_rel" in Eng is "_which_q_rel" in Mcb, and it is also complaining about "_person_n_rel" but that looks the same in Mcb so we don't understand why that one is not mapping)
+
+EMB> Please change to wh_q_rel in mcb to match the eng grammar. As for _person_n_rel, it's possible that it's complaining about the PNG features somehow, maybe? What exactly is the error message?
+
+26) eng: Does not work, MRS is different ("_after_subord_rel" is not specified in Mcb - this is generally underspecified in Mcb as clausal combinations often leave temporal succession to be determined from context)
+	sje: Does not work, sje has this sentence SKIPPED
+
+EMB> Transfer rule territory again, I think.
+
