@@ -1,30 +1,26 @@
-osheto imag
-osheto iogia pitotsi
-noogianpi
+i-mag-i osheto 
+i-ogia-i osheto *pito-tsi
+no-ogia-i=npi
+i-og-a osheto 
 SKIPPED
+no-ne-i=ri pi-ogo-i=ra i-ogia-i=ra osheto *pito-tsi
+no-kogako-i pi-ogo-i=rika i-ogia-i=ra osheto *pito-tsi
+i-ogia-i matsontsori i-ntiri osheto *pito-tsi
+i-ogia-i osheto *pito-tsi , i-ogia-i matsontsori osheto
+i-ogia-i matsontsori osheto i-mag-i
+matsontsori i-ogia-i=ri osheto ?
+osheto taseg-ri i-og-a
+i-n-i inkenishi=ku osheto i-og-a
+i-og-a inkenishi=ku osheto 
+i-taseg-i osheto 
+i-n-i osheto inkenishi=ku
+osheto i-nti matsontsori
 SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-SKIPPED
-
-
+i-mag-i no-osheto-re
+tya-ni mag-i ?
+tata i-ogia-i osheto ?
+tata pi-ne-i=ri i-ogia-i osheto ?
+tya-ni kogako-ak-i tata i-ogia-i osheto ?
+no-kogako-i tata i-ogia-i osheto
+i-mag-i osheto i-mag-i=tari matsontsori 
+i-mag-i matsontsori, inpo i-mag-i osheto
