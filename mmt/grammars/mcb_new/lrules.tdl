@@ -1,0 +1,6 @@
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+noun-pc_nonloc-lex := noun-pc-nonloc-lex-rule.
+
+verb-pc-ipfv-lex := verb-pc-ipfv-lex-rule.
+
+nosubjmark := verb-pc-nosubjmark-lex-rule.
