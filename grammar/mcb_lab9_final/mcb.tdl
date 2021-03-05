@@ -1433,24 +1433,40 @@ vp3-bottom-coord-rule := conj-first-bottom-coord-rule & vp-bottom-coord-phrase &
 ;;; Coordination Strategy 4
 
 np4-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule &
-  [ SYNSEM.LOCAL.COORD-STRAT "4" ].
+  [ SYNSEM.LOCAL [ COORD-STRAT "4",
+                   CAT [ HEAD [ CASE #case ] ] ],
+    LCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ],
+    RCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ] ].
 
 np4-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule &
-  [ SYNSEM.LOCAL.COORD-STRAT "4" ].
+  [ SYNSEM.LOCAL [ COORD-STRAT "4",
+                   CAT [ HEAD [ CASE #case ] ] ],
+    RCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ] ].
 
 np4-bottom-coord-rule := conj-first-bottom-coord-rule & np-bottom-coord-phrase &
-  [ SYNSEM.LOCAL.COORD-STRAT "4" ].
+  [ SYNSEM.LOCAL [ COORD-STRAT "4",
+                   CAT [ HEAD [ CASE #case ] ] ],
+    NONCONJ-DTR.SYNSEM.LOCAL [ CAT [ HEAD [ CASE #case ] ] ],
+                               C-CONT [ HOOK [ INDEX [ PNG [ GEND f ] ] ] ] ].
 
 ;;; Coordination Strategy 5
 
 np5-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule &
-  [ SYNSEM.LOCAL.COORD-STRAT "5" ].
+  [ SYNSEM.LOCAL [ COORD-STRAT "5",
+                   CAT [ HEAD [ CASE #case ] ] ],
+    LCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ],
+    RCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ] ].
 
 np5-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule &
-  [ SYNSEM.LOCAL.COORD-STRAT "5" ].
+  [ SYNSEM.LOCAL [ COORD-STRAT "5",
+                   CAT [ HEAD [ CASE #case ] ] ],
+    RCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ] ].
 
 np5-bottom-coord-rule := conj-first-bottom-coord-rule & np-bottom-coord-phrase &
-  [ SYNSEM.LOCAL.COORD-STRAT "5" ].
+  [ SYNSEM.LOCAL [ COORD-STRAT "5",
+                   CAT [ HEAD [ CASE #case ] ] ],
+    NONCONJ-DTR.SYNSEM.LOCAL [ CAT [ HEAD [ CASE #case ] ] ],
+                               C-CONT [ HOOK [ INDEX [ PNG [ GEND m ] ] ] ] ].
 
 ;;; Coordination Strategy 6
 
