@@ -353,7 +353,6 @@ transitive-noninflecting-verb-lex := transitive-verb-lex-super &
   [ INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG +,
                 VERB-PC-ASPECT-FLAG + ] ].
 
-;;FIX
 clausal-verb-lex := main-verb-lex & 
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comps >,
     ARG-ST < [ LOCAL.CAT.HEAD noun ],
@@ -1004,7 +1003,6 @@ verb-pc14-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-25-
 
 verb-pc14_lrt1-lex-rule := verb-pc14-lex-rule-super.
 
-;;FIX
 verb-pc-objmarker-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-clausalmods-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc69-rule-dtr & verb-pc86-rule-dtr &
   [ INFLECTED #infl,
     DTR verb-pc-25-or-verb-pc-objmarker-rule-dtr &
@@ -1082,7 +1080,6 @@ verb-pc-25-lex-rule-super := add-only-no-ccont-rule & infl-lex-rule & verb-pc-cl
 
 verb-pc25_lrt1-lex-rule := verb-pc-25-lex-rule-super.
 
-;;FIX
 verb-pc-subjmarker-lex-rule-super := add-only-no-ccont-rule & verb-pc-25-or-verb-pc-objmarker-rule-dtr & verb-pc-appl-rule-dtr & verb-pc-argnumber-rule-dtr & verb-pc-aspect-rule-dtr & verb-pc-classifiers-rule-dtr & verb-pc-clausalmods-rule-dtr & verb-pc-directional-or-verb-pc24-or-verb-pc88-rule-dtr & verb-pc-epv-postother-rule-dtr & verb-pc-realis-suffix-subjfoc-rule-dtr & verb-pc-realisirrealis-suffix-rule-dtr & verb-pc103-rule-dtr & verb-pc104-rule-dtr & verb-pc109-rule-dtr & verb-pc14-rule-dtr & verb-pc2-rule-dtr & verb-pc31-rule-dtr & verb-pc32-rule-dtr & verb-pc33-rule-dtr & verb-pc34-rule-dtr & verb-pc37-rule-dtr & verb-pc40-rule-dtr & verb-pc5-rule-dtr & verb-pc69-rule-dtr & verb-pc74-rule-dtr & verb-pc78-rule-dtr & verb-pc86-rule-dtr & verb-pc89-rule-dtr & verb-pc9-rule-dtr & verb-pc99-rule-dtr &
   [ INFLECTED [ NOUN-PC-LOC-FLAG #noun-pc-loc,
                 VERB-PC-ASPECT-FLAG #verb-pc-aspect,
@@ -1096,8 +1093,6 @@ verb-pc-subjmarker-lex-rule-super := add-only-no-ccont-rule & verb-pc-25-or-verb
                 VERB-PC-REALISIRREALIS-SUFFIX-FLAG #verb-pc-realisirrealis-suffix, 
                 VERB-PC-SUBJMARKER-FLAG - ] ] ].
 
-;;FIX
-
 verb-pc-overt-subjmark-lex-rule := verb-pc-subjmarker-lex-rule-super & infl-lex-rule & 
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ < canonical-synsem > ].
 ;  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < unexpressed-reg > ].
@@ -1108,14 +1103,6 @@ verb-pc-no-subjmark-lex-rule := verb-pc-subjmarker-lex-rule-super & const-lex-ru
 ;   [ SYNSEM.LOCAL.CAT.VAL.SUBJ < non-canonical &
 ;                                 [ OPT -,
 ; 						                      LOCAL.CONT.HOOK.INDEX.PNG.PER 3rd ] > ].
-
-;verb-pc-nosubjmark-lex-rule := verb-pc-subjmarker-lex-rule-super & const-lex-rule &
-;  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL.CONT.HOOK.INDEX.PNG.PER 3rd ] > ].
-
-;; who V
-;; foc-pron V
-;; *a cat V
-;; a cat 3f-V
 
 verb-pc-subj3m-lex-rule := verb-pc-overt-subjmark-lex-rule &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 3rd,

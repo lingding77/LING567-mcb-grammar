@@ -2226,24 +2226,6 @@ basic-head-opt-comp-phrase := unary-nonloc-phrase & head-only &
 ; down to decl-head-opt-subj-phrase, since we might *not* want it for
 ; imperatives.
 
-
-;; NOTES MCB QUESTION:
-;
-; canonical-synsem := synsem-min &
-;   [ MODIFIED xmod ].                                ; canonical-synsem
-;   [ L-QUE bool,                                     ; synsem
-;     L-PERIPH luk,
-;     R-PERIPH luk ].
-; 
-; unexpressed-reg := synsem-min &
-;   [ LOCAL.CONT.HOOK.INDEX event-or-ref-index ].     ; non-canonical
-;   [ NON-LOCAL [ SLASH.LIST < >,                     ; unexpressed
-;     REL.LIST < >,
-;     QUE.LIST < > ] ].
-;   [ L-QUE bool,                                     ; synsem
-;     L-PERIPH luk,
-;     R-PERIPH luk ].
-
 basic-head-opt-subj-phrase := unary-nonloc-phrase & head-only &
   [ INFLECTED #infl,
     SYNSEM canonical-synsem &
@@ -2259,8 +2241,6 @@ basic-head-opt-subj-phrase := unary-nonloc-phrase & head-only &
     HEAD-DTR [ INFLECTED #infl & infl-satisfied,
 	       SYNSEM [ LOCAL [ CAT [ HEAD.MOD olist,
 	       	      	      	      VAL [ SUBJ < canonical-synsem &
-;                                VAL [ SUBJ < unexpressed-reg &
-;                                VAL [ SUBJ < gap &
 						   [ OPT +,
 						     LOCAL.CONT.HOOK [ INDEX #index & [ COG-ST in-foc ] ] ] >,
 					    COMPS #comps,
