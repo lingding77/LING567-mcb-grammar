@@ -40,7 +40,7 @@ i-oga=ri matsigenka i-kant-i=ri :
 3mS-DEM.MED=CNTR person 3mS-say-realis=3mO :
 The man said to him :
 
-# Ex 1 Ungrammatical (male subject + female person-marking subject prefix on "kant")
+# Ex 2 Ungrammatical (male subject + female person-marking subject prefix on "kant")
 Source: author
 Vetted: f
 Judgment: u
@@ -50,7 +50,7 @@ i-oga=ri matsigenka o-kant-i=ri :
 3mS-DEM.MED=CNTR person 3fS-say-realis=3mO :
 The man said to him :
 
-# Ex 2 Grammatical
+# Ex 3 Grammatical
 Source: author
 Vetted: f
 Judgment: g
@@ -60,7 +60,7 @@ i-oga=ri matsigenka i-ne-i=ri :
 3mS-DEM.MED=CNTR person 3mS-see-realis=3mO :
 The man saw him :
 
-# Ex 2 Ungrammatical (male subject + female person-marking subject prefix on "ne")
+# Ex 4 Ungrammatical (male subject + female person-marking subject prefix on "ne")
 Source: author
 Vetted: f
 Judgment: u
@@ -70,27 +70,27 @@ i-oga=ri matsigenka o-ne-i=ri :
 3mS-DEM.MED=CNTR person 3fS-see-realis=3mO :
 The man saw him :
 
-# Ex 3 Grammatical
+# Ex 5 Grammatical
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {agreement}
-i*jina onintanakiri
-i-*jina o-nint-an-ak-i=ri
-3mP-wife 3fS-fall.in.love.with-ABL-PERF-realis=3mO
+onintanakiri i*jina 
+o-nint-an-ak-i=ri i-*jina 
+3fS-fall.in.love.with-ABL-PERF-realis=3mO 3mP-wife 
 his wife fell in love with him.
 
-# Ex 3 Ungrammatical (male subject + female person-marking object suffix on "nint")
+# Ex 6 Ungrammatical (male subject + female person-marking object suffix on "nint")
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {agreement}
-i*jina onintanakiro
-i-*jina o-nint-an-ak-i=ro
-3mP-wife 3fS-fall.in.love.with-ABL-PERF-realis=3fO
+onintanakiro i*jina 
+o-nint-an-ak-i=ro i-*jina 
+3fS-fall.in.love.with-ABL-PERF-realis=3fO 3mP-wife 
 his wife fell in love with him.
 
-# Ex 4 Grammatical
+# Ex 7 Grammatical
 Source: author
 Vetted: f
 Judgment: g
@@ -100,7 +100,7 @@ o-oga=ri tsinane o-kant-i=ri :
 3fS-DEM.MED=CNTR person 3fS-say-realis=3mO :
 The woman said(f) to him :
 
-# Ex 4 Ungrammatical (male subject + female person-marking object suffix on "kant")
+# Ex 8 Ungrammatical (male subject + female person-marking object suffix on "kant")
 Source: author
 Vetted: f
 Judgment: u
@@ -110,7 +110,7 @@ o-oga=ri tsinane i-kant-i=ri :
 3fS-DEM.MED=CNTR person 3mS-say-realis=3mO :
 The woman said to him :
 
-# Ex 5 Grammatical
+# Ex 9 Grammatical
 Source: author
 Vetted: f
 Judgment: g
@@ -120,7 +120,7 @@ i-oga=ri ananeki=page o-ag-av-ak-i=ri
 3mS-DEM.MED=CNTR child=PL 3fS-grab-TRNS-PERF-realis=3mO
 She grabbed the children.
 
-# Ex 5 Ungrammatical (female subject + male person-marking subject prefix on "ag")
+# Ex 10 Ungrammatical (female subject + male person-marking subject prefix on "ag")
 Source: author
 Vetted: f
 Judgment: u
@@ -134,106 +134,67 @@ She grabbed the children.
 # WORD ORDER
 ##################################################
 
-# Ex 6 Grammatical (SVO)
+# Ex 1 Grammatical (VSO)
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {word order}
-tsinane otonkoanairo otishi
-tsinane o-tonko-an-a-i=ro otishi
-female 3fS-go.up-ABL-REG-realis=3fO hill 
+otonkoiro tsinane otishi
+o-tonko-i=ro tsinane otishi
+3fS-go.up-realis=3fO female hill 
 A female climbed a hill.
 
-# Ex 6 Ungrammatical (VOS)
+# Ex 2 Ungrammatical (VOS)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {word order}
-otonkoanairo otishi tsinane
-o-tonko-an-a-i=ro otishi tsinane
-3fS-go.up-ABL-REG-realis=3fO hill female 
+otonkoiro otishi tsinane
+o-tonko-i=ro otishi tsinane
+3fS-go.up-realis=3fO hill female 
 A female climbed a hill.
 
-# Ex 6 Ungrammatical (VSO)
+# Ex 3 Ungrammatical (SVO)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {word order}
-otonkoanairo tsinane otishi 
-o-tonko-an-a-i=ro tsinane otishi
-3fS-go.up-ABL-REG-realis=3fO female hill 
+tsinane otonkoiro otishi
+tsinane o-tonko-i=ro otishi
+female 3fS-go.up-realis=3fO hill 
 A female climbed a hill.
 
-# Ex 6 Ungrammatical (OSV)
+# Ex 4 Ungrammatical (SOV)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {word order}
-otishi tsinane otonkoanairo 
-otishi tsinane o-tonko-an-a-i=ro
-hill female 3fS-go.up-ABL-REG-realis=3fO 
+tsinane otishi otonkoiro 
+tsinane otishi o-tonko-i=ro
+female hill 3fS-go.up-realis=3fO 
 A female climbed a hill.
 
-# Ex 6 Ungrammatical (SOV)
-Source: author
-Vetted: f
-Judgment: u
-Phenomena: {word order}
-tsinane otishi otonkoanairo 
-tsinane otishi o-tonko-an-a-i=ro
-female hill 3fS-go.up-ABL-REG-realis=3fO 
-A female climbed a hill.
 
-# Ex 6 Ungrammatical (OVS)
-Source: author
-Vetted: f
-Judgment: u
-Phenomena: {word order}
-otishi otonkoanairo tsinane
-otishi o-tonko-an-a-i=ro tsinane
-hill 3fS-go.up-ABL-REG-realis=3fO female
-A female climbed a hill.
-
-# Ex 6 Ungrammatical (SOV + gender agreement)
-Source: author
-Vetted: f
-Judgment: u
-Phenomena: {word order}
-surari otishi otonkoanairo 
-surari otishi o-tonko-an-a-i=ro
-male hill 3fS-go.up-ABL-REG-realis=3fO 
-A male climbed a hill.
-
-# Ex 6 Ungrammatical (OVS + gender agreement)
-Source: author
-Vetted: f
-Judgment: u
-Phenomena: {word order}
-surari otonkoanairo tsinane
-surari o-tonko-an-a-i=ro tsinane
-hill 3fS-go.up-ABL-REG-realis=3fO male
-A male climbed a hill.
-
-# Ex 7 Grammatical (intransitive SV)
+# Ex 5 Grammatical (intransitive VS)
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {word order}
-katsari iaraiganaki
-katsari i-ar-a-ig-an-ak-i
-oropendola 3mS-fly-EPV-PL-ABL-PERF-realis 
+iaraki katsari 
+i-ar-ak-i katsari 
+3mS-fly-PERF-realis oropendola 
 An oropendola flew.
 
-# Ex 7 Unrammatical (intransitive VS)
+# Ex 6 Unrammatical (intransitive SV)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {word order}
-iaraiganaki katsari
-i-ar-a-ig-an-ak-i katsari 
-3mS-fly-EPV-PL-ABL-PERF-realis oropendola 
+katsari iaraki 
+katsari i-ar-ak-i 
+oropendola 3mS-fly-PERF-realis  
 An oropendola flew.
-
+ 
 
 
 
@@ -381,6 +342,18 @@ i-oga=ri matsigenka i-ne-a-ig-av-ak-i=ro
 the man saw her
 
 # Ex 2 TRANSITIVE - GRAMMATICAL
+# overt nom subj + smark-verb-omark + (dropped obj)
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pro-d}
+ineaigavakiro matsigenka 
+i-ne-a-ig-av-ak-i=ro matsigenka 
+3mS-see-EPV-PL-TRNS-PERF-realis=3fO person 
+the man saw her
+
+
+# Ex 3 TRANSITIVE - GRAMMATICAL
 # overt pronom subj + smark-verb-omark + (dropped obj)
 Source: author
 Vetted: f
@@ -391,7 +364,7 @@ iriro i-ne-a-ig-av-ak-i=ro
 3m.PRO 3mS-see-EPV-PL-TRNS-PERF-realis=3fO
 he saw her
 
-# Ex 3 TRANSITIVE - GRAMMATICAL
+# Ex 4 TRANSITIVE - GRAMMATICAL
 # (dropped subj) + smark-verb-omark + (dropped obj)
 Source: author
 Vetted: f
@@ -402,7 +375,7 @@ i-ne-a-ig-av-ak-i=ro
 3mS-see-EPV-PL-TRNS-PERF-realis=3fO
 he saw her
 
-# Ex 4 TRANSITIVE - GRAMMATICAL
+# Ex 5 TRANSITIVE - GRAMMATICAL
 # (dropped subj) + smark-verb-omark + overt pronom obj
 # * Note: There was no evidence of overt object pronouns in the corpus, need to check the grammaticality of this with the linguist
 Source: author
@@ -414,7 +387,7 @@ i-ne-a-ig-av-ak-i=ro iroro
 3mS-see-EPV-PL-TRNS-PERF-realis=3fO 3f.PRO
 he saw her
 
-# Ex 5 TRANSITIVE - GRAMMATICAL
+# Ex 6 TRANSITIVE - GRAMMATICAL
 # (dropped subj) + smark-verb-omark + overt nom obj
 Source: author
 Vetted: f
@@ -425,7 +398,7 @@ i-ne-a-ig-av-ak-i=ro tsinane
 3mS-see-EPV-PL-TRNS-PERF-realis=3fO female
 he saw the woman
 
-# Ex 6 TRANSITIVE - GRAMMATICAL
+# Ex 7 TRANSITIVE - GRAMMATICAL
 # (dropped subj) + smark-verb + overt nom indefinite obj
 Source: author
 Vetted: f
@@ -456,6 +429,7 @@ i-p-ak-i=ri
 3mS-give-PERF-REAL.I=3mO
 He gave (it) to him
 
+
 # Ex 2 DITRANSITIVE (GIVE) - GRAMMATICAL
 # (dropped subj) + smark-verb-omark(recipient) + (dropped recipient) + overt definite nom theme
 #   Edited from OHagan-sentence 18: 
@@ -470,6 +444,7 @@ ipakeri sekatsi
 i-p-ak-i=ri sekatsi
 3mS-give-PERF-REAL.I=3mO yuca
 He gave him the manioc
+
 
 # Ex 3 DITRANSITIVE (GIVE) - GRAMMATICAL
 # (dropped subj) + smark-verb-omark(recipient) + (dropped recipient) + overt nom indefinite theme
@@ -608,10 +583,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {det}
-tsinane okanti :
-tsinane o-kant-i : 
-female 3fS-say-realis : 
-a woman said : 
+okanti tsinane 
+o-kant-i tsinane 
+3fS-say-realis female 
+a woman said 
 
 # Ex 4 DEMONSTRATIVE - UNGRAMMATICAL
 # male, determiner must precede noun
@@ -658,49 +633,49 @@ o-oga=ri o-oga o-nti kipatsi .
 that's soil .
 
 
-# Ex 6 QUANTITY
+# Ex 8 QUANTITY
 # "all" without any noun
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {det}
-maganiro ikantaigi :
-maganiro i-kant-a-ig-i : 
-all.ANIM 3mS-say-EPV-PL-realis : 
-they all said: 
+ikantaigi maganiro 
+i-kant-a-ig-i maganiro 
+3mS-say-EPV-PL-realis all.ANIM 
+they all said
 
-# Ex 7 QUANTITY
+# Ex 9 QUANTITY
 # "all" with noun
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {det}
-maganiro matsigenka ikantaigi :
-maganiro matsigenka i-kant-a-ig-i :
-all.ANIM person 3mS-say-EPV-PL-realis :
+ikantaigi maganiro matsigenka 
+i-kant-a-ig-i maganiro matsigenka 
+3mS-say-EPV-PL-realis all.ANIM person
 everyone said:
 
-# Ex 8 QUANTITY
+# Ex 10 QUANTITY
 # "one" with noun
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {det}
-paniro matsigenka ikantaigi  :
-paniro matsigenka i-kant-a-ig-i  :
-one.ANIM person 3mS-say-EPV-PL-realis :
-one person said:
+ikantaigi paniro matsigenka 
+i-kant-a-ig-i paniro matsigenka 
+3mS-say-EPV-PL-realis one.ANIM person 
+one person said
 
-# Ex 9 QUANTITY - UNGRAMMATICAL
+# Ex 11 QUANTITY - UNGRAMMATICAL
 # "one", determiner must precede noun
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {det}
-matsigenka paniro ikantaigi  :
-matsigenka paniro i-kant-a-ig-i  :
-person one.ANIM 3mS-say-EPV-PL-realis :
-one person said:
+ikantaigi matsigenka paniro 
+i-kant-a-ig-i matsigenka paniro 
+3mS-say-EPV-PL-realis person one.ANIM 
+one person said
 
 
 
@@ -724,7 +699,6 @@ i-kant-i i-*irenti :
 3mS-say-realis 3mP-brother.ME : 
 His brother said to him: 
 
-
 # Ex 2 Ungrammatical  (lack of possessive prefix for the kin term.)
 Source: author
 Vetted: f
@@ -741,9 +715,9 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {adnominal possession}
-otarongavagetaki  opanpature
-o-tarog-a-vage-t-ak-i o-panpatu-re . 
-3fS-sweep-EPV-DUR-EPC-PERF-realis 3fS-patio-ALIEN.POSS . 
+otarongavagetakiro  opanpature .
+o-tarog-a-vage-t-ak-i=ro o-panpatu-re . 
+3fS-sweep-EPV-DUR-EPC-PERF-realis=ro 3fS-patio-ALIEN.POSS . 
 she was sweeping her patio.  
 
 # Ex 4 Ungrammatical  (lack of ALIEN.POSS suffix.)
@@ -751,11 +725,10 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
-otarongavagetaki  opanpature
-o-tarog-a-vage-t-ak-i o-panpatu. 
-3fS-sweep-EPV-DUR-EPC-PERF-realis 3fS-patio. 
+otarongavagetakiro  opanpature .
+o-tarog-a-vage-t-ak-i=ro o-panpatu. 
+3fS-sweep-EPV-DUR-EPC-PERF-realis=ro 3fS-patio. 
 she was sweeping her patio. 
-
 
 
 # Ex 5 Grammatical
@@ -763,9 +736,9 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {adnominal possession}
-ipankiti ishinkire
-i-panki-t-i i-shinki-re. 
-3mS-plant-EPC-realis 3mP-corn-ALIEN.POSS.
+ipankitiro ishinkire
+i-panki-t-i=ro i-shinki-re. 
+3mS-plant-EPC-realis=ro 3mP-corn-ALIEN.POSS.
 he planted his corn.
 
 
@@ -774,12 +747,10 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
-ipankiti ishinkine
-i-panki-t-i i-shinki-ne. 
-3mS-plant-EPC-realis 3mP-corn-ALIEN.POSS.
+ipankitiro ishinkine
+i-panki-t-i=ro i-shinki-ne. 
+3mS-plant-EPC-realis=ro 3mP-corn-ALIEN.POSS.
 he planted his corn.
-
-
 
 
 # Ex 7 Grammatical
@@ -804,19 +775,15 @@ o-oga=ri o-*shinto-re-egi o-gametiri=page
 Her daughters were very beautiful; 
 
 
-
-
 # Ex 9 Grammatical  
 Source: author
 Vetted: f
-Judgment: u
+Judgment: g
 Phenomena: {adnominal possession}
-ineapaakiro i*jina tononkavagetaki opariantire
-i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti-re
-3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain-ALIEN.POSS
-He saw his wife grinding her plantain.
-
-
+o-tononkakiro i*jina opariantire
+o-tononk-ak-i=ro i-*jina o-parianti-re
+o-grind-PERF-realis=ro 3mP-wife 3fP-plantain-ALIEN.POSS
+his wife ground her plantain.
 
 
 # Ex 10 Ungrammatical  (delete the ALIEN.POSS suffix.)
@@ -824,10 +791,10 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {adnominal possession}
-ineapaakiro i*jina tononkavagetaki opariantire
-i-ne-apa-ak-i=ro i-*jina tononk-a-vage-t-ak-i o-parianti
-3mS-see-ALL-PERF-realis=3fO  3mP-wife grind-EPV-DUR-EPC-PERF-realis 3fP-plantain
-He saw his wife grinding her plantain.
+o-tononkakiro i*jina oparianti
+o-tononk-ak-i=ro i-*jina o-parianti
+o-grind-PERF-realis=ro 3mP-wife 3fP-plantain
+his wife ground her plantain.
 
 
 
@@ -836,78 +803,77 @@ He saw his wife grinding her plantain.
 ##################################################
 
 
-# Ex 11 Grammatical  (who)
+# Ex 1 Grammatical  (who)
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {wh question}
-Tsini neakiri?
-tsini ne-ak-i=ri
-who.INTERR see-PERF-realis=3mO
-Who saw him?
+Tya-ni neakiri?
+tya-ni ne-ak-i=ri ?
+who.INTERR-ANIM see-PERF-realis=3mO ?
+Who saw him ?
 
 
 
-# Ex 12 Ungrammatical  (give the subject interrogation a subject marker, which is supposed to be omitted.)
+# Ex 2 Ungrammatical  (give the subject interrogation a subject marker, which is supposed to be omitted.)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
-Tsinii neakiri?
-tsini-i ne-ak-i=ri
-who.INTERR-3mS see-PERF-realis=3mO
+Tya-ni i-neakiri ?
+tya-ni i-ne-ak-i=ri ?
+who.INTERR-ANIM 3mS-see-PERF-realis=3mO ?
 Who saw him?
 
 
 
-# Ex 13 Grammatical  （whom）
+# Ex 3 Grammatical  （whom）
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {wh question}
-Tsini ineaki?
-tsini i=ne-ak-i
-who.INTERR 3mS=see-PERF-realis
-Whom did he see?
+tya-ni ineaki?
+tya-ni i-ne-ak-i ?
+who.INTERR-ANIM 3mS-see-PERF-realis ?
+Whom did he see ?
 
 
 
-# Ex 14 Ungrammatical  (give the object interrogation a subject marker, which is supposed to be omitted.)
+# Ex 4 Ungrammatical  (give the object interrogation a subject marker, which is supposed to be omitted.)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
-Tsiniri ineaki?
-tsini=ri i=ne-ak-i
-who.INTERR=3mO 3mS=see-PERF-realis
+tya-ni=ri ineaki?
+tya-ni=ri i-ne-ak-i ?
+who.INTERR-ANIM=3mO 3mS-see-PERF-realis ?
 Whom did he see?
 
 
-# Ex 15 Grammatical  （what）
+# Ex 5 Grammatical  （what）
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {wh question}
 tata iogaka?
-tata i-og-ak-a
-what.INTERR 3mS-eat-PERF-realis.refl
+tata i-og-ak-a ?
+what.INTERR 3mS-eat-PERF-realis.refl ?
 What did he eat?
 
 
-# Ex 16 Ungrammatical  （put the interrogation pronoun in a non-initial posotion.）
+# Ex 6 Ungrammatical  （put the interrogation pronoun in a non-initial posotion.）
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
 iogaka tata?
-i-og-ak-a tata 
-3mS-eat-PERF-realis.refl what.INTERR 
+i-og-ak-a tata ?
+3mS-eat-PERF-realis.refl what.INTERR ?
 What did he eat?
 
 
 
-
-# Ex 17 Grammatical  （what）
+# Ex 7 Grammatical  （what）
 Source: author
 Vetted: f
 Judgment: g
@@ -918,21 +884,18 @@ what 2S=tie-perf-real.i=3fO
 What did you tie it together with?
 
 
-
-# Ex 18 Ungrammatical  （delete object marker）
+# Ex 8 Ungrammatical  （delete object marker）
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
 tata piogusoaki?
-tata pi-oguso-ak-i
-what 2S-tie-perf-real.i
-What did you tie together with?
+tata pi-oguso-ak-i ?
+what 2S-tie-perf-real.i ?
+What did you tie it together with ?
 
 
-
-
-# Ex 19 Grammatical  （why）
+# Ex 9 Grammatical  （why）
 Source: author
 Vetted: f
 Judgment: g
@@ -940,11 +903,11 @@ Phenomena: {wh question}
 tyara onkantakenpa pinkogakera pashini tsinane ?
 tya=ra o-n-kant-ak-enpa pi-n-kog-ak-e=ra pashini tsinane ?
 why.INTERR=SUB 3fS-irrealis-happen-PERF-irreal.refl 2S-irrealis-search.for-PERF-irrealis=SUB other female ?
-Why do you want another woman? 
+Why do you want another woman ? 
 
 
 
-# Ex 20 Ungrammatical  （without the light verb 'happen'）
+# Ex 10 Ungrammatical  （without the light verb 'happen'）
 Source: author
 Vetted: f
 Judgment: u
@@ -952,7 +915,7 @@ Phenomena: {wh question}
 tyara pinkogakera pashini tsinane ?
 tya=ra  pi-n-kog-ak-e=ra pashini tsinane ?
 why.INTERR=SUB 2S-irrealis-search.for-PERF-irrealis=SUB other female ?
-Why do you want another woman? 
+Why do you want another woman ? 
 
 
 
@@ -1250,7 +1213,7 @@ i-nti surari
 3mS-COP male 
 He is a male
 
-# Sentence 1 Grammatical - free word order
+# Sentence 2 Grammatical - free word order
 # Positive polarity NP copula
 Source: author
 Vetted: f
@@ -1261,7 +1224,7 @@ surari i-nti-i
 male 3mS-COP-irrealis
 He is a male
 
-# Sentence 1 Grammatical - different subj and pred
+# Sentence 3 Grammatical - different subj and pred
 # Positive polarity NP copula
 Source: author
 Vetted: f
@@ -1272,7 +1235,7 @@ kamagarini i-nti surari
 demon.type 3mS-COP male 
 The demon is a male
 
-# Sentence 1 Ungrammatical? - not sure, but we've seen no evidence the COP appears by itself
+# Sentence 4 Ungrammatical? - not sure, but we've seen no evidence the COP appears by itself
 # Positive polarity NP copula
 Source: author
 Vetted: f
@@ -1283,7 +1246,7 @@ i-nti
 3mS-COP
 He is
 
-# Sentence 1 Ungrammatical - positive polarity COP should not inflect
+# Sentence 5 Ungrammatical - positive polarity COP should not inflect
 # Positive polarity NP copula
 Source: author
 Vetted: f
@@ -1294,7 +1257,7 @@ i-nti-i surari
 3mS-COP-irrealis male 
 He is a male
 
-# Sentence 1 Ungrammatical - positive polarity COP should use uninflected nti
+# Sentence 6 Ungrammatical - positive polarity COP should use uninflected nti
 # Positive polarity NP copula
 Source: author
 Vetted: f
@@ -1305,7 +1268,7 @@ i-n-i surari
 3mS-COP.LOC-realis male 
 He is a male
 
-# Sentence 2 Grammatical - Adjusted from example (6.138) of the Nanti grammar
+# Sentence 7 Grammatical - Adjusted from example (6.138) of the Nanti grammar
 # Negative polarity NP copula 
 Source: author
 Vetted: f
@@ -1316,7 +1279,7 @@ te surari o-n-e
 NEG.REAL man 3nmS-COP.LOC-irrealis
 She is not a male
 
-# Sentence 2 Ungrammatical - negative polarity COP should use inflected n
+# Sentence 8 Ungrammatical - negative polarity COP should use inflected n
 # Negative polarity NP copula 
 Source: author
 Vetted: f
@@ -1327,7 +1290,7 @@ te surari o-nti
 NEG.REAL man 3nmS-COP
 She is not a male
 
-# Sentence 3 Grammatical - copula clause
+# Sentence 9 Grammatical - copula clause
 # Positive polarity NP copula as a clause marker
 Source: author
 Vetted: f
@@ -1338,7 +1301,7 @@ i-ne-i i-nti surari
 3mS-see-realis 3mS-COP male 
 He sees that he is male
 
-# Sentence 3 Grammatical - copula as subordinator
+# Sentence 10 Grammatical - copula as subordinator
 # Positive polarity NP copula as a clause marker
 Source: author
 Vetted: f
@@ -1364,7 +1327,7 @@ o-n-i inkenishi=ku
 3fS-COP.LOC-realis forest=LOC
 It is in the forest
 
-# Sentence 1 Ungrammatical - should be inflected
+# Sentence 2 Ungrammatical - should be inflected
 # Locative NPs as PP copula
 Source: author
 Vetted: f
@@ -1375,7 +1338,7 @@ o-n inkenishi=ku
 3fS-COP.LOC forest=LOC
 It is in the forest
 
-# Sentence 1 Ungrammatical - should use n instead of nti
+# Sentence 3 Ungrammatical - should use n instead of nti
 # Locative NPs as PP copula
 Source: author
 Vetted: f
@@ -1386,7 +1349,7 @@ o-nti inkenishi=ku
 3fS-COP forest=LOC
 It is in the forest
 
-# Sentence 2 Grammatical - Adjusted from sentence 3230 of corpus
+# Sentence 4 Grammatical - Adjusted from sentence 3230 of corpus
 # Locative NPs as PP modifier clause
 Source: author
 Vetted: f
@@ -1397,7 +1360,7 @@ i-anu-t-ak-i inkenishi=ku
 3mS-walk-EPC-PERF-realis forest=LOC
 He walked in the forest
 
-# Sentence 3 Grammatical - Adjusted from sentence 1020 of corpus
+# Sentence 5 Grammatical - Adjusted from sentence 1020 of corpus
 # Locative NPs as PP modifier clause
 Source: author
 Vetted: f
@@ -1461,9 +1424,9 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {copula with AP}
-kironpi itasegaki
-kironpi i-taseg-ak-i
-fish 3mS-be.hungry-PERF-realis
+itasegaki kironpi 
+i-taseg-ak-i kironpi 
+3mS-be.hungry-PERF-realis fish 
 The fish is hungry
 
 
@@ -1472,9 +1435,9 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {copula with AP}
-kironpi itasegriaki
-kironpi i-taseg-ri-ak-i
-fish 3mS-be.hungry-ADJZ-PERF-realis
+itasegriaki kironpi 
+i-taseg-ri-ak-i kironpi 
+3mS-be.hungry-ADJZ-PERF-realis fish 
 The fish is hungry
 
 
@@ -1504,7 +1467,7 @@ It is white
 # WH QUESTIONS W/ PREDICATES
 ##################################################
 
-# Ex 9 Grammatical  (what)
+# Ex 1 Grammatical  (what)
 Source: author
 Vetted: f
 Judgment: g
@@ -1514,7 +1477,7 @@ tata o-ita ?
 what.INTERR 3fS-IDENT ?
 What is it?
 
-# Ex 10 Ungrammatical  (use COP rather than IDENT in indentity interrogation)
+# Ex 2 Ungrammatical  (use COP rather than IDENT in indentity interrogation)
 Source: author
 Vetted: f
 Judgment: u
@@ -1524,127 +1487,63 @@ tata o-nti ?
 what.INTERR 3fS-COP ?
 What is it?
 
-# Ex 11 Grammatical  (where)
+# Ex 3 Grammatical  (where)
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {wh question}
-tyara oita ?
-tyara o-ita ?
-where 3nmS-IDENT ?
+tya=ra oita ?
+tya=ra o-ita ?
+where=SUB 3nmS-IDENT ?
 where is it?
 
-# Ex 12 Ungrammatical  (inflected IDENT)
+# Ex 4 Ungrammatical  (inflected IDENT)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
-tyara oitaaki ?
-tyara o-ita-ak-i ?
-where 3nmS-IDENT-ak-i ?
-where was it
+tya=ra oitaaki ?
+tya=ra o-ita-ak-i ?
+where=SUB 3nmS-IDENT-ak-i ?
+where was it ?
 
-# Ex 13 Grammatical  (who)
+# Ex 5 Grammatical  (who)
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {wh question}
-tyani katsinkaaki ?
-tyani katsinka-ak-i ?
-who.INTERR be.cold-PERF-realis ?
+tya-ni katsinkaaki ?
+tya-ni katsinka-ak-i ?
+who.INTERR-ANIM be.cold-PERF-realis ?
 Who was cold?
 
-# Ex 14 Ungrammatical  (COP + adjective verb)
+# Ex 6 Ungrammatical  (COP + adjective verb)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
-tyani ntikatsinkaaki ?
-tyani nti-katsinka-ak-i ?
-who.INTERR COP-be.cold-PERF-realis ?
+tya-ni ntikatsinkaaki ?
+tya-ni nti-katsinka-ak-i ?
+who.INTERR-ANIM COP-be.cold-PERF-realis ?
 Who was cold?
 
-# Ex 15 Grammatical  (who)
+# Ex 7 Grammatical  (who)
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {wh question}
-tyani ntasege ?
-tyani n-taseg-e ?
-who.INTERR irealis-be.hungry-irrealis ?
+tya-ni ntasege ?
+tya-ni n-taseg-e ?
+who.INTERR-ANIM irealis-be.hungry-irrealis ?
 Who is hungry?
 
-# Ex 16 Ungrammatical  (COP + adjective verb)
+# Ex 8 Ungrammatical  (COP + adjective verb)
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {wh question}
-tyani intasege ?
-tyani i-n-taseg-e ?
-who.INTERR 3mS-irealis-be.hungry-irrealis ?
+tya-ni intasege ?
+tya-ni i-n-taseg-e ?
+who.INTERR-ANIM 3mS-irealis-be.hungry-irrealis ?
 Who is (she) hungry?
-
-##################################################
-# MMT
-##################################################
-
-# Sentence 1 Grammatical
-Source: author
-Vetted: f
-Judgment: g
-Phenomena: {mmt}
-osheto imagi
-osheto i-mag-i
-spider.monkey 3mS-sleep-realis
-Spider monkeys sleep
-
-# Sentence 2 Grammatical
-Source: author
-Vetted: f
-Judgment: g
-Phenomena: {mmt}
-osheto iogiai pitotsi
-osheto i-ogia-i *pito-tsi
-spider.monkey 3mS-follow-realis canoe-ALIEN
-Spider monkeys follow canoes
-
-# Sentence 3 Grammatical
-Source: author
-Vetted: f
-Judgment: g
-Phenomena: {mmt}
-noogianpi
-no-ogia-i=npi
-1S-follow-realis=2O
-I follow you
-
-# Sentence 15 Grammatical
-Source: author
-Vetted: f
-Judgment: g
-Phenomena: {mmt}
-osheto inti matsontsori
-osheto i-nti matsontsori
-dog 3mS-COP cat
-The dogs are the cats
-
-# Sentence 16 Grammatical
-Source: author
-Vetted: f
-Judgment: g
-Phenomena: {mmt}
-osheto itasegi
-osheto i-taseg-i
-dog 3mS-be.hungry-realis
-The dogs are hungry
-
-# Sentence 17 Grammatical
-Source: author
-Vetted: f
-Judgment: g
-Phenomena: {mmt}
-noogianpi
-osheto i-n-i inkenishi=ku
-dog 3mS-COP.LOC-realis park=LOC
-The dogs are in the park
 
