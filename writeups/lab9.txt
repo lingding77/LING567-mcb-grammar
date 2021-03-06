@@ -1,0 +1,437 @@
+
+##########################################################################################
+#LAB 9 write-up
+#NAME: Hanshu Ding, Ling Tu
+#LANGUAGE: mcb
+##########################################################################################
+
+*Note: This time we are just submitting our mmt grammar directory and not including our full grammar (the only difference is that the full grammar as all of the irules uncommented). As such, we are putting our tsdb directory into the path `mmt/grammars/mcb/tsdb`.
+
+######################################################
+1. Documentation of what you changed in your grammar to do MRS refinement. Include IGT to illustrate.
+
+From our lab8 MMT documentation, the major sources of MRS differences between Mcb and Eng/Sje were simple predicate naming issues, which we fixed in the following ways:
+
+------------------------------
+"pron_rel" is unknown because mcb does not require overt pronouns 
+
+	no-ogia-i=npi
+	1S-chase-realis=2O
+	I chase you
+
+- Added transfer rule to mcb/acm.mtr:
+	pro-drop := pronoun-delete-mtr.
+
+------------------------------
+"_in_p_rel" in Eng is "_loc_p_rel" in Mcb
+
+	i-n-i osheto inkenishi=ku
+	3mS-COP.LOC-realis dog park=LOC
+	The dogs are in the park
+
+- Added transfer rule to mcb/acm.mtr:
+	in-loc := in-loc-mtr. 
+
+------------------------------
+"_wh_q_rel" in Eng is "_which_q_rel" in Mcb
+
+	tya-ni mag-i ?
+	who.INTERR-ANIM sleep-realis ?
+	Who sleeps ?
+
+- Changed "which_q_rel" to "wh_q_rel" in wh-pronoun-noun-lex definition in mcb.tdl.
+
+######################################################
+2. Documentation of what you changed in your grammar to cut back on overgeneration. Include IGT or pointers to the MMT sentences to illustrate.
+
+------------------------------
+Sentences coming out of noun-pc-poss-lex-rule-super were generating double the parses because they were optionally running the EX-ADJ grammar rule.
+
+	Example IGT: (MMT sentence #19)
+
+		i-mag-i no-osheto
+		3mS-sleep-realis 1P-dogs
+		My dogs sleep
+
+Grammar changes:
+- Constrained the noun-pc-poss-lex-rule-super daughter and parent SYNSEM.NON-LOCAL.
+
+	mcb.tdl:  ---------------
+		noun-pc-poss-lex-rule-super := ... &
+		  [ ...
+		    SYNSEM.NON-LOCAL #nl,
+		    DTR noun-pc-poss-rule-dtr &
+		        [ ...
+		          SYNSEM.NON-LOCAL #nl] ].
+
+Result:
+- This change cut down generation of certain sentences like sentence #19 by half.
+
+------------------------------
+In Mcb, it is possible to have verbs with and without the subject marker, which we have been treating up until now as optional subject marking. However, we researched a little further in our resource materials and felt that subject marking wasn't actually optional but rather simply dropped in very specific cases:
+	- wh- questions where the subject is the gap
+	- subjects that are specific focus pronouns
+	- imperatives
+
+Given this, we decided to make the subject marker mandatory and encode exceptions for the specific cases where subjmarker dropping is required. For the time being, of the cases listed, we have only implemented the subject dropping when used with wh- questions.
+
+For wh- subjmarker dropping, we split the verb-pc-subjmark-lex-rule into verb-pc-overt-subjmark-lex-rule and verb-pc-no-subjmark-lex-rule, and then we implemented constraints on the synsem type being output by those rules that would only unify with certain subj-filling grammar rules. Based on the inheritance of the synsem types defined in matrix.tdl, this is the combination of settings that we thought would make the system work as expected:
+
+	HEAD-SUBJ 		   -> subj type "canonical-synsem"
+	DECL-HEAD-OPT-SUBJ -> subj type "canonical-synsem"
+	EX-SUBJ 		   -> subj type "gap"
+
+	verb-pc-overt-subjmark-lex-rule has [ SYNSEM.LOCAL.CAT.VAL.SUBJ < canonical-synsem > ]
+	verb-pc-no-subjmark-lex-rule has [ SYNSEM.LOCAL.CAT.VAL.SUBJ < expressed-non-canonical > ]
+
+These constraints would correctly accept the following cases:
+- wh- pronoun + no marker (EX-SUBJ "gap" + no-subjmark "expressed-non-canonical")
+- overt NP + marker (HEAD-SUBJ "canonical-synsem" + overt-subjmark "canonical-synsem")
+- no NP + marker (DECL-HEAD-OPT-SUBJ "canonical-synsem" + overt-subjmark "canonical-synsem")
+
+While correctly excluding the following cases:
+- wh- pronoun + marker (EX-SUBJ "gap" + overt-subjmark "canonical-synsem")
+- overt NP + no marker (HEAD-SUBJ "canonical-synsem" + no-subjmark "expressed-non-canonical")
+- no NP + no marker (DECL-HEAD-OPT-SUBJ "canonical-synsem" + no-subjmark "expressed-non-canonical")
+
+	Example IGT: (Grammatical)
+
+		tya-ni mag-i
+		who-ANIM sleep-realis
+		who sleeps
+
+		i-mag-i osheto
+		3mS-sleep-realis dog
+		the dog sleeps
+
+		i-mag-i
+		3mS-sleep-realis
+		he sleeps
+
+		no-mag-i
+		1S-sleep-realis
+		I sleep
+
+	Example IGT: (Ungrammatical)
+
+		tya-ni i-mag-i
+		who-ANIM 3mS-sleep-realis
+		who sleeps
+
+		mag-i
+		sleep-realis
+		he sleeps
+
+		mag-i osheto
+		sleep-realis dog
+		the dog sleeps
+
+Grammar changes:
+- Set the subjmarker to be obligatory by creating VERB-PC-SUBJMARKER-FLAG.
+
+	mcb.tdl: ---------------
+		inflected :+ [ ...
+			VERB-PC-SUBJMARKER-FLAG luk ].
+		infl-satisfied :+ [ ..., 
+		    VERB-PC-SUBJMARKER-FLAG na-or-+ ].
+
+		verb-lex := ... &
+		  [ ...
+		    INFLECTED [ ...
+		                VERB-PC-SUBJMARKER-FLAG - ] ].
+		noun-pc-loc-lex-rule-super := ... &
+		  [ INFLECTED [ ...
+		                VERB-PC-SUBJMARKER-FLAG #verb-pc-subjmarker-prefix ],
+		    DTR noun-pc-loc-rule-dtr &
+		        [ INFLECTED [ ...
+		                      VERB-PC-SUBJMARKER-FLAG #verb-pc-subjmarker-prefix  ] ] ].
+		verb-pc-realisirrealis-suffix-lex-rule-super := ... &
+		  [ INFLECTED [ ...
+		                VERB-PC-SUBJMARKER-FLAG #verb-pc-subjmarker-prefix ],
+		    DTR verb-pc-realisirrealis-suffix-rule-dtr &
+		        [ INFLECTED [ ...
+		                      VERB-PC-SUBJMARKER-FLAG #verb-pc-subjmarker-prefix  ] ] ].
+		verb-pc-aspect-lex-rule-super := ... &
+		  [ INFLECTED [ ...
+		                VERB-PC-SUBJMARKER-FLAG #verb-pc-subjmarker-prefix ],
+		    DTR verb-pc-aspect-rule-dtr &
+		        [ INFLECTED [ ...
+		                      VERB-PC-SUBJMARKER-FLAG #verb-pc-subjmarker-prefix ] ] ].
+		verb-pc-subjmarker-lex-rule-super := ... &
+		  [ INFLECTED [ ...
+		                VERB-PC-SUBJMARKER-FLAG + ],
+		    DTR verb-pc-subjmarker-rule-dtr &
+		      [ INFLECTED [ ...
+		                	VERB-PC-SUBJMARKER-FLAG - ] ] ].
+
+- Split verb-pc-subjmark-lex-rule-super into two subtypes, verb-pc-overt-subjmark-lex-rule and verb-pc-no-subjmark-lex-rule, where no-subjmark is a non-inflecting lex rule for cases where there is no subject marker (looking for SUBJ expressed-non-canonical) and overt-subjmark is an inflecting rule that serves as the supertype for the specific pernum rules 3m, 3f, 1, and 2 (looking for SUBJ canonical-synsem). 
+
+	mcb.tdl: ---------------
+		verb-pc-overt-subjmark-lex-rule := verb-pc-subjmarker-lex-rule-super & infl-lex-rule & 
+		  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < canonical-synsem > ].
+		verb-pc-no-subjmark-lex-rule := verb-pc-subjmarker-lex-rule-super & const-lex-rule &
+		  [ SYNSEM.LOCAL.CAT.VAL.SUBJ < expressed-non-canonical > ].
+
+		verb-pc-subj3m-lex-rule := verb-pc-overt-subjmark-lex-rule & ...
+		verb-pc-subj3f-lex-rule := verb-pc-overt-subjmark-lex-rule & ...
+		verb-pc-subj1-lex-rule := verb-pc-overt-subjmark-lex-rule & ...
+		verb-pc-subj2-lex-rule := verb-pc-subjmarker-lex-rule-super & ...
+
+- Add verb-pc-nosubjmark-lex as a new non-inflecting lrule type.
+
+	lrules.tdl: ---------------
+		verb-pc-nosubjmark-lex := verb-pc-no-subjmark-lex-rule.
+
+- Change SUBJ requirement on basic-head-opt-subj-phrase to canonical-synsem.
+*NOTE: This is a change in matrix.tdl!!
+	matrix.tdl: ---------------
+		basic-head-opt-subj-phrase := ... &
+		  [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.SUBJ < canonical-synsem & ... > ]
+
+Result:
+- This change reduced generation on sentence #6 from 512 to 64.
+
+------------------------------
+We realized that even though our irrealis and aspect markers were marked obligatory for our regular verbs, it was overgenerating on verbs that take clausal complements like "think" and "know" in sentence #6. This was because clausal-verb-lex is a subtype of main-verb-lex, and we had moved the realis and aspect flags onto the transitive and intransitive verbs.
+
+Grammar changes:
+- Added flags to the clausal-verb-lex.
+
+	mcb.tdl: ---------------
+		clausal-verb-lex := main-verb-lex & 
+		  [ ... 
+		    INFLECTED [ VERB-PC-REALISIRREALIS-SUFFIX-FLAG -, 
+		                VERB-PC-ASPECT-FLAG - ] ].
+
+Result:
+- This change reduced generation on sentence #6 from 64 to 4.
+
+------------------------------
+The copula-pp verb "n" for the locative copula was generating sentences where the locative NP was being used as the subject sentence #16. This was because it was underconstrained on the CASE of its subject (something that we fixed for other verbs but missed here). 
+
+Grammar changes:
+- Constrained copula-verb-lex SUBJ to [CASE nlc] so that locative NP isn't possible as subject.
+
+	mcb.tdl:  ---------------
+		copula-verb-lex := aux-lex & trans-first-arg-raising-lex-item-2 &
+		  [ ...
+		    ARG-ST < #subj &
+		             [ LOCAL [ ...
+		                       CAT [ ...
+		                             HEAD noun &
+		                             [ CASE nlc ] ] ] ],
+		             #comps >,
+		    ... ] ].
+
+Result:
+- This change reduced generation on sentence #16 from 4 to 2.
+
+------------------------------
+Our NP coordination rules were dropping information about the CASE of its coordinated daughter NPs, allowing locative NPs with the locative marker -ku to combine with non-locative NPs, as well as allowing locative NPs to behave like non-locative NPs after the CASE information was dropped on the parent NP-T. 
+
+Additionally, in Mcb the coordinating words "i-ntiri" and "o-ntiri" are required to agree in gender with the right-coordinated daughter NP. This was not implemented before and was allowing either coordinating word to generate.
+
+We fixed both these issues by adding some constraints on the np4 ("o-ntiri") and np5 ("i-ntiri") coordinating rules for CASE and GEND. 
+
+	Example IGT: (Grammatical)
+
+		i-ogia-i matsontsori i-ntiri osheto *pito-tsi
+		3mS-chase-realis cat 3mS-COORD dog car-ALIEN 
+		Cats and dogs chase cars
+
+	Example IGT: (Ungrammatical)
+
+		i-ogia-i matsontsori-ku i-ntiri osheto *pito-tsi
+		3mS-chase-realis cat-LOC 3fS-COORD dog car-ALIEN 
+		Cats and dogs chase cars
+
+		i-ogia-i matsontsori-ku i-ntiri osheto-ku *pito-tsi
+		3mS-chase-realis cat-LOC 3fS-COORD dog-LOC car-ALIEN 
+		Cats and dogs chase cars
+
+		i-ogia-i matsontsori o-ntiri osheto *pito-tsi
+		3mS-chase-realis cat 3fS-COORD dog car-ALIEN 
+		Cats and dogs chase cars
+
+Grammar changes:
+- Added constraints on the rule and its DTRs for CASE, and required the NONCONJ-DTR of np4-bottom-coord-rule to be [ GEND f ] and the NONCONJ-DTR of np5-bottom-coord-rule to be [ GEND m ].
+
+	mcb.tdl: ---------------
+
+		np4-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule &
+		  [ SYNSEM.LOCAL [ COORD-STRAT "4",
+		                   CAT [ HEAD [ CASE #case ] ] ],
+		    LCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ],
+		    RCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ] ].
+		np4-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule &
+		  [ SYNSEM.LOCAL [ COORD-STRAT "4",
+		                   CAT [ HEAD [ CASE #case ] ] ],
+		    RCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ] ].
+		np4-bottom-coord-rule := conj-first-bottom-coord-rule & np-bottom-coord-phrase &
+		  [ SYNSEM.LOCAL [ COORD-STRAT "4",
+		                   CAT [ HEAD [ CASE #case ] ] ],
+		    NONCONJ-DTR.SYNSEM.LOCAL [ CAT [ HEAD [ CASE #case ] ] ],
+		                               C-CONT [ HOOK [ INDEX [ PNG [ GEND f ] ] ] ] ].
+
+		np5-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule &
+		  [ SYNSEM.LOCAL [ COORD-STRAT "5",
+		                   CAT [ HEAD [ CASE #case ] ] ],
+		    LCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ],
+		    RCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ] ].
+		np5-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule &
+		  [ SYNSEM.LOCAL [ COORD-STRAT "5",
+		                   CAT [ HEAD [ CASE #case ] ] ],
+		    RCOORD-DTR.SYNSEM.LOCAL.CAT [ HEAD [ CASE #case ] ] ].
+		np5-bottom-coord-rule := conj-first-bottom-coord-rule & np-bottom-coord-phrase &
+		  [ SYNSEM.LOCAL [ COORD-STRAT "5",
+		                   CAT [ HEAD [ CASE #case ] ] ],
+		    NONCONJ-DTR.SYNSEM.LOCAL [ CAT [ HEAD [ CASE #case ] ] ],
+		                               C-CONT [ HOOK [ INDEX [ PNG [ GEND m ] ] ] ] ].
+
+Result:
+- This change reduced generation on sentence #8 from 4 to 2.
+
+------------------------------
+We had several aspect types that we had categorized as subtypes of perfective and imperfective previously. However, we haven't had the chance to implement any further feature constraints to differentiate them from perfective and imperfective, and this is leading to spurious generation for every combination of types, so we decided to comment them out for now. 
+
+Grammar changes:
+	irules.tdl: ---------------
+	; verb-pc-reg-suffix1 :=
+	; %suffix (* -a)
+	; verb-pc-reg-lex-rule.
+	; 
+	; verb-pc-reg-suffix2 :=
+	; %suffix (* -a-t)
+	; verb-pc-reg-lex-rule.
+	; 
+	; verb-pc-ret-suffix :=
+	; %suffix (* -u)
+	; verb-pc-ret-lex-rule.
+	; 
+	; verb-pc-assoc-dist-suffix :=
+	; %suffix (* -aki)
+	; verb-pc-assoc-dist-lex-rule.
+	; 
+	; verb-pc-assoc-distreg-suffix :=
+	; %suffix (* -aa)
+	; verb-pc-assoc-distreg-lex-rule.
+
+Result:
+- Since most sentences in our MMT were present tense, the only marker this was affecting was -aa, so this change cut down our sentence generation by half.
+
+------------------------------
+Sentence #6 was oddly generating during class both clausal orders "I think you know" and "you know I think", which Emily debugged as the following fix in the qeq.
+
+Grammar changes:
+	mcb.tdl: ---------------
+		qeq :+
+		 [ HARG.INSTLOC #il,
+		   LARG.INSTLOC #il ].
+
+Result:
+- This change reduced generation on sentence #6 from 4 to 2.
+
+
+######################################################
+3. For any residual realization ambiguity (multiple outputs for one input), characterize the sources (e.g. free word order).
+
+- optional object marker (sentence #2, 3, 4, 6, 7, 8, 9, 11, 13, 14, 17, 21, 22, 23, 24)
+- the verb 'eat' has two translation in mcb and it duplicates the generation. (sentence #4, 13, 14)
+- relative free word order --> the non-main argument PP can be put in the front or in the end (sentence #14)
+- In sentence 16, PP predicate is treated as an adjective of the sentence with unspecified complement (The dogs xxx). 
+
+QUESTIONS: 	
+(Sentence #23) We did not figure out why both of the question pronouns for this sentence can be generated with different order (i.e. "who" and "what" are being inserted in seemingly free word order).
+
+
+######################################################
+4. Documentation of your MT coverage for both eng and sje as source languages.
+	
+Below is the comparison chart for our generation results that run before transfer rules (lab 8 results), after transfer rules (at the start of lab 9), and after the final cleanup.
+		
+before transfer rules		after transfer rules	final grammar			
+---------------------       --------------------    --------------
+    # eng	# sje			# eng	# sje			# eng	# sje	
+1.  4		4				4		4				1		1	
+2.  8		8				8		8				2		2	
+3.  --		--				8		8				2		2	
+4.  40		64				40		64				10		18	
+5.  --		--				--		--				--		--	
+6.  --		--				2304	2304			2		2	
+7.  --		--				1152	--				2		--	
+8.  160		96				160		96				8		4	
+9.  64		64				64		64				4		4	
+10.  --		96				--		96				--		8	
+11.  8		8				8		8				2		2	
+12.  --		--				--		--				--		--	
+13.  --		--				120		--				30		--	
+14.  --		--				440		--				110		--	
+15.  4		--				4		--				1		--	
+16.  --		--				8		--				2		--	
+17.  4		--				4		--				2		--	
+18.  --		--				--		--				--		--	
+19.  8		8				8		8				1		1	
+20.  --		--				6		6				1		1	
+21.  --		--				20		12				5		3	
+22.  --		--				240		144				5		3	
+23.  --		--				2400	864				60		18	
+24.  --		--				240		144				5		3	
+25.  --		--				--	--					--		--	
+26.  --		--				--	--					--		--	
+------------------------------------------------------------------------
+	 9		8				20		15				20		15		<- # sentences parsed
+
+
+generate without ambiguity: sentence: *eng2mcb* #1, 15, 19, 20
+									  *sje2mcb* #1, 19, 20
+
+
+######################################################
+5. Documentation of your coverage over testsuite & test corpus for both the initial & final runs, including the answers to the questions given above.
+
+(1). How many items parsed?
+	Corpus:
+	- original:		32
+	- new:			35
+	Testsuite: 
+	- original:		47
+	- new:			47
+	MMT:
+	- original:		19
+	- new:			19
+
+(2). What is the average number of parses per parsed item?
+	Corpus:
+	- original:		74.25
+	- new:			67.80
+	Testsuite: (well-formed sentences)
+	- original:		7.3
+	- new:			5.4
+	MMT:
+	- original:		4.16
+	- new:			2.32
+
+(3). How many parses did the most ambiguous item receive?
+	Corpus:
+	- original:		784
+	- new:			784
+	Testsuite:
+	- original:		88
+	- new:			64
+	MMT:
+	- original:		22
+	- new:			13
+
+(4). What sources of ambiguity can you identify?
+	- There are no new sources of ambiguity that we can identify.
+	- Existing sources include:
+		- coordination ambiguity
+		- obj resolution for non-overt obj
+		- obj resolution for extracted NPs
+		- a few verbs have multiple meanings
+		- optional subordinating clause markers
+
+
+
+
+
