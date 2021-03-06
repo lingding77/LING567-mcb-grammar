@@ -18,6 +18,10 @@ non-mod-lex-item := lex-item &
 ;;; Matrix Type Addenda
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
+qeq :+
+ [ HARG.INSTLOC #il,
+   LARG.INSTLOC #il ].
+
 basic-head-comp-phrase :+ [ SYNSEM [ LIGHT -,
              LOCAL.CAT.MC #mc ],
     HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
